@@ -9,11 +9,11 @@ public class Playlist {
     private boolean isPublic;
     private LinkedList<Song> songList;
 
-    public Playlist(String name, User owner, boolean isPublic, Song firstSong){
+    public Playlist(String name, User owner, boolean isPublic){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList.addFirst(firstSong);
+        this.songList = new LinkedList<Song>() ;
     }
 
     public void setName(String name){
@@ -35,5 +35,9 @@ public class Playlist {
 
     public boolean returnPrivacy(){
         return this.isPublic;
+    }
+
+    public void addSong( Song newSong){
+        this.songList.add(newSong);
     }
 }
