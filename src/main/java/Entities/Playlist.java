@@ -1,13 +1,12 @@
 package Entities;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Playlist {
     private String name;
-    private User owner;
+    private final User owner;
     private boolean isPublic;
-    private LinkedList<Song> songList;
+    private final LinkedList<Song> songList;
 
     public Playlist(String name, User owner, boolean isPublic){
         this.name = name;
@@ -23,7 +22,7 @@ public class Playlist {
     public String getName(){
         return this.name;
     }
-    // no set owner because the owner is permenantly set upon intilization
+    // no set owner because the owner is permanently set upon initialization
 
     public User getOwner(){
         return this.owner;
