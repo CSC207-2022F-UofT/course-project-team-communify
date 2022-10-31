@@ -39,4 +39,8 @@ public class Playlist {
     public void addSong(Song newSong){
         this.songList.add(newSong);
     }
+
+    public LinkedList<Song> getSongList() {
+        return songList;
+    }
 }
