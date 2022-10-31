@@ -7,9 +7,9 @@ public abstract class User {
     private final String username;
     private final String password;
     private final List<Playlist> playlistList;
-    public User(String u, String p, ArrayList<Playlist> playlists){
-        this.password = p;
-        this.username = u;
+    public User(String username, String password, ArrayList<Playlist> playlists){
+        this.username = username;
+        this.password = password;
         this.playlistList = playlists;
     }
     public String getUsername() {
