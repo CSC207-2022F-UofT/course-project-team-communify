@@ -14,20 +14,7 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList =  new LinkedList<Song>();
-        this.collaborators = new ArrayList<User>();
-        // creating an empty playlist
-    }
-
-    public Playlist(String name, User owner, boolean isPublic, Song song){
-        this.name = name;
-        this.owner = owner;
-        this.isPublic = isPublic;
-        this.songList =  new LinkedList<Song>();
-        this.collaborators = new ArrayList<User>();
-        this.songList.add(song);
-        //overloaded constuctor for creating a non-empty playlist with one song
-
+        this.songList.addFirst(firstSong);
     }
 
     public void setName(String name){
@@ -49,14 +36,4 @@ public class Playlist {
     public boolean returnPrivacy(){
         return this.isPublic;
     }
-
-    public void addCollaborators(User collaborator){
-        this.collaborators.add(collaborator);
-    }
-
-    public ArrayList showCollaborators(){
-        return this.collaborators;
-    }
-
-
 }
