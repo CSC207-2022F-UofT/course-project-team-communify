@@ -17,13 +17,12 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
+        this.songList = new LinkedList<Song>();
     }
     public Playlist(String name, User owner, boolean isPublic, Song firstSong){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
         this.songList.addFirst(firstSong);
     }
 
