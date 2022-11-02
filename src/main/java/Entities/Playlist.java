@@ -1,24 +1,37 @@
 package Entities;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Playlist {
     private String name;
     private User owner;
     private boolean isPublic;
-    private LinkedList<Song> songList;
+    public LinkedList<Song> songList;
+    private ArrayList<User> collaborators;
 
     public Playlist(String name, User owner, boolean isPublic){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
         this.songList =  new LinkedList<Song>();
+        this.collaborators = new ArrayList<User>();
+        // creating an empty playlist
+    }
+
+    public Playlist(String name, User owner, boolean isPublic, Song song){
+        this.name = name;
+        this.owner = owner;
+        this.isPublic = isPublic;
+        this.songList =  new LinkedList<Song>();
+        this.collaborators = new ArrayList<User>();
+        this.songList.add(song);
+        //overloaded constuctor for creating a non-empty playlist with one song
+
     }
 
     public void setName(String name){
         this.name = name;
-
     }
     public String getName(){
         return this.name;
@@ -37,7 +50,13 @@ public class Playlist {
         return this.isPublic;
     }
 
-    public void addSong(Song newSong){
-        this.songList.add(newSong);
+    public void addCollaborators(User collaborator){
+        this.collaborators.add(collaborator);
     }
+
+    public ArrayList showCollaborators(){
+        return this.collaborators;
+    }
+
+
 }
