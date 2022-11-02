@@ -62,6 +62,10 @@ public class Playlist {
         return this.isPublic;
     }
 
+    /**
+     *
+     * @return list of collaborators for the playlist
+     */
 
     public ArrayList<User> getCollaborators() {
         return this.collaborators;
