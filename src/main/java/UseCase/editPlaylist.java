@@ -10,7 +10,7 @@ public class editPlaylist {
 
 
     public boolean isCollaborator(User user, Playlist playlist){
-        ArrayList<User> collabList = playlist.showCollaborators();
+        ArrayList<User> collabList = playlist.getCollaborators();
         boolean isCollaborator = false;
         for (User editor:collabList){
             if (editor == user){
@@ -22,20 +22,20 @@ public class editPlaylist {
     public void removeSong(User user, Song song, Playlist playlist){
         boolean isCollaborator = isCollaborator(user,playlist);
         if(playlist.getOwner() == user || isCollaborator)
-            for (Song s: playlist.songList){
+            for (Song s: playlist.getSongList()){
                 if(s == song){
-                    playlist.songList.remove(s);
+                    playlist.removeSong(s);
                     break;
                 }
             }
 
-        // potentially do something that says "You dont have permission to add or remove from playlist"
-        // do later
+        // TODO: potentially do something that says "You dont have permission to add or remove from playlist"
+        // TODO: do later
     }
     public void addSong(User user, Song song, Playlist playlist){
         boolean isCollaborator = isCollaborator(user,playlist);
         if(playlist.getOwner() == user || isCollaborator){
-            playlist.songList.add(song);
+            playlist.addSong(song);
         }
     }
 }
