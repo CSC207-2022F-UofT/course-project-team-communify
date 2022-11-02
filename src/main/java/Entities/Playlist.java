@@ -66,7 +66,9 @@ public class Playlist {
     public ArrayList<User> getCollaborators() {
         return this.collaborators;
     }
-
+    /**
+     * @param song removes song from playlist
+    */
     public void removeSong(Song song){
         this.songList.remove(song);
     }
