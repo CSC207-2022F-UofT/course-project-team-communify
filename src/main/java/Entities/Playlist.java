@@ -7,10 +7,17 @@ public class Playlist {
     private String name;
     private User owner;
     private boolean isPublic;
-    public LinkedList<Song> songList;
+    private LinkedList<Song> songList;
     private ArrayList<User> collaborators;
 
+
     public Playlist(String name, User owner, boolean isPublic){
+        this.name = name;
+        this.owner = owner;
+        this.isPublic = isPublic;
+        this.songList = new LinkedList<Song>();
+    }
+    public Playlist(String name, User owner, boolean isPublic, Song firstSong){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
@@ -35,5 +42,21 @@ public class Playlist {
 
     public boolean returnPrivacy(){
         return this.isPublic;
+    }
+
+    public ArrayList<User> showCollaborators() {
+        return this.collaborators;
+    }
+
+    public LinkedList<Song> showSongList(){
+        return this.songList;
+    }
+
+    public void removeSong(Song song){
+        this.songList.remove(song);
+    }
+
+    public void addSong(Song song){
+        this.songList.add(song);
     }
 }
