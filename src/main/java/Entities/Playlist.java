@@ -8,23 +8,28 @@ import java.util.LinkedList;
  */
 public class Playlist {
     private String name;
+    private final int id;
     private final User owner;
     private boolean isPublic;
-    private ArrayList<User> collaborators;
+    private final ArrayList<User> collaborators;
     private final LinkedList<Song> songList;
 
-    public Playlist(String name, User owner, boolean isPublic){
+    public Playlist(int id, String name, User owner, boolean isPublic){
+        this.id = id;
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
         this.songList = new LinkedList<>();
+        collaborators = new ArrayList<>();
     }
-    public Playlist(String name, User owner, boolean isPublic, Song firstSong){
+    public Playlist(int id, String name, User owner, boolean isPublic, Song firstSong){
+        this.id = id;
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
         this.songList = new LinkedList<>();
         this.songList.addFirst(firstSong);
+        collaborators = new ArrayList<>();
     }
 
     /**
@@ -64,12 +69,26 @@ public class Playlist {
     }
 
 
+    /**
+     * @return list of collaborators on this Playlist
+     */
     public ArrayList<User> getCollaborators() {
         return this.collaborators;
     }
 
+    /**
+     * Removes a given Song from a playlist.
+     * @param song Song to be removed
+     */
     public void removeSong(Song song){
         this.songList.remove(song);
+    }
+
+    /**
+     * @return the unique ID of the playlist object
+     */
+    public int getId() {
+        return id;
     }
 
     /**
