@@ -5,7 +5,7 @@ import java.util.Collection;
 public interface playlistAccessInterface {
 
     /**
-     * @return ArrayList of all existing Playlists
+     * @return Collection of all existing Playlists
      */
     public Collection<playlistDsData> getPlaylists();
 
