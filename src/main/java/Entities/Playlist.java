@@ -1,5 +1,6 @@
 package Entities;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -9,13 +10,21 @@ public class Playlist {
     private String name;
     private final User owner;
     private boolean isPublic;
+    private ArrayList<User> collaborators;
     private final LinkedList<Song> songList;
 
     public Playlist(String name, User owner, boolean isPublic){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList =  new LinkedList<Song>();
+        this.songList = new LinkedList<>();
+    }
+    public Playlist(String name, User owner, boolean isPublic, Song firstSong){
+        this.name = name;
+        this.owner = owner;
+        this.isPublic = isPublic;
+        this.songList = new LinkedList<>();
+        this.songList.addFirst(firstSong);
     }
 
     /**
@@ -23,7 +32,6 @@ public class Playlist {
      */
     public void setName(String name){
         this.name = name;
-
     }
 
     /**
@@ -53,6 +61,15 @@ public class Playlist {
      */
     public boolean returnPrivacy(){
         return this.isPublic;
+    }
+
+
+    public ArrayList<User> getCollaborators() {
+        return this.collaborators;
+    }
+
+    public void removeSong(Song song){
+        this.songList.remove(song);
     }
 
     /**
