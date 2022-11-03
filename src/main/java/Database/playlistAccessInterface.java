@@ -1,7 +1,5 @@
 package Database;
 
-import Entities.Playlist;
-
 import java.util.Collection;
 
 public interface playlistAccessInterface {
@@ -9,20 +7,20 @@ public interface playlistAccessInterface {
     /**
      * @return ArrayList of all existing Playlists
      */
-    public Collection<Playlist> getPlaylists();
+    public Collection<playlistDsData> getPlaylists();
 
     /**
      * Saves a new playlist to the database.
      * @param p newly created Playlist object to be saved to the database
      */
-    public void savePlaylist(Playlist p);
+    public void savePlaylist(playlistDsData p);
 
     /**
      * Finds a playlist by unique identifier
      * @param id the unique identifier of the playlist to be retrieved
      * @return Playlist with matching id or null
      */
-    public Playlist getPlaylist(int id);
+    public playlistDsData findPlaylist(int id);
 
     /**
      * A method to check whether a playlist exists by id. Necessary when creating new playlists,

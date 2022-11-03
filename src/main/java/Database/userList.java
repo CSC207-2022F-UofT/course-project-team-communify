@@ -1,8 +1,5 @@
 package Database;
 
-import Entities.RegularUser;
-import Entities.User;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,7 +18,7 @@ public class userList implements userAccessInterface {
     private static final userList USER_LIST =
             new userList("./src/main/java/Database/artists.csv",
                     "./src/main/java/Database/users.csv");
-    Map<String, User> userDatabase;
+    Map<String, userDsData> userDatabase;
     String regularFilepath;
     String artistFilepath;
 
@@ -45,14 +42,14 @@ public class userList implements userAccessInterface {
      *
      * @return a hashmap containing all users saved in the .csv files keyed with String usernames
      */
-    private Map<String, User> loadUsers() {
-        Map<String, User> db = new HashMap<>();
+    private Map<String, userDsData> loadUsers() {
+        Map<String, userDsData> db = new HashMap<>();
 
-        for (User u : loadRegularUsers()) {
+        for (userDsData u : loadRegularUsers()) {
             db.put(u.getUsername(), u);
         }
 
-        for (User u : loadArtistUsers()) {
+        for (userDsData u : loadArtistUsers()) {
             db.put(u.getUsername(), u);
         }
 
@@ -64,8 +61,8 @@ public class userList implements userAccessInterface {
      *
      * @return ArrayList containing all saved ArtistUsers
      */
-    private ArrayList<User> loadArtistUsers() {
-        ArrayList<User> result = new ArrayList<>();
+    private ArrayList<userDsData> loadArtistUsers() {
+        ArrayList<userDsData> result = new ArrayList<>();
         Scanner in;
 
         try {
@@ -90,8 +87,8 @@ public class userList implements userAccessInterface {
      *
      * @return ArrayList containing all saved RegularUsers
      */
-    private ArrayList<User> loadRegularUsers() {
-        ArrayList<User> result = new ArrayList<>();
+    private ArrayList<userDsData> loadRegularUsers() {
+        ArrayList<userDsData> result = new ArrayList<>();
         Scanner in;
 
         try {
@@ -131,7 +128,7 @@ public class userList implements userAccessInterface {
      * @param u newly created User object to be saved to the database
      */
     @Override
-    public void save(User u) {
+    public void save(userDsData u) {
         userDatabase.put(u.getUsername(), u);
         writeFile();
     }
@@ -141,11 +138,11 @@ public class userList implements userAccessInterface {
      * @return User object with submitted username, or null if that User does not exist
      */
     @Override
-    public User getUser(String username) {
+    public userDsData getUser(String username) {
         if (userDatabase.containsKey(username))
             return userDatabase.get(username);
         // TODO: this case should never happen
-        return new RegularUser("a", "b");
+        return new userDsData();
     }
 
     /**

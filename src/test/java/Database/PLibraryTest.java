@@ -37,15 +37,15 @@ public class PLibraryTest {
 
         Playlist p = new Playlist(id, "Playlist A", u, true);
 
-        library.savePlaylist(p);
-        Assertions.assertEquals(p.getId(), library.getPlaylist(id).getId());
+        library.savePlaylist(new playlistDsData(p));
+        Assertions.assertEquals(p.getId(), library.findPlaylist(id).getId());
     }
 
     @Test
     public void testGetPlaylist(){
         playlistAccessInterface library = Database.playlistLibrary.getInstance();
-        Assertions.assertEquals(library.getPlaylist(0).getId(), 0);
-        Assertions.assertEquals(library.getPlaylist(0).getName(), "Playlist 1");
-        Assertions.assertEquals(library.getPlaylist(0).getSongList().get(0).getID(), 110);
+        Assertions.assertEquals(library.findPlaylist(0).getId(), 0);
+        Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getName(), "Playlist 1");
+        Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getSongList().get(0).getID(), 110);
     }
 }

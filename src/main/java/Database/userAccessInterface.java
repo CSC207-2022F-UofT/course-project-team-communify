@@ -1,22 +1,20 @@
 package Database;
 
-import Entities.User;
-
 /**
  * Application Business Rules layer interface for accessing user data.
  */
 public interface userAccessInterface {
     /**
      * Saves a new user to the database.
-     * @param u newly created User object to be saved to the database
+     * @param u newly created User object in a userDsData object to be saved to the database
      */
-    public void save(User u);
+    public void save(userDsData u);
 
     /**
      * @param username username to be queried in the database
-     * @return User object with submitted username, or null if that User does not exist
+     * @return User in userDsData object with submitted username, or null if that User does not exist
      */
-    public User getUser(String username);
+    public userDsData getUser(String username);
 
     /**
      * A method to check whether a User exists by username.
