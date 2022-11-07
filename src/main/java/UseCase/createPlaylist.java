@@ -1,11 +1,10 @@
 package UseCase;
 import Entities.Song;
 import Entities.User;
-
 import Entities.Playlist;
+import InputBoundary.newPlaylistInputBoundary;
 
-
-public class createPlaylist{
+public class createPlaylist implements newPlaylistInputBoundary {
 
     /**
      @param song will only be used if creating a nonempty playlist with one song
