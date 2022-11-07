@@ -8,7 +8,7 @@ import Entities.Playlist;
 public class createPlaylist{
 
     /**
-    creates either an empty or non-empty playlist with one song
+     @param song will only be used if creating a nonempty playlist with one song
      */
     public Playlist newPlaylist(String playlistName, User Owner, boolean privacy){
         return new Playlist(playlistName, Owner, privacy);
