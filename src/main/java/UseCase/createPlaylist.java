@@ -1,21 +1,25 @@
 package UseCase;
-import Entities.Song;
-import Entities.User;
 import Entities.Playlist;
 import InputBoundary.newPlaylistInputBoundary;
-
+import InputData.newPlaylistInputData;
 public class createPlaylist implements newPlaylistInputBoundary {
 
-    public Playlist newPlaylist(String playlistName, User Owner, boolean privacy){
-        return new Playlist(playlistName, Owner, privacy);
-        //empty playlist creation
-    }
     /**
-     @param song will only be used if creating a nonempty playlist with one song
+     * @param playlistInputData holds necessary data to instantiate a new playlist
+     * if hasFirstSong() is false, then newPlaylist() will instantiate an empty playlist and vice versa if it's value
+     * is true
      */
-    public Playlist newPlaylist(String playlistName, User Owner, boolean privacy, Song song){
-        return new Playlist(playlistName, Owner, privacy, song);
-        //non-empty playlist creation
+    public Playlist newPlaylist(newPlaylistInputData playlistInputData) {
+        if (!playlistInputData.hasFirstSong()) {
+
+            return new Playlist(playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
+                    playlistInputData.getPrivacy());
+
+        }
+        else{
+            return new Playlist(playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
+                    playlistInputData.getPrivacy(), playlistInputData.getFirstSong());
+        }
     }
 }
 
