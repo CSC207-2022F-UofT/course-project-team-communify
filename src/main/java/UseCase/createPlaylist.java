@@ -12,12 +12,12 @@ public class createPlaylist implements newPlaylistInputBoundary {
     public Playlist newPlaylist(newPlaylistInputData playlistInputData) {
         if (!playlistInputData.hasFirstSong()) {
 
-            return new Playlist(playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
+            return new Playlist(playlistInputData.getId(), playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
                     playlistInputData.getPrivacy());
 
         }
         else{
-            return new Playlist(playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
+            return new Playlist(playlistInputData.getId(), playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
                     playlistInputData.getPrivacy(), playlistInputData.getFirstSong());
         }
     }
