@@ -19,15 +19,16 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
         collaborators = new ArrayList<>();
+        this.songList = new LinkedList<Song>();
     }
+    
     public Playlist(int id, String name, User owner, boolean isPublic, Song firstSong){
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
+        this.songList = new LinkedList<Song>();
         this.songList.addFirst(firstSong);
         collaborators = new ArrayList<>();
     }
@@ -68,6 +69,10 @@ public class Playlist {
         return this.isPublic;
     }
 
+    /**
+     *
+     * @return list of collaborators for the playlist
+     */
 
     /**
      * @return list of collaborators on this Playlist
