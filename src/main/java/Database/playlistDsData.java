@@ -45,8 +45,11 @@ public class playlistDsData {
         Playlist playlist = new Playlist(id, name, owner, isPublic);
 
         for (String song : songs){
-            if (song.length() > 0)
-                playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
+            if (song.length() > 0) {
+                if (library.exists(Integer.parseInt(song))) {
+                    playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
+                }
+            }
         }
 
         return playlist;

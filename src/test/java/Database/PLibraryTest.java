@@ -46,6 +46,5 @@ public class PLibraryTest {
         playlistAccessInterface library = Database.playlistLibrary.getInstance();
         Assertions.assertEquals(library.findPlaylist(0).getId(), 0);
         Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getName(), "Playlist 1");
-        Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getSongList().get(0).getID(), 110);
     }
 }
