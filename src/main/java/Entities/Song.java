@@ -1,5 +1,6 @@
 package Entities;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
 public class Song {
@@ -9,7 +10,7 @@ public class Song {
     private final List artistList;
     private final int length;
     private final String genre;
-    private final String fileLocation;
+    private final File file;
     private final boolean isExplicit;
     private final BufferedImage cover;
 
@@ -20,18 +21,18 @@ public class Song {
      * @param artistList List of contributing artists.
      * @param length Length of the song, in seconds.
      * @param genre Type of song.
-     * @param fileLocation Directory path to audio file.
+     * @param file Audio file itself.
      * @param isExplicit Whether the song is explicit or not.
      * @param cover Cover image of the song.
      */
     public Song(int id, String name, List artistList, int length, String genre,
-                String fileLocation, boolean isExplicit, BufferedImage cover){
+                File file, boolean isExplicit, BufferedImage cover){
         this.id = id;
         this.name = name;
         this.artistList = artistList;
         this.length = length;
         this.genre = genre;
-        this.fileLocation = fileLocation;
+        this.file = file;
         this.isExplicit = isExplicit;
         this.cover = cover;
     }
@@ -73,10 +74,10 @@ public class Song {
     }
 
     /**
-     * @return directory path to the audio file.
+     * @return File object representing the song.
      */
-    public String getFileLocation(){
-        return this.fileLocation;
+    public File getFile(){
+        return this.file;
     }
 
     /**
