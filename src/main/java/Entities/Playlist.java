@@ -17,13 +17,13 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
+        this.songList = new LinkedList<Song>();
     }
     public Playlist(String name, User owner, boolean isPublic, Song firstSong){
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList = new LinkedList<>();
+        this.songList = new LinkedList<Song>();
         this.songList.addFirst(firstSong);
     }
 
@@ -63,11 +63,17 @@ public class Playlist {
         return this.isPublic;
     }
 
+    /**
+     *
+     * @return list of collaborators for the playlist
+     */
 
     public ArrayList<User> getCollaborators() {
         return this.collaborators;
     }
-
+    /**
+     * @param song removes song from playlist
+    */
     public void removeSong(Song song){
         this.songList.remove(song);
     }
