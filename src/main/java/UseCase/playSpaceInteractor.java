@@ -1,16 +1,34 @@
 package UseCase;
 
+import Entities.Song;
 import InputData.spaceInputData;
-import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
+import java.io.File;
 
+/**
+ * use case for playing a space
+ */
 public class playSpaceInteractor {
 
     private OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
-    private OutputData.songOutputData songOutputData;
 
+    /**
+     * calls playSong's actuallyPlaySong function
+     * @param spaceInputData object containing space and song required for playing the space.
+     */
     private void playSpace(spaceInputData spaceInputData){
-        // TODO
+        // get values
+        Song song = spaceInputData.getSong();
+        File songFile = song.getFile();
+
+        // play song
+        playSong.actuallyPlaySong(songFile);
+
+        // construct return data and call outputboundary/presenter
+        songOutputData songOutputData = new songOutputData(song);
+        this.spacePlayedOutputBoundary.spacePlayed(songOutputData);
+
+        // TODO: test
     }
 
 }
