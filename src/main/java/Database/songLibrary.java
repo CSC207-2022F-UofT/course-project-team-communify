@@ -32,7 +32,7 @@ public class songLibrary implements songAccessInterface{
      */
     private HashMap<Integer, songDsData> readFile(){
         //TODO: Implementation of reading csv of songs.
-        return null;
+        return new HashMap<>();
     }
 
     /**
