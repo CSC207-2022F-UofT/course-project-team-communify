@@ -13,24 +13,19 @@ import java.util.LinkedList;
  */
 public class playlistDsData {
     private final Playlist playlist;
-    // TODO: change to songAccessInterface once implemented
-    private final songLibrary library;
+    private final songAccessInterface library;
     private final userAccessInterface users;
     
     public playlistDsData(Playlist p){
         // constructor for creation from use case to pass to database
         this.playlist = p;
-
-        // TODO: change to songAccessInterface once implemented
-        library = new songLibrary();
+        library = songLibrary.getInstance();
         users = userList.getInstance();
     }
     
     public playlistDsData(String[] data){
-        // TODO: change to songAccessInterface once implemented
-        library = new songLibrary();
+        library = songLibrary.getInstance();
         users = userList.getInstance();
-        
         this.playlist = buildPlaylist(data);
     }
 
@@ -51,7 +46,7 @@ public class playlistDsData {
 
         for (String song : songs){
             if (song.length() > 0)
-                playlist.addSong(library.getSong(Integer.parseInt(song)));
+                playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
         }
 
         return playlist;
