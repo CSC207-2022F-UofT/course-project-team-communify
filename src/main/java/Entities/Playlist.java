@@ -23,7 +23,7 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.isPublic = isPublic;
-        this.songList =new LinkedList<Song>();
+        this.songList = new LinkedList<Song>();
         this.songList.addFirst(firstSong);
     }
 
