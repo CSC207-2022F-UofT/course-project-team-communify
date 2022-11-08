@@ -1,26 +1,25 @@
 package InputData;
 import Entities.Song;
 import Entities.User;
-import java.util.Optional;
 
 public class newPlaylistInputData {
     private final String playlistName;
     private final User owner;
     private final Song firstSong;
-    private boolean privacy;
+    private boolean isPrivate;
 
     public newPlaylistInputData(String playlistName, User owner, boolean privacy){
         this.playlistName = playlistName;
         this.owner = owner;
         this.firstSong = null;
-        this.privacy = privacy;
+        this.isPrivate = privacy;
     }
 
     public newPlaylistInputData(String playlistName, Song firstSong, User owner, boolean privacy){
         this.playlistName = playlistName;
         this.owner = owner;
         this.firstSong = firstSong;
-        this.privacy = privacy;
+        this.isPrivate = privacy;
     }
 
     public String getPlaylistName(){
@@ -30,18 +29,13 @@ public class newPlaylistInputData {
         return this.owner;
     }
     public boolean hasFirstSong(){
-        if(this.firstSong == null){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return this.firstSong != null;
     }
     public Song getFirstSong(){
         return this.firstSong;
     }
 
     public boolean getPrivacy(){
-        return this.privacy;
+        return this.isPrivate;
     }
 }
