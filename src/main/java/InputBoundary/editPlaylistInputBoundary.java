@@ -1,14 +1,9 @@
 package InputBoundary;
-
+import InputData.editPlaylistInputData;
 public interface editPlaylistInputBoundary {
-    default void removeSong(){
-    }
-    default void addSong(){
+    public String removeSong(editPlaylistInputData inputData);
 
-    }
-    default void changeName(){
-    }
-    default void changePrivacy(){
-
-    }
+    public String addSong(editPlaylistInputData inputData);
+    public String changeName(editPlaylistInputData inputData);
+    public String changePrivacy(editPlaylistInputData inputData);
 }

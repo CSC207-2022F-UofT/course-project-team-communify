@@ -50,5 +50,6 @@ public class editPlaylist implements editPlaylistInputBoundary{
                 return "You don't have permission to edit this playlist!";
             }
         }
-    }
+
+}
 
