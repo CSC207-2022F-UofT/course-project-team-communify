@@ -24,7 +24,7 @@ public class playSpaceInteractor {
         // play song
         playSong.actuallyPlaySong(songFile);
 
-        // construct return data and call outputboundary/presenter
+        // construct return data and call OutputBoundary/Presenter
         songOutputData songOutputData = new songOutputData(song);
         this.spacePlayedOutputBoundary.spacePlayed(songOutputData);
 
