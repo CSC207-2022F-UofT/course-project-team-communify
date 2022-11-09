@@ -65,9 +65,6 @@ public class Playlist {
     public boolean returnPrivacy(){
         return this.isPublic;
     }
-    /**
-     * @return list of collaborators on this Playlist
-     */
 
     /**
      * Removes a given Song from a playlist.
