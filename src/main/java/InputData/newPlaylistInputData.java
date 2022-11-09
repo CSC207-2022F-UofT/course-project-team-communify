@@ -7,22 +7,20 @@ public class newPlaylistInputData {
     private final String playlistName;
     private final User owner;
     private final Song firstSong;
-    private boolean isPrivate;
 
-    public newPlaylistInputData(int id, String playlistName, User owner, boolean privacy){
+
+    public newPlaylistInputData(int id, String playlistName, User owner){
         this.id = id;
         this.playlistName = playlistName;
         this.owner = owner;
         this.firstSong = null;
-        this.isPrivate = privacy;
     }
 
-    public newPlaylistInputData(int id, String playlistName, Song firstSong, User owner, boolean privacy){
+    public newPlaylistInputData(int id, String playlistName, Song firstSong, User owner){
         this.id = id;
         this.playlistName = playlistName;
         this.owner = owner;
         this.firstSong = firstSong;
-        this.isPrivate = privacy;
     }
 
     public String getPlaylistName(){
@@ -41,7 +39,4 @@ public class newPlaylistInputData {
         return id;
     }
 
-    public boolean getPrivacy(){
-        return this.isPrivate;
-    }
 }

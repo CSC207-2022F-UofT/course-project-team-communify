@@ -16,41 +16,21 @@ public class editPlaylist implements editPlaylistInputBoundary{
                     inputData.getPlaylist().removeSong(s);
                     break;
                 }
-            return inputData.getSong().getName()+" removed ";
         }
-        else {
-            return "You don't have permission to edit this playlist!";
-        }
+        return inputData.getSong().getName()+" removed ";
     }
     // TODO: Work on view later
     public String addSong(editPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
             inputData.getPlaylist().addSong(inputData.getSong());
-            return inputData.getSong().getName()+" added!";
         }
-        else{
-            return "You don't have permission to edit this playlist!";
-        }
-    }
-
-    public String changePrivacy(editPlaylistInputData inputData) {
-        if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
-            inputData.getPlaylist().setPrivacy(inputData.getPrivacy());
-            return "Privacy changed!";
-        }
-        else{
-            return "You don't have permission to edit this playlist!";
-        }
+        return inputData.getSong().getName()+" added!";
     }
         public String changeName (editPlaylistInputData inputData){
             if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
                 inputData.getPlaylist().setName(inputData.getNewName());
-                return "Name changed!";
             }
-            else{
-                return "You don't have permission to edit this playlist!";
-            }
+            return "Name changed!";
         }
-
 }
 

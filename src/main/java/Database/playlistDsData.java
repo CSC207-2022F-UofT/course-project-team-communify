@@ -42,7 +42,7 @@ public class playlistDsData {
         String[] songs = data[2].split(";");
         User owner = users.getUser(data[3]).getUser();
         boolean isPublic = Boolean.parseBoolean(data[4]);
-        Playlist playlist = new Playlist(id, name, owner, isPublic);
+        Playlist playlist = new Playlist(id, name, owner);
 
         for (String song : songs){
             if (song.length() > 0) {
@@ -61,7 +61,6 @@ public class playlistDsData {
      */
     public String buildOutput() {
         int id = playlist.getId();
-        int isPublic = playlist.returnPrivacy() ? 1 : 0;
         LinkedList<Song> songs = playlist.getSongList();
         ArrayList<String> songIds = new ArrayList<>();
         for (Song s : songs) {
@@ -69,7 +68,7 @@ public class playlistDsData {
             songIds.add(songID);
         }
         return id + "," + playlist.getName() + "," + String.join(";", songIds) + "," +
-                playlist.getOwner().getUsername() + "," + isPublic;
+                playlist.getOwner().getUsername();
     }
 
     /**

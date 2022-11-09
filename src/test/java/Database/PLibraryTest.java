@@ -35,7 +35,7 @@ public class PLibraryTest {
         while(library.exists(id))
             id = random.nextInt();
 
-        Playlist p = new Playlist(id, "Playlist A", u, true);
+        Playlist p = new Playlist(id, "Playlist A", u);
 
         library.savePlaylist(new playlistDsData(p));
         Assertions.assertEquals(p.getId(), library.findPlaylist(id).getId());
