@@ -10,7 +10,15 @@ import java.io.File;
  */
 public class playSpaceInteractor {
 
-    private OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    private final OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
+
+    /**
+     * constructor
+     * @param spacePlayedOutputBoundary wrapper for the spacePresenter object to follow clean architecture
+     */
+    public playSpaceInteractor(OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary){
+        this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
+    }
 
     /**
      * calls playSong's actuallyPlaySong function
