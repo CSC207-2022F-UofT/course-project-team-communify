@@ -14,14 +14,15 @@ import java.util.Collection;
 import java.util.List;
 
 public class Search implements searchInputBoundary {
-    private searchOutputBoundary searchOutputBoundary;
+    private final searchOutputBoundary searchPresenter;
 
     songAccessInterface songLibrary;
 
-    public Search(songAccessInterface songLibrary, searchOutputBoundary searchOutputBoundary ){
+    public Search(songAccessInterface songLibrary, searchOutputBoundary searchPresenter){
         this.songLibrary = songLibrary;
-        this.searchOutputBoundary = searchOutputBoundary;
+        this.searchPresenter = searchPresenter;
     }
+    @Override
     public void search(searchInputData searchInputData){
         String name = searchInputData.getSearchText();
         Collection<songDsData> library = songLibrary.getLibrary();
@@ -34,6 +35,6 @@ public class Search implements searchInputBoundary {
             }
         }
         searchOutputData outputData = new searchOutputData(foundSongs);
-        // TODO: call presenter's foundSong method
+        this.searchPresenter.foundSongs(outputData);
     }
 }
