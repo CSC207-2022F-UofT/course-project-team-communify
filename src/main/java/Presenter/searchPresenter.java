@@ -1,4 +1,6 @@
 package Presenter;
 
-public class searchPresenter {
+import OutputBoundary.searchOutputBoundary;
+public class searchPresenter implements searchOutputBoundary{
+
 }
