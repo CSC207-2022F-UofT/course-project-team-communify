@@ -22,6 +22,11 @@ public class Search implements searchInputBoundary {
         this.songLibrary = songLibrary;
         this.searchPresenter = searchPresenter;
     }
+
+    /**
+     *
+     * @param searchInputData: contains the text to search for
+     */
     @Override
     public void search(searchInputData searchInputData){
         String name = searchInputData.getSearchText();

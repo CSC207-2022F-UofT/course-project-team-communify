@@ -7,6 +7,10 @@ public class searchInputData {
        this.searchText = text;
    }
 
+    /**
+     *
+     * @return the value of the searchText instance variable
+     */
     public String getSearchText() {
         return searchText;
     }
