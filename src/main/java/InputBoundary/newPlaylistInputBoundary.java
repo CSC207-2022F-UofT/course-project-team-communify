@@ -1,6 +1,6 @@
 package InputBoundary;
+import InputData.newPlaylistInputData;
 
 public interface newPlaylistInputBoundary {
-    default void newPlaylist(){
-    }
+    public String newPlaylist(newPlaylistInputData inputData);
 }
