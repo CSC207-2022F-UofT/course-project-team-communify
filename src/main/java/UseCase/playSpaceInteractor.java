@@ -30,7 +30,7 @@ public class playSpaceInteractor {
         File songFile = song.getFile();
 
         // play song
-        playSong.actuallyPlaySong(songFile);
+        playSong.playAudio(songFile);
 
         // construct return data and call OutputBoundary/Presenter
         songOutputData songOutputData = new songOutputData(song);
