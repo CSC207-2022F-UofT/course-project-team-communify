@@ -14,7 +14,7 @@ public class playSong implements playSongInputBoundary {
     }
 
     @Override
-    public void playAudio(){
+    public void playAudio(File song){
     // scaffolding for play space
     }
 
