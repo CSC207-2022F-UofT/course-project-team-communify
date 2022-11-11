@@ -9,9 +9,13 @@ public class playSong implements playSongInputBoundary {
     private final MusicPlayer mp = MusicPlayer.getInstance();
     private final Song song;
 
-
     public playSong(songInputData s){
         this.song = s.getSong();
+    }
+
+    @Override
+    public void playAudio(){
+    // scaffolding for play space
     }
 
     @Override
