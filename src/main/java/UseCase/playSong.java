@@ -1,5 +1,6 @@
 package UseCase;
 
+import java.io.File;
 import Entities.MusicPlayer;
 import Entities.Song;
 import InputBoundary.playSongInputBoundary;
@@ -14,7 +15,7 @@ public class playSong implements playSongInputBoundary {
     }
 
     @Override
-    public void playAudio(File song){
+    public static void playAudio(File song){
     // scaffolding for play space
     }
 
