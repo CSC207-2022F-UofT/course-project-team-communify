@@ -6,14 +6,10 @@ import javazoom.jl.decoder.JavaLayerException;
 import java.io.FileNotFoundException;
 
 /**
- * Add Java Docs after
+ * Interface for the playAudioInteractor to implement for the use case
  */
 public interface playAudioInputBoundary {
 
-    /**
-     * Add Java Docs after
-     * @param songFile
-     */
-    void playAudio(audioInputData songFile) throws FileNotFoundException, JavaLayerException;
+    void playAudio(audioInputData songFile);
 
 }

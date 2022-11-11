@@ -1,29 +1,34 @@
 package Controller;
 
+import java.io.File;
+
 import InputBoundary.playAudioInputBoundary;
 import InputData.audioInputData;
 
 /**
- * Add Java docs after
+ * Controller for the playAudio use case
  */
 public class playAudioController {
 
     private final playAudioInputBoundary playAudioInteractor;
-    private final audioInputData songFile;
 
     /**
-     * Add Java docs after
+     * Constructor.
+     * @param playAudioInteractor use case interactor for playing audio from a file
      */
-    public playAudioController(playAudioInputBoundary playAudioInteractor, audioInputData songFile) {
+    public playAudioController(playAudioInputBoundary playAudioInteractor) {
         this.playAudioInteractor = playAudioInteractor;
-        this.songFile = songFile;
     }
 
     /**
-     * Add Java Docs after
+     * Function calling the use case for playing audio
+     * @param songFile is the File object of the MP3 file
      */
-    public void playAudio() {
-        this.playAudioInteractor.playAudio(this.songFile);
+    public void playAudio(File songFile) {
+        audioInputData audioInput = new audioInputData(songFile);
+        this.playAudioInteractor.playAudio(audioInput);
     }
 
 }
+
+// Add exceptions - look at reference

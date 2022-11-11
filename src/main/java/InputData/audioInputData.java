@@ -3,7 +3,7 @@ package InputData;
 import java.io.File;
 
 /**
- * Add Java docs after
+ * Class that contains and returns an MP3 file for the audio playing use case
  */
 public class audioInputData {
 

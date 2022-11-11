@@ -31,7 +31,7 @@ public class Search implements searchInputBoundary {
     public void search(searchInputData searchInputData){
         String name = searchInputData.getSearchText();
         Collection<songDsData> library = songLibrary.getLibrary();
-        List<Song> foundSongs = new ArrayList<Song>();
+        List<Song> foundSongs = new ArrayList<>();
 
         for (songDsData song: library) {
             String currentName = song.getSong().getName();

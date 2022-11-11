@@ -7,32 +7,36 @@ import java.io.FileNotFoundException;
 
 import InputBoundary.playAudioInputBoundary;
 import InputData.audioInputData;
+import Entities.MusicPlayer;
 
 /**
- * Add Java docs later
- * This Use Case technically outputs nothing except when it plays audio this might change if we
- * need to return something like a boolean to show the audio is playing successfully
+ * Use case for playing audio from a given MP3 file
+ * This use case does not need anything related to outputs such as an output boundary because
+ * its purpose is to be used by the playSpace and playSong use cases which will do the output work
  */
 public class playAudioInteractor implements playAudioInputBoundary {
 
     /**
-     * Does not need a constructor since there is no output boundary or presenter need for this usecase?
+     * Empty constructor
      */
     public playAudioInteractor() {
     }
 
 
     /**
-     * Add Java docs later, THIS METHOD NEEDS TO CHANGE AFTER PLAYER IS MADE INTO SINGLETON
-     * HAS SOME EXCEPTIONS THAT NEED TO BE HANDLED AS WELL
-     * @param songFile
+     * Function to play the audio from a given songFile
+     * @param songFile is an instance of File which is an MP3 file
      */
     @Override
-    public void playAudio(audioInputData songFile) throws FileNotFoundException, JavaLayerException {
+    public void playAudio(audioInputData songFile) {
 
-        FileInputStream media = new FileInputStream(songFile.getSongFile().getAbsolutePath());
-        Player player = new Player(media);   // Player will later be a part of audioInputData, but for now its just this
-        player.play();
+        // MusicPlayer.play(songFile);
 
+        //***
+        // If this is how the MusicPlayer should be called then I need to change this use case to take in a song not a songFile,
+        // small change but I need to confirm that this line will play the audio provided
+        // ***
     }
 }
+
+// For later: May need some exceptions, look into it
