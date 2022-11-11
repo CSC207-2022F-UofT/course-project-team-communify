@@ -4,6 +4,7 @@ import javazoom.jl.decoder.Bitstream;
 import javazoom.jl.decoder.BitstreamException;
 import javazoom.jl.decoder.Header;
 import javazoom.jl.decoder.JavaLayerException;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -17,6 +18,7 @@ public class MusicPlayer {
     private boolean playing;
     private int position;
     private Song currentSong;
+    private final Object sync;
 
     /**
      * @return the singleton instance of MusicPlayer
@@ -27,6 +29,7 @@ public class MusicPlayer {
 
     private MusicPlayer() {
         playing = false;
+        sync = new Object();
         position = 0;
     }
 
@@ -43,14 +46,7 @@ public class MusicPlayer {
             currentSong = song;
             engine = new JPlayer(new FileInputStream(song.getFile()));
 
-            final Runnable r = () -> {
-                try {
-                    engine.play();
-                } catch (JavaLayerException e) {
-                    throw new RuntimeException(e);
-                }
-            };
-            final Thread t = new Thread(r);
+            final Thread t = new Thread(() -> startPlayback(false));
             playing = true;
             t.start();
         } catch (JavaLayerException e) {
@@ -79,15 +75,7 @@ public class MusicPlayer {
         if (!playing & currentSong != null){
             try {
                 engine = new JPlayer(new FileInputStream(currentSong.getFile()));
-
-                final Runnable r = () -> {
-                    try {
-                        engine.play(position, (int) (length() / msPerFrame()));
-                    } catch (JavaLayerException e) {
-                        throw new RuntimeException(e);
-                    }
-                };
-                final Thread t = new Thread(r);
+                final Thread t = new Thread(() -> startPlayback(true));
                 playing = true;
                 t.start();
             } catch (JavaLayerException e) {
@@ -111,7 +99,7 @@ public class MusicPlayer {
      * @return milliseconds per each frame
      */
     private float msPerFrame() {
-        Bitstream bitstream = null;
+        Bitstream bitstream;
         try {
             bitstream = new Bitstream(new FileInputStream(currentSong.getFile()));
         } catch (FileNotFoundException e) {
@@ -149,5 +137,30 @@ public class MusicPlayer {
 
         long tn = currentSong.getFile().length();
         return h.total_ms((int) tn);
+    }
+
+    /**
+     * @return the Sync object used for synchronized methods.
+     */
+    public Object getSync() {
+        return sync;
+    }
+
+    /**
+     * Internal synchronized play method which starts the audio output.
+     */
+    private void startPlayback(boolean resume){
+        synchronized (sync){
+            try {
+                if (resume){
+                    engine.play(position, (int) (length() / msPerFrame()));
+                } else {
+                    engine.play();
+                }
+                sync.notifyAll();
+            } catch (JavaLayerException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
