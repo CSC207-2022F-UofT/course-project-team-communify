@@ -28,7 +28,7 @@ public class editPlaylistInputData {
         return this.song;
     }
     public String getNewName(){
-        return newName;
+        return this.newName;
     }
 }
 
