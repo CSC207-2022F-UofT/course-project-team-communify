@@ -32,5 +32,3 @@ public class playAudioInteractor implements playAudioInputBoundary {
         MusicPlayer.getInstance().play(song.getSong());
     }
 }
-
-// For later: May need some exceptions, look into it

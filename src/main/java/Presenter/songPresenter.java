@@ -1,4 +1,7 @@
 package Presenter;
 
-public class songPresenter {
+import OutputBoundary.songOutputBoundary;
+
+public class songPresenter implements songOutputBoundary {
+    // TODO
 }
