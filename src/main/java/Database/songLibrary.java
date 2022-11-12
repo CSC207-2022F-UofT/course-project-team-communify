@@ -9,9 +9,10 @@ import java.util.Collection;
  */
 public class songLibrary implements songAccessInterface{
 
+    // TODO: change "" param to filepath
     private static final songLibrary SONG_LIBRARY = new songLibrary("");
     private final HashMap<Integer, songDsData> library;
-    private String filepath;
+    private final String filepath;
 
     /**
      * Global static method to retrieve the single instance of songLibrary.
@@ -62,6 +63,10 @@ public class songLibrary implements songAccessInterface{
      * @return Song inside a songDsData with matching ID, or null if it does not exist.
      */
     public songDsData getSong(int id){
-        return library.get(id);
+        if (library.containsKey(id))
+            return library.get(id);
+
+        // TODO: change once class is complete
+        return new songDsData(id);
     }
 }

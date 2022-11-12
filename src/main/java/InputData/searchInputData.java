@@ -12,6 +12,6 @@ public class searchInputData {
      * @return the value of the searchText instance variable
      */
     public String getSearchText() {
-        return searchText;
+        return this.searchText;
     }
 }

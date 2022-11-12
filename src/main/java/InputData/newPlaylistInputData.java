@@ -36,7 +36,7 @@ public class newPlaylistInputData {
         return this.firstSong;
     }
     public int getId() {
-        return id;
+        return this.id;
     }
 
 }

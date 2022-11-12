@@ -20,4 +20,5 @@ public class songInputData {
     public Song getSong(){
         return this.song;
     }
+    
 }
