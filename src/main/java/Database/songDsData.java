@@ -6,7 +6,12 @@ import Entities.Song;
  * Data storage class between database class and entities.
  */
 public class songDsData {
-    private Song song;
+    private final Song song;
+
+    public songDsData(int id) {
+        // TODO: remove once class is complete
+        this.song = new Song(id, null, null, 0, null, null, false, null);
+    }
 
     public songDsData(Song song){
         this.song = song;
@@ -14,6 +19,9 @@ public class songDsData {
 
     public songDsData(String[] data){
         //TODO: Implementation for use when reading in from csv.
+        // temporary constructor to avoid null exception in other tests
+        this.song = new Song(0, null, null, 0, null, null,
+                false, null);
     }
 
     public Song buildFromWrite(){

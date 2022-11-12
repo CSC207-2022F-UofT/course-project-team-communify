@@ -13,6 +13,7 @@ import java.util.LinkedList;
  */
 public class playlistDsData {
     private final Playlist playlist;
+    private final int privacy;
     private final songAccessInterface library;
     private final userAccessInterface users;
     
@@ -21,12 +22,14 @@ public class playlistDsData {
         this.playlist = p;
         library = songLibrary.getInstance();
         users = userList.getInstance();
+        this.privacy = 1;
     }
     
     public playlistDsData(String[] data){
         library = songLibrary.getInstance();
         users = userList.getInstance();
         this.playlist = buildPlaylist(data);
+        this.privacy = Integer.parseInt(data[4]);
     }
 
     /**
@@ -41,14 +44,17 @@ public class playlistDsData {
 
         String[] songs = data[2].split(";");
         User owner = users.getUser(data[3]).getUser();
-        boolean isPublic = Boolean.parseBoolean(data[4]);
-        Playlist playlist = new Playlist(id, name, owner, isPublic);
+        Playlist playlist = new Playlist(id, name, owner);
 
         for (String song : songs){
             if (song.length() > 0) {
+                playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
+                // TODO: add this check back in once songLibrary is complete
+                /*
                 if (library.exists(Integer.parseInt(song))) {
                     playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
                 }
+                 */
             }
         }
 
@@ -61,7 +67,6 @@ public class playlistDsData {
      */
     public String buildOutput() {
         int id = playlist.getId();
-        int isPublic = playlist.returnPrivacy() ? 1 : 0;
         LinkedList<Song> songs = playlist.getSongList();
         ArrayList<String> songIds = new ArrayList<>();
         for (Song s : songs) {
@@ -69,7 +74,7 @@ public class playlistDsData {
             songIds.add(songID);
         }
         return id + "," + playlist.getName() + "," + String.join(";", songIds) + "," +
-                playlist.getOwner().getUsername() + "," + isPublic;
+                playlist.getOwner().getUsername() + "," + privacy;
     }
 
     /**
