@@ -2,6 +2,7 @@ package Database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,25 +45,6 @@ public class userList implements userAccessInterface {
      */
     private Map<String, userDsData> loadUsers() {
         Map<String, userDsData> db = new HashMap<>();
-
-        for (userDsData u : loadRegularUsers()) {
-            db.put(u.getUsername(), u);
-        }
-
-        for (userDsData u : loadArtistUsers()) {
-            db.put(u.getUsername(), u);
-        }
-
-        return db;
-    }
-
-    /**
-     * A helper method for loadUsers() to build artist users from the data from the .csv file.
-     *
-     * @return ArrayList containing all saved ArtistUsers
-     */
-    private ArrayList<userDsData> loadArtistUsers() {
-        ArrayList<userDsData> result = new ArrayList<>();
         Scanner in;
 
         try {
@@ -70,42 +52,29 @@ public class userList implements userAccessInterface {
             while (in.hasNextLine()) {
                 String line = in.nextLine();
                 String[] data = line.split(",");
-
-                // TODO: finish once user classes created
-                // return a new artist with data in data[]
+                if (data.length > 0)
+                    db.put(data[0], new userDsData(data[2], data[0], data[1], data[3].split(";")));
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Creating new artist database");
-            createFile(regularFilepath);
-        }
+            in.close();
 
-        return result;
-    }
-
-    /**
-     * A helper method for loadUsers() to build regular users from the data from the .csv file.
-     *
-     * @return ArrayList containing all saved RegularUsers
-     */
-    private ArrayList<userDsData> loadRegularUsers() {
-        ArrayList<userDsData> result = new ArrayList<>();
-        Scanner in;
-
-        try {
             in = new Scanner(new File(regularFilepath));
             while (in.hasNextLine()) {
                 String line = in.nextLine();
                 String[] data = line.split(",");
-
-                // TODO: finish once user classes created
-                // return a new user with data in data[]
+                if (data.length > 1)
+                    if (data.length == 2){
+                        db.put(data[0], new userDsData(data[0], data[1], "".split(";")));
+                    } else {
+                        db.put(data[0], new userDsData(data[0], data[1], data[2].split(";")));
+                    }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Creating new user database");
+            System.out.println("Creating new databases");
             createFile(regularFilepath);
+            createFile(artistFilepath);
         }
 
-        return result;
+        return db;
     }
 
     /**
@@ -141,15 +110,38 @@ public class userList implements userAccessInterface {
     public userDsData getUser(String username) {
         if (userDatabase.containsKey(username))
             return userDatabase.get(username);
-        // TODO: this case should never happen
-        return new userDsData();
+        return null;
     }
 
     /**
-     * Method called by saveUser() which writes any newly created users to the .csv files.
+     * Method called by save() which writes any newly created users to the .csv files.
      */
     private void writeFile() {
-        // TODO: implement
+        ArrayList<String> regular = new ArrayList<>();
+        ArrayList<String> artist = new ArrayList<>();
+
+        for (String username : userDatabase.keySet()){
+            userDsData u = userDatabase.get(username);
+            String[] user = u.buildOutput();
+            String line = String.join(",", user);
+
+            if (user.length <= 3) regular.add(line);
+            else artist.add(line);
+        }
+
+        try {
+            FileWriter output = new FileWriter(regularFilepath, false);
+            for (String line : regular)
+                output.write(line + "\n");
+            output.close();
+
+            output = new FileWriter(artistFilepath, false);
+            for (String line : artist)
+                output.write(line + "\n");
+            output.close();
+        } catch (IOException e) {
+            System.out.println("Writing db failed");
+        }
     }
 
     /**

@@ -10,27 +10,21 @@ public class Playlist {
     private String name;
     private final int id;
     private final User owner;
-    private boolean isPublic;
-    private final ArrayList<User> collaborators;
     private final LinkedList<Song> songList;
 
-    public Playlist(int id, String name, User owner, boolean isPublic){
+    public Playlist(int id, String name, User owner){
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.isPublic = isPublic;
-        collaborators = new ArrayList<>();
         this.songList = new LinkedList<Song>();
     }
     
-    public Playlist(int id, String name, User owner, boolean isPublic, Song firstSong){
+    public Playlist(int id, String name, User owner, Song firstSong){
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.isPublic = isPublic;
         this.songList = new LinkedList<Song>();
         this.songList.addFirst(firstSong);
-        collaborators = new ArrayList<>();
     }
 
     /**
@@ -53,32 +47,6 @@ public class Playlist {
      */
     public User getOwner(){
         return this.owner;
-    }
-
-    /**
-     * @param privacy true if and only if the Playlist is desired to be public
-     */
-    public void setPrivacy(boolean privacy){
-        this.isPublic = privacy;
-    }
-
-    /**
-     * @return true if and only if the Playlist is public
-     */
-    public boolean returnPrivacy(){
-        return this.isPublic;
-    }
-
-    /**
-     *
-     * @return list of collaborators for the playlist
-     */
-
-    /**
-     * @return list of collaborators on this Playlist
-     */
-    public ArrayList<User> getCollaborators() {
-        return this.collaborators;
     }
 
     /**
