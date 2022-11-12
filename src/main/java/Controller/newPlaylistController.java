@@ -4,7 +4,9 @@ import InputData.newPlaylistInputData;
 import Entities.User;
 import Entities.Song;
 
-
+/**
+ * Controller-layer implementation for create playlist use case
+ */
 public class newPlaylistController {
     private final newPlaylistInputBoundary newPlaylistInteractor;
 
