@@ -45,7 +45,7 @@ public class playlistView extends JFrame {
 
         // set up space button
         this.spaceButton.setBounds(350,30, 150,55);
-        this.spaceButton.setBackground(Color.GREEN);  // TODO:
+        this.spaceButton.setBackground(Color.GREEN);  // TODO: how to make actually green background
         this.spaceButton.setOpaque(true);
         this.spaceButton.setFont(font);
         this.spaceButton.addActionListener(e -> {
