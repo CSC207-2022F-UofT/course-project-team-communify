@@ -1,17 +1,15 @@
 package OutputBoundary;
 
-import OutputData.songOutputData;
-
 /**
  * interface for wrapping the space presenter for the playing the space use case.
  */
 public interface spacePlayedOutputBoundary {
 
     /**
-     * @param songOutputData data returned by the use case
+     * in case of starting to play space, reflect that in the button
      */
-    default void spacePlayed(songOutputData songOutputData){
-
+    default String spacePlayed(){
+        return null;
     }
 
     /**
