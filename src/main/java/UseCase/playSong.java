@@ -1,13 +1,26 @@
 package UseCase;
 
 import java.io.File;
+import Entities.MusicPlayer;
+import Entities.Song;
+import InputBoundary.playSongInputBoundary;
+import InputData.songInputData;
 
-public class playSong {
+public class playSong implements playSongInputBoundary {
+    private final MusicPlayer mp = MusicPlayer.getInstance();
+    private final Song song;
 
-    static void playAudio(File songFilePath){
-        // TODO: stop playing whatever's playing
-        // TODO: play song
-        // TODO: call presenter
+    public playSong(songInputData s){
+        this.song = s.getSong();
+    }
+
+    public static void playAudio(File song){
+    // scaffolding for play space
+    }
+
+    @Override
+    public void play() {
+        mp.play(song);
     }
 }
 
