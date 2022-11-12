@@ -1,22 +1,23 @@
 package InputData;
+import Entities.RegularUser;
 import Entities.Song;
 import Entities.User;
 
 public class newPlaylistInputData {
     private final int id;
     private final String playlistName;
-    private final User owner;
+    private final RegularUser owner;
     private final Song firstSong;
 
 
-    public newPlaylistInputData(int id, String playlistName, User owner){
+    public newPlaylistInputData(int id, String playlistName, RegularUser owner){
         this.id = id;
         this.playlistName = playlistName;
         this.owner = owner;
         this.firstSong = null;
     }
 
-    public newPlaylistInputData(int id, String playlistName, Song firstSong, User owner){
+    public newPlaylistInputData(int id, String playlistName, Song firstSong, RegularUser owner){
         this.id = id;
         this.playlistName = playlistName;
         this.owner = owner;
@@ -26,7 +27,7 @@ public class newPlaylistInputData {
     public String getPlaylistName(){
         return this.playlistName;
     }
-    public User getOwner(){
+    public RegularUser getOwner(){
         return this.owner;
     }
     public boolean hasFirstSong(){
