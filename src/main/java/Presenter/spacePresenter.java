@@ -4,37 +4,22 @@ import OutputBoundary.songOutputBoundary;
 import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
 
-import java.util.ArrayList;
-
 /**
  * presenter for the space use cases.
  */
 public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoundary {
 
-    private final ArrayList<songOutputData> currentSpace;
-
     /**
      * constructor.
-     * @param currentSpace collection of songOutputData that composes the space
      */
-    public spacePresenter(ArrayList<songOutputData> currentSpace){
-        this.currentSpace = currentSpace;
-    }
-
-    /**
-     * @return getter for the instance variable currentSpace
-     */
-    public ArrayList<songOutputData> getCurrentSpace(){
-        return this.currentSpace;
-    }
+    public spacePresenter(){}
 
     /**
      * in case of starting to play a space, change the "play space!" button to reflect that change
-     * @param songOutputData data returned by the use case
      */
     @Override
-    public void spacePlayed(songOutputData songOutputData) {
-        // TODO: implement
+    public String spacePlayed() {
+        return "Currently playing space!";
     }
 
     /**

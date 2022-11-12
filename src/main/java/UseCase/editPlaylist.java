@@ -2,10 +2,11 @@ package UseCase;
 import Entities.Song;
 import InputBoundary.editPlaylistInputBoundary;
 import InputData.editPlaylistInputData;
+
 public class editPlaylist implements editPlaylistInputBoundary{
 
     /**
-    * @param inputdata contains contains information to edit the playlist for removeSong(), addSong(), changePrivacy(),
+    * @param inputData contains contains information to edit the playlist for removeSong(), addSong(), changePrivacy(),
      *                  and changeName()
      *
     */
@@ -26,11 +27,12 @@ public class editPlaylist implements editPlaylistInputBoundary{
         }
         return inputData.getSong().getName()+" added!";
     }
-        public String changeName (editPlaylistInputData inputData){
-            if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
-                inputData.getPlaylist().setName(inputData.getNewName());
-            }
-            return "Name changed!";
+
+    public String changeName (editPlaylistInputData inputData){
+        if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
+            inputData.getPlaylist().setName(inputData.getNewName());
         }
+        return "Name changed!";
+    }
 }
 
