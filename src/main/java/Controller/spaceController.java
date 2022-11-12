@@ -50,7 +50,7 @@ public class spaceController {
 
         // call presenter
         this.spacePresenter.spacePlayed();  // update button
-        this.spacePresenter.songPlayed(songToPlay);  // update playbar 
+        this.spacePresenter.songPlayed(songToPlay);  // update playbar
 
         // play the song
         this.playSpaceInteractor.playSpace(new songInputData(songToPlay.getSong()));

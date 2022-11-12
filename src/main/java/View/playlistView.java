@@ -66,7 +66,7 @@ public class playlistView extends JFrame {
         // TODO
 
         // set visible
-        this.jframe.setSize(540, 540);
+        this.jframe.setSize(this.width, this.height);
         this.jframe.setResizable(false);
         this.panel.add(title);
         this.panel.add(this.spaceButton);
