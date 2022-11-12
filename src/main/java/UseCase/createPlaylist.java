@@ -1,6 +1,7 @@
 package UseCase;
 import Database.playlistDsData;
 import Entities.Playlist;
+import Entities.RegularUser;
 import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
 import Database.playlistAccessInterface;
@@ -16,13 +17,16 @@ public class createPlaylist implements newPlaylistInputBoundary {
         Playlist playlist;
         playlistAccessInterface library = playlistLibrary.getInstance();
         if (!playlistInputData.hasFirstSong()) {
-            playlist = new Playlist(playlistInputData.getId(), playlistInputData.getPlaylistName(), playlistInputData.getOwner()
-                    );
-
+            playlist = new Playlist(playlistInputData.getId(), playlistInputData.getPlaylistName(),
+                    playlistInputData.getOwner());
         }
         else{
             playlist = new Playlist(playlistInputData.getId(), playlistInputData.getPlaylistName(), playlistInputData.getOwner(),
                      playlistInputData.getFirstSong());
+        }
+        if(playlistInputData.getOwner() instanceof RegularUser){
+            ((RegularUser) playlistInputData.getOwner()).addPlaylist(playlist);
+            // save the newly created playlist to the RegularUser's playlist lsit
         }
         library.savePlaylist(new playlistDsData(playlist));
         return "Playlist created!";
