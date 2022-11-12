@@ -3,24 +3,25 @@ package InputData;
 import Entities.Song;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Application Business Rules layer data structure for submitting playlist input to use cases.
  */
 public class playlistInputData {
-    private final ArrayList<Song> songs;
     private final String name;
+    private final LinkedList<Song> songList;
 
-    public playlistInputData(ArrayList<Song> songs, String name){
+    public playlistInputData(String name, LinkedList<Song> songList){
         this.name = name;
-        this.songs = songs;
+        this.songList = songList;
     }
 
     /**
      * @return list of Song objects in this input data
      */
     public ArrayList<Song> getSongs() {
-        return songs;
+        return new ArrayList<>(this.songList);
     }
 
     /**
