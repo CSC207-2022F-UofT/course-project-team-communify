@@ -64,6 +64,9 @@ public class playPlaylist implements playPlaylistInputBoundary {
             if (queue){
                 play();
             }
+            else {
+                MusicPlayer.getInstance().pause();
+            }
         }
     }
 }
