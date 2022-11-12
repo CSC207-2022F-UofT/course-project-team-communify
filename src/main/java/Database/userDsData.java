@@ -1,17 +1,17 @@
 package Database;
 
+import Entities.Song;
 import Entities.User;
+import Entities.userFactory;
+
+import java.util.ArrayList;
 
 /**
  * A data storage class in the Application Business Rules layer abstracting the interaction between database
  * classes and entities.
  */
 public class userDsData {
-    private User user;
-
-    public userDsData(){
-        // TODO: default constructor to be removed once User classes implemented
-    }
+    private final User user;
 
     public userDsData(User u){
         // constructor for creation from use case to pass to database
@@ -19,13 +19,28 @@ public class userDsData {
     }
 
     public userDsData(String username, String password, String artistName, String[] songs){
-        // constructor for creation from database as artist
-        // TODO: finish once User classes implemented
+        userFactory factory = new userFactory();
+        songAccessInterface songLibrary = Database.songLibrary.getInstance();
+        ArrayList<Song> library = new ArrayList<>();
+
+        for (String id : songs){
+            songDsData song = songLibrary.getSong(Integer.parseInt(id));
+            library.add(song.getSong());
+        }
+
+        this.user = factory.createArtistUser(artistName, username, password, library);
     }
 
     public userDsData(String username, String password, String[] playlists){
-        // constructor for creation from database as artist
-        // TODO: finish once User classes implemented
+        userFactory factory = new userFactory();
+        ArrayList<Integer> library = new ArrayList<>();
+
+        for (String id : playlists){
+            if (id.length() > 0)
+                library.add(Integer.parseInt(id));
+        }
+
+        this.user = factory.createRegularUser(username, password, library);
     }
 
     /**
@@ -47,5 +62,12 @@ public class userDsData {
      */
     public String getPassword(){
         return user.getPassword();
+    }
+
+    /**
+     * @return builds the output to save this User to a file
+     */
+    public String[] buildOutput() {
+        return this.user.toString().split(",");
     }
 }

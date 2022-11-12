@@ -45,8 +45,10 @@ public class playlistLibrary implements playlistAccessInterface {
                 // assumes 5 columns, properly filled
                 String line = in.nextLine();
                 String[] data = line.split(",");
-                int id = Integer.parseInt(data[0]);
-                p.put(Integer.parseInt(data[0]), new playlistDsData(data));
+                if (data.length == 5) {
+                    int id = Integer.parseInt(data[0]);
+                    p.put(id, new playlistDsData(data));
+                }
             }
             in.close();
         } catch (FileNotFoundException e) {
@@ -79,7 +81,7 @@ public class playlistLibrary implements playlistAccessInterface {
             for (int playlist : playlistDatabase.keySet()){
                 playlistDsData p = playlistDatabase.get(playlist);
                 String line = p.buildOutput();
-                output.write("\n" + line);
+                output.write(line + "\n");
             }
             output.close();
         } catch (IOException e) {
