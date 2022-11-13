@@ -160,7 +160,7 @@ public class songLibrary implements songAccessInterface{
      */
     @Override
     public boolean saveSong(songDsData song) {
-        if(library.containsKey(song.getID())){
+        if(!library.containsKey(song.getID())){
             library.put(song.getID(), song);
             return true;
         }
