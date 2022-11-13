@@ -10,6 +10,7 @@ public class editPlaylist implements editPlaylistInputBoundary{
      *                  and changeName()
      *
     */
+    //TODO: Update use case like with crate playlist
     public String removeSong(editPlaylistInputData inputData) {
         if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
             for (Song s : inputData.getPlaylist().getSongList())
@@ -20,6 +21,7 @@ public class editPlaylist implements editPlaylistInputBoundary{
         }
         return inputData.getSong().getName()+" removed ";
     }
+
     // TODO: Work on view later
     public String addSong(editPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {

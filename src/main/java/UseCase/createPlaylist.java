@@ -10,6 +10,7 @@ import OutputData.newPlaylistOutputData;
 import OutputBoundary.newPlaylistOutputBoundary;
 
 public class createPlaylist implements newPlaylistInputBoundary {
+    //TODO: Do I need to create an output data instance attribute ? I dont know if this is a data structure
 
     private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
     public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){

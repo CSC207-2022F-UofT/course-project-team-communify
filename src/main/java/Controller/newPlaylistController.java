@@ -12,7 +12,7 @@ public class newPlaylistController {
     private final newPlaylistInputBoundary newPlaylistInteractor;
     private final newPlaylistInputData newPlaylistInputData;
     private final playlistPresenter playlistPresenter;
-
+    //TODO: Take out presenter later probably ?
     public newPlaylistController(newPlaylistInputBoundary newPlaylistInteractor, playlistPresenter playlistPresenter, newPlaylistInputData newPlaylistInputData){
         this.newPlaylistInteractor = newPlaylistInteractor;
         this.playlistPresenter = playlistPresenter;
