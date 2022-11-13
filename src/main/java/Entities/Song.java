@@ -2,40 +2,37 @@ package Entities;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
 
 public class Song {
 
     private final int id;
     private final String name;
-    private final List artistList;
-    private final int length;
+    private final String[] artistList;
     private final String genre;
     private final File file;
-    private final boolean isExplicit;
     private final BufferedImage cover;
+    private final String uploader;
 
     /**
      *
      * @param id Unique identifier of the song.
      * @param name Name of the song.
      * @param artistList List of contributing artists.
-     * @param length Length of the song, in seconds.
      * @param genre Type of song.
      * @param file Audio file itself.
-     * @param isExplicit Whether the song is explicit or not.
      * @param cover Cover image of the song.
+     * @param uploader Username of user who uploaded the song.
      */
-    public Song(int id, String name, List artistList, int length, String genre,
-                File file, boolean isExplicit, BufferedImage cover){
+    public Song(int id, String name, String[] artistList, String genre,
+                File file, BufferedImage cover, String uploader){
+
         this.id = id;
         this.name = name;
         this.artistList = artistList;
-        this.length = length;
         this.genre = genre;
         this.file = file;
-        this.isExplicit = isExplicit;
         this.cover = cover;
+        this.uploader = uploader;
     }
 
     /**
@@ -56,15 +53,8 @@ public class Song {
      *
      * @return list of contributing artists.
      */
-    public List getArtistList(){
+    public String[] getArtistList(){
         return this.artistList;
-    }
-
-    /**
-     * @return int length of song, in seconds.
-     */
-    public int getLength(){
-        return this.length;
     }
 
     /**
@@ -82,16 +72,13 @@ public class Song {
     }
 
     /**
-     * @return true if the song is explicit.
-     */
-    public boolean getExplicit(){
-        return this.isExplicit;
-    }
-
-    /**
      * @return BufferedImage of song cover.
      */
     public BufferedImage getCover(){
         return this.cover;
+    }
+
+    public String getUploader(){
+        return this.uploader;
     }
 }

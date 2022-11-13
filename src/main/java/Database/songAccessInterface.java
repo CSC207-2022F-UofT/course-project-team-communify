@@ -8,9 +8,10 @@ public interface songAccessInterface {
     public Collection<songDsData> getLibrary();
 
     /**
-     * @param song Song object to be saved to the database.
+     * @param song New Song object to be saved to the database.
+     * @return true iff save was successful.
      */
-    public void saveSong(songDsData song);
+    public boolean saveSong(songDsData song);
 
     /**
      * @param id the unique int ID of a given song.
