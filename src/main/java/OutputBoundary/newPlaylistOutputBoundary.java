@@ -1,7 +1,7 @@
 package OutputBoundary;
-
+import OutputData.newPlaylistOutputData;
 public interface newPlaylistOutputBoundary {
-    default String playlistCreationConfirmation(){
+    default String playlistCreationConfirmation(newPlaylistOutputData newPlaylistOutputData){
         return null;
     }
 }
