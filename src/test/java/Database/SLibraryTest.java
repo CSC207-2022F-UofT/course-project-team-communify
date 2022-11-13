@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test;
 
 public class SLibraryTest {
 
-    @Test
-    public void testExists(){
-        songAccessInterface lib = Database.songLibrary.getInstance();
-        // A song with id 2 exists.
-        Assertions.assertTrue(lib.exists(2));
-        // A song with id -2 does not exist.
-        Assertions.assertFalse(lib.exists(-2));
-    }
+//    @Test
+//    public void testExists(){
+//        songAccessInterface lib = Database.songLibrary.getInstance();
+//        // A song with id 2 exists.
+//        Assertions.assertTrue(lib.exists(2));
+//        // A song with id -2 does not exist.
+//        Assertions.assertFalse(lib.exists(-2));
+//    }
 
     @Test
     public void testSaveSong(){
@@ -28,11 +28,11 @@ public class SLibraryTest {
         Assertions.assertFalse(lib.saveSong(song));
     }
 
-    @Test
-    public void testGetSong(){
-        songAccessInterface lib = Database.songLibrary.getInstance();
-        songDsData song = lib.getSong(2);
-        Assertions.assertEquals(song.getID(), 2);
-    }
+//    @Test
+//    public void testGetSong(){
+//        songAccessInterface lib = Database.songLibrary.getInstance();
+//        songDsData song = lib.getSong(2);
+//        Assertions.assertEquals(song.getID(), 2);
+//    }
 
 }
