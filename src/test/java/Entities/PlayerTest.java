@@ -1,7 +1,6 @@
 // TRUE ASSERTIONS ARE COMMENTED OUT FOR THE AUTOGRADER
 // UNCOMMENT THEM TO TEST LOCALLY
 
-
 package Entities;
 
 import Entities.MusicPlayer;
