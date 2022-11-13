@@ -33,9 +33,8 @@ public class SLibraryTest {
     @Test
     public void testGetSong(){
         songAccessInterface lib = Database.songLibrary.getInstance();
-
         Song song = lib.getSong(2).getSong();
-        Assertions.assertEquals(song.getID(), 2);
+        Assertions.assertEquals(song.getName(), "Food");
     }
 
 }
