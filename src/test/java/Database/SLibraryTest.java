@@ -1,6 +1,4 @@
 package Database;
-import Entities.Song;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +31,8 @@ public class SLibraryTest {
     @Test
     public void testGetSong(){
         songAccessInterface lib = Database.songLibrary.getInstance();
-        Song song = lib.getSong(2).getSong();
-        Assertions.assertEquals(song.getName(), "Food");
+        songDsData song = lib.getSong(2);
+        Assertions.assertEquals(song.getID(), 2);
     }
 
 }
