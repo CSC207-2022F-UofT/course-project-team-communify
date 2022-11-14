@@ -19,6 +19,10 @@ public class playSongInteractor implements playSongInputBoundary {
         this.songPresenter = songPresenter;
     }
 
+    public void playAudio() {
+        // Skeletal code for playSpace method, change later.
+    }
+
     @Override
     public void playSong(songInputData song) {
         playAudioInteractor audio = new playAudioInteractor();

@@ -1,5 +1,6 @@
 package InputData;
 
+import Entities.ArtistUser;
 import Entities.Song;
 
 import java.awt.image.BufferedImage;
@@ -25,7 +26,7 @@ public class songInputData {
         return this.song.getName();
     }
 
-    public List<String> getArtistList() {
+    public List<ArtistUser> getArtistList() {
         return this.song.getArtistList();
     }
 
