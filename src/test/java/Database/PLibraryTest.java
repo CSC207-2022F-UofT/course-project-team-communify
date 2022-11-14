@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 public class PLibraryTest {
-    @Before
-    public void setUp(){
-    }
 
     @Test
     public void testExists(){
