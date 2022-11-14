@@ -70,7 +70,7 @@ public class songLibrary implements songAccessInterface{
                 int id = Integer.parseInt(songInfo[0]);
                 String uploader = songInfo[1];
 
-                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2]));
+                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2].replace('\\', '/')));
                 map.put(id, song);
 
             }
