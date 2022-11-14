@@ -1,8 +1,5 @@
-// Use Case may not be 100% working for now and will need to be changed when we test/have a view
-
 package UseCase;
 
-import java.io.File;
 import Entities.MusicPlayer;
 import Entities.Song;
 import InputBoundary.playSongInputBoundary;
@@ -11,26 +8,23 @@ import OutputBoundary.songOutputBoundary;
 import OutputData.songOutputData;
 
 
-public class playSong implements playSongInputBoundary {
+public class playSongInteractor implements playSongInputBoundary {
 
     private final MusicPlayer mp = MusicPlayer.getInstance();
     private final songOutputBoundary songPresenter;
-    private final songOutputData songOutputData;
     private final Song song;
 
-    public playSong(songInputData s){
+    public playSongInteractor(songInputData s, songOutputBoundary songPresenter){
         this.song = s.getSong();
-    }
-
-    public static void playAudio(File song){
-        // scaffolding for play space
+        this.songPresenter = songPresenter;
     }
 
     @Override
     public void playSong(songInputData song) {
-        playAudioInteractor.playAudio(song);          // resolve
+        playAudioInteractor audio = new playAudioInteractor();
+        audio.playAudio(song);
 
-        this.songOutputData = new songOutputData(this.song);
+        OutputData.songOutputData songOutputData = new songOutputData(this.song);
         this.songPresenter.songPlayed(songOutputData);
     }
 }
