@@ -1,5 +1,6 @@
 package OutputData;
 
+import Entities.ArtistUser;
 import Entities.Song;
 
 import java.awt.image.BufferedImage;
@@ -31,7 +32,7 @@ public class songOutputData {
         return this.song.getName();
     }
 
-    public List<String> getArtistList() {
+    public List<ArtistUser> getArtistList() {
         return this.song.getArtistList();
     }
 
