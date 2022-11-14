@@ -15,7 +15,7 @@ public class UListTest {
 
     @Test
     public void testExists(){
-        userAccessInterface list = userList.getInstance();
+        userAccessInterface list = Database.userList.getInstance();
 
         // there is a User1
         Assertions.assertTrue(list.exists("User1"));
@@ -26,7 +26,7 @@ public class UListTest {
 
     @Test
     public void testSaveUser(){
-        userAccessInterface list = userList.getInstance();
+        userAccessInterface list = Database.userList.getInstance();
         Random random = new Random();
         int id = random.nextInt();
         String username = "user" + id;
@@ -44,7 +44,7 @@ public class UListTest {
 
     @Test
     public void testGetPlaylist(){
-        userAccessInterface list = userList.getInstance();
+        userAccessInterface list = Database.userList.getInstance();
         User u = list.getUser("User1").getUser();
         Assertions.assertEquals(u.getUsername(), "User1");
         Assertions.assertEquals(u.getPassword(), "Password1");
