@@ -6,7 +6,7 @@ public class SLibraryTest {
 
 //    @Test
 //    public void testExists(){
-//        songAccessInterface lib = Database.songLibrary.getInstance();
+//        songAccessInterface lib = songLibrary.getInstance();
 //        // A song with id 2 exists.
 //        Assertions.assertTrue(lib.exists(2));
 //        // A song with id -2 does not exist.
@@ -15,7 +15,7 @@ public class SLibraryTest {
 
     @Test
     public void testSaveSong(){
-        songAccessInterface lib = Database.songLibrary.getInstance();
+        songAccessInterface lib = songLibrary.getInstance();
         songDsData song = new songDsData(-1, null, null, null, null, null, null);
 
         // Song is new. Song is added.
@@ -30,7 +30,7 @@ public class SLibraryTest {
 
 //    @Test
 //    public void testGetSong(){
-//        songAccessInterface lib = Database.songLibrary.getInstance();
+//        songAccessInterface lib = songLibrary.getInstance();
 //        songDsData song = lib.getSong(2);
 //        Assertions.assertEquals(song.getID(), 2);
 //    }
