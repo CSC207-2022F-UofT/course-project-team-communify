@@ -17,3 +17,4 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+      - uses: education/autograding@v1
