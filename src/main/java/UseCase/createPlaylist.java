@@ -6,22 +6,23 @@ import InputData.newPlaylistInputData;
 import Database.playlistAccessInterface;
 import Database.playlistLibrary;
 
-import OutputData.newPlaylistOutputData;
-import OutputBoundary.newPlaylistOutputBoundary;
+//import OutputData.newPlaylistOutputData;
+//import OutputBoundary.newPlaylistOutputBoundary;
 
 public class createPlaylist implements newPlaylistInputBoundary {
     //TODO: Do I need to create an output data instance attribute ? I dont know if this is a data structure
 
-    private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
-    public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){
-        this.newPlaylistOutputBoundary = newPlaylistOutputBoundary;
-    }
+    public createPlaylist(){}
+//    private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
+//    public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){
+//        this.newPlaylistOutputBoundary = newPlaylistOutputBoundary;
+//    }
     /**
      * @param newplaylistInputData holds necessary data to instantiate a new playlist
      * if hasFirstSong() is false, then newPlaylist() will instantiate an empty playlist and vice versa if it's value
      * is true
      */
-    public void newPlaylist(newPlaylistInputData newplaylistInputData) {
+    public String newPlaylist(newPlaylistInputData newplaylistInputData) {
         Playlist playlist;
         playlistAccessInterface library = playlistLibrary.getInstance();
         if (!newplaylistInputData.hasFirstSong()) {
@@ -37,9 +38,9 @@ public class createPlaylist implements newPlaylistInputBoundary {
         library.savePlaylist(new playlistDsData(playlist));
 
         // TODO: new potential implementation of sending confirmation message via outputdata, check correctness
-        newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
-        this.newPlaylistOutputBoundary.playlistCreationConfirmation(outputData);
-        //return "Playlist created!";
+//        newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
+//        this.newPlaylistOutputBoundary.playlistCreationConfirmation(outputData);
+        return "Playlist created!";
     }
 }
 

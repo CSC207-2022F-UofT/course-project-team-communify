@@ -1,28 +1,23 @@
 package Controller;
 import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
-import Entities.User;
-import Entities.Song;
-import Presenter.playlistPresenter;
 
 /**
  * Controller-layer implementation for create playlist use case
  */
 public class newPlaylistController {
-    private final newPlaylistInputBoundary newPlaylistInteractor;
+    private final newPlaylistInputBoundary newPlaylistInputBoundary;
     private final newPlaylistInputData newPlaylistInputData;
-    private final playlistPresenter playlistPresenter;
-    //TODO: Take out presenter later probably ?
-    public newPlaylistController(newPlaylistInputBoundary newPlaylistInteractor, playlistPresenter playlistPresenter, newPlaylistInputData newPlaylistInputData){
-        this.newPlaylistInteractor = newPlaylistInteractor;
-        this.playlistPresenter = playlistPresenter;
+    public newPlaylistController(newPlaylistInputBoundary newPlaylistInputBoundary,newPlaylistInputData newPlaylistInputData){
+        this.newPlaylistInputBoundary = newPlaylistInputBoundary;
         this.newPlaylistInputData = newPlaylistInputData;
     }
     /**
      * Calls newPlaylist use case
+     * @return String confirmation of the playlist's creation
      */
-    public void createPlaylist(){
-        this.newPlaylistInteractor.newPlaylist(this.newPlaylistInputData);
+    public String createPlaylist(){
+        return this.newPlaylistInputBoundary.newPlaylist(this.newPlaylistInputData);
     }
     //TODO: If current version doesnt work roll back changes
 
