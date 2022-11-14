@@ -6,6 +6,8 @@ package UseCase;
 import Entities.MusicPlayer;
 import Entities.Song;
 import InputData.playlistInputData;
+import Presenter.songPresenter;
+import ViewModel.musicEngineControllerViewModel;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,7 @@ public class PPlaybackTest {
         songs.add(song2);
 
         playlistInputData p = new playlistInputData(songs, "");
-        playPlaylist play = new playPlaylist(p);
+        playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
@@ -48,7 +50,7 @@ public class PPlaybackTest {
         songs.add(song2);
 
         playlistInputData p = new playlistInputData(songs, "");
-        playPlaylist play = new playPlaylist(p);
+        playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
         final Thread t = new Thread(this::notifySync);
@@ -69,7 +71,7 @@ public class PPlaybackTest {
         songs.add(song2);
 
         playlistInputData p = new playlistInputData(songs, "");
-        playPlaylist play = new playPlaylist(p);
+        playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
         play.stopQueue();

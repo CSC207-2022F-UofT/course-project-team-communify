@@ -1,4 +1,10 @@
 package UseCase;
 
-public class pauseSong {
+import InputBoundary.pauseSongInputBoundary;
+
+public class pauseSong implements pauseSongInputBoundary {
+    @Override
+    public void pause() {
+
+    }
 }
