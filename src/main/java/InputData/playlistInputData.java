@@ -1,5 +1,7 @@
 package InputData;
 
+import Database.playlistAccessInterface;
+import Database.playlistLibrary;
 import Entities.Song;
 
 import java.util.ArrayList;
@@ -15,6 +17,12 @@ public class playlistInputData {
     public playlistInputData(String name, LinkedList<Song> songList){
         this.name = name;
         this.songList = songList;
+    }
+
+    public playlistInputData(int id){
+        playlistAccessInterface library = playlistLibrary.getInstance();
+        this.name = library.findPlaylist(id).getPlaylist().getName();
+        this.songs = new ArrayList<>(library.findPlaylist(id).getPlaylist().getSongList());
     }
 
     /**

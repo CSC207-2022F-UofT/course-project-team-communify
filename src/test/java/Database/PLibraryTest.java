@@ -2,7 +2,6 @@ package Database;
 
 import Entities.Playlist;
 import Entities.RegularUser;
-import Entities.User;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ public class PLibraryTest {
     @Test
     public void testSavePlaylist(){
         playlistAccessInterface library = Database.playlistLibrary.getInstance();
-        User u = new RegularUser("user", "pass");
+        RegularUser u = new RegularUser("user", "pass");
         Random random = new Random();
         int id = random.nextInt();
 
@@ -36,6 +35,8 @@ public class PLibraryTest {
             id = random.nextInt();
 
         Playlist p = new Playlist(id, "Playlist A", u);
+        u.addPlaylist(p);
+        Database.userList.getInstance().save(new userDsData(u));
 
         library.savePlaylist(new playlistDsData(p));
         Assertions.assertEquals(p.getId(), library.findPlaylist(id).getId());

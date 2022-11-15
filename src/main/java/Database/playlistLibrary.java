@@ -1,5 +1,9 @@
 package Database;
 
+import Entities.Playlist;
+import Entities.RegularUser;
+import Entities.Song;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,7 +21,7 @@ public class playlistLibrary implements playlistAccessInterface {
             new playlistLibrary("./src/main/java/Database/playlists.csv");
     private final Map<Integer, playlistDsData> playlistDatabase;
     private final String filepath;
-    private final List<Integer> saved;
+
 
     /**
      * Global static method to retrieve the single instance of the playlistLibrary.
@@ -29,7 +33,6 @@ public class playlistLibrary implements playlistAccessInterface {
 
     private playlistLibrary(String path){
         this.filepath = path;
-        saved = new ArrayList<>();
         playlistDatabase = loadFile();
     }
 
@@ -46,9 +49,10 @@ public class playlistLibrary implements playlistAccessInterface {
                 // assumes 5 columns, properly filled
                 String line = in.nextLine();
                 String[] data = line.split(",");
-                int id = Integer.parseInt(data[0]);
-                saved.add(id);
-                p.put(Integer.parseInt(data[0]), new playlistDsData(data));
+                if (data.length == 5) {
+                    int id = Integer.parseInt(data[0]);
+                    p.put(id, new playlistDsData(data));
+                }
             }
             in.close();
         } catch (FileNotFoundException e) {
@@ -77,13 +81,11 @@ public class playlistLibrary implements playlistAccessInterface {
      */
     private void saveFile(){
         try {
-            FileWriter output = new FileWriter(filepath, true);
+            FileWriter output = new FileWriter(filepath, false);
             for (int playlist : playlistDatabase.keySet()){
-                if (!saved.contains(playlist)){
-                    playlistDsData p = playlistDatabase.get(playlist);
-                    String line = p.buildOutput();
-                    output.write("\n" + line);
-                }
+                playlistDsData p = playlistDatabase.get(playlist);
+                String line = p.buildOutput();
+                output.write(line + "\n");
             }
             output.close();
         } catch (IOException e) {
@@ -105,6 +107,19 @@ public class playlistLibrary implements playlistAccessInterface {
      */
     @Override
     public playlistDsData findPlaylist(int id) {
+        // TODO: REMOVE THIS TESTING CODE WHEN FINISHED
+        if (id == -1){
+            File file = new File("./src/test/java/UseCase/test1.mp3");
+            Song song = new Song(0, "Song One", null, null, file, null, null);
+            File file2 = new File("./src/test/java/UseCase/test2.mp3");
+            Song song2 = new Song(0, "Song Two", null, null, file2, null, null);
+
+            Playlist p = new Playlist(-1, "Test Playlist", new RegularUser("a", "b"));
+            p.addSong(song);
+            p.addSong(song2);
+            return new playlistDsData(p);
+        }
+
         return playlistDatabase.get(id);
     }
 
@@ -120,7 +135,7 @@ public class playlistLibrary implements playlistAccessInterface {
 
     /**
      * A method to check whether a playlist exists by name.
-     * @param id a Integer id of a Playlist to be checked.
+     * @param id an Integer id of a Playlist to be checked.
      * @return true if and only if there exists a Playlist of the name submitted
      */
     @Override

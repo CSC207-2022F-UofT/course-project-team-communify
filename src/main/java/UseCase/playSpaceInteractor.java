@@ -1,43 +1,47 @@
 package UseCase;
 
+import Database.songDsData;
 import Entities.Song;
-import InputData.spaceInputData;
+import InputBoundary.playSpaceInputBoundary;
+import InputData.songInputData;
 import OutputData.songOutputData;
-import java.io.File;
+
+import java.util.*;
 
 /**
  * use case for playing a space
  */
-public class playSpaceInteractor {
+public class playSpaceInteractor implements playSpaceInputBoundary {
 
-    private final OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    // instance of global playlistLibrary
+    private final Database.songLibrary songLibrary;
 
     /**
      * constructor
-     * @param spacePlayedOutputBoundary wrapper for the spacePresenter object to follow clean architecture
      */
-    public playSpaceInteractor(OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary){
-        this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
+    public playSpaceInteractor(){
+        this.songLibrary = Database.songLibrary.getInstance();
     }
 
     /**
      * calls playSong's actuallyPlaySong function
-     * @param spaceInputData object containing space and song required for playing the space.
      */
-    private void playSpace(spaceInputData spaceInputData){
+    @Override
+    public void playSpace(songInputData songInputData){
         // get values
-        Song song = spaceInputData.getSong();
-        File songFile = song.getFile();
+        Song songToPlay = songInputData.getSong();
+        playSong.playAudio(songToPlay.getFile());  // play the song
+    }
 
-        // play song
-        // playAudioInteractor audio = new playAudioInteractor();
-        // audio.playAudio(songFile);
-
-        // construct return data and call OutputBoundary/Presenter
-        songOutputData songOutputData = new songOutputData(song);
-        this.spacePlayedOutputBoundary.spacePlayed(songOutputData);
-
-        // TODO: test
+    /**
+     * @return a random song from the songLibrary singleton.
+     */
+    @Override
+    public songOutputData pickRandomSong(){
+        ArrayList<songDsData> possibleSongs = new ArrayList<>(this.songLibrary.getLibrary());
+        int randomIndex = new Random().nextInt(possibleSongs.size());
+        songDsData randomSong = possibleSongs.get(randomIndex);
+        return new songOutputData(randomSong.getSong());
     }
 
 }
