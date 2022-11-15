@@ -1,13 +1,11 @@
 package Controller;
 
-import InputData.audioInputData;
 import InputData.playlistInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
 import UseCase.pauseSong;
-import UseCase.playAudioInteractor;
 import UseCase.playPlaylist;
-import UseCase.playSong;
+import UseCase.playSongInteractor;
 
 public class musicEngineController {
     private final int SONG = 0;
@@ -16,26 +14,14 @@ public class musicEngineController {
     private final int NONE = -1;
     private int playing;
     private playPlaylist playPlaylist;
-    private playSong playSong;
+    private playSongInteractor playSong;
     private final pauseSong pauseSong;
-    private final playAudioInteractor playAudio;
     songOutputBoundary presenter;
 
     public musicEngineController(songOutputBoundary p) {
-        this.playAudio = new playAudioInteractor();
         this.pauseSong = new pauseSong();
         this.presenter = p;
         this.playing = NONE;
-    }
-
-    /**
-     * Function calling the use case for playing audio
-     * @param audioInput is the audioInputData object of the Song
-     */
-    public void playAudio(audioInputData audioInput) {
-        stop();
-        playAudio.playAudio(audioInput);
-        playing = SONG;
     }
 
     /**
@@ -44,8 +30,8 @@ public class musicEngineController {
      */
     public void playSong(songInputData data) {
         stop();
-        playSong = new playSong(data, presenter);
-        playSong.play();
+        playSong = new playSongInteractor(data, presenter);
+        playSong.playSong();
         playing = SONG;
     }
 

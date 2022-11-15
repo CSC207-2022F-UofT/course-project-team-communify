@@ -11,25 +11,25 @@ import java.util.LinkedList;
  * Application Business Rules layer data structure for submitting playlist input to use cases.
  */
 public class playlistInputData {
-    private final ArrayList<Song> songs;
     private final String name;
+    private final LinkedList<Song> songList;
 
-    public playlistInputData(ArrayList<Song> songs, String name){
+    public playlistInputData(String name, LinkedList<Song> songList){
         this.name = name;
-        this.songs = songs;
+        this.songList = songList;
     }
 
     public playlistInputData(int id){
         playlistAccessInterface library = playlistLibrary.getInstance();
         this.name = library.findPlaylist(id).getPlaylist().getName();
-        this.songs = new ArrayList<>(library.findPlaylist(id).getPlaylist().getSongList());
+        this.songList = new LinkedList<>(library.findPlaylist(id).getPlaylist().getSongList());
     }
 
     /**
      * @return list of Song objects in this input data
      */
     public ArrayList<Song> getSongs() {
-        return songs;
+        return new ArrayList<>(this.songList);
     }
 
     /**

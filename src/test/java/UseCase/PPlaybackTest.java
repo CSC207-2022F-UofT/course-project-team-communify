@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class PPlaybackTest {
     @Before
@@ -27,11 +27,11 @@ public class PPlaybackTest {
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
         Song song2 = new Song(0, null, null, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
@@ -45,11 +45,11 @@ public class PPlaybackTest {
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
         Song song2 = new Song(0, null, null, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
@@ -66,11 +66,11 @@ public class PPlaybackTest {
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
         Song song2 = new Song(0, null, null, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();

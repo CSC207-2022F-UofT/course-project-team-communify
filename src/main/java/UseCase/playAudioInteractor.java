@@ -1,7 +1,12 @@
 package UseCase;
 
+import InputData.songInputData;
 import InputBoundary.playAudioInputBoundary;
-import InputData.audioInputData;
+import Entities.MusicPlayer;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Use case for playing audio from a given MP3 file
@@ -18,19 +23,12 @@ public class playAudioInteractor implements playAudioInputBoundary {
 
 
     /**
-     * Function to play the audio from a given songFile
-     * @param songFile is an instance of File which is an MP3 file
+     * Function to play the audio from a given song
+     *
+     * @param song is an instance of Song which is an MP3
      */
     @Override
-    public void playAudio(audioInputData songFile) {
-
-        // MusicPlayer.play(songFile);
-
-        //***
-        // If this is how the MusicPlayer should be called then I need to change this use case to take in a song not a songFile,
-        // small change but I need to confirm that this line will play the audio provided
-        // ***
+    public void playAudio(songInputData song) {
+        MusicPlayer.getInstance().play(song.getSong());
     }
 }
-
-// For later: May need some exceptions, look into it
