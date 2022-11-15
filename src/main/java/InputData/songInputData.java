@@ -48,7 +48,7 @@ public class songInputData {
     public BufferedImage getCover() {
         return this.song.getCover();
     }
-
+    
 }
 
 
