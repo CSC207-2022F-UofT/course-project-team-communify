@@ -109,9 +109,9 @@ public class playlistLibrary implements playlistAccessInterface {
     public playlistDsData findPlaylist(int id) {
         if (id == -1){
             File file = new File("./src/test/java/UseCase/test1.mp3");
-            Song song = new Song(0, "Song One", null, 0, null, file, false, null);
+            Song song = new Song(0, "Song One", null, null, file, null);
             File file2 = new File("./src/test/java/UseCase/test2.mp3");
-            Song song2 = new Song(0, "Song Two", null, 0, null, file2, false, null);
+            Song song2 = new Song(0, "Song Two", null, null, file2, null);
 
             Playlist p = new Playlist(-1, "Test Playlist", new RegularUser("a", "b"));
             p.addSong(song);
