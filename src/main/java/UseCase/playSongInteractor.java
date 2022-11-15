@@ -19,16 +19,9 @@ public class playSongInteractor implements playSongInputBoundary {
         this.songPresenter = songPresenter;
     }
 
-    public void playAudio() {
-        // Skeletal code for playSpace method, change later.
-    }
-
     @Override
-    public void playSong(songInputData song) {
-        playAudioInteractor audio = new playAudioInteractor();
-        audio.playAudio(song);
-
-        OutputData.songOutputData songOutputData = new songOutputData(this.song);
-        this.songPresenter.songPlayed(songOutputData);
+    public void playSong() {
+        this.mp.play(this.song);
+        this.songPresenter.songPlayed(new songOutputData(this.song));
     }
 }

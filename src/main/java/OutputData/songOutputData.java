@@ -1,11 +1,9 @@
 package OutputData;
 
-import Entities.ArtistUser;
 import Entities.Song;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
 
 /**
  * Application Business Rules layer data structure for returning a Song object.
@@ -32,12 +30,8 @@ public class songOutputData {
         return this.song.getName();
     }
 
-    public List<ArtistUser> getArtistList() {
+    public String[] getArtistList() {
         return this.song.getArtistList();
-    }
-
-    public int getLength() {
-        return this.song.getLength();
     }
 
     public String getGenre() {
@@ -48,9 +42,6 @@ public class songOutputData {
         return this.song.getFile();
     }
 
-    public boolean getExplicit() {
-        return this.song.getExplicit();
-    }
 
     public BufferedImage getCover() {
         return this.song.getCover();
