@@ -1,10 +1,10 @@
 package Entities;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * Entities layer class representing a Playlist.
+ * TODO Edge Case: song is removed while its being played should not affect the songs being played, or playlists
  */
 public class Playlist {
     private String name;
@@ -40,7 +40,6 @@ public class Playlist {
     public String getName(){
         return this.name;
     }
-    // no set owner because the owner is permanently set upon initialization
 
     /**
      * @return User object representing owner of a playlist

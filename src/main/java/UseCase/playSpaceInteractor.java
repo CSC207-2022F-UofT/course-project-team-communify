@@ -30,7 +30,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     public void playSpace(songInputData songInputData){
         // get values
         Song songToPlay = songInputData.getSong();
-        playSong.playAudio(songToPlay.getFile());  // play the song
+        playSongInteractor.playAudio(songToPlay.getFile());  // play the song
     }
 
     /**

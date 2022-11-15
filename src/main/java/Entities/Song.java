@@ -8,7 +8,7 @@ public class Song {
 
     private final int id;
     private final String name;
-    private final List artistList;
+    private final List<ArtistUser> artistList;
     private final int length;
     private final String genre;
     private final File file;
@@ -26,7 +26,7 @@ public class Song {
      * @param isExplicit Whether the song is explicit or not.
      * @param cover Cover image of the song.
      */
-    public Song(int id, String name, List artistList, int length, String genre,
+    public Song(int id, String name, List<ArtistUser> artistList, int length, String genre,
                 File file, boolean isExplicit, BufferedImage cover){
         this.id = id;
         this.name = name;
@@ -56,7 +56,7 @@ public class Song {
      *
      * @return list of contributing artists.
      */
-    public List getArtistList(){
+    public List<ArtistUser> getArtistList(){
         return this.artistList;
     }
 
