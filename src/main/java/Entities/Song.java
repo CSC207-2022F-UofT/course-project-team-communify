@@ -12,30 +12,29 @@ public class Song {
     private final int length;
     private final String genre;
     private final File file;
-    private final boolean isExplicit;
     private final BufferedImage cover;
+    private final String uploader;
 
     /**
-     *
-     * @param id Unique identifier of the song.
-     * @param name Name of the song.
+     * @param id         Unique identifier of the song.
+     * @param name       Name of the song.
      * @param artistList List of contributing artists.
-     * @param length Length of the song, in seconds.
-     * @param genre Type of song.
-     * @param file Audio file itself.
-     * @param isExplicit Whether the song is explicit or not.
-     * @param cover Cover image of the song.
+     * @param length
+     * @param genre      Type of song.
+     * @param file       Audio file itself.
+     * @param cover      Cover image of the song.
+     * @param uploader   Username of user who uploaded the song.
      */
     public Song(int id, String name, List<ArtistUser> artistList, int length, String genre,
-                File file, boolean isExplicit, BufferedImage cover){
+                File file, BufferedImage cover, String uploader){
         this.id = id;
         this.name = name;
         this.artistList = artistList;
         this.length = length;
         this.genre = genre;
         this.file = file;
-        this.isExplicit = isExplicit;
         this.cover = cover;
+        this.uploader = uploader;
     }
 
     /**
@@ -61,13 +60,6 @@ public class Song {
     }
 
     /**
-     * @return int length of song, in seconds.
-     */
-    public int getLength(){
-        return this.length;
-    }
-
-    /**
      * @return genre of song.
      */
     public String getGenre(){
@@ -82,16 +74,13 @@ public class Song {
     }
 
     /**
-     * @return true if the song is explicit.
-     */
-    public boolean getExplicit(){
-        return this.isExplicit;
-    }
-
-    /**
      * @return BufferedImage of song cover.
      */
     public BufferedImage getCover(){
         return this.cover;
+    }
+
+    public String getUploader(){
+        return this.uploader;
     }
 }
