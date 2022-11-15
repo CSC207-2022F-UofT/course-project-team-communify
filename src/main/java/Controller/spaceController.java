@@ -2,9 +2,11 @@ package Controller;
 
 import Entities.MusicPlayer;
 import InputBoundary.playSpaceInputBoundary;
+import InputData.playSpaceInputData;
 import InputData.songInputData;
 import OutputData.songOutputData;
 import Presenter.spacePresenter;
+import UseCase.playSpaceInteractor;
 
 import java.util.ArrayList;
 
@@ -16,67 +18,25 @@ public class spaceController {
     private final playSpaceInputBoundary playSpaceInteractor;
     private final ArrayList<songInputData> spaceSongList;
     private final Presenter.spacePresenter spacePresenter; // not OutputBoundary because in the same layer as Controller
-    private final Object sync;
-    private boolean keepPlaying;
+
 
     /**
      * Constructor.
-     * @param spacePlayInteractor use case interactor for playing the space
+     * @param spacePresenter presenter for use case
      */
-    public spaceController(playSpaceInputBoundary spacePlayInteractor, spacePresenter spacePresenter){
-        this.playSpaceInteractor = spacePlayInteractor;
-        this.spaceSongList = new ArrayList<>();
-        this.sync = MusicPlayer.getInstance().getSync();
-        this.keepPlaying = true;
+    public spaceController(spacePresenter spacePresenter){
         this.spacePresenter = spacePresenter;
+        this.spaceSongList = new ArrayList<>();
+        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter,
+                new playSpaceInputData(this.spaceSongList));
     }
 
     /**
      * function calling the use case for playing the space
      */
     public void playSpace(){
-        // pick which song to be played
-        songOutputData songToPlay;
-        if (!this.spaceSongList.isEmpty()){
-            songToPlay = new songOutputData(this.spaceSongList.remove(0).getSong());  // remove song to be played
-        }
-        else{
-            songToPlay = this.playSpaceInteractor.pickRandomSong();
-        }
-
-        // open queue
-        final Thread thread = new Thread(this::playNextSong);
-        thread.start();
-
-        // call presenter
-        this.spacePresenter.spacePlayed();  // update button
-        this.spacePresenter.songPlayed(songToPlay);  // update playbar
-
-        // play the song
-        this.playSpaceInteractor.playSpace(new songInputData(songToPlay.getSong()));
-    }
-
-    /**
-     * helper function for playSpace()
-     */
-    private void playNextSong(){
-        synchronized (sync){
-            try{
-                sync.wait();
-            } catch (InterruptedException e) {
-                System.out.println("thread interrupted");
-            }
-            if (keepPlaying){  // start all over again
-                this.playSpace();
-            }
-        }
-    }
-
-    /**
-     * in order to stop infinite recursion, call stopSpace.
-     */
-    private void stopSpace(){
-        this.keepPlaying = false;
+        playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
+        this.playSpaceInteractor.playSpace(playSpaceInputData);
     }
 
     /**

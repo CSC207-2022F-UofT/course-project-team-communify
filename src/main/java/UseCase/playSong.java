@@ -28,6 +28,11 @@ public class playSong implements playSongInputBoundary {
         mp.play(song);
         presenter.songPlayed(new songOutputData(song));
     }
+
+    @Override
+    public void playSong(songInputData songInputData) {
+
+    }
 }
 
 // Tester comment

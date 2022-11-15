@@ -3,23 +3,28 @@ package Presenter;
 import OutputBoundary.songOutputBoundary;
 import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
+import ViewModel.spaceViewModel;
 
 /**
  * presenter for the space use cases.
  */
 public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoundary {
 
+    private final ViewModel.spaceViewModel spaceViewModel;
+
     /**
      * constructor.
      */
-    public spacePresenter(){}
+    public spacePresenter(spaceViewModel spaceViewModel){
+        this.spaceViewModel = spaceViewModel;
+    }
 
     /**
      * in case of starting to play a space, change the "play space!" button to reflect that change
      */
     @Override
-    public String spacePlayed() {
-        return "Currently playing space!";
+    public void spacePlayed() {
+        this.spaceViewModel.updateSpaceButton("Currently playing space!");
     }
 
     /**
@@ -28,7 +33,7 @@ public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoun
      */
     @Override
     public void songPlayed(songOutputData songOutputData) {
-        // TODO: implement
+        this.spaceViewModel.updatePlaybar(songOutputData);
     }
 
     /**

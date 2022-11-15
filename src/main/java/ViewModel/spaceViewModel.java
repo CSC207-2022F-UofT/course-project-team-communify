@@ -1,20 +1,19 @@
 package ViewModel;
 
 import Controller.spaceController;
-import InputBoundary.playSpaceInputBoundary;
 import InputData.songInputData;
+import OutputData.songOutputData;
 import Presenter.spacePresenter;
-import UseCase.playSpaceInteractor;
 
 public class spaceViewModel {
 
     private final spaceController spaceController;
-    private final Presenter.spacePresenter spacePresenter;
+    private String spaceButtonMesssage;
+    private OutputData.songOutputData songOutputData;
 
     public spaceViewModel(){
-        this.spacePresenter = new spacePresenter();
-        playSpaceInputBoundary playSpaceInputBoundary = new playSpaceInteractor();
-        this.spaceController = new spaceController(playSpaceInputBoundary, this.spacePresenter);
+        Presenter.spacePresenter spacePresenter = new spacePresenter(this);
+        this.spaceController = new spaceController(spacePresenter);
     }
 
     /**
@@ -24,12 +23,45 @@ public class spaceViewModel {
         this.spaceController.playSpace();
     }
 
+    /**
+     * calling controller that will call use case
+     * @param songInputData song to add
+     */
     public void addSongToSpace(songInputData songInputData){
         this.spaceController.spaceAddSong(songInputData);
     }
 
-    public String updateSpaceButton(){
-        return this.spacePresenter.spacePlayed();
+    /**
+     * update viewmodel data with current message
+     * @param message message for space button
+     */
+    public void updateSpaceButton(String message){
+        this.spaceButtonMesssage = message;
     }
+
+    /**
+     * update viewmodel with song playing
+     * @param songOutputData song playing
+     */
+    public void updatePlaybar(songOutputData songOutputData){
+        this.songOutputData = songOutputData;
+    }
+
+    /**
+     * getter for the view
+     * @return string message for space button
+     */
+    public String getSpaceButtonMesssage(){
+        return this.spaceButtonMesssage;
+    }
+
+    /**
+     * getter for the view
+     * @return current song playing
+     */
+    public songOutputData getSongPlaying(){
+        return this.songOutputData;
+    }
+
 
 }

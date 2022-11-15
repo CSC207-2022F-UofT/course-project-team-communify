@@ -6,6 +6,7 @@ import InputBoundary.playSongInputBoundary;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
 import OutputData.songOutputData;
+import java.io.File;
 
 
 public class playSongInteractor implements playSongInputBoundary {
@@ -19,8 +20,13 @@ public class playSongInteractor implements playSongInputBoundary {
         this.songPresenter = songPresenter;
     }
 
-    public void playAudio() {
+    public static void playAudio(File file) {
         // Skeletal code for playSpace method, change later.
+    }
+
+    @Override
+    public void play() {
+
     }
 
     @Override
