@@ -1,6 +1,7 @@
 package View;
 
 import Entities.User;
+import ViewModel.musicEngineControllerViewModel;
 import ViewModel.spaceViewModel;
 
 import javax.swing.*;
@@ -21,7 +22,10 @@ public class playlistView extends JFrame {
     private int height = 640;
     private boolean spacePlaying;
 
-    private final ViewModel.spaceViewModel spaceViewModel;
+    private final spaceViewModel spaceViewModel;
+
+    private final musicEngineControllerViewModel playerViewModel;
+    private IDButton playlistButton;
 
     /**
      * constructor
@@ -64,12 +68,24 @@ public class playlistView extends JFrame {
 
         // set up play bar
         // TODO
+        this.playlistButton = new IDButton(-1, "test playlist playing");
+        this.playlistButton.setBounds(350, 350, 150, 55);
+        this.playlistButton.setBackground(Color.GREEN);  // TODO:
+        this.playlistButton.setOpaque(true);
+        this.playlistButton.setFont(font);
+        this.playerViewModel = new musicEngineControllerViewModel();
+        this.playlistButton.addActionListener(e -> {
+            String result = playerViewModel.playPlaylistAction(playlistButton.getId());
+            playlistButton.setText(result);
+            // TODO: add some way of syncing for a thread to update the text
+        });
 
         // set visible
         this.jframe.setSize(this.width, this.height);
         this.jframe.setResizable(false);
         this.panel.add(title);
         this.panel.add(this.spaceButton);
+        this.panel.add(this.playlistButton);
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
