@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class PPlaybackTest {
     @Before
@@ -23,15 +24,15 @@ public class PPlaybackTest {
     @Test
     public void testPlay(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, length, null, file, null, null);
+        Song song = new Song(0, null, null, 0, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, length, null, file2, null, null);
+        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
@@ -41,15 +42,15 @@ public class PPlaybackTest {
     @Test
     public void testPlayNext(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, length, null, file, null, null);
+        Song song = new Song(0, null, null, 0, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, length, null, file2, null, null);
+        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
@@ -62,15 +63,15 @@ public class PPlaybackTest {
     @Test
     public void testStopQueue(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, length, null, file, null, null);
+        Song song = new Song(0, null, null, 0, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, length, null, file2, null, null);
+        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
 
-        ArrayList<Song> songs = new ArrayList<>();
+        LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData(songs, "");
+        playlistInputData p = new playlistInputData("", songs);
         playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
 
         play.play();
