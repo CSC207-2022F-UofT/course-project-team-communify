@@ -23,9 +23,9 @@ public class PPlaybackTest {
     @Test
     public void testPlay(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new Song(0, null, null, length, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, null, file2, null, null);
+        Song song2 = new Song(0, null, null, length, null, file2, null, null);
 
         ArrayList<Song> songs = new ArrayList<>();
         songs.add(song);
@@ -41,9 +41,9 @@ public class PPlaybackTest {
     @Test
     public void testPlayNext(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new Song(0, null, null, length, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, null, file2, null, null);
+        Song song2 = new Song(0, null, null, length, null, file2, null, null);
 
         ArrayList<Song> songs = new ArrayList<>();
         songs.add(song);
@@ -62,9 +62,9 @@ public class PPlaybackTest {
     @Test
     public void testStopQueue(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new Song(0, null, null, length, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, null, file2, null, null);
+        Song song2 = new Song(0, null, null, length, null, file2, null, null);
 
         ArrayList<Song> songs = new ArrayList<>();
         songs.add(song);
