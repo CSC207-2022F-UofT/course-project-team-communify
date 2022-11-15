@@ -5,14 +5,18 @@ import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
 import Database.playlistAccessInterface;
 import Database.playlistLibrary;
+import OutputBoundary.newPlaylistOutputBoundary;
+import OutputData.newPlaylistOutputData;
 
-//import OutputData.newPlaylistOutputData;
 //import OutputBoundary.newPlaylistOutputBoundary;
 
 public class createPlaylist implements newPlaylistInputBoundary {
-    //TODO: Do I need to create an output data instance attribute ? I dont know if this is a data structure
-
-    public createPlaylist(){}
+        private newPlaylistOutputBoundary outputBoundary;
+        private String message;
+    public createPlaylist(newPlaylistOutputBoundary outputBoundary){
+        this.outputBoundary = outputBoundary;
+        this.message = "";
+    }
 //    private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
 //    public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){
 //        this.newPlaylistOutputBoundary = newPlaylistOutputBoundary;
@@ -22,7 +26,7 @@ public class createPlaylist implements newPlaylistInputBoundary {
      * if hasFirstSong() is false, then newPlaylist() will instantiate an empty playlist and vice versa if it's value
      * is true
      */
-    public String newPlaylist(newPlaylistInputData newplaylistInputData) {
+    public void newPlaylist(newPlaylistInputData newplaylistInputData) {
         Playlist playlist;
         playlistAccessInterface library = playlistLibrary.getInstance();
         if (!newplaylistInputData.hasFirstSong()) {
@@ -37,10 +41,20 @@ public class createPlaylist implements newPlaylistInputBoundary {
         // save the newly created playlist to the RegularUser's playlist list
         library.savePlaylist(new playlistDsData(playlist));
 
-        // TODO: new potential implementation of sending confirmation message via outputdata, check correctness
-//        newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
-//        this.newPlaylistOutputBoundary.playlistCreationConfirmation(outputData);
-        return "Playlist created!";
+        //TODO #1: new potential implementation of sending confirmation message via outputdata, check correctness
+        //TODO #2: Regain will to live
+
+        //generate output data
+        newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
+        // this.newPlaylistOutputBoundary.playlistCreationConfirmation(outputData);
+        // this.outputBoundary.getPlaylistCreationConfirmation(outputData);
+
+        //set message attribute to output data
+        this.message = this.outputBoundary.getPlaylistCreationConfirmation(outputData);
+        // return "Playlist created!";
+    }
+    public String showConfirmation(){
+        return this.message;
     }
 }
 

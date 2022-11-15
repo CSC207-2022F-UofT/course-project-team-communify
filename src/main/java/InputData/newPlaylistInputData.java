@@ -7,8 +7,8 @@ public class newPlaylistInputData {
     private final int id;
     private final String playlistName;
     private final RegularUser owner;
+    //Based off of Assumption that only RegularUser objects can generate playlists
     private final Song firstSong;
-
 
     public newPlaylistInputData(int id, String playlistName, RegularUser owner){
         this.id = id;

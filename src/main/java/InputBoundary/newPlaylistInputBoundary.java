@@ -2,5 +2,9 @@ package InputBoundary;
 import InputData.newPlaylistInputData;
 
 public interface newPlaylistInputBoundary {
-    public String newPlaylist(newPlaylistInputData inputData);
+    void newPlaylist(newPlaylistInputData inputData);
+
+    default String showConfirmation(){
+        return null;
+    }
 }
