@@ -2,30 +2,28 @@ package Entities;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.List;
 
 public class Song {
 
     private final int id;
     private final String name;
-    private final List<ArtistUser> artistList;
-    private final int length;
+    private final String[] artistList;
     private final String genre;
     private final File file;
     private final BufferedImage cover;
     private final String uploader;
+    private final int length;
 
     /**
      * @param id         Unique identifier of the song.
      * @param name       Name of the song.
      * @param artistList List of contributing artists.
-     * @param length
      * @param genre      Type of song.
      * @param file       Audio file itself.
      * @param cover      Cover image of the song.
      * @param uploader   Username of user who uploaded the song.
      */
-    public Song(int id, String name, List<ArtistUser> artistList, int length, String genre,
+    public Song(int id, String name, String[] artistList, int length, String genre,
                 File file, BufferedImage cover, String uploader){
         this.id = id;
         this.name = name;
@@ -52,10 +50,9 @@ public class Song {
     }
 
     /**
-     *
      * @return list of contributing artists.
      */
-    public List<ArtistUser> getArtistList(){
+    public String[] getArtistList(){
         return this.artistList;
     }
 

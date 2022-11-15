@@ -134,7 +134,7 @@ public class songLibrary implements songAccessInterface{
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).toString());
 
-        return new songDsData(id, name, artistList, genre, rawSong.getFile(), cover, uploader);
+        return new songDsData(id, name, artistList, 0, genre, rawSong.getFile(), cover, uploader);
     }
 
     /**

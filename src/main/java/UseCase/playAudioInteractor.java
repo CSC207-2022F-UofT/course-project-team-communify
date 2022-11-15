@@ -1,6 +1,6 @@
 package UseCase;
 
-import InputData.audioInputData;
+import InputData.songInputData;
 import InputBoundary.playAudioInputBoundary;
 import Entities.MusicPlayer;
 
@@ -23,7 +23,8 @@ public class playAudioInteractor implements playAudioInputBoundary {
      *
      * @param song is an instance of Song which is an MP3
      */
-    public void playAudio(audioInputData song) {
+    @Override
+    public void playAudio(songInputData song) {
         MusicPlayer.getInstance().play(song.getSong());
     }
 }

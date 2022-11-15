@@ -49,7 +49,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
         this.spacePlayedOutputBoundary.spacePlayed();  // update button
         this.spacePlayedOutputBoundary.songPlayed(songToPlay);  // update playbar
 
-        playSongInteractor.playAudio(songToPlay.getFile());  // play the song
+        playSongInteractor.playAudio(new songInputData(songToPlay.getSong()));  // play the song
     }
 
     private songOutputData pickSongToPlay(ArrayList<songInputData> spaceSongList){

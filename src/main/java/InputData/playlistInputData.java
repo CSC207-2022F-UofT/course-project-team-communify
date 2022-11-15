@@ -22,7 +22,7 @@ public class playlistInputData {
     public playlistInputData(int id){
         playlistAccessInterface library = playlistLibrary.getInstance();
         this.name = library.findPlaylist(id).getPlaylist().getName();
-        this.songs = new ArrayList<>(library.findPlaylist(id).getPlaylist().getSongList());
+        this.songList = new LinkedList<>(library.findPlaylist(id).getPlaylist().getSongList());
     }
 
     /**

@@ -14,7 +14,7 @@ public class songDsData {
         this.song = song;
     }
 
-    public songDsData(int id, String name, String[] artistList, String genre,
+    public songDsData(int id, String name, String[] artistList, int length, String genre,
                       File file, BufferedImage cover, String uploader){
        this.song = new Song(id, name, artistList, length, genre, file, cover, uploader);
     }

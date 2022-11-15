@@ -29,16 +29,6 @@ public class musicEngineController {
     }
 
     /**
-     * Function calling the use case for playing audio
-     * @param audioInput is the audioInputData object of the Song
-     */
-    public void playAudio(audioInputData audioInput) {
-        stop();
-        playAudio.playAudio(audioInput);
-        playing = SONG;
-    }
-
-    /**
      * Function calling the use case for playing song
      * @param data songInputData containing Song to be played
      */

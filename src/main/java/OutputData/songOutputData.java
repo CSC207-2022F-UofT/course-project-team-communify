@@ -32,12 +32,8 @@ public class songOutputData {
         return this.song.getName();
     }
 
-    public List<ArtistUser> getArtistList() {
+    public String[] getArtistList() {
         return this.song.getArtistList();
-    }
-
-    public int getLength() {
-        return this.song.getLength();
     }
 
     public String getGenre() {
@@ -46,10 +42,6 @@ public class songOutputData {
 
     public File getFile() {
         return this.song.getFile();
-    }
-
-    public boolean getExplicit() {
-        return this.song.getExplicit();
     }
 
     public BufferedImage getCover() {
