@@ -3,6 +3,10 @@ package UseCase;
 import InputData.songInputData;
 import InputBoundary.playAudioInputBoundary;
 import Entities.MusicPlayer;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Use case for playing audio from a given MP3 file

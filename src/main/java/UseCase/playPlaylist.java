@@ -37,11 +37,11 @@ public class playPlaylist implements playPlaylistInputBoundary {
     @Override
     public void play() {
         if (nextSong < playlist.size()){
-            playSongInputBoundary p = new playSong(new songInputData(playlist.get(nextSong)), presenter);
+            playSongInputBoundary p = new playSongInteractor(new songInputData(playlist.get(nextSong)), presenter);
             nextSong++;
             final Thread t = new Thread(this::playNext);
             t.start();
-            p.play();
+            p.playSong();
         }
     }
 

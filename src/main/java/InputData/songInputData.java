@@ -8,12 +8,12 @@ import java.io.File;
 public class songInputData {
     private final Song song;
 
-    public songInputData (Song song){
+    public songInputData(Song song){
         this.song = song;
     }
 
-    public Song getSong(){
-        return this.song;
+    public Song getSong() {
+        return song;
     }
 
     public int getId() {
@@ -28,6 +28,7 @@ public class songInputData {
         return this.song.getArtistList();
     }
 
+
     public String getGenre() {
         return this.song.getGenre();
     }
@@ -39,8 +40,8 @@ public class songInputData {
     public BufferedImage getCover() {
         return this.song.getCover();
     }
-
 }
+
 
 
 

@@ -12,23 +12,23 @@ public class Song {
     private final File file;
     private final BufferedImage cover;
     private final String uploader;
-    private final int length;
 
     /**
-     * @param id         Unique identifier of the song.
-     * @param name       Name of the song.
+     *
+     * @param id Unique identifier of the song.
+     * @param name Name of the song.
      * @param artistList List of contributing artists.
-     * @param genre      Type of song.
-     * @param file       Audio file itself.
-     * @param cover      Cover image of the song.
-     * @param uploader   Username of user who uploaded the song.
+     * @param genre Type of song.
+     * @param file Audio file itself.
+     * @param cover Cover image of the song.
+     * @param uploader Username of user who uploaded the song.
      */
-    public Song(int id, String name, String[] artistList, int length, String genre,
+    public Song(int id, String name, String[] artistList, String genre,
                 File file, BufferedImage cover, String uploader){
+
         this.id = id;
         this.name = name;
         this.artistList = artistList;
-        this.length = length;
         this.genre = genre;
         this.file = file;
         this.cover = cover;
@@ -50,6 +50,7 @@ public class Song {
     }
 
     /**
+     *
      * @return list of contributing artists.
      */
     public String[] getArtistList(){

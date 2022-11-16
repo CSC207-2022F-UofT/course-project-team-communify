@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class PPlaybackTest {
@@ -24,9 +23,9 @@ public class PPlaybackTest {
     @Test
     public void testPlay(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, 0, null, file, null, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
+        Song song2 = new Song(0, null, null, null, file2, null, null);
 
         LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
@@ -42,9 +41,9 @@ public class PPlaybackTest {
     @Test
     public void testPlayNext(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, 0, null, file, null, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
+        Song song2 = new Song(0, null, null, null, file2, null, null);
 
         LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
@@ -63,9 +62,9 @@ public class PPlaybackTest {
     @Test
     public void testStopQueue(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, 0, null, file, null, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
-        Song song2 = new Song(0, null, null, 0, null, file2, null, null);
+        Song song2 = new Song(0, null, null, null, file2, null, null);
 
         LinkedList<Song> songs = new LinkedList<>();
         songs.add(song);
