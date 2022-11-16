@@ -1,4 +1,5 @@
 package Controller;
+import InputBoundary.uploadSongInputBoundary;
 import InputData.uploadSongInputData;
 import OutputBoundary.uploadSongOutputBoundary;
 import UseCase.UploadSongInteractor;
@@ -6,10 +7,11 @@ import UseCase.UploadSongInteractor;
 public class uploadSongController {
 
     uploadSongOutputBoundary uploadSongPresenter;
-    UploadSongInteractor uploadSong;
+    uploadSongInputBoundary uploadSong;
 
     public uploadSongController(uploadSongOutputBoundary uploadSongPresenter){
         this.uploadSongPresenter = uploadSongPresenter;
+        uploadSong = new UploadSongInteractor(this.uploadSongPresenter);
     }
 
     /**
@@ -17,7 +19,6 @@ public class uploadSongController {
      * @param uploadSongInputData contains filepath and uploading user.
      */
     public void upload(uploadSongInputData uploadSongInputData){
-         uploadSong = new UploadSongInteractor(this.uploadSongPresenter);
          uploadSong.saveSong(uploadSongInputData);
     }
 
