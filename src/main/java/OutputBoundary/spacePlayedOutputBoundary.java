@@ -18,5 +18,4 @@ public interface spacePlayedOutputBoundary {
      */
     default void spaceNotPlayed(){}
 
-    void songPlayed(songOutputData songToPlay);
 }

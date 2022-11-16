@@ -14,9 +14,9 @@ public class songDsData {
         this.song = song;
     }
 
-    public songDsData(int id, String name, String[] artistList, int length, String genre,
+    public songDsData(int id, String name, String[] artistList, String genre,
                       File file, BufferedImage cover, String uploader){
-       this.song = new Song(id, name, artistList, length, genre, file, cover, uploader);
+       this.song = new Song(id, name, artistList, genre, file, cover, uploader);
     }
 
     public String buildToWrite(){

@@ -5,6 +5,7 @@ import Entities.MusicPlayer;
 import InputBoundary.playSpaceInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.songInputData;
+import OutputBoundary.songOutputBoundary;
 import OutputData.songOutputData;
 
 import java.util.*;
@@ -19,18 +20,21 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     private final OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
     private final Object sync;
     private final InputData.playSpaceInputData playSpaceInputData;
+    private final songOutputBoundary songOutputBoundary;
     private boolean keepPlaying;
 
     /**
      * constructor
      */
     public playSpaceInteractor(OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary,
-                               playSpaceInputData playSpaceInputData){
+                               playSpaceInputData playSpaceInputData,
+                               songOutputBoundary songOutputBoundary){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
         this.songLibrary = Database.songLibrary.getInstance();
         this.sync = MusicPlayer.getInstance().getSync();
         this.keepPlaying = true;
         this.playSpaceInputData = playSpaceInputData;
+        this.songOutputBoundary = songOutputBoundary;
     }
 
     /**
@@ -47,9 +51,11 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
         // call presenter
         this.spacePlayedOutputBoundary.spacePlayed();  // update button
-        this.spacePlayedOutputBoundary.songPlayed(songToPlay);  // update playbar
 
-        playSongInteractor.playAudio(new songInputData(songToPlay.getSong()));  // play the song
+        playSongInteractor playSongInteractor = new playSongInteractor(new songInputData(songToPlay.getSong()),
+                this.songOutputBoundary);
+
+        playSongInteractor.playSong();  // play the song; this will also call presenter to update playbar
     }
 
     private songOutputData pickSongToPlay(ArrayList<songInputData> spaceSongList){
@@ -78,7 +84,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     /**
      * in order to stop infinite recursion, call stopSpace.
      */
-    private void stopSpace(){
+    public void stopSpace(){
         this.keepPlaying = false;
     }
 

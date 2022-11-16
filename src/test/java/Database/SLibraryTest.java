@@ -16,7 +16,7 @@ public class SLibraryTest {
     @Test
     public void testSaveSong(){
         songAccessInterface lib = songLibrary.getInstance();
-        songDsData song = new songDsData(-1, null, null, 0, null, null, null, null);
+        songDsData song = new songDsData(-1, null, null, null, null, null, null);
 
         // Song is new. Song is added.
         Assertions.assertTrue(lib.saveSong(song));

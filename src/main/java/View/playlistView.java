@@ -2,7 +2,7 @@ package View;
 
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
-import ViewModel.spaceViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ public class playlistView extends JFrame implements ActionListener {
     private int width = 640;
     private int height = 640;
     private boolean spacePlaying;
-    private ViewModel.spaceViewModel spaceViewModel;
+    private ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
      * constructor
@@ -37,6 +37,7 @@ public class playlistView extends JFrame implements ActionListener {
 
         // set up actual playlists
         // TODO
+        // TODO -- note: when starting to play a playlist, please update the spaceButtonText
 
         // set up search bar
         // TODO
@@ -51,18 +52,17 @@ public class playlistView extends JFrame implements ActionListener {
 
     /**
      * Invoked when an action occurs.
-     * NOTE: add your action commands in the outermost if-statement.
      * @param e the event to be processed
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.spaceButton){
             if (!this.spacePlaying){   // clicking on button when space is playing does nothing
-                this.spaceViewModel.callPlaySpace();
-                this.spaceButton.setText(this.spaceViewModel.getSpaceButtonMesssage());
-                // TODO: update playbar by calling this.spaceViewModel.getSongPlaying();
+                String message = this.musicEngineControllerViewModel.callPlaySpace();
+                this.spaceButton.setText(message);
             }
         }
+        // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
 
     private void initializeValues(User user){
@@ -72,7 +72,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.spaceButton = new JButton("Listen to space!");
         this.title = new JLabel(this.user.getUsername() + " Dashboard");
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.fontSize);
-        this.spaceViewModel = new spaceViewModel();
+        // this.spaceViewModel = new spaceViewModel();
+        this.musicEngineControllerViewModel = new musicEngineControllerViewModel();
         this.spacePlaying = false;
 
         // set up panel
@@ -86,7 +87,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.spaceButton.setBounds(350,30, 150,55);
         this.spaceButton.setBackground(Color.GREEN);    // TODO: how to make actually green background
         this.spaceButton.setOpaque(true);
-        this.spaceButton.setFont(font);this.spaceButton.addActionListener(this);
+        this.spaceButton.setFont(font);
+        this.spaceButton.addActionListener(this);
     }
 
     private void setVisible(){
