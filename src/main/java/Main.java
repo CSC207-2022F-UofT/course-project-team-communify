@@ -1,6 +1,7 @@
 import Entities.RegularUser;
 import Entities.User;
 import View.playlistView;
+import View.searchOutputView;
 
 public class Main {
 
@@ -8,7 +9,8 @@ public class Main {
 
         // TODO
         User user = new RegularUser("", "");
-        new playlistView(user);
+//        new playlistView(user);
+        new searchOutputView();
         Thread.sleep(5000);
 
     }
