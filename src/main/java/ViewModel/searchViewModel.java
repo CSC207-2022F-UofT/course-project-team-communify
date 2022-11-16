@@ -1,6 +1,8 @@
 package ViewModel;
 
 import Controller.searchController;
+import InputData.playlistInputData;
+import InputData.searchInputData;
 import OutputBoundary.searchOutputBoundary;
 import Presenter.searchPresenter;
 
@@ -20,8 +22,9 @@ public class searchViewModel {
     }
 
     // have a function that returns something to the view
-    public ArrayList search(){
-        this.searchController.search();
+    public ArrayList search(String text){
+        searchInputData inputData = new searchInputData(text);
+        this.searchController.search(inputData);
         return new ArrayList<>(); // TODO: change
     }
 }
