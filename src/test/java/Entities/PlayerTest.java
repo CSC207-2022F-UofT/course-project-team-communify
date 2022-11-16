@@ -48,7 +48,7 @@ public class PlayerTest {
     @Test
     public void testPlayAfterPause(){
         File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null,null, file, null, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();

@@ -6,6 +6,7 @@ import InputBoundary.playSpaceInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
+import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
 
 import java.util.*;
@@ -17,7 +18,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
     // instance of global playlistLibrary
     private final Database.songLibrary songLibrary;
-    private final OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    private final spacePlayedOutputBoundary spacePlayedOutputBoundary;
     private final Object sync;
     private final InputData.playSpaceInputData playSpaceInputData;
     private final songOutputBoundary songOutputBoundary;
@@ -26,7 +27,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     /**
      * constructor
      */
-    public playSpaceInteractor(OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary,
+    public playSpaceInteractor(spacePlayedOutputBoundary spacePlayedOutputBoundary,
                                playSpaceInputData playSpaceInputData,
                                songOutputBoundary songOutputBoundary){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
