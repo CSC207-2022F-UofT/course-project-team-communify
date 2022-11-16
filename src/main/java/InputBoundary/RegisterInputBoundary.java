@@ -1,7 +1,7 @@
 package InputBoundary;
 
-import InputData.loginInputData;
+import InputData.RegisterInputData;
 
 public interface RegisterInputBoundary {
-    void register(loginInputData loginID);
+    void register(RegisterInputData registerInputData);
 }
