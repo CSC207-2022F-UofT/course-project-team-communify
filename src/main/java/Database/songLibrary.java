@@ -8,6 +8,7 @@ import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Objects;
@@ -19,11 +20,13 @@ import java.io.*;
  *  Java executes the static initializer when the class is first loaded.
  *  Private default constructor prevents creation of subsequent songLibraries.
  */
-public class songLibrary implements songAccessInterface{
+public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterface {
 
-    private static final songLibrary SONG_LIBRARY = new songLibrary("./src/main/java/Database/songs.csv");
+    private static final songLibrary SONG_LIBRARY = new songLibrary(".\\src\\main\\java\\Database\\songs.csv");
     private final HashMap<Integer, songDsData> library;
     private final String filepath;
+
+    private final int UPPER_ID_LIMIT = 10000;
 
     /**
      * Global static method to retrieve the single instance of songLibrary.
@@ -70,7 +73,7 @@ public class songLibrary implements songAccessInterface{
                 int id = Integer.parseInt(songInfo[0]);
                 String uploader = songInfo[1];
 
-                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2].replace('\\', '/')));
+                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2]));
                 map.put(id, song);
 
             }
@@ -143,7 +146,8 @@ public class songLibrary implements songAccessInterface{
      * @return Correctly formatted line.
      */
     private String format(String line){
-        return line.substring(7, line.length() - 5);
+        if(line.length() < 3) return "Unknown";
+        else return line.substring(7, line.length() - 5);
     }
 
     /**
@@ -155,16 +159,21 @@ public class songLibrary implements songAccessInterface{
     }
 
     /**
-     * @param song New Song object to be saved to the database.
+     * @param uploader The uploader of the song.
+     * @param filepath The file path of the uploaded song.
      * @return true iff save was successful.
      */
     @Override
-    public boolean saveSong(songDsData song) {
-        if(!library.containsKey(song.getID())){
-            library.put(song.getID(), song);
+    public boolean saveSong(String uploader, String filepath){
+        try {
+            int id = -1;
+            while (!exists(id)) id = ThreadLocalRandom.current().nextInt(0, UPPER_ID_LIMIT);
+            library.put(id, readSongFromMetadata(id, uploader, new MP3File(filepath)));
+            //TODO: Copy file to database. Do once duplicate implementation is complete.
             return true;
+        } catch (TagException | CannotReadException | InvalidAudioFrameException | ReadOnlyFileException | IOException e){
+            return false;
         }
-        return false;
     }
 
     /**
