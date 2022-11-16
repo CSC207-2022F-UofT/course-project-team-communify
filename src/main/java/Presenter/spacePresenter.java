@@ -3,32 +3,28 @@ package Presenter;
 import OutputBoundary.songOutputBoundary;
 import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
+import ViewModel.musicEngineControllerViewModel;
 
 /**
  * presenter for the space use cases.
  */
-public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoundary {
+public class spacePresenter implements spacePlayedOutputBoundary {
+
+    private final ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
      * constructor.
      */
-    public spacePresenter(){}
+    public spacePresenter(musicEngineControllerViewModel musicEngineControllerViewModel){
+        this.musicEngineControllerViewModel = musicEngineControllerViewModel;
+    }
 
     /**
      * in case of starting to play a space, change the "play space!" button to reflect that change
      */
     @Override
-    public String spacePlayed() {
-        return "Currently playing space!";
-    }
-
-    /**
-     * update the playbar when a song starts to play
-     * @param songOutputData the song that is being played
-     */
-    @Override
-    public void songPlayed(songOutputData songOutputData) {
-        // TODO: implement
+    public void spacePlayed() {
+        this.musicEngineControllerViewModel.updateSpaceButton("Currently playing space!");
     }
 
     /**
@@ -36,6 +32,7 @@ public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoun
      */
     @Override
     public void spaceNotPlayed(){
-        // TODO: implement
+        this.musicEngineControllerViewModel.updateSpaceButton("Listen to space!");
     }
+
 }

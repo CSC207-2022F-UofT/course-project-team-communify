@@ -8,8 +8,8 @@ import ViewModel.musicEngineControllerViewModel;
 public class songPresenter implements songOutputBoundary, recommendationOutputBoundary {
     private final musicEngineControllerViewModel viewModel;
 
-    public songPresenter(musicEngineControllerViewModel vm){
-        this.viewModel = vm;
+    public songPresenter(musicEngineControllerViewModel musicEngineControllerViewModel){
+        this.viewModel = musicEngineControllerViewModel;
     }
 
     @Override
