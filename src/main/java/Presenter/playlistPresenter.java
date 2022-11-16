@@ -1,5 +1,6 @@
 package Presenter;
 import OutputBoundary.newPlaylistOutputBoundary;
+import OutputData.newPlaylistOutputData;
 import ViewModel.playlistViewModel;
 
 public class playlistPresenter implements newPlaylistOutputBoundary {
@@ -18,9 +19,10 @@ public class playlistPresenter implements newPlaylistOutputBoundary {
 //        this.outputMessage = newMessage;
 //    }
     //TODO implement later & ask for help on. Also add editPlaylist stuff when I have better handle on output stuff
-    public void setOutputMessage(String outputMessage){
-        this.outputMessage = outputMessage;
-    }
+    //TODO: Remove later when implementation finalized
+//    public void setOutputMessage(String outputMessage){
+//        this.outputMessage = outputMessage;
+//    }
     public String getOutputMessage(){
         return outputMessage;
     }
@@ -30,5 +32,9 @@ public class playlistPresenter implements newPlaylistOutputBoundary {
      */
     public String getPlaylistCreationConfirmation() {
         return viewModel.callNewPlaylistUseCase();
+    }
+
+    public void setPlaylistCreationConfirmation(newPlaylistOutputData outputData){
+        this.outputMessage = outputData.getCreatedMessage();
     }
 }

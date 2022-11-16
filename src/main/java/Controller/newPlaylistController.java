@@ -17,17 +17,19 @@ public class newPlaylistController {
         this.newPlaylistInputBoundary = createPlaylist;
         this.newPlaylistInputData = newPlaylistInputData;
     }
-    /**
-     * @param presenter presenter object to store output message in
-     * @return String confirmation of the playlist's creation
-     */
-    public void createNewPlaylist(playlistPresenter presenter){
+
+
+    //TODO: Removed presenter parameter because I realized that the playlist controller is already initialized with it's
+    // own presenter object that was set in the view model
+    public void createNewPlaylist(){
         //TODO: Assuming this section functions like createPlaylist object w/ input data
         // and setting the presenter's output message to the confirmation stored in aforementioned object
         // which is accessed by showConfirmation()
         this.newPlaylistInputBoundary.newPlaylist(this.newPlaylistInputData);
-        presenter.setOutputMessage(this.newPlaylistInputBoundary.showConfirmation());
+//        presenter.setOutputMessage(this.newPlaylistInputBoundary.showConfirmation());
+//        presenter.setOutputMessage(presenter.getOutputMessage());
     }
+
 
 //    public String createPlaylist(int id, User owner, String playlistName){
 //        newPlaylistInputData newPlaylist = new newPlaylistInputData(id,playlistName,owner);

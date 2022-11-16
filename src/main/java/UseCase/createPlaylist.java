@@ -8,14 +8,12 @@ import Database.playlistLibrary;
 import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.newPlaylistOutputData;
 
-//import OutputBoundary.newPlaylistOutputBoundary;
-
 public class createPlaylist implements newPlaylistInputBoundary {
         private newPlaylistOutputBoundary outputBoundary;
-        private String message;
+//        private String message;
     public createPlaylist(newPlaylistOutputBoundary outputBoundary){
         this.outputBoundary = outputBoundary;
-        this.message = "";
+//        this.message = "";
     }
 //    private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
 //    public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){
@@ -43,6 +41,7 @@ public class createPlaylist implements newPlaylistInputBoundary {
 
         //TODO #1: new potential implementation of sending confirmation message via outputdata, check correctness
         //TODO #2: Regain will to live
+        //TODO #3: delete commented lines when finalizing this implementation
 
         //generate output data
         newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
@@ -50,11 +49,13 @@ public class createPlaylist implements newPlaylistInputBoundary {
         // this.outputBoundary.getPlaylistCreationConfirmation(outputData);
 
         //set message attribute to output data
-        this.message = this.outputBoundary.getPlaylistCreationConfirmation(outputData);
+        this.outputBoundary.setPlaylistCreationConfirmation(outputData);
+//        this.message = this.outputBoundary.getPlaylistCreationConfirmation(outputData);
+
         // return "Playlist created!";
     }
-    public String showConfirmation(){
-        return this.message;
-    }
+//    public String showConfirmation(){
+//        return this.message;
+//    }
 }
 

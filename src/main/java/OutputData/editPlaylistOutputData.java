@@ -1,9 +1,9 @@
 package OutputData;
 
 public class editPlaylistOutputData {
-    String songAdded;
-    String songRemoved;
-    String nameChanged;
+    private String songAdded;
+    private String songRemoved;
+    private String nameChanged;
     public editPlaylistOutputData(String songAdded, String songRemoved, String nameChanged){
         this.nameChanged= nameChanged;
         this.songAdded = songAdded;
