@@ -9,5 +9,4 @@ public interface SaveSongAccessInterface {
      */
     public boolean saveSong(String uploader, String filepath);
 
-
 }
