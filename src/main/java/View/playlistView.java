@@ -37,7 +37,7 @@ public class playlistView extends JFrame implements ActionListener {
 
         // set up actual playlists
         // TODO
-        // TODO -- note: when starting to play a playlist, please update the spaceButtonText
+        // TODO -- note: when starting to play a playlist, please update the spaceButtonText if it was being played
 
         // set up search bar
         // TODO
