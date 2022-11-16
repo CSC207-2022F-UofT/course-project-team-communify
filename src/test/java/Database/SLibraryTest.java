@@ -16,7 +16,7 @@ public class SLibraryTest {
     @Test
     public void testSaveSong(){
         SaveSongAccessInterface lib = songLibrary.getInstance();
-        String filepath = "./src/test/java/UseCase/10.mp3";
+        String filepath = ".\\src\\test\\java\\UseCase\\10.mp3";
 
         // Song is new. Song is added.
         Assertions.assertTrue(lib.saveSong("testSaveSong", filepath));
