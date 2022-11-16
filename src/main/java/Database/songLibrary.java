@@ -8,6 +8,7 @@ import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
@@ -155,7 +156,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     @Override
     public Collection<songDsData> getLibrary() {
-        return library.values();
+        return this.library.values();
     }
 
     /**
@@ -168,9 +169,12 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         try {
             int id = -1;
             while (!exists(id)) id = ThreadLocalRandom.current().nextInt(0, UPPER_ID_LIMIT);
-            library.put(id, readSongFromMetadata(id, uploader, new MP3File(filepath)));
-            //TODO: Copy file to database. Do once duplicate implementation is complete.
-            return true;
+            songDsData newSong = readSongFromMetadata(id, uploader, new MP3File(filepath));
+            if(!exists(newSong)){
+                library.put(id, newSong);
+                return true;
+            }
+            return false;
         } catch (TagException | CannotReadException | InvalidAudioFrameException | ReadOnlyFileException | IOException e){
             return false;
         }
@@ -182,7 +186,29 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     @Override
     public boolean exists(int id) {
-        return library.containsKey(id);
+        return this.library.containsKey(id);
+    }
+
+    /**
+     * @param song the songDsData representing song.
+     * @return true iff a song with the given ID exists.
+     */
+    public boolean exists(songDsData song){
+        return exists(song.getSong().getName(), song.getSong().getArtistList());
+    }
+
+    /**
+     * @param name the name of the song.
+     * @param artistList the list of contributing artists.
+     * @return true iff a song with the given ID exists.
+     */
+    public boolean exists(String name, String[] artistList){
+        for(songDsData song: getLibrary()){
+            if(!song.getSong().getName().equals(name) || !Arrays.equals(artistList, song.getSong().getArtistList())){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -191,6 +217,6 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     @Override
     public songDsData getSong(int id){
-        return library.get(id);
+        return this.library.get(id);
     }
 }

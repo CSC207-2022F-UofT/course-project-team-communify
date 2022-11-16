@@ -18,11 +18,11 @@ public class SLibraryTest {
 //        SaveSongAccessInterface lib = songLibrary.getInstance();
 //        String filepath = "./src/test/java/UseCase/10.mp3";
 //
-//        // Song is new. Song is added.
-//        Assertions.assertTrue(lib.saveSong("testSaveSong", filepath));
-//
-////        // TODO: Song already exists. Song is not added.
+////        // TODO: Song is new. Song is added.
 ////        Assertions.assertTrue(lib.saveSong("testSaveSong", filepath));
+//
+//        // Song already exists. Song is not added.
+//        Assertions.assertFalse(lib.saveSong("testSaveSong", filepath));
 //    }
 //
 //    @Test
