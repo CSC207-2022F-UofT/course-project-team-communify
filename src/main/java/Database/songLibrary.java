@@ -204,11 +204,11 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     public boolean exists(String name, String[] artistList){
         for(songDsData song: getLibrary()){
-            if(!song.getSong().getName().equals(name) || !Arrays.equals(artistList, song.getSong().getArtistList())){
-                return false;
+            if(song.getSong().getName().equals(name) && Arrays.equals(artistList, song.getSong().getArtistList())){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
