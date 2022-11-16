@@ -1,12 +1,14 @@
 package InputData;
 
-public class RegisterInputData {
+public class RegisterArtistInputData {
     private final String username;
     private final String password;
-    private boolean isArtist = false;
+    private final String artistName;
+    private boolean isArtist = true;
 
-    public RegisterInputData(String username, String password) {
+    public RegisterArtistInputData(String username, String password, String artistName) {
         this.username = username;
+        this.artistName = artistName;
         this.password = password;
     }
 
@@ -16,7 +18,12 @@ public class RegisterInputData {
     public String getUsername() {
         return this.username;
     }
-
+    /**
+     * @return the artistName of user
+     */
+    public String getArtistName() {
+        return this.artistName;
+    }
     /**
      * @return the password of user
      */
