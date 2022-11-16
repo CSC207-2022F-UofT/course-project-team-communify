@@ -1,7 +1,9 @@
 package Controller;
+import Entities.RegularUser;
+import Entities.Song;
 import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
-import UseCase.createPlaylist;
+import UseCase.CreatePlaylistInteractor;
 import Presenter.playlistPresenter;
 
 /**
@@ -9,26 +11,34 @@ import Presenter.playlistPresenter;
  */
 public class newPlaylistController {
     private final newPlaylistInputBoundary newPlaylistInputBoundary;
-    private final newPlaylistInputData newPlaylistInputData;
-    private createPlaylist createPlaylist;
 
-    public newPlaylistController(newPlaylistInputData newPlaylistInputData, playlistPresenter presenter){
-        this.createPlaylist = new createPlaylist(presenter);
+//    private final newPlaylistInputData newPlaylistInputData;
+//
+//    private CreatePlaylistInteractor createPlaylist;
+
+    public newPlaylistController(CreatePlaylistInteractor createPlaylist){
+//        this.createPlaylist = createPlaylist;
         this.newPlaylistInputBoundary = createPlaylist;
-        this.newPlaylistInputData = newPlaylistInputData;
+//        this.newPlaylistInputData = newPlaylistInputData;
     }
+    //TODO: remove uncommented lines later
 
 
-    //TODO: Removed presenter parameter because I realized that the playlist controller is already initialized with it's
-    // own presenter object that was set in the view model
-    public void createNewPlaylist(){
+    //TODO: this is given info via the view
+    public void createNewPlaylist(int id, RegularUser user, String playlistName, Song firstSong){
+
+        newPlaylistInputData inputData = new newPlaylistInputData(id,playlistName,firstSong,user);
+        //TODO: Move input data here
         //TODO: Assuming this section functions like createPlaylist object w/ input data
         // and setting the presenter's output message to the confirmation stored in aforementioned object
         // which is accessed by showConfirmation()
-        this.newPlaylistInputBoundary.newPlaylist(this.newPlaylistInputData);
-//        presenter.setOutputMessage(this.newPlaylistInputBoundary.showConfirmation());
-//        presenter.setOutputMessage(presenter.getOutputMessage());
+        this.newPlaylistInputBoundary.newPlaylist(inputData);
     }
+    public void createNewPlaylist(int id, RegularUser user, String playlistName){
+        newPlaylistInputData inputData = new newPlaylistInputData(id,playlistName,user);
+        this.newPlaylistInputBoundary.newPlaylist(inputData);
+    }
+
 
 
 //    public String createPlaylist(int id, User owner, String playlistName){

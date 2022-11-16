@@ -8,17 +8,13 @@ import Database.playlistLibrary;
 import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.newPlaylistOutputData;
 
-public class createPlaylist implements newPlaylistInputBoundary {
+public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         private newPlaylistOutputBoundary outputBoundary;
 //        private String message;
-    public createPlaylist(newPlaylistOutputBoundary outputBoundary){
+    public CreatePlaylistInteractor(newPlaylistOutputBoundary outputBoundary){
         this.outputBoundary = outputBoundary;
 //        this.message = "";
     }
-//    private final newPlaylistOutputBoundary newPlaylistOutputBoundary;
-//    public createPlaylist(newPlaylistOutputBoundary newPlaylistOutputBoundary){
-//        this.newPlaylistOutputBoundary = newPlaylistOutputBoundary;
-//    }
     /**
      * @param newplaylistInputData holds necessary data to instantiate a new playlist
      * if hasFirstSong() is false, then newPlaylist() will instantiate an empty playlist and vice versa if it's value
@@ -45,17 +41,9 @@ public class createPlaylist implements newPlaylistInputBoundary {
 
         //generate output data
         newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
-        // this.newPlaylistOutputBoundary.playlistCreationConfirmation(outputData);
-        // this.outputBoundary.getPlaylistCreationConfirmation(outputData);
 
         //set message attribute to output data
         this.outputBoundary.setPlaylistCreationConfirmation(outputData);
-//        this.message = this.outputBoundary.getPlaylistCreationConfirmation(outputData);
-
-        // return "Playlist created!";
     }
-//    public String showConfirmation(){
-//        return this.message;
-//    }
 }
 
