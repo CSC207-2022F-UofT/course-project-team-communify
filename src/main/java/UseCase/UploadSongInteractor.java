@@ -16,6 +16,10 @@ public class UploadSongInteractor implements uploadSongInputBoundary{
         this.uploadSongPresenter = uploadSongPresenter;
     }
 
+    /**
+     * Execute the uploadSong use case. Inform the presenter whether or not it was a success.
+     * @param usid contains filepath and uploading user.
+     */
     public void saveSong(uploadSongInputData usid) {
         boolean success = songLibrary.saveSong(usid.getUploader(), usid.getFilepath());
         uploadSongPresenter.isUploaded(new uploadSongOutputData(success));

@@ -11,6 +11,10 @@ public class uploadSongPresenter implements uploadSongOutputBoundary{
         this.uploadSongViewModel = uploadSongViewModel;
     }
 
+    /**
+     * Informs the viewModel whether a song has been uploaded.
+     * @param uploadSongOutputData bundles a boolean representing whether or not the upload was a success.
+     */
     public void isUploaded(uploadSongOutputData uploadSongOutputData) {
         this.uploadSongViewModel.updateIsUploaded(uploadSongOutputData.getSuccess());
     }
