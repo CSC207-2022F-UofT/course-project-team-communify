@@ -2,8 +2,16 @@ package Presenter;
 
 import OutputBoundary.searchOutputBoundary;
 import OutputData.searchOutputData;
+import ViewModel.searchViewModel;
 
 public class searchPresenter implements searchOutputBoundary{
+
+    // TOOD: instance of view model
+    private searchViewModel searchViewModel;
+
+    public searchPresenter(searchViewModel searchViewModel){
+        this.searchViewModel = searchViewModel;
+    }
 
     /**
      *
@@ -12,5 +20,6 @@ public class searchPresenter implements searchOutputBoundary{
     @Override
     public void foundSongs(searchOutputData searchOutputData) {
         //TODO: pass the searchOutputData to the viewModel
+
     }
 }
