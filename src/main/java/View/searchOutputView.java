@@ -4,6 +4,8 @@ import OutputData.searchOutputData;
 import ViewModel.searchViewModel;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,7 @@ public class searchOutputView extends JFrame implements ActionListener {
     private int height = 640;
 
     private JTable table;
+    private JComboBox comboBox;
 
     private final searchViewModel searchViewModel;
 
@@ -38,18 +41,30 @@ public class searchOutputView extends JFrame implements ActionListener {
 //        panel.setBounds(0,0, this.width, this.height);  // TODO: probably want this to be larger
         // panel.setBackground(Color.BLUE);
 
-        String[][] data = {
-                { "Song 1", "Artist 1", " " },
-                { "Song 2", "Artist 2", " " },
-        };
-        String[] columnNames = { "Name", "Artist", "Actions" };
+//        String[][] data = {
+//                { "Song 1", "Artist 1", " " },
+//                { "Song 2", "Artist 2", " " },
+//        };
+        String[][] data = this.searchViewModel.search("stalin's head");
+
+        String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(data, columnNames);
-        table.setBounds(30, 40, 200, 100);
-        JComboBox comboBox = new JComboBox();
+        table.setBounds(30, 40, this.width, this.height);
+        comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
-        table.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(comboBox));
+        comboBox.addItem("Add to Playlist 1");
+        TableColumnModel tableModel = table.getColumnModel();
+        tableModel.addColumn(new TableColumn());
+
+        for (int i = 0; i < data.length; i++) { // makes the default writing in 4th column a prompt
+            table.setValueAt("Add to..", i, 4);
+        }
+
+        table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
+        table.getColumnModel().removeColumn(table.getColumnModel().getColumn(0));
+        comboBox.addActionListener(this);
         this.scrollPane = new JScrollPane(table);
-        //scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 
 
@@ -73,6 +88,9 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.comboBox){
+            System.out.println(this.comboBox.getSelectedItem().toString());
+        }
 
     }
 }
