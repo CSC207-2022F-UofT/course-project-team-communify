@@ -22,6 +22,7 @@ public class playlistView extends JFrame implements ActionListener {
     private int width = 640;
     private int height = 640;
     private boolean spacePlaying;
+    private JTextField searchBar;
     private ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
@@ -41,6 +42,7 @@ public class playlistView extends JFrame implements ActionListener {
 
         // set up search bar
         // TODO
+        this.setUpSearchBar();
 
         // set up play bar
         // TODO
@@ -83,8 +85,14 @@ public class playlistView extends JFrame implements ActionListener {
         panel.setBackground(Color.BLUE);
     }
 
+    public void setUpSearchBar(){
+        this.searchBar = new JTextField();
+        this.searchBar.setBounds(20, 30, 300, 55);
+        this.searchBar.setFont(font);
+
+    }
     private void setSpaceButton(){
-        this.spaceButton.setBounds(350,30, 150,55);
+        this.spaceButton.setBounds(475,30, 150,55);
         this.spaceButton.setBackground(Color.GREEN);    // TODO: how to make actually green background
         this.spaceButton.setOpaque(true);
         this.spaceButton.setFont(font);
@@ -96,6 +104,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setResizable(false);
         this.panel.add(title);
         this.panel.add(this.spaceButton);
+        this.panel.add(this.searchBar);
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
