@@ -20,7 +20,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     private final Database.songLibrary songLibrary;
     private final spacePlayedOutputBoundary spacePlayedOutputBoundary;
     private final Object sync;
-    private final InputData.playSpaceInputData playSpaceInputData;
+    private InputData.playSpaceInputData playSpaceInputData;
     private final songOutputBoundary songOutputBoundary;
     private boolean keepPlaying;
 
@@ -85,8 +85,18 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
     /**
      * in order to stop infinite recursion, call stopSpace.
      */
+    @Override
     public void stopSpace(){
         this.keepPlaying = false;
+    }
+
+    /**
+     * in the case that the space is updated while it is playing, this method is called after adding to space
+     * @param playSpaceInputData the new space list
+     */
+    @Override
+    public void updateSpace(playSpaceInputData playSpaceInputData) {
+        this.playSpaceInputData = playSpaceInputData;
     }
 
     /**
