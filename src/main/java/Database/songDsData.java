@@ -30,4 +30,8 @@ public class songDsData {
     public int getID(){
         return this.song.getID();
     }
+
+    public String getGenre() {
+        return this.song.getGenre();
+    }
 }
