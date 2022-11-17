@@ -17,6 +17,11 @@ public class playlistViewModel {
         this.outputMessage = message;
     }
 
+    public String getOutputMessage(){
+        return this.outputMessage;
+
+    }
+
     //TODO: keeping this uncommented just in case I may need it later, but will delete in a future push
 //    /**
 //     *
