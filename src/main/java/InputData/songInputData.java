@@ -1,5 +1,6 @@
 package InputData;
 
+import Database.songAccessInterface;
 import Database.songLibrary;
 import Entities.Song;
 
@@ -14,7 +15,8 @@ public class songInputData {
     }
 
     public songInputData(int id){
-        this.song = songLibrary.getInstance().getSong(id).getSong();
+        songAccessInterface library = songLibrary.getInstance();
+        this.song = library.getSong(id).getSong();
     }
 
     public Song getSong() {
