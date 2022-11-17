@@ -23,6 +23,7 @@ public class playlistView extends JFrame implements ActionListener {
     private int height = 640;
     private boolean spacePlaying;
     private JTextField searchBar;
+    private JButton searchButton;
     private ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
@@ -43,6 +44,7 @@ public class playlistView extends JFrame implements ActionListener {
         // set up search bar
         // TODO
         this.setUpSearchBar();
+        this.setUpSearchButton();
 
         // set up play bar
         // TODO
@@ -63,6 +65,8 @@ public class playlistView extends JFrame implements ActionListener {
                 String message = this.musicEngineControllerViewModel.callPlaySpace();
                 this.spaceButton.setText(message);
             }
+        } else if(e.getSource() == this.searchButton){
+            String searchText = this.searchBar.getText();
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
@@ -89,12 +93,18 @@ public class playlistView extends JFrame implements ActionListener {
         this.searchBar = new JTextField();
         this.searchBar.setBounds(20, 30, 300, 55);
         this.searchBar.setFont(font);
+    }
+
+    public void setUpSearchButton(){
+        this.searchButton = new JButton("Search");
+        this.searchButton.setBounds(325,30, 135,55);
+        this.searchButton.setFont(font);
+        this.searchButton.addActionListener(this);
 
     }
     private void setSpaceButton(){
         this.spaceButton.setBounds(475,30, 150,55);
         this.spaceButton.setBackground(Color.GREEN);    // TODO: how to make actually green background
-        this.spaceButton.setOpaque(true);
         this.spaceButton.setFont(font);
         this.spaceButton.addActionListener(this);
     }
@@ -105,6 +115,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.add(title);
         this.panel.add(this.spaceButton);
         this.panel.add(this.searchBar);
+        this.panel.add(this.searchButton);
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
