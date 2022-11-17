@@ -26,6 +26,11 @@ public class musicEngineControllerViewModel {
         return playing.getSong().getName();
     }
 
+    public void getRecommendationAction(int id){
+        playlistInputData data = new playlistInputData(id);
+        this.musicEngineController.playRecommendation(data);
+    }
+
     public String callPlaySpace() {
         this.musicEngineController.playSpace();
         return this.spaceButtonText;

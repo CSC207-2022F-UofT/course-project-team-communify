@@ -1,14 +1,14 @@
 package Controller;
 
+import InputBoundary.playSongInputBoundary;
+import InputBoundary.playSpaceInputBoundary;
+import InputBoundary.recommendationInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.playlistInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
 import OutputBoundary.spacePlayedOutputBoundary;
-import UseCase.pauseSong;
-import UseCase.playPlaylist;
-import UseCase.playSongInteractor;
-import UseCase.playSpaceInteractor;
+import UseCase.*;
 
 import java.util.ArrayList;
 
@@ -17,13 +17,12 @@ public class musicEngineController {
     private final int PLAYLIST = 1;
     private final int SPACE = 2;
     private final int NONE = -1;
-    private final UseCase.playSpaceInteractor playSpaceInteractor;
+    private final playSpaceInputBoundary playSpaceInteractor;
     private final spacePlayedOutputBoundary spacePresenter;
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
     private playPlaylist playPlaylist;
-    private playSongInteractor playSong;
     private final pauseSong pauseSong;
 
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
@@ -43,7 +42,7 @@ public class musicEngineController {
      */
     public void playSong(songInputData data) {
         stop();
-        playSong = new playSongInteractor(data, this.songPresenter);
+        playSongInputBoundary playSong = new playSongInteractor(data, this.songPresenter);
         playSong.playSong();
         playing = SONG;
     }
@@ -71,6 +70,9 @@ public class musicEngineController {
             }
         }
         this.spaceSongList.add(songInputData);  // song is not in list, so append to the end
+        if (playing == SPACE){
+            this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
+        }
     }
 
     // TODO: write unit tests
@@ -91,6 +93,17 @@ public class musicEngineController {
         playPlaylist = new playPlaylist(data, this.songPresenter);
         playPlaylist.play();
         playing = PLAYLIST;
+    }
+
+    /**
+     * runs recommend use case on a given playlist, playing the recommendation when done
+     * @param data the playlist to recommend from
+     */
+    public void playRecommendation(playlistInputData data){
+        stop();
+        recommendationInputBoundary recommend = new recommendSong(data, songPresenter);
+        recommend.recommendation();
+        playing = SONG;
     }
 
     /**
