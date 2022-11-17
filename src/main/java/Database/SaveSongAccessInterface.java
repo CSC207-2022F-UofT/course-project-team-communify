@@ -8,5 +8,11 @@ public interface SaveSongAccessInterface {
      * @return true iff save was successful.
      */
     public boolean saveSong(String uploader, String filepath);
+    
+     /**
+     * @param id the unique id of the song to be deleted.
+     * @return true iff delete was successful.
+     */
+    public boolean deleteSong(int id);
 
 }
