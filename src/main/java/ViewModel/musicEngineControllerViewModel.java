@@ -22,14 +22,12 @@ public class musicEngineControllerViewModel {
     }
 
     public String playPlaylistAction(int id){
-        playlistInputData data = new playlistInputData(id);
-        this.musicEngineController.playPlaylist(data);
+        this.musicEngineController.playPlaylist(id);
         return playing.getSong().getName();
     }
 
     public void getRecommendationAction(int id){
-        playlistInputData data = new playlistInputData(id);
-        this.musicEngineController.playRecommendation(data);
+        this.musicEngineController.playRecommendation(id);
     }
 
     public void pauseSongAction(){
@@ -41,8 +39,7 @@ public class musicEngineControllerViewModel {
     }
 
     public String playSongAction(int id){
-        songInputData data = new songInputData(id);
-        this.musicEngineController.playSong(data);
+        this.musicEngineController.playSong(id);
         return playing.getSong().getName();
     }
 
