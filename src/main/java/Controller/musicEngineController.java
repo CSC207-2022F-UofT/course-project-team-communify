@@ -1,8 +1,6 @@
 package Controller;
 
-import InputBoundary.playSongInputBoundary;
-import InputBoundary.playSpaceInputBoundary;
-import InputBoundary.recommendationInputBoundary;
+import InputBoundary.*;
 import InputData.playSpaceInputData;
 import InputData.playlistInputData;
 import InputData.songInputData;
@@ -22,8 +20,8 @@ public class musicEngineController {
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
-    private playPlaylist playPlaylist;
-    private final pauseSong pauseSong;
+    private playPlaylistInputBoundary playPlaylist;
+    private final pauseSongInputBoundary pauseSong;
 
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
@@ -81,7 +79,8 @@ public class musicEngineController {
      * Function calling the use case for pausing or resuming song
      */
     public void pauseSong() {
-        pauseSong.pause();
+        if (playing != NONE)
+            pauseSong.pause();
     }
 
     /**
@@ -115,7 +114,7 @@ public class musicEngineController {
             case SONG:
                 break;
             case PLAYLIST:
-                playPlaylist.stopQueue();
+                this.playPlaylist.stopQueue();
             case SPACE:
                 this.playSpaceInteractor.stopSpace();
                 this.spacePresenter.spaceNotPlayed();
