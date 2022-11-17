@@ -21,6 +21,7 @@ public class musicEngineController {
     private final songOutputBoundary songPresenter;
     private int playing;
     private playPlaylistInputBoundary playPlaylist;
+    private NextSongInputBoundary nextSong;
     private final pauseSongInputBoundary pauseSong;
 
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
@@ -90,6 +91,7 @@ public class musicEngineController {
     public void playPlaylist(playlistInputData data) {
         stop();
         playPlaylist = new playPlaylist(data, this.songPresenter);
+        nextSong = new NextSong(data, this.songPresenter);
         playPlaylist.play();
         playing = PLAYLIST;
     }
@@ -103,6 +105,16 @@ public class musicEngineController {
         recommendationInputBoundary recommend = new recommendSong(data, songPresenter);
         recommend.recommendation();
         playing = SONG;
+    }
+
+    /**
+     * Skips the current song, if a playlist is playing.
+     */
+    public void playNext(){
+        if (playing == PLAYLIST){
+            stop();
+            nextSong.skipSong();
+        }
     }
 
     /**

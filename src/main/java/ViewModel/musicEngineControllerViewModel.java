@@ -2,6 +2,7 @@ package ViewModel;
 
 import Controller.musicEngineController;
 import InputData.playlistInputData;
+import InputData.songInputData;
 import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
@@ -29,6 +30,20 @@ public class musicEngineControllerViewModel {
     public void getRecommendationAction(int id){
         playlistInputData data = new playlistInputData(id);
         this.musicEngineController.playRecommendation(data);
+    }
+
+    public void pauseSongAction(){
+        this.musicEngineController.pauseSong();
+    }
+
+    public void skipSongAction(){
+        this.musicEngineController.playNext();
+    }
+
+    public String playSongAction(int id){
+        songInputData data = new songInputData(id);
+        this.musicEngineController.playSong(data);
+        return playing.getSong().getName();
     }
 
     public String callPlaySpace() {
