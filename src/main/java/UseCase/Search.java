@@ -55,6 +55,8 @@ public class Search implements searchInputBoundary {
                 foundSongs.add(song.getSong());
             } else if (currentName.startsWith(name)){
                 similarSongs.add(song.getSong());
+            } else if (currentName.contains(name)) {
+                similarSongs.add(song.getSong());
             }
         }
         foundSongs.addAll(similarSongs);
