@@ -1,14 +1,6 @@
 package ViewModel;
-import Controller.newPlaylistController;
-import Entities.RegularUser;
-import Entities.Song;
-import InputData.newPlaylistInputData;
-import OutputData.newPlaylistOutputData;
-
-
 import Presenter.playlistPresenter;
 public class playlistViewModel {
-//    private final newPlaylistController newPlaylistController;
     private playlistPresenter playlistPresenter;
     private String outputMessage;
 
@@ -20,11 +12,12 @@ public class playlistViewModel {
         //Blank output data object to extract success message from
         //sets its presenter to itself
         this.playlistPresenter = new playlistPresenter(this);
-//        this.newPlaylistController = new newPlaylistController(inputData,playlistPresenter);
     }
     public void setOutputMessage(String message){
         this.outputMessage = message;
     }
+
+    //TODO: keeping this uncommented just in case I may need it later, but will delete in a future push
 //    /**
 //     *
 //     * @param id ID given by view
@@ -48,5 +41,4 @@ public class playlistViewModel {
 //        String msg = this.playlistPresenter.getOutputMessage();
 //        return msg;
 //    }
-    //TODO: Not supposed to be here, will be in view
 }

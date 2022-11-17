@@ -9,11 +9,16 @@ import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.newPlaylistOutputData;
 
 public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
-        private newPlaylistOutputBoundary outputBoundary;
-//        private String message;
-    public CreatePlaylistInteractor(newPlaylistOutputBoundary outputBoundary){
-        this.outputBoundary = outputBoundary;
-//        this.message = "";
+        private final newPlaylistOutputBoundary presenter;
+
+        private final playlistAccessInterface library;
+    /**
+     *
+     * @param presenter presenter object to store output message in
+     */
+    public CreatePlaylistInteractor(newPlaylistOutputBoundary presenter){
+        this.presenter = presenter;
+        this.library = playlistLibrary.getInstance();
     }
     /**
      * @param newplaylistInputData holds necessary data to instantiate a new playlist
@@ -22,7 +27,6 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
      */
     public void newPlaylist(newPlaylistInputData newplaylistInputData) {
         Playlist playlist;
-        playlistAccessInterface library = playlistLibrary.getInstance();
         if (!newplaylistInputData.hasFirstSong()) {
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
                     newplaylistInputData.getOwner());
@@ -33,17 +37,15 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         }
         newplaylistInputData.getOwner().addPlaylist(playlist);
         // save the newly created playlist to the RegularUser's playlist list
-        library.savePlaylist(new playlistDsData(playlist));
-
-        //TODO #1: new potential implementation of sending confirmation message via outputdata, check correctness
+        this.library.savePlaylist(new playlistDsData(playlist));
         //TODO #2: Regain will to live
-        //TODO #3: delete commented lines when finalizing this implementation
+        //TODO #3: delete commented lines when finalizing this implementation in a future push
 
         //generate output data
         newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
 
         //set message attribute to output data
-        this.outputBoundary.setPlaylistCreationConfirmation(outputData);
+        this.presenter.setPlaylistCreationConfirmation(outputData);
     }
 }
 
