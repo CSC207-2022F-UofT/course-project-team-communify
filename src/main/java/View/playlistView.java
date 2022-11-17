@@ -2,6 +2,7 @@ package View;
 
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
+import ViewModel.searchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class playlistView extends JFrame implements ActionListener {
     private JTextField searchBar;
     private JButton searchButton;
     private ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
+    private ViewModel.searchViewModel searchViewModel;
 
     /**
      * constructor
@@ -67,6 +69,7 @@ public class playlistView extends JFrame implements ActionListener {
             }
         } else if(e.getSource() == this.searchButton){
             String searchText = this.searchBar.getText();
+            this.searchViewModel.search(searchText);
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
@@ -78,9 +81,9 @@ public class playlistView extends JFrame implements ActionListener {
         this.spaceButton = new JButton("Listen to space!");
         this.title = new JLabel(this.user.getUsername() + " Dashboard");
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.fontSize);
-        // this.spaceViewModel = new spaceViewModel();
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel();
         this.spacePlaying = false;
+        this.searchViewModel = new searchViewModel();
 
         // set up panel
         // TODO: determine whether this should go in a helper function or not (i.e. how many panels do we want?)
