@@ -179,6 +179,20 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
             return false;
         }
     }
+    
+    
+     /**
+     * @param id the unique id of the song to be deleted.
+     * @return true iff delete was successful.
+     */
+    @Override
+    public boolean deleteSong(int id){
+        if(exists(id)){
+            library.remove(id);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @param id the unique int ID of a given song.
