@@ -49,7 +49,7 @@ public class ArtistUser extends User {
      */
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder(getUsername() + "," + getPassword() + "," + artistName + ",");
+        StringBuilder output = new StringBuilder(artistName + "," + getUsername() + "," + getPassword() + ",");
 
         for (Song s : songs)
             output.append(s.getID()).append(";");

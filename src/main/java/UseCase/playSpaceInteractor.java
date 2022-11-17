@@ -1,42 +1,118 @@
 package UseCase;
 
-import Entities.Song;
-import InputData.spaceInputData;
+import Database.songDsData;
+import Entities.MusicPlayer;
+import InputBoundary.playSpaceInputBoundary;
+import InputData.playSpaceInputData;
+import InputData.songInputData;
+import OutputBoundary.songOutputBoundary;
+import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
-import java.io.File;
+
+import java.util.*;
 
 /**
  * use case for playing a space
  */
-public class playSpaceInteractor {
+public class playSpaceInteractor implements playSpaceInputBoundary {
 
-    private final OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    // instance of global playlistLibrary
+    private final Database.songLibrary songLibrary;
+    private final spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    private final Object sync;
+    private InputData.playSpaceInputData playSpaceInputData;
+    private final songOutputBoundary songOutputBoundary;
+    private boolean keepPlaying;
 
     /**
      * constructor
-     * @param spacePlayedOutputBoundary wrapper for the spacePresenter object to follow clean architecture
      */
-    public playSpaceInteractor(OutputBoundary.spacePlayedOutputBoundary spacePlayedOutputBoundary){
+    public playSpaceInteractor(spacePlayedOutputBoundary spacePlayedOutputBoundary,
+                               playSpaceInputData playSpaceInputData,
+                               songOutputBoundary songOutputBoundary){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
+        this.songLibrary = Database.songLibrary.getInstance();
+        this.sync = MusicPlayer.getInstance().getSync();
+        this.keepPlaying = true;
+        this.playSpaceInputData = playSpaceInputData;
+        this.songOutputBoundary = songOutputBoundary;
     }
 
     /**
      * calls playSong's actuallyPlaySong function
-     * @param spaceInputData object containing space and song required for playing the space.
      */
-    private void playSpace(spaceInputData spaceInputData){
-        // get values
-        Song song = spaceInputData.getSong();
-        File songFile = song.getFile();
+    @Override
+    public void playSpace(playSpaceInputData playSpaceInputData){
+        ArrayList<songInputData> spaceSongList = playSpaceInputData.getSpaceSongList();
+        songOutputData songToPlay = pickSongToPlay(spaceSongList);
 
-        // play song
-        playSong.playAudio(songFile);
+        // open queue
+        final Thread thread = new Thread(this::playNextSong);
+        thread.start();
 
-        // construct return data and call OutputBoundary/Presenter
-        songOutputData songOutputData = new songOutputData(song);
-        this.spacePlayedOutputBoundary.spacePlayed(songOutputData);
+        // call presenter
+        this.spacePlayedOutputBoundary.spacePlayed();  // update button
 
-        // TODO: test
+        playSongInteractor playSongInteractor = new playSongInteractor(new songInputData(songToPlay.getSong()),
+                this.songOutputBoundary);
+
+        playSongInteractor.playSong();  // play the song; this will also call presenter to update playbar
+    }
+
+    private songOutputData pickSongToPlay(ArrayList<songInputData> spaceSongList){
+        songOutputData songToPlay;
+        if (!spaceSongList.isEmpty()){
+            songToPlay = new songOutputData(spaceSongList.remove(0).getSong());  // remove song to be played
+        }
+        else{
+            songToPlay = this.pickRandomSong();
+        }
+        return songToPlay;
+    }
+
+    /**
+     * @return a random song from the songLibrary singleton.
+     */
+    @Override
+    public songOutputData pickRandomSong(){
+        ArrayList<songDsData> possibleSongs = new ArrayList<>(this.songLibrary.getLibrary());
+        int randomIndex = new Random().nextInt(possibleSongs.size());
+        songDsData randomSong = possibleSongs.get(randomIndex);
+        return new songOutputData(randomSong.getSong());
+    }
+
+
+    /**
+     * in order to stop infinite recursion, call stopSpace.
+     */
+    @Override
+    public void stopSpace(){
+        this.keepPlaying = false;
+    }
+
+    /**
+     * in the case that the space is updated while it is playing, this method is called after adding to space
+     * @param playSpaceInputData the new space list
+     */
+    @Override
+    public void updateSpace(playSpaceInputData playSpaceInputData) {
+        this.playSpaceInputData = playSpaceInputData;
+    }
+
+    /**
+     * helper function for playSpace()
+     */
+    private void playNextSong(){
+        synchronized (sync){
+            try{
+                sync.wait();
+            } catch (InterruptedException e) {
+                System.out.println("thread interrupted");
+            }
+            if (keepPlaying){  // start all over again
+                this.playSpace(this.playSpaceInputData);
+            }
+        }
     }
 
 }

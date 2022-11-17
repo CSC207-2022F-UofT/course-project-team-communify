@@ -52,8 +52,12 @@ public class userList implements userAccessInterface {
             while (in.hasNextLine()) {
                 String line = in.nextLine();
                 String[] data = line.split(",");
-                if (data.length > 0)
-                    db.put(data[0], new userDsData(data[2], data[0], data[1], data[3].split(";")));
+                if (data.length > 0) {
+                    if (data.length == 3)
+                        db.put(data[1], new userDsData(data[1], data[2], data[0], new String[0]));
+                    else
+                        db.put(data[1], new userDsData(data[1], data[2], data[0], data[3].split(";")));
+                }
             }
             in.close();
 

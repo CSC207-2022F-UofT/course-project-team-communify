@@ -10,7 +10,9 @@ public class editPlaylist implements editPlaylistInputBoundary{
      *                  and changeName()
      *
     */
+    //TODO: Update use case like with create playlist
     public String removeSong(editPlaylistInputData inputData) {
+        //TODO: maybe make this a try-catch ?
         if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
             for (Song s : inputData.getPlaylist().getSongList())
                 if (s.getID() == inputData.getSongID()) {
@@ -20,6 +22,7 @@ public class editPlaylist implements editPlaylistInputBoundary{
         }
         return inputData.getSong().getName()+" removed ";
     }
+
     // TODO: Work on view later
     public String addSong(editPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
