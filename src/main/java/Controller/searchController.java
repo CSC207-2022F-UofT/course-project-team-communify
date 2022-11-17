@@ -8,7 +8,7 @@ import UseCase.Search;
 public class searchController {
     private final searchInputBoundary searchInteractor;
 
-    public searchController(searchOutputBoundary searchPresenter, String text){
+    public searchController(searchOutputBoundary searchPresenter){
         this.searchInteractor = new Search(searchPresenter);
     }
 
