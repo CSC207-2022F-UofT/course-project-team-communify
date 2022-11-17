@@ -21,7 +21,7 @@ public class Search implements searchInputBoundary {
 
     public Search(searchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
-//        this.songLibrary = Database.songLibrary.getInstance();
+        this.songLibrary = Database.songLibrary.getInstance();
         this.searchPresenter = searchPresenter;
     }
 
