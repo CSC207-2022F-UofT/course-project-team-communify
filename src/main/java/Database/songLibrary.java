@@ -219,4 +219,20 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     public songDsData getSong(int id){
         return this.library.get(id);
     }
+
+    public String[][] getString(){
+        int i=0;
+        String[][] strLib = new String[library.size()][4];
+        for(songDsData song: getLibrary()){
+            strLib[i] = song.getString();
+            i++;
+        }
+        return strLib;
+    }
+
+    public String[][] getString(int[] ids){
+        String[][] strLib = new String[ids.length][4];
+        for(int i=0;i<ids.length;i++) strLib[i] = getSong(ids[i]).getString();
+        return strLib;
+    }
 }

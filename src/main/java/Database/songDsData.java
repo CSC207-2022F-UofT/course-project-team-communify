@@ -30,4 +30,12 @@ public class songDsData {
     public int getID(){
         return this.song.getID();
     }
+
+    /**
+     * @return The String[] representation of the Song.
+     */
+    public String[] getString(){
+        return new String[]{Integer.toString(this.getID()), this.getSong().getName(),
+                this.getSong().getArtistString(), this.getSong().getGenre()};
+    }
 }

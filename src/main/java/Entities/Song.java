@@ -88,7 +88,7 @@ public class Song {
     /**
      * @return String representation of all artists.
      */
-    private String getArtistString(){
+    public String getArtistString(){
         //TODO: Replace this terrible lazy implementation
         StringBuilder artists = new StringBuilder();
         for(int i=0;i<artistList.length;i++){
@@ -96,13 +96,6 @@ public class Song {
             if(i+1<artistList.length) artists.append(", ");
         }
         return artists.toString();
-    }
-
-    /**
-     * @return The String[] representation of the Song.
-     */
-    public String[] getString(){
-        return new String[]{Integer.toString(this.id), this.name, getArtistString(), this.genre};
     }
 
 }
