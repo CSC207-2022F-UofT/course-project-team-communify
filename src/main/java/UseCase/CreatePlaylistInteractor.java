@@ -1,10 +1,8 @@
 package UseCase;
-import Database.playlistDsData;
+import Database.*;
 import Entities.Playlist;
 import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
-import Database.playlistAccessInterface;
-import Database.playlistLibrary;
 import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.newPlaylistOutputData;
 
@@ -12,6 +10,8 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         private final newPlaylistOutputBoundary presenter;
 
         private final playlistAccessInterface library;
+
+        private final userAccessInterface userDatabase;
     /**
      *
      * @param presenter presenter object to store output message in
@@ -19,6 +19,7 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
     public CreatePlaylistInteractor(newPlaylistOutputBoundary presenter){
         this.presenter = presenter;
         this.library = playlistLibrary.getInstance();
+        this.userDatabase = userList.getInstance();
     }
     /**
      * @param newplaylistInputData holds necessary data to instantiate a new playlist
@@ -38,9 +39,10 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         newplaylistInputData.getOwner().addPlaylist(playlist);
         // save the newly created playlist to the RegularUser's playlist list
         this.library.savePlaylist(new playlistDsData(playlist));
+        // save user
+        this.userDatabase.save(new userDsData(playlist.getOwner()));
         //TODO #2: Regain will to live
         //TODO #3: delete commented lines when finalizing this implementation in a future push
-
         //generate output data
         newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
 
