@@ -37,5 +37,9 @@ public class songDsData {
     public String[] getString(){
         return new String[]{Integer.toString(this.getID()), this.getSong().getName(),
                 this.getSong().getArtistString(), this.getSong().getGenre()};
+
+    public String getGenre() {
+        return this.song.getGenre();
+
     }
 }
