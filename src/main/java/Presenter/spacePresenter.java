@@ -3,47 +3,28 @@ package Presenter;
 import OutputBoundary.songOutputBoundary;
 import OutputBoundary.spacePlayedOutputBoundary;
 import OutputData.songOutputData;
-
-import java.util.ArrayList;
+import ViewModel.musicEngineControllerViewModel;
 
 /**
  * presenter for the space use cases.
  */
-public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoundary {
+public class spacePresenter implements spacePlayedOutputBoundary {
 
-    private final ArrayList<songOutputData> currentSpace;
+    private final ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
      * constructor.
-     * @param currentSpace collection of songOutputData that composes the space
      */
-    public spacePresenter(ArrayList<songOutputData> currentSpace){
-        this.currentSpace = currentSpace;
-    }
-
-    /**
-     * @return getter for the instance variable currentSpace
-     */
-    public ArrayList<songOutputData> getCurrentSpace(){
-        return this.currentSpace;
+    public spacePresenter(musicEngineControllerViewModel musicEngineControllerViewModel){
+        this.musicEngineControllerViewModel = musicEngineControllerViewModel;
     }
 
     /**
      * in case of starting to play a space, change the "play space!" button to reflect that change
-     * @param songOutputData data returned by the use case
      */
     @Override
-    public void spacePlayed(songOutputData songOutputData) {
-        // TODO: implement
-    }
-
-    /**
-     * update the playbar when a song starts to play
-     * @param songOutputData the song that is being played
-     */
-    @Override
-    public void songPlayed(songOutputData songOutputData) {
-        // TODO: implement
+    public void spacePlayed() {
+        this.musicEngineControllerViewModel.updateSpaceButton("Currently playing space!");
     }
 
     /**
@@ -51,6 +32,7 @@ public class spacePresenter implements songOutputBoundary, spacePlayedOutputBoun
      */
     @Override
     public void spaceNotPlayed(){
-        // TODO: implement
+        this.musicEngineControllerViewModel.updateSpaceButton("Listen to space!");
     }
+
 }
