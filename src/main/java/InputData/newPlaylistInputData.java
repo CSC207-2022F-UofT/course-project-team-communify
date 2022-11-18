@@ -1,7 +1,6 @@
 package InputData;
 import Entities.RegularUser;
 import Entities.Song;
-import Entities.User;
 
 public class newPlaylistInputData {
     private final int id;
