@@ -3,8 +3,6 @@
 
 package Entities;
 
-import Entities.MusicPlayer;
-import Entities.Song;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,7 @@ public class PlayerTest {
     @Test
     public void testPlay(){
         File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, 0, null, file, false, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         MusicPlayer player = MusicPlayer.getInstance();
         Assertions.assertFalse(player.isPlaying());
         player.play(song);
@@ -29,7 +27,7 @@ public class PlayerTest {
     @Test
     public void testPause(){
         File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, 0, null, file, false, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();
@@ -39,7 +37,7 @@ public class PlayerTest {
     @Test
     public void testResume(){
         File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, 0, null, file, false, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();
@@ -50,7 +48,7 @@ public class PlayerTest {
     @Test
     public void testPlayAfterPause(){
         File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, 0, null, file, false, null);
+        Song song = new Song(0, null, null, null, file, null, null);
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();

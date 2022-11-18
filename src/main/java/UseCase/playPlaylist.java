@@ -6,6 +6,8 @@ import InputBoundary.playPlaylistInputBoundary;
 import InputBoundary.playSongInputBoundary;
 import InputData.playlistInputData;
 import InputData.songInputData;
+import OutputBoundary.songOutputBoundary;
+
 import java.util.ArrayList;
 
 /**
@@ -19,12 +21,14 @@ public class playPlaylist implements playPlaylistInputBoundary {
     private final ArrayList<Song> playlist;
     private final Object sync;
     private int nextSong;
+    songOutputBoundary presenter;
 
-    public playPlaylist(playlistInputData data){
+    public playPlaylist(playlistInputData data, songOutputBoundary presenter){
         this.playlist = data.getSongs();
         queue = true;
         nextSong = 0;
         sync = MusicPlayer.getInstance().getSync();
+        this.presenter = presenter;
     }
 
     /**
@@ -33,11 +37,11 @@ public class playPlaylist implements playPlaylistInputBoundary {
     @Override
     public void play() {
         if (nextSong < playlist.size()){
-            playSongInputBoundary p = new playSong(new songInputData(playlist.get(nextSong)));
+            playSongInputBoundary p = new playSongInteractor(new songInputData(playlist.get(nextSong)), presenter);
             nextSong++;
             final Thread t = new Thread(this::playNext);
             t.start();
-            p.play();
+            p.playSong();
         }
     }
 

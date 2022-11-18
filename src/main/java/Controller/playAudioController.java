@@ -3,7 +3,7 @@ package Controller;
 import java.io.File;
 
 import InputBoundary.playAudioInputBoundary;
-import InputData.audioInputData;
+import InputData.songInputData;
 
 /**
  * Controller for the playAudio use case
@@ -24,9 +24,9 @@ public class playAudioController {
      * Function calling the use case for playing audio
      * @param songFile is the File object of the MP3 file
      */
-    public void playAudio(File songFile) {
-        audioInputData audioInput = new audioInputData(songFile);
-        this.playAudioInteractor.playAudio(audioInput);
+    public void playAudio(songInputData songFile) {
+        songInputData songInput = new songInputData(songFile.getSong());
+        this.playAudioInteractor.playAudio(songInput);
     }
 
 }
