@@ -17,9 +17,9 @@ import java.util.Random;
  * a given Playlist.
  */
 public class recommendSong implements recommendationInputBoundary {
-    songAccessInterface library;
-    songOutputBoundary out;
-    playlistInputData data;
+    private final songAccessInterface library;
+    private final songOutputBoundary out;
+    private final playlistInputData data;
 
     public recommendSong(playlistInputData data, songOutputBoundary out){
         this.library = songLibrary.getInstance();

@@ -126,8 +126,6 @@ public class musicEngineController {
     }
 
     /**
-
-
      * Private helper method to stop the currently playing queue, if it exists.
      */
     private void stop(){
