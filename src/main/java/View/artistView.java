@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 public class artistView extends JFrame implements ActionListener {
 
@@ -13,9 +12,6 @@ public class artistView extends JFrame implements ActionListener {
     private final int HEIGHT = 640;
     private JFrame jframe;
     private JButton uploadButton;
-    private JButton deleteButton;
-    // private JTable ...;
-    // private JLabel ...;
 
 
     public artistView() {
@@ -27,19 +23,7 @@ public class artistView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.uploadButton) {
-
-            JFileChooser fileChooser = new JFileChooser();
-            int response = fileChooser.showOpenDialog(null);
-
-            if (response == JFileChooser.APPROVE_OPTION) {
-
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                String filePath = String.valueOf(file);                                    // String of the filepath
-
-            }
-
-        } // else if (e.getSource() == this.deleteButton) {}     I do not know how the delete button should work
+        // if (e.getSource() == this.uploadButton) {}
     }
 
 
@@ -54,33 +38,14 @@ public class artistView extends JFrame implements ActionListener {
 
 
     private void initializeComponents() {
-        this.uploadButton = new JButton();
-        this.uploadButton.setBounds(200, 300, 100, 50);
-        this.uploadButton.setText("Upload");
-        this.uploadButton.setFocusable(false);
-        this.uploadButton.setHorizontalTextPosition(JButton.CENTER);
-        this.uploadButton.setForeground(Color.black);
-        this.uploadButton.setBackground(Color.lightGray);
+        //this.uploadButton = new JButton();
 
-        this.deleteButton = new JButton();
-        this.deleteButton.setBounds(50, 300, 100, 50);
-        this.deleteButton.setText("Delete");
-        this.deleteButton.setFocusable(false);
-        this.deleteButton.setHorizontalTextPosition(JButton.CENTER);
-        this.deleteButton.setForeground(Color.black);
-        this.deleteButton.setBackground(Color.lightGray);
-
-        // Setup JTable
-        // ...
-
-        this.uploadButton.addActionListener(this);
-        this.deleteButton.addActionListener(this);
+        //this.uploadButton.addActionListener(this);
     }
 
 
     private void initializeFrame() {
-        this.jframe.add(uploadButton);
-        this.jframe.add(deleteButton);
+        // this.jframe.add(uploadButton);
         this.jframe.setVisible(true);
     }
 

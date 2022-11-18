@@ -1,4 +1,4 @@
-// **IMPORTANT, READ ME!**
+// **IMPORTANT, READ ME! //
 // Strictly here to direct the user to either the artist login page or user login page
 // THIS CAN BE CHANGED TO YOUR LIKING BUT I WILL MAKE A BOOLEAN PARAMETER FOR IS_USER
 // IF IT IS_ARTIST THEN THE LOGIN INFO IS SENT TO THE ARTIST CREATION USE CASE
@@ -18,10 +18,9 @@ public class loginRegisterView extends JFrame implements ActionListener {
     private final int HEIGHT = 640;
     private JFrame jframe;
     private JButton submitButton;
-    private JCheckBox isArtistCheckBox;
     private JTextField usernameTextField;
     private JTextField passwordTextField;
-
+    private JCheckBox isArtistCheckBox;
 
     public loginRegisterView () {
 
@@ -36,15 +35,15 @@ public class loginRegisterView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
-            String username = this.usernameTextField.getText();
-            String password = this.passwordTextField.getText();
+            String username = usernameTextField.getText();
+            String password = passwordTextField.getText();
             boolean isArtist = isArtistCheckBox.isSelected();
 
             // I DO NOT KNOW HOW THE USE CASE FOR LOGIN WORKS BUT THIS IS HOW WE SHOULD OPEN THE NEW WINDOWS
 
             if (isArtist) {                                       // should be: if (isArist && Use Case is successful)
 
-                this.jframe.dispose();
+                //this.jframe.dispose();
                 artistView artistDashboard = new artistView();    // should need an artist parameter
 
             } else {                                              // should be: else if (isUser && Use Case is successful)
@@ -72,7 +71,7 @@ public class loginRegisterView extends JFrame implements ActionListener {
     private void initializeComponents() {
 
         this.submitButton = new JButton();
-        this.submitButton.setBounds(100, 400, 100, 50);  // fix up the bounds
+        this.submitButton.setBounds(100, 400, 100, 50);
         this.submitButton.setText("Submit");
         this.submitButton.setFocusable(false);
         this.submitButton.setHorizontalTextPosition(JButton.CENTER);
@@ -84,13 +83,15 @@ public class loginRegisterView extends JFrame implements ActionListener {
         this.isArtistCheckBox.setText("I am an Artist");
         this.isArtistCheckBox.setFocusable(false);
 
+
         this.usernameTextField = new JTextField();
-        this.usernameTextField.setBounds(300, 300, 150,75);
-        this.usernameTextField.setText("Username");
+        this.isArtistCheckBox.setBounds(300, 300, 100, 50);
+        this.usernameTextField.setText("Enter Username: ");
+
 
         this.passwordTextField = new JTextField();
-        this.passwordTextField.setBounds(300, 400, 150, 75);
-        this.passwordTextField.setText("Password");
+        this.isArtistCheckBox.setBounds(400, 400, 100, 50);
+        this.passwordTextField.setText("Enter Password: ");
 
 
         this.submitButton.addActionListener(this);
@@ -99,10 +100,11 @@ public class loginRegisterView extends JFrame implements ActionListener {
 
 
     private void initializeFrame() {
-        this.jframe.add(this.submitButton);
-        this.jframe.add(this.isArtistCheckBox);
-        this.jframe.add(this.usernameTextField);
-        this.jframe.add(this.passwordTextField);
+        this.jframe.add(submitButton);
+        this.jframe.add(usernameTextField);
+        this.jframe.add(passwordTextField);
+        this.jframe.add(isArtistCheckBox);
         this.jframe.setVisible(true);
     }
+
 }
