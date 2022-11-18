@@ -55,9 +55,7 @@ public class songDsData {
         return this.song.getID();
     }
 
-    /**
-     * @return the genre of the Song represented by this object
-     */
+
     /**
      * @return The String[] representation of the Song.
      */
@@ -66,6 +64,9 @@ public class songDsData {
                 this.getSong().getArtistString(), this.getSong().getGenre()};
     }
 
+    /**
+     * @return the genre of the Song represented by this object
+     */
     public String getGenre() {
         return this.song.getGenre();
     }

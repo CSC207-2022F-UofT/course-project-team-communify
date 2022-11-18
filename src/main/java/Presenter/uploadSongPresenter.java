@@ -3,6 +3,9 @@ import OutputBoundary.uploadSongOutputBoundary;
 import OutputData.uploadSongOutputData;
 import ViewModel.uploadSongViewModel;
 
+/**
+ * Interface adapters layer presenter for displaying upload song use case output.
+ */
 public class uploadSongPresenter implements uploadSongOutputBoundary{
 
     private final ViewModel.uploadSongViewModel uploadSongViewModel;
