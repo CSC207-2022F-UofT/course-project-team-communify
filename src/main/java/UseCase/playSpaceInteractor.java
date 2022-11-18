@@ -28,13 +28,11 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
      * constructor
      */
     public playSpaceInteractor(spacePlayedOutputBoundary spacePlayedOutputBoundary,
-                               playSpaceInputData playSpaceInputData,
                                songOutputBoundary songOutputBoundary){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
         this.songLibrary = Database.songLibrary.getInstance();
         this.sync = MusicPlayer.getInstance().getSync();
         this.keepPlaying = true;
-        this.playSpaceInputData = playSpaceInputData;
         this.songOutputBoundary = songOutputBoundary;
     }
 

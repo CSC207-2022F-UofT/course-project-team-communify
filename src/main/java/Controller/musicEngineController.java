@@ -33,9 +33,7 @@ public class musicEngineController {
         this.pauseSong = new pauseSong();
         this.songPresenter = songPresenter;
         this.playing = NONE;
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter,
-                new playSpaceInputData(this.spaceSongList),
-                this.songPresenter);
+        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
     }
 
     /**
