@@ -2,5 +2,5 @@ package InputBoundary;
 import InputData.uploadSongInputData;
 
 public interface uploadSongInputBoundary {
-    public void uploadSong(uploadSongInputData uploadSongInputData);
+    public void saveSong(uploadSongInputData uploadSongInputData);
 }

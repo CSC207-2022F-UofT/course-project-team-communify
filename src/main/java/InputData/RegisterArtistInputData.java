@@ -1,20 +1,28 @@
 package InputData;
 
-public class loginInputData {
+public class RegisterArtistInputData {
     private final String username;
     private final String password;
-    private boolean isArtist;
+    private final String artistName;
+    private boolean isArtist = true;
 
-    public loginInputData(String username, String password, boolean isArtist) {
-        this.isArtist = isArtist;
+    public RegisterArtistInputData(String username, String password, String artistName) {
         this.username = username;
+        this.artistName = artistName;
         this.password = password;
     }
+
     /**
      * @return the name of user
      */
     public String getUsername() {
         return this.username;
+    }
+    /**
+     * @return the artistName of user
+     */
+    public String getArtistName() {
+        return this.artistName;
     }
     /**
      * @return the password of user
