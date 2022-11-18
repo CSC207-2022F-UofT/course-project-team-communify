@@ -33,9 +33,7 @@ public class musicEngineController {
         this.pauseSong = new pauseSong();
         this.songPresenter = songPresenter;
         this.playing = NONE;
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter,
-                new playSpaceInputData(this.spaceSongList),
-                this.songPresenter);
+        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
     }
 
     /**
@@ -64,10 +62,10 @@ public class musicEngineController {
      * @param songInputData input data for adding a song to the space
      */
     public void spaceAddSong(songInputData songInputData){
-        Integer songToAddID = songInputData.getSong().getID();
+        int songToAddID = songInputData.getSong().getID();
         for (songInputData currSongInputData : this.spaceSongList){
-            Integer currSongID = currSongInputData.getSong().getID();
-            if (currSongID.equals(songToAddID)){
+            int currSongID = currSongInputData.getSong().getID();
+            if (currSongID == songToAddID){
                 return;  // if the song is already in the playlist, do nothing
                 // TODO: make this cooler (i.e. upvote algo) if time
             }
