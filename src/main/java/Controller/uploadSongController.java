@@ -11,7 +11,7 @@ public class uploadSongController {
 
     public uploadSongController(uploadSongOutputBoundary uploadSongPresenter){
         this.uploadSongPresenter = uploadSongPresenter;
-        uploadSong = new UploadSongInteractor(this.uploadSongPresenter);
+        this.uploadSong = new UploadSongInteractor(this.uploadSongPresenter);
     }
 
     /**
