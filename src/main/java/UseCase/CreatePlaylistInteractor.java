@@ -36,13 +36,18 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(), newplaylistInputData.getOwner(),
                      newplaylistInputData.getFirstSong());
         }
+        //Add the play;ist to the Owner's playlist list
         newplaylistInputData.getOwner().addPlaylist(playlist);
+        //Set the playlist's owner to the user
+        playlist.setOwner(newplaylistInputData.getOwner());
         // save the newly created playlist to the RegularUser's playlist list
         this.library.savePlaylist(new playlistDsData(playlist));
         // save user
-        this.userDatabase.save(new userDsData(playlist.getOwner()));
-        //TODO #2: Regain will to live
-        //TODO #3: delete commented lines when finalizing this implementation in a future push
+
+        //this.userDatabase.save(new userDsData(playlist.getOwner()));
+        //TODO: null pointer exception in view, user isnt saving ?
+        this.userDatabase.save(new userDsData(newplaylistInputData.getOwner()));
+        //TODO figure out hard dependency.
         //generate output data
         newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
 
