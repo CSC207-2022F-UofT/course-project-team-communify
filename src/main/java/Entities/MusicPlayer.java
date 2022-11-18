@@ -163,4 +163,22 @@ public class MusicPlayer {
             }
         }
     }
+
+    /**
+     * Close the music engine, ending playback.
+     */
+    public void close(){
+        if (playing){
+            engine.close();
+        }
+        playing = false;
+        currentSong = null;
+    }
+
+    /**
+     * @return the currently playing song
+     */
+    public Song getCurrentSong() {
+        return currentSong;
+    }
 }

@@ -1,5 +1,7 @@
 package InputData;
 
+import Database.GetSongAccessInterface;
+import Database.songLibrary;
 import Entities.Song;
 
 import java.awt.image.BufferedImage;
@@ -10,6 +12,11 @@ public class songInputData {
 
     public songInputData(Song song){
         this.song = song;
+    }
+
+    public songInputData(int id){
+        GetSongAccessInterface library = songLibrary.getInstance();
+        this.song = library.getSong(id).getSong();
     }
 
     public Song getSong() {
