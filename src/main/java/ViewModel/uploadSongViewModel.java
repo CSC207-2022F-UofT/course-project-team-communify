@@ -16,6 +16,7 @@ public class uploadSongViewModel {
      *
      * @param filepath Filepath to the desired song.
      * @param user The username of the uploading user.
+     * @return true iff song was successfully uploaded.
      */
     public boolean upload(String filepath, String user){
         uploadSongInputData inputdata = new uploadSongInputData(filepath, user);
