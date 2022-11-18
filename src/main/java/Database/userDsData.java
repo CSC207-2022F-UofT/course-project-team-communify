@@ -30,7 +30,7 @@ public class userDsData {
      */
     public userDsData(String username, String password, String artistName, String[] songs){
         userFactory factory = new userFactory();
-        songAccessInterface songLibrary = Database.songLibrary.getInstance();
+        GetSongAccessInterface songLibrary = Database.songLibrary.getInstance();
         ArrayList<Song> library = new ArrayList<>();
 
         for (String id : songs){

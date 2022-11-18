@@ -79,9 +79,23 @@ public class Song {
     }
 
     /**
-     * @return the name of the uploader of the song
+     * @return The uploader of the song.
      */
     public String getUploader(){
         return this.uploader;
     }
+
+    /**
+     * @return String representation of all artists.
+     */
+    public String getArtistString(){
+        //TODO: Replace this terrible lazy implementation
+        StringBuilder artists = new StringBuilder();
+        for(int i=0;i<artistList.length;i++){
+            artists.append(artistList[i]);
+            if(i+1<artistList.length) artists.append(", ");
+        }
+        return artists.toString();
+    }
+
 }

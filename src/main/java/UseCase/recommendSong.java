@@ -1,6 +1,6 @@
 package UseCase;
 
-import Database.songAccessInterface;
+import Database.GetSongAccessInterface;
 import Database.songDsData;
 import Database.songLibrary;
 import Entities.Song;
@@ -17,7 +17,7 @@ import java.util.Random;
  * a given Playlist.
  */
 public class recommendSong implements recommendationInputBoundary {
-    songAccessInterface library;
+    GetSongAccessInterface library;
     songOutputBoundary out;
     playlistInputData data;
 

@@ -1,19 +1,31 @@
 package Controller;
 import InputBoundary.uploadSongInputBoundary;
+import InputData.uploadSongInputData;
+import OutputBoundary.uploadSongOutputBoundary;
+import UseCase.UploadSongInteractor;
 
 /**
  * Interface adapters layer controller for the upload song use case.
  */
 public class uploadSongController {
 
-    uploadSongInputBoundary uploadSongInteractor;
+    uploadSongOutputBoundary uploadSongPresenter;
+    uploadSongInputBoundary uploadSong;
 
     /**
-     * uploads the submitted song by calling the use case
-     * @param uploadSongInteractor the use case interactor to execute the use case
+     * @param uploadSongPresenter the presenter to return info to the view
      */
-    public void upload(uploadSongInputBoundary uploadSongInteractor){
-        //TODO
+    public uploadSongController(uploadSongOutputBoundary uploadSongPresenter){
+        this.uploadSongPresenter = uploadSongPresenter;
+        this.uploadSong = new UploadSongInteractor(this.uploadSongPresenter);
+    }
+
+    /**
+     * Call the use case to upload a given song.
+     * @param uploadSongInputData contains filepath and uploading user.
+     */
+    public void upload(uploadSongInputData uploadSongInputData){
+         uploadSong.saveSong(uploadSongInputData);
     }
 
 }

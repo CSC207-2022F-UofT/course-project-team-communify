@@ -7,7 +7,6 @@ import OutputData.uploadSongOutputData;
 public interface uploadSongOutputBoundary {
     /**
      * @param uploadSongOutputData the output from the upload song use case
-     * @return true if and only if the upload was successful
      */
-    boolean isUploaded(uploadSongOutputData uploadSongOutputData);
+    public void isUploaded(uploadSongOutputData uploadSongOutputData);
 }

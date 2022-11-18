@@ -1,6 +1,6 @@
 package InputData;
 
-import Database.songAccessInterface;
+import Database.GetSongAccessInterface;
 import Database.songLibrary;
 import Entities.Song;
 
@@ -25,7 +25,7 @@ public class songInputData {
      * @param id ID of the Song object to encapsulate
      */
     public songInputData(int id){
-        songAccessInterface library = songLibrary.getInstance();
+        GetSongAccessInterface library = songLibrary.getInstance();
         this.song = library.getSong(id).getSong();
     }
 

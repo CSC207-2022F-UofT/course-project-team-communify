@@ -58,6 +58,14 @@ public class songDsData {
     /**
      * @return the genre of the Song represented by this object
      */
+    /**
+     * @return The String[] representation of the Song.
+     */
+    public String[] getString(){
+        return new String[]{Integer.toString(this.getID()), this.getSong().getName(),
+                this.getSong().getArtistString(), this.getSong().getGenre()};
+    }
+
     public String getGenre() {
         return this.song.getGenre();
     }
