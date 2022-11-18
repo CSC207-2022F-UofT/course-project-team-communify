@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class playlistDsData {
     private final Playlist playlist;
     private final int privacy;
-    private final songAccessInterface library;
+    private final GetSongAccessInterface library;
     private final userAccessInterface users;
     
     public playlistDsData(Playlist p){
