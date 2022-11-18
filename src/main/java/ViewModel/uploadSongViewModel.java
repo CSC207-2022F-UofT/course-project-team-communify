@@ -17,9 +17,10 @@ public class uploadSongViewModel {
      * @param filepath Filepath to the desired song.
      * @param user The username of the uploading user.
      */
-    public void upload(String filepath, String user){
+    public boolean upload(String filepath, String user){
         uploadSongInputData inputdata = new uploadSongInputData(filepath, user);
         uploadSongController.upload(inputdata);
+        return this.isUploaded;
     }
 
     /**
