@@ -24,6 +24,7 @@ public class searchOutputView extends JFrame implements ActionListener {
     private int height = 640;
 
     private JTable table;
+    private BorderLayout layout;
     private JComboBox comboBox;
     private String[][] data;
     private String[] ids;
@@ -39,11 +40,11 @@ public class searchOutputView extends JFrame implements ActionListener {
     public void initialise(){
         this.searchViewModel = new searchViewModel();
         this.jframe = new JFrame("Search Results");
-        BorderLayout layout = new BorderLayout(30, 30);
+        this.layout = new BorderLayout(30, 30);
         this.panel = new JPanel(layout);
         this.title = new JLabel("Search results for ");
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
-        title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
+        this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
 
         this.homeButton = new JButton();
         this.homeButton.setText("Home");
@@ -65,20 +66,27 @@ public class searchOutputView extends JFrame implements ActionListener {
 
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(this.data, columnNames);
-        comboBox = new JComboBox();
-        comboBox.addItem("Add to Space");
-        comboBox.addItem("Add to Playlist 1");
         TableColumnModel columnModel = table.getColumnModel();
-        columnModel.addColumn(new TableColumn());
+        setUpActions(columnModel, formattedData);
 
-        for (int i = 0; i < formattedData.length; i++) { // makes the default writing in last column a prompt for combo box
-            table.setValueAt("Add to..", i, 4);
-        }
-        columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
         comboBox.addActionListener(this);
         this.scrollPane = new JScrollPane(table);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    }
+
+    public void setUpActions(TableColumnModel columnModel, String[][] formattedData){
+        comboBox = new JComboBox();
+        comboBox.addItem("Add to Space");
+        comboBox.addItem("Add to Playlist 1");
+
+        columnModel.addColumn(new TableColumn());
+
+        // for loop to make the default writing in last column a prompt for combo box
+        for (int i = 0; i < formattedData.length; i++) {
+            table.setValueAt("Add to..", i, 4);
+        }
+        columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
     public void setVisible(){
