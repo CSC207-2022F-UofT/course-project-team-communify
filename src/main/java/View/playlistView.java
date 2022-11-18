@@ -70,6 +70,7 @@ public class playlistView extends JFrame implements ActionListener {
         } else if(e.getSource() == this.searchButton){
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
+            System.out.println(searchText);
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
@@ -90,6 +91,7 @@ public class playlistView extends JFrame implements ActionListener {
         panel.setLayout(null);
         panel.setBounds(0,0, this.width, this.height);  // TODO: probably want this to be larger
         panel.setBackground(Color.BLUE);
+        panel.setBackground(new Color(156, 219, 250));
     }
 
     public void setUpSearchBar(){

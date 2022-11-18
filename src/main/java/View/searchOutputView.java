@@ -1,6 +1,6 @@
 package View;
 
-import OutputData.searchOutputData;
+import Entities.RegularUser;
 import ViewModel.searchViewModel;
 
 import javax.swing.*;
@@ -17,14 +17,16 @@ public class searchOutputView extends JFrame implements ActionListener {
     private playlistView playlistView;
     private JScrollPane scrollPane;
     private JLabel title;
+    private JButton homeButton;
     private Font font;
-    private int fontSize = 10;
+    private int FONTSIZE = 10;
     private int width = 640;
     private int height = 640;
 
     private JTable table;
     private JComboBox comboBox;
     private String[][] data;
+    private String[] ids;
 
     private searchViewModel searchViewModel;
 
@@ -37,24 +39,39 @@ public class searchOutputView extends JFrame implements ActionListener {
     public void initialise(){
         this.searchViewModel = new searchViewModel();
         this.jframe = new JFrame("Search Results");
-        this.panel = new JPanel();
+        BorderLayout layout = new BorderLayout(30, 30);
+        this.panel = new JPanel(layout);
         this.title = new JLabel("Search results for ");
-        this.font = new Font(title.getFont().getName(), Font.PLAIN, this.fontSize);
+        this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
+        title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
+
+        this.homeButton = new JButton();
+        this.homeButton.setText("Home");
+        this.homeButton.setFocusable(false);
+        this.homeButton.setHorizontalTextPosition(JButton.CENTER);
+        this.homeButton.setForeground(Color.black);
+        this.homeButton.setBackground(Color.lightGray);
     }
 
     public void setUpTable(){
         this.data = this.searchViewModel.search("fo");
 
+        String[][] formattedData = new String[data.length][3];
+        this.ids = new String[data.length];
+        for (int i = 0; i < data.length; i++) {
+            this.ids[i] = data[i][0];
+            System.arraycopy(data[i], 1, formattedData[i], 0, 3);
+        }
+
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(this.data, columnNames);
-        table.setBounds(30, 40, this.width, this.height);
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
         comboBox.addItem("Add to Playlist 1");
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.addColumn(new TableColumn());
 
-        for (int i = 0; i < data.length; i++) { // makes the default writing in last column a prompt for combo box
+        for (int i = 0; i < formattedData.length; i++) { // makes the default writing in last column a prompt for combo box
             table.setValueAt("Add to..", i, 4);
         }
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
@@ -65,11 +82,15 @@ public class searchOutputView extends JFrame implements ActionListener {
     }
 
     public void setVisible(){
-        // set visible
         this.jframe.setSize(this.width, this.height);
         this.jframe.setResizable(false);
+        this.jframe.add(title);
+        this.panel.add(title, BorderLayout.PAGE_START);
+        this.panel.add(scrollPane,BorderLayout.CENTER);
+        this.panel.add(homeButton, BorderLayout.PAGE_END);
+
         this.jframe.add(panel);
-        this.jframe.add(scrollPane);
+        this.panel.setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
 
@@ -83,7 +104,14 @@ public class searchOutputView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.comboBox){
+
             System.out.println(this.comboBox.getSelectedItem().toString());
+            int row = this.table.getSelectedRow();
+            System.out.println(ids[row]);
+
+        } else if (e.getSource() == this.homeButton) {
+            this.jframe.dispose();
+//            playlistView userDashboard = new playlistView(); // pass in the user from the playlist view
         }
 
     }
