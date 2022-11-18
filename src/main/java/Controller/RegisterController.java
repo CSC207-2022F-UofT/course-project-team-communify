@@ -1,7 +1,9 @@
 package Controller;
 
 import InputBoundary.RegisterInputBoundary;
+import OutputBoundary.loginOutputBoundary;
 import InputData.RegisterInputData;
+import UseCase.RegisterInteractor;
 
 
 /**
@@ -9,9 +11,11 @@ import InputData.RegisterInputData;
  */
 public class RegisterController {
     RegisterInputBoundary registerInteractor;
+    loginOutputBoundary registerPresenter;
 
-    public RegisterController(RegisterInputBoundary registerInteractor) {
-        this.registerInteractor = registerInteractor;
+    public RegisterController(loginOutputBoundary registerPresenter) {
+        this.registerPresenter = registerPresenter;
+        this.registerInteractor = new RegisterInteractor(registerPresenter);
     }
     /**
      * function calling the use case for registering a regular user

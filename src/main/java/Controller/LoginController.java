@@ -2,6 +2,8 @@ package Controller;
 
 import InputBoundary.loginInputBoundary;
 import InputData.loginInputData;
+import OutputBoundary.loginOutputBoundary;
+import UseCase.Login;
 
 
 /**
@@ -9,12 +11,11 @@ import InputData.loginInputData;
  */
 public class LoginController {
     loginInputBoundary loginInteractor;
-    /**
-     * Constructor.
-     * @param loginInteractor use case interactor for user logging in
-     */
-    public LoginController(loginInputBoundary loginInteractor) {
-        this.loginInteractor = loginInteractor;
+    loginOutputBoundary loginPresenter;
+
+    public LoginController(loginOutputBoundary loginPresenter) {
+        this.loginPresenter = loginPresenter;
+        this.loginInteractor = new Login(loginPresenter);
     }
     /**
      * function calling the use case for logging in
