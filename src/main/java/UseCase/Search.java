@@ -3,7 +3,7 @@ package UseCase;
 import Entities.Song;
 import InputBoundary.searchInputBoundary;
 import OutputBoundary.searchOutputBoundary;
-import Database.songAccessInterface;
+import Database.GetSongAccessInterface;
 import InputData.searchInputData;
 import Database.songDsData;
 import OutputData.searchOutputData;
@@ -19,13 +19,13 @@ import java.util.List;
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
-    songAccessInterface songLibrary;
+    GetSongAccessInterface songLibrary;
 
     /**
      * @param songLibrary the library of all songs in the program
      * @param searchPresenter the presenter to output results to the view
      */
-    public Search(songAccessInterface songLibrary, searchOutputBoundary searchPresenter){
+    public Search(GetSongAccessInterface songLibrary, searchOutputBoundary searchPresenter){
         this.songLibrary = songLibrary;
         this.searchPresenter = searchPresenter;
     }
