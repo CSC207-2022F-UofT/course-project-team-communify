@@ -1,6 +1,6 @@
 package UseCase;
 
-import Database.songAccessInterface;
+import Database.GetSongAccessInterface;
 import Database.songDsData;
 import Database.songLibrary;
 import Entities.Song;

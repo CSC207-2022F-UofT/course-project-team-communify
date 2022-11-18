@@ -2,5 +2,5 @@ package OutputBoundary;
 import OutputData.uploadSongOutputData;
 
 public interface uploadSongOutputBoundary {
-    public boolean isUploaded(uploadSongOutputData uploadSongOutputData);
+    public void isUploaded(uploadSongOutputData uploadSongOutputData);
 }
