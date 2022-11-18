@@ -2,6 +2,7 @@ package UseCase;
 
 import Entities.User;
 import OutputBoundary.loginOutputBoundary;
+import OutputData.loginOutputData;
 import InputData.RegisterInputData;
 import InputBoundary.RegisterInputBoundary;
 import Database.userAccessInterface;
@@ -12,11 +13,11 @@ public class RegisterInteractor implements RegisterInputBoundary{
     private final loginOutputBoundary registerPresenter;
     private final userFactory userFactory;
 
-    userAccessInterface allUsers;
+    private final userAccessInterface allUsers;
 
     public RegisterInteractor(loginOutputBoundary registerPresenter, userAccessInterface allUsers,
                               userFactory userFactory){
-        this.allUsers = allUsers;
+        this.allUsers = Database.userList.getInstance();
         this.registerPresenter =registerPresenter;
         this.userFactory = userFactory;
     }
@@ -31,10 +32,10 @@ public class RegisterInteractor implements RegisterInputBoundary{
         }
 
         // create regular user
-        User user;
-        user = this.userFactory.createRegularUser(registerInputData.getUsername(), registerInputData.getPassword());
+        User user = this.userFactory.createRegularUser(registerInputData.getUsername(), registerInputData.getPassword());
         allUsers.save(new userDsData(user));
-        //TODO: prepare success view
+        loginOutputData userCreated = new loginOutputData(); //Todo: pass in value for loginOD
+        registerPresenter.successView(userCreated);
     }
 
 }

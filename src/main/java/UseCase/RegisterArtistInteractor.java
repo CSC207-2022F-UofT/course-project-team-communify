@@ -12,11 +12,11 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
     private final loginOutputBoundary registerPresenter;
     private final userFactory userFactory;
 
-    userAccessInterface allUsers;
+    private final userAccessInterface allUsers;
 
     public RegisterArtistInteractor(loginOutputBoundary registerPresenter, userAccessInterface allUsers,
                                     userFactory userFactory){
-        this.allUsers = allUsers;
+        this.allUsers = Database.userList.getInstance();
         this.registerPresenter =registerPresenter;
         this.userFactory = userFactory;
     }
@@ -31,8 +31,7 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
         }
 
         //create artist user
-        User user;
-        user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
+        User user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
                 registerInputData.getPassword());
         allUsers.save(new userDsData(user));
         //TODO: prepare success view
