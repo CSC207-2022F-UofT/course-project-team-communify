@@ -32,6 +32,11 @@ public class userList implements userAccessInterface {
         return USER_LIST;
     }
 
+    /**
+     * Private constructor for singleton.
+     * @param aFilepath artist user .csv filepath
+     * @param rFilepath regular user .csv filepath
+     */
     private userList(String aFilepath, String rFilepath) {
         this.regularFilepath = rFilepath;
         this.artistFilepath = aFilepath;

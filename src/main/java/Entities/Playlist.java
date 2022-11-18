@@ -12,13 +12,25 @@ public class Playlist {
     private final User owner;
     private final LinkedList<Song> songList;
 
+    /**
+     * @param id int id of the playlist
+     * @param name string name of the playlist
+     * @param owner User who owns the playlist
+     */
     public Playlist(int id, String name, User owner){
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.songList = new LinkedList<Song>();
     }
-    
+
+    /**
+     * Overloaded constructor for playlists with a first song
+     * @param id int id of the playlist
+     * @param name string name of the playlist
+     * @param owner User who owns the playlist
+     * @param firstSong the first Song in the playlist
+     */
     public Playlist(int id, String name, User owner, Song firstSong){
         this.id = id;
         this.name = name;

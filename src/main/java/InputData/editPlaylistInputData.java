@@ -11,6 +11,11 @@ public class editPlaylistInputData {
     private final Song song;
     private final User user;
 
+    /**
+     * @param user User which owns the playlist
+     * @param playlist Playlist to be edited
+     * @param song Song to be added/removed from the Playlist
+     */
     public editPlaylistInputData(User user, Playlist playlist, Song song){
         this.playlist = playlist;
         this.song = song;

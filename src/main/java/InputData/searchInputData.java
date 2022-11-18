@@ -6,6 +6,9 @@ package InputData;
 public class searchInputData {
     private final String searchText;
 
+    /**
+     * @param text String search query
+     */
    public searchInputData(String text){
        this.searchText = text;
    }

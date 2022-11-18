@@ -27,6 +27,9 @@ public class MusicPlayer {
         return player;
     }
 
+    /**
+     * Private constructor for singleton entity.
+     */
     private MusicPlayer() {
         playing = false;
         sync = new Object();

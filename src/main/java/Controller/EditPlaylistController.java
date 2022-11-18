@@ -13,6 +13,9 @@ public class EditPlaylistController {
     private final editPlaylistInputBoundary EditPlaylistInteractor;
 
 
+    /**
+     * @param EditPlaylistInteractor the use case interactor for editing playlists
+     */
     public EditPlaylistController(editPlaylistInputBoundary EditPlaylistInteractor){
         this.EditPlaylistInteractor = EditPlaylistInteractor;
     }

@@ -16,15 +16,22 @@ public class playlistDsData {
     private final int privacy;
     private final songAccessInterface library;
     private final userAccessInterface users;
-    
+
+    /**
+     * constructor for creation from use case to pass to database
+     * @param p playlist object to encapsulate
+     */
     public playlistDsData(Playlist p){
-        // constructor for creation from use case to pass to database
         this.playlist = p;
         library = songLibrary.getInstance();
         users = userList.getInstance();
         this.privacy = 1;
     }
-    
+
+    /**
+     * Constructor for creation from .csv database
+     * @param data string data to be built into Playlist object
+     */
     public playlistDsData(String[] data){
         library = songLibrary.getInstance();
         users = userList.getInstance();

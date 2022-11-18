@@ -12,6 +12,9 @@ public class playlistController {
 
     private final shufflePlaylistInputBoundary shufflePlaylistInteractor;
 
+    /**
+     * @param shufflePlaylistInteractor shuffle interactor to run shuffle use case
+     */
     public playlistController(shufflePlaylistInputBoundary shufflePlaylistInteractor) {
         this.shufflePlaylistInteractor = shufflePlaylistInteractor;
     }

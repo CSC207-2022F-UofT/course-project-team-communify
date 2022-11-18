@@ -10,10 +10,24 @@ import java.io.File;
 public class songDsData {
     private final Song song;
 
+    /**
+     * Constructor to be called from use case code to communicate with database
+     * @param song song object to encapsulate
+     */
     public songDsData(Song song){
         this.song = song;
     }
 
+    /**
+     * Constructor to be called from database to build from .csv
+     * @param id integer id of the song
+     * @param name string name of the song
+     * @param artistList string array of artists of the song
+     * @param genre string genre of the song
+     * @param file File representation of the song
+     * @param cover image of the album cover of the song
+     * @param uploader string name of the uploader of the song
+     */
     public songDsData(int id, String name, String[] artistList, String genre,
                       File file, BufferedImage cover, String uploader){
        this.song = new Song(id, name, artistList, genre, file, cover, uploader);

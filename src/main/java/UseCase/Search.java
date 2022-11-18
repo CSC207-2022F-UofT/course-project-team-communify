@@ -21,6 +21,10 @@ public class Search implements searchInputBoundary {
 
     songAccessInterface songLibrary;
 
+    /**
+     * @param songLibrary the library of all songs in the program
+     * @param searchPresenter the presenter to output results to the view
+     */
     public Search(songAccessInterface songLibrary, searchOutputBoundary searchPresenter){
         this.songLibrary = songLibrary;
         this.searchPresenter = searchPresenter;

@@ -9,6 +9,9 @@ public class playSpaceInputData {
 
     private final ArrayList<songInputData> spaceSongList;
 
+    /**
+     * @param spaceSongList list of songInputData queued in the space
+     */
     public playSpaceInputData(ArrayList<songInputData> spaceSongList) {
         this.spaceSongList = spaceSongList;
     }

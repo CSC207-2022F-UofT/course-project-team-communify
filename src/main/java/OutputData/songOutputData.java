@@ -11,6 +11,9 @@ import java.io.File;
 public class songOutputData {
     private final Song song;
 
+    /**
+     * @param song the Song to be outputted to the view
+     */
     public songOutputData(Song song){
         this.song = song;
     }

@@ -8,6 +8,9 @@ public class playlistViewModel {
     private playlistPresenter playlistPresenter;
     private String outputMessage;
 
+    /**
+     * Constructor.
+     */
     public playlistViewModel(){
         // get necessary information from View to construct a new playlist
         //TODO: This is the controller, just pass this to the controller, move to controller

@@ -33,6 +33,10 @@ public class songLibrary implements songAccessInterface{
         return SONG_LIBRARY;
     }
 
+    /**
+     * Private constructor for singleton
+     * @param filepath path to the .csv file
+     */
     private songLibrary(String filepath){
         this.filepath = filepath;
         this.library = readFile();

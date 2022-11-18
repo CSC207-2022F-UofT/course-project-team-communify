@@ -30,7 +30,11 @@ public class musicEngineController {
     private playPlaylistInputBoundary playPlaylist;
     private NextSongInputBoundary nextSong;
     private final pauseSongInputBoundary pauseSong;
-    
+
+    /**
+     * @param spacePresenter presenter object to return space data to the view
+     * @param songPresenter presenter object to return song data to the view
+     */
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();

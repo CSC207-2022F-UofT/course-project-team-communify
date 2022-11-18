@@ -14,6 +14,9 @@ public class musicEngineControllerViewModel {
     private String spaceButtonText;
     private songOutputData playing;
 
+    /**
+     * Constructor
+     */
     public musicEngineControllerViewModel(){
         this.musicEngineController = new musicEngineController(new spacePresenter(this),
                 new songPresenter(this));

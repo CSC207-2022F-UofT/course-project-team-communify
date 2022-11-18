@@ -23,6 +23,10 @@ public class playPlaylist implements playPlaylistInputBoundary {
     private int nextSong;
     songOutputBoundary presenter;
 
+    /**
+     * @param data the input playlist to play
+     * @param presenter the presenter to output the now playing song to the view
+     */
     public playPlaylist(playlistInputData data, songOutputBoundary presenter){
         this.playlist = data.getSongs();
         queue = true;

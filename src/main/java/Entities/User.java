@@ -7,6 +7,10 @@ public abstract class User {
     private final String username;
     private final String password;
 
+    /**
+     * @param username string username of the user
+     * @param password string password of the user
+     */
     public User(String username, String password){
         this.username = username;
         this.password = password;

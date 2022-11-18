@@ -21,6 +21,10 @@ public class recommendSong implements recommendationInputBoundary {
     songOutputBoundary out;
     playlistInputData data;
 
+    /**
+     * @param data the playlist to recommend a song for
+     * @param out the presenter for PlaySong to output to the view
+     */
     public recommendSong(playlistInputData data, songOutputBoundary out){
         this.library = songLibrary.getInstance();
         this.out = out;

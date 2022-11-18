@@ -12,6 +12,9 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
 
     private final newPlaylistOutputBoundary presenter;
 
+    /**
+     * @param presenter the presenter to output data to the view
+     */
     public EditPlaylistInteractor(newPlaylistOutputBoundary presenter){
         this.presenter = presenter;
     }

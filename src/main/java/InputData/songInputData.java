@@ -13,10 +13,17 @@ import java.io.File;
 public class songInputData {
     private final Song song;
 
+    /**
+     * @param song the Song object to encapsulate
+     */
     public songInputData(Song song){
         this.song = song;
     }
 
+    /**
+     * Overloaded constructor to find a song in the database by ID.
+     * @param id ID of the Song object to encapsulate
+     */
     public songInputData(int id){
         songAccessInterface library = songLibrary.getInstance();
         this.song = library.getSong(id).getSong();
