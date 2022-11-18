@@ -1,5 +1,7 @@
 package View;
 
+import Entities.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,11 +17,14 @@ public class searchOutputView extends JFrame implements ActionListener {
     private JButton homeButton;
     private JTextField songNameTextField;
 
+    private User user;
 
-    public searchOutputView () {
+
+    public searchOutputView (User user) {
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
+        this.user = user;
     }
 
 
@@ -34,7 +39,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            // playlistView userDashboard = new playlistView();    enter a User parameter in playlistView() to open new window
+            playlistView userDashboard = new playlistView(user);    //enter a User parameter in playlistView() to open new window
         }
     }
 

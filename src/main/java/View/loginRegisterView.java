@@ -6,6 +6,9 @@
 
 package View;
 
+import Entities.RegularUser;
+import Entities.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,6 +54,8 @@ public class loginRegisterView extends JFrame implements ActionListener {
 
                 this.jframe.dispose();
                 // playlistView userDashboard = new playlistView(); <- needs a user parameter, then uncomment
+                RegularUser User = new RegularUser(username, password);
+                playlistView userDashboard = new playlistView(User);
 
             }
 
