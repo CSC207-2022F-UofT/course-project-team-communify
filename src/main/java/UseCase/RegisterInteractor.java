@@ -15,11 +15,10 @@ public class RegisterInteractor implements RegisterInputBoundary{
 
     private final userAccessInterface allUsers;
 
-    public RegisterInteractor(loginOutputBoundary registerPresenter, userAccessInterface allUsers,
-                              userFactory userFactory){
+    public RegisterInteractor(loginOutputBoundary registerPresenter){
         this.allUsers = Database.userList.getInstance();
         this.registerPresenter =registerPresenter;
-        this.userFactory = userFactory;
+        this.userFactory = new userFactory();
     }
     @Override
     public void register(RegisterInputData registerInputData){
@@ -35,7 +34,7 @@ public class RegisterInteractor implements RegisterInputBoundary{
         User user = this.userFactory.createRegularUser(registerInputData.getUsername(), registerInputData.getPassword());
         allUsers.save(new userDsData(user));
         loginOutputData userCreated = new loginOutputData(); //Todo: pass in value for loginOD
-        registerPresenter.successView(userCreated);
+        //TODO: registerPresenter.successView(userCreated);
     }
 
 }
