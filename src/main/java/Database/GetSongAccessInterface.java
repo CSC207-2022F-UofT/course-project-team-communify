@@ -1,17 +1,11 @@
 package Database;
 import java.util.Collection;
 
-public interface songAccessInterface {
+public interface GetSongAccessInterface {
     /**
      * @return Collection of all songs.
      */
     public Collection<songDsData> getLibrary();
-
-    /**
-     * @param song New Song object to be saved to the database.
-     * @return true iff save was successful.
-     */
-    public boolean saveSong(songDsData song);
 
     /**
      * @param id the unique int ID of a given song.
