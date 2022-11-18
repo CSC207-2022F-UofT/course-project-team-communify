@@ -1,5 +1,6 @@
 package Controller;
 
+import InputBoundary.*;
 import InputBoundary.playSongInputBoundary;
 import InputBoundary.playSpaceInputBoundary;
 import InputBoundary.recommendationInputBoundary;
@@ -22,9 +23,10 @@ public class musicEngineController {
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
-    private playPlaylist playPlaylist;
-    private final pauseSong pauseSong;
-
+    private playPlaylistInputBoundary playPlaylist;
+    private NextSongInputBoundary nextSong;
+    private final pauseSongInputBoundary pauseSong;
+    
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();
@@ -38,10 +40,11 @@ public class musicEngineController {
 
     /**
      * Function calling the use case for playing song
-     * @param data songInputData containing Song to be played
+     * @param id the integer id of the Song to be played
      */
-    public void playSong(songInputData data) {
+    public void playSong(int id) {
         stop();
+        songInputData data = new songInputData(id);
         playSongInputBoundary playSong = new playSongInteractor(data, this.songPresenter);
         playSong.playSong();
         playing = SONG;
@@ -81,32 +84,50 @@ public class musicEngineController {
      * Function calling the use case for pausing or resuming song
      */
     public void pauseSong() {
-        pauseSong.pause();
+        if (playing != NONE)
+            pauseSong.pause();
     }
 
     /**
      * Function calling the use case for playing song
-     * @param data playlistInputData containing Playlist to be played
+     * @param id integer id of the playlist to be played
      */
-    public void playPlaylist(playlistInputData data) {
+    public void playPlaylist(int id) {
         stop();
+        playlistInputData data = new playlistInputData(id);
         playPlaylist = new playPlaylist(data, this.songPresenter);
+        nextSong = new NextSong(data, this.songPresenter);
         playPlaylist.play();
         playing = PLAYLIST;
     }
 
     /**
      * runs recommend use case on a given playlist, playing the recommendation when done
-     * @param data the playlist to recommend from
+     * @param id the integer id of the playlist to recommend from
      */
-    public void playRecommendation(playlistInputData data){
+    public void playRecommendation(int id){
         stop();
+        playlistInputData data = new playlistInputData(id);
         recommendationInputBoundary recommend = new recommendSong(data, songPresenter);
         recommend.recommendation();
         playing = SONG;
     }
 
     /**
+     * Skips the current song, if a playlist is playing. The playlist is the only possible
+     * entity which can require skipping, since spaces are radios and single songs have
+     * nothing to skip to.
+     */
+    public void playNext(){
+        if (playing == PLAYLIST){
+            stop();
+            nextSong.skipSong();
+        }
+    }
+
+    /**
+
+
      * Private helper method to stop the currently playing queue, if it exists.
      */
     private void stop(){
@@ -115,7 +136,7 @@ public class musicEngineController {
             case SONG:
                 break;
             case PLAYLIST:
-                playPlaylist.stopQueue();
+                this.playPlaylist.stopQueue();
             case SPACE:
                 this.playSpaceInteractor.stopSpace();
                 this.spacePresenter.spaceNotPlayed();
