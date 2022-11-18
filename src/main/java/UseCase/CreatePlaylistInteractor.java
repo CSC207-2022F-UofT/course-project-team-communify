@@ -6,6 +6,9 @@ import InputData.newPlaylistInputData;
 import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.newPlaylistOutputData;
 
+/**
+ * Application business rules use case class to create a new playlist.
+ */
 public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         private final newPlaylistOutputBoundary presenter;
 

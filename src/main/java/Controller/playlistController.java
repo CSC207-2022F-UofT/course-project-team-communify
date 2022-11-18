@@ -5,8 +5,6 @@ import InputBoundary.shufflePlaylistInputBoundary;
 import InputData.playlistInputData;
 import java.util.LinkedList;
 
-// Adding changes to this file so I can use it for the shuffle method
-
 /**
  * Controller for the shufflePlaylist use case
  */
@@ -18,6 +16,11 @@ public class playlistController {
         this.shufflePlaylistInteractor = shufflePlaylistInteractor;
     }
 
+    /**
+     * Shuffles a given list of songs by calling the use case.
+     * @param name name of the playlist
+     * @param songList list of songs to be shuffled
+     */
     public void shufflePlaylist(String name, LinkedList<Song> songList) {
         playlistInputData playlistInput = new playlistInputData(name, songList);
         this.shufflePlaylistInteractor.shuffle(playlistInput);

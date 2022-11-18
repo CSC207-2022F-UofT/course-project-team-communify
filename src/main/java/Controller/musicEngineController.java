@@ -13,6 +13,10 @@ import UseCase.*;
 
 import java.util.ArrayList;
 
+/**
+ * Interface adapters layer controller for use cases involving audio output.
+ */
+
 public class musicEngineController {
     private final int SONG = 0;
     private final int PLAYLIST = 1;

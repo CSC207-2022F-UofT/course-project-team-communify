@@ -3,6 +3,9 @@ package Presenter;
 import OutputBoundary.searchOutputBoundary;
 import OutputData.searchOutputData;
 
+/**
+ * Interface adapters layer presenter for displaying search use case output.
+ */
 public class searchPresenter implements searchOutputBoundary{
 
     /**

@@ -78,6 +78,9 @@ public class Song {
         return this.cover;
     }
 
+    /**
+     * @return the name of the uploader of the song
+     */
     public String getUploader(){
         return this.uploader;
     }

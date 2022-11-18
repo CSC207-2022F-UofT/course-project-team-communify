@@ -1,5 +1,11 @@
 package InputBoundary;
 
+/**
+ * Use case layer input boundary that allows communication between outer layers and the pause song use case.
+ */
 public interface pauseSongInputBoundary {
-    public void pause();
+    /**
+     * Pauses the currently playing song.
+     */
+    void pause();
 }

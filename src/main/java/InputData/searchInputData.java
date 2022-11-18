@@ -1,5 +1,8 @@
 package InputData;
 
+/**
+ * Application Business Rules layer data structure for submitting search input to use cases.
+ */
 public class searchInputData {
     private final String searchText;
 

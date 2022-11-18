@@ -15,6 +15,10 @@ public class shufflePlaylist implements shufflePlaylistInputBoundary {
     public shufflePlaylist() {
     }
 
+    /**
+     * Shuffles a given playlist.
+     * @param playlist the playlist to shuffle
+     */
     @Override
     public void shuffle(playlistInputData playlist) {
         Collections.shuffle(playlist.getSongs());

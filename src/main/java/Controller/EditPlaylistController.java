@@ -5,6 +5,9 @@ import Entities.Song;
 import InputBoundary.editPlaylistInputBoundary;
 import InputData.editPlaylistInputData;
 
+/**
+ * Interface adapters layer controller for edit playlists use case.
+ */
 public class EditPlaylistController {
 
     private final editPlaylistInputBoundary EditPlaylistInteractor;

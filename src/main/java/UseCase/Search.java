@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Application business rules use case class to search for a song.
+ */
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 

@@ -1,10 +1,22 @@
 package OutputBoundary;
 import OutputData.editPlaylistOutputData;
 import OutputData.newPlaylistOutputData;
+/**
+ * Use case layer input boundary that allows communication between presenters and the new playlist use case.
+ */
 public interface newPlaylistOutputBoundary {
-    public String getOutputMessage();
+    /**
+     * @return the output message after creating a playlist
+     */
+    String getOutputMessage();
 
-    public void setPlaylistCreationConfirmation(newPlaylistOutputData outputData);
+    /**
+     * @param outputData the output to set as confirmation for new playlist
+     */
+    void setPlaylistCreationConfirmation(newPlaylistOutputData outputData);
 
-    public void setEditPlaylistConfirmation(editPlaylistOutputData outputData);
+    /**
+     * @param outputData the output to set as confirmation for edited playlist
+     */
+    void setEditPlaylistConfirmation(editPlaylistOutputData outputData);
 }

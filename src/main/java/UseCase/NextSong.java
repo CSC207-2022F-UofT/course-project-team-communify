@@ -9,17 +9,27 @@ import OutputBoundary.songOutputBoundary;
 
 import java.util.ArrayList;
 
+/**
+ * Application business rules use case class to skip a song in the playing playlist.
+ */
 public class NextSong implements NextSongInputBoundary {
     private final ArrayList<Song> playlist;
     private final String name;
     private final songOutputBoundary presenter;
 
+    /**
+     * @param data the playlist that is being played
+     * @param presenter the presenter for playSong
+     */
     public NextSong(playlistInputData data, songOutputBoundary presenter){
         this.playlist = data.getSongs();
         this.presenter = presenter;
         this.name = data.getName();
     }
 
+    /**
+     * skips the currently playing song in a playlist.
+     */
     @Override
     public void skipSong() {
         MusicPlayer mp = MusicPlayer.getInstance();
