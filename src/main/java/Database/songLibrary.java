@@ -73,7 +73,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
                 int id = Integer.parseInt(songInfo[0]);
                 String uploader = songInfo[1];
 
-                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2]));
+                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2].replaceAll("\\\\", "/")));
                 map.put(id, song);
 
             }
