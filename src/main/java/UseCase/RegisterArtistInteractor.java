@@ -1,6 +1,6 @@
 package UseCase;
 
-import Database.userAccessInterface;
+import Database.SaveUserAccessInterface;
 import Database.userDsData;
 import Entities.User;
 import Entities.userFactory;
@@ -12,7 +12,7 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
     private final loginOutputBoundary registerPresenter;
     private final userFactory userFactory;
 
-    private final userAccessInterface allUsers;
+    private final SaveUserAccessInterface allUsers;
 
     public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
         this.allUsers = Database.userList.getInstance();
