@@ -1,5 +1,6 @@
 package View;
 
+
 import Entities.RegularUser;
 import ViewModel.searchViewModel;
 
@@ -14,7 +15,6 @@ public class searchOutputView extends JFrame implements ActionListener {
 
     private JFrame jframe;
     private JPanel panel;
-    private playlistView playlistView;
     private JScrollPane scrollPane;
     private JLabel title;
     private JButton homeButton;
@@ -30,19 +30,21 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
 
     private searchViewModel searchViewModel;
+    private String searchText;
 
-    public searchOutputView(){
-        initialise();
+    public searchOutputView(String searchText){
+        initialise(searchText);
         this.setUpTable();
         this.setVisible();
     }
 
-    public void initialise(){
+    public void initialise(String searchText){
         this.searchViewModel = new searchViewModel();
+        this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
         this.layout = new BorderLayout(30, 30);
         this.panel = new JPanel(layout);
-        this.title = new JLabel("Search results for ");
+        this.title = new JLabel("Search results for " + this.searchText);
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
         this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
 
@@ -52,10 +54,11 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.setForeground(Color.black);
         this.homeButton.setBackground(Color.lightGray);
+        this.homeButton.addActionListener(this);
     }
 
     public void setUpTable(){
-        this.data = this.searchViewModel.search("fo");
+        this.data = this.searchViewModel.search(this.searchText);
 
         String[][] formattedData = new String[data.length][3];
         this.ids = new String[data.length];
@@ -79,10 +82,11 @@ public class searchOutputView extends JFrame implements ActionListener {
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
         comboBox.addItem("Add to Playlist 1");
+        //TODO: get Playlist names and make this dynamic
 
         columnModel.addColumn(new TableColumn());
 
-        // for loop to make the default writing in last column a prompt for combo box
+        // make the default writing in last column a prompt for combo box
         for (int i = 0; i < formattedData.length; i++) {
             table.setValueAt("Add to..", i, 4);
         }
@@ -93,12 +97,13 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.jframe.setSize(this.width, this.height);
         this.jframe.setResizable(false);
         this.jframe.add(title);
+
         this.panel.add(title, BorderLayout.PAGE_START);
         this.panel.add(scrollPane,BorderLayout.CENTER);
         this.panel.add(homeButton, BorderLayout.PAGE_END);
+        this.panel.setBackground(new Color(156, 219, 250));
 
         this.jframe.add(panel);
-        this.panel.setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
 
@@ -116,10 +121,12 @@ public class searchOutputView extends JFrame implements ActionListener {
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
+            //TODO: pass id to play space or add to playlist
 
-        } else if (e.getSource() == this.homeButton) {
+        } else if (e.getSource()  == this.homeButton) {
             this.jframe.dispose();
-//            playlistView userDashboard = new playlistView(); // pass in the user from the playlist view
+            new playlistView(new RegularUser("",""));
+            // TODO: make this into an actual user
         }
 
     }
