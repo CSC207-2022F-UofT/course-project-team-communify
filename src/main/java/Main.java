@@ -1,14 +1,7 @@
-import Database.playlistLibrary;
-import Entities.Playlist;
-import Entities.RegularUser;
-import Entities.User;
-import View.artistView;
 import View.loginRegisterView;
-import View.playlistView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -24,18 +17,8 @@ public class Main {
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
 
         // View Initialization
-        new artistView(windowIcon);
-
-//        // TODO
-        ArrayList<Integer> p = new ArrayList<>();
-        p.add(0);
-        p.add(1);
-
-        System.out.println(playlistLibrary.getInstance().findPlaylist(0).getPlaylist().getSongList().size());
-
+        // new artistView(windowIcon);
         new loginRegisterView();
-
-//        Thread.sleep(5000);
 
     }
 }

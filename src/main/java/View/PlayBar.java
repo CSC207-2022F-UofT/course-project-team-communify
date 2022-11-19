@@ -7,12 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class PlayBar implements ActionListener {
-    private final int WIDTH = 640;
-    private final int HEIGHT = 100;
     private JPanel panel;
     private musicEngineControllerViewModel viewModel;
     private final Object sync;
@@ -31,6 +31,8 @@ public class PlayBar implements ActionListener {
     private void initializeComponents(musicEngineControllerViewModel vm){
         this.viewModel = vm;
         this.panel = new JPanel();
+        int WIDTH = 640;
+        int HEIGHT = 100;
         panel.setBounds(0, 540, WIDTH, HEIGHT);
         FlowLayout barLayout = new FlowLayout(FlowLayout.CENTER, 50, 0);
         this.panel.setLayout(barLayout);
@@ -57,7 +59,9 @@ public class PlayBar implements ActionListener {
         this.cover = new JLabel("cover");
 
         try {
-            this.cover = new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\Rafael\\IdeaProjects\\course-project-team-communify\\src\\main\\java\\View\\assets\\icon_red.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+            BufferedImage tempCover = ImageIO.read(new File(Paths.get("").toAbsolutePath() +
+                    "/src/songLib/cover/no_genre.png"));
+            this.cover = new JLabel(new ImageIcon(tempCover.getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
         } catch (IOException e) {
             e.printStackTrace();
         }

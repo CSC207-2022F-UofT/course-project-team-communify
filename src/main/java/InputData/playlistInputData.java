@@ -15,7 +15,7 @@ public class playlistInputData {
     private final String name;
     private final LinkedList<Song> songList;
     private final ArrayList<songInputData> songInputList;
-    private int id;
+    private final int id;
 
     public playlistInputData(String name, List<Song> songList){
         this.name = name;

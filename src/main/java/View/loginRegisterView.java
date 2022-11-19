@@ -6,7 +6,6 @@
 
 package View;
 
-import ViewModel.UserDsView;
 import ViewModel.userViewModel;
 
 import javax.swing.*;
@@ -16,9 +15,6 @@ import java.awt.event.ActionListener;
 
 public class loginRegisterView extends JFrame implements ActionListener {
     private userViewModel viewModel;
-    private final int FONTSIZE = 10;
-    private final int WIDTH = 640;
-    private final int HEIGHT = 640;
     private JFrame jframe;
     private JButton submitButton;
     private JCheckBox isArtistCheckBox;
@@ -47,7 +43,7 @@ public class loginRegisterView extends JFrame implements ActionListener {
             if (viewModel.loginAction(username, password, isArtist)){
                 this.jframe.dispose();
                 if (isArtist) {
-                    artistView artistDashboard = new artistView();    // should need an artist parameter
+                    // artistView artistDashboard = new artistView();    // should need an artist parameter
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
@@ -67,7 +63,9 @@ public class loginRegisterView extends JFrame implements ActionListener {
 
     private void initializeValues() {
         this.jframe = new JFrame();
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int HEIGHT = 640;
+        int WIDTH = 640;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
         this.jframe.setLayout(null);
