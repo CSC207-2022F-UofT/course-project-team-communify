@@ -7,9 +7,7 @@ import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.images.Artwork;
 
-import javax.imageio.ImageIO;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
@@ -131,17 +129,11 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      * @param rawSong The mp3 file of a given song.
      * @return The songDsData entity representing rawSong.
      */
-    private songDsData readSongFromMetadata(int id, String uploader, MP3File rawSong) throws IOException {
-
+    private songDsData readSongFromMetadata(int id, String uploader, MP3File rawSong){
 
         Tag tag = rawSong.getTag();
-
-
-        BufferedImage cover = null;
-        //BufferedImage cover = ImageIO.read(new File(".\\src\\songLib\\cover\\no_genre.png"));
-        Artwork rawCover = tag.getFirstArtwork();
-        if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
-
+        BufferedImage cover = (BufferedImage) tag.getFirstArtwork();
+        //TODO: OR set as default cover
         String name = format(tag.getFields(FieldKey.TITLE).toString());
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).toString());
