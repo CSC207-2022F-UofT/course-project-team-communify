@@ -16,7 +16,7 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
 
     public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
         this.allUsers = Database.userList.getInstance();
-        this.registerPresenter =registerPresenter;
+        this.registerPresenter = registerPresenter;
         this.userFactory = new userFactory();
     }
     @Override

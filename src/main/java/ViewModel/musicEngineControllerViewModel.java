@@ -11,6 +11,7 @@ public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
     private String spaceButtonText;
     private songOutputData playing;
+    private String SpaceAddedPopupText;
 
     public musicEngineControllerViewModel(){
         this.musicEngineController = new musicEngineController(new spacePresenter(this),
@@ -43,7 +44,14 @@ public class musicEngineControllerViewModel {
         return playing.getSong().getName();
     }
 
+    public String callAddToSpace(int id){
+        this.musicEngineController.spaceAddSong(id);
+        return this.SpaceAddedPopupText;
+    }
 
+    public void UpdateSpacePopupText(String msg){
+        this.SpaceAddedPopupText = msg;
+    }
     public String callPlaySpace() {
         this.musicEngineController.playSpace();
         return this.spaceButtonText;

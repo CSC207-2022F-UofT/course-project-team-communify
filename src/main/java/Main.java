@@ -9,8 +9,8 @@ public class Main {
 
         // TODO
         User user = new RegularUser("", "");
-//        new playlistView(user);
-        new searchOutputView();
+        playlistView PlaylistView = new playlistView(user);
+        new searchOutputView(PlaylistView);
         Thread.sleep(5000);
 
     }

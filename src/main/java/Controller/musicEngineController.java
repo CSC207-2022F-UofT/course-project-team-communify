@@ -8,9 +8,8 @@ import InputData.playSpaceInputData;
 import InputData.playlistInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
-import OutputBoundary.spacePlayedOutputBoundary;
+import OutputBoundary.SpacePlayedOutputBoundary;
 import UseCase.*;
-
 import java.util.ArrayList;
 
 public class musicEngineController {
@@ -19,14 +18,14 @@ public class musicEngineController {
     private final int SPACE = 2;
     private final int NONE = -1;
     private final playSpaceInputBoundary playSpaceInteractor;
-    private final spacePlayedOutputBoundary spacePresenter;
+    private final SpacePlayedOutputBoundary spacePresenter;
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
     private final playPlaylistInputBoundary playPlaylist;
     private final NextSongInputBoundary nextSong;
-    
-    public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
+
+    public musicEngineController(SpacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();
         this.songPresenter = songPresenter;
@@ -59,21 +58,23 @@ public class musicEngineController {
 
     /**
      * function calling the use case for adding a song to the space
-     * @param songInputData input data for adding a song to the space
+     * @param songToAddID id of song to add to space
      */
-    public void spaceAddSong(songInputData songInputData){
-        int songToAddID = songInputData.getSong().getID();
+    public void spaceAddSong(int songToAddID){
         for (songInputData currSongInputData : this.spaceSongList){
             int currSongID = currSongInputData.getSong().getID();
             if (currSongID == songToAddID){
+                this.spacePresenter.notAddedToSpace(currSongInputData.getName());
                 return;  // if the song is already in the playlist, do nothing
                 // TODO: make this cooler (i.e. upvote algo) if time
             }
         }
-        this.spaceSongList.add(songInputData);  // song is not in list, so append to the end
-        if (playing == SPACE){
+        songInputData songToAdd = new songInputData(songToAddID);  // song is not in list, so append to the end
+        this.spaceSongList.add(songToAdd);
+        if (playing == SPACE) {
             this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
         }
+        this.spacePresenter.addedToSpace(songToAdd.getName());
     }
 
     // TODO: write unit tests

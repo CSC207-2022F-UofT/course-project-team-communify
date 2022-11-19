@@ -125,4 +125,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
     }
+
+    public String callAddToSpace(int id){   // this is for communication between views
+        return this.musicEngineControllerViewModel.callAddToSpace(id);
+    }
 }

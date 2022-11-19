@@ -30,14 +30,19 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
 
     private searchViewModel searchViewModel;
+    private Popup spaceAddedPopup;
+    private PopupFactory popupFactory;
+    private JButton spaceAddedExitButton;
 
-    public searchOutputView(){
-        initialise();
+    public searchOutputView(playlistView playlistView){
+        initialise(playlistView);
         this.setUpTable();
         this.setVisible();
     }
 
-    public void initialise(){
+    public void initialise(playlistView playlistView){
+        this.playlistView = playlistView;
+        this.popupFactory = new PopupFactory();
         this.searchViewModel = new searchViewModel();
         this.jframe = new JFrame("Search Results");
         this.layout = new BorderLayout(30, 30);
@@ -117,10 +122,34 @@ public class searchOutputView extends JFrame implements ActionListener {
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
 
+            if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
+                String PopupMessage = this.playlistView.callAddToSpace(Integer.parseInt(ids[row]));
+                this.createPopup(PopupMessage);
+                this.spaceAddedPopup.show();
+            }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
 //            playlistView userDashboard = new playlistView(); // pass in the user from the playlist view
         }
-
+        else if (e.getSource() == this.spaceAddedExitButton){
+            this.spaceAddedPopup.hide();
+        }
     }
+
+    private void createPopup(String text){
+        JFrame frame = new JFrame("pop");
+        frame.setSize(400, 400);
+        JLabel label = new JLabel(text);
+        label.setFont(this.font);
+        this.spaceAddedExitButton = new JButton("OK");
+        this.spaceAddedExitButton.addActionListener(this);
+        JPanel panel = new JPanel();
+        panel.setBackground(Color.blue);
+        panel.add(label);
+        panel.add(this.spaceAddedExitButton);
+        this.spaceAddedPopup = this.popupFactory.getPopup(frame, panel, 100, 200);
+        System.out.println(this.spaceAddedPopup);
+        this.spaceAddedPopup.show();
+    }
+
 }
