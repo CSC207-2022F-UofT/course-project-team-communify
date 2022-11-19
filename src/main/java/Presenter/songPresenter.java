@@ -1,20 +1,14 @@
 package Presenter;
 
-import OutputBoundary.recommendationOutputBoundary;
 import OutputBoundary.songOutputBoundary;
 import OutputData.songOutputData;
 import ViewModel.musicEngineControllerViewModel;
 
-public class songPresenter implements songOutputBoundary, recommendationOutputBoundary {
+public class songPresenter implements songOutputBoundary {
     private final musicEngineControllerViewModel viewModel;
 
     public songPresenter(musicEngineControllerViewModel musicEngineControllerViewModel){
         this.viewModel = musicEngineControllerViewModel;
-    }
-
-    @Override
-    public void recommendSong(songOutputData s) {
-
     }
 
     @Override

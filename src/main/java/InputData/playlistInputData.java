@@ -6,6 +6,7 @@ import Entities.Song;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Application Business Rules layer data structure for submitting playlist input to use cases.
@@ -14,9 +15,9 @@ public class playlistInputData {
     private final String name;
     private final LinkedList<Song> songList;
 
-    public playlistInputData(String name, LinkedList<Song> songList){
+    public playlistInputData(String name, List<Song> songList){
         this.name = name;
-        this.songList = songList;
+        this.songList = new LinkedList<>(songList);
     }
 
     public playlistInputData(int id){

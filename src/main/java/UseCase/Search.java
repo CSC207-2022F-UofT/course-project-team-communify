@@ -1,9 +1,9 @@
 package UseCase;
 
+import Database.GetSongAccessInterface;
 import Entities.Song;
 import InputBoundary.searchInputBoundary;
 import OutputBoundary.searchOutputBoundary;
-import Database.songAccessInterface;
 import InputData.searchInputData;
 import Database.songDsData;
 import OutputData.searchOutputData;
@@ -16,11 +16,9 @@ import java.util.List;
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
-       private songAccessInterface songLibrary;
-    // TODO: Deal with singleton
+       private GetSongAccessInterface songLibrary;
 
     public Search(searchOutputBoundary searchPresenter){
-        // import songLibrary instead of passing it in
         this.songLibrary = Database.songLibrary.getInstance();
         this.searchPresenter = searchPresenter;
     }
