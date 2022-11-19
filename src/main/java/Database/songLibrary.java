@@ -23,7 +23,7 @@ import java.io.*;
  */
 public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterface {
 
-    private static final songLibrary SONG_LIBRARY = new songLibrary(".\\src\\main\\java\\Database\\songs.csv");
+    private static final songLibrary SONG_LIBRARY = new songLibrary("./src/main/java/Database/songs.csv");
     private final HashMap<Integer, songDsData> library;
     private final String filepath;
 
@@ -74,7 +74,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
                 int id = Integer.parseInt(songInfo[0]);
                 String uploader = songInfo[1];
 
-                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2]));
+                songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2].replaceAll("\\\\", "/")));
                 map.put(id, song);
 
             }
