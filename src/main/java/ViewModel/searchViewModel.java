@@ -18,11 +18,8 @@ public class searchViewModel {
         this.searchPresenter = new searchPresenter(this);
         this.searchController = new searchController(this.searchPresenter);
 
-        // constructor presenter with copy of itself, pass into controller
-        // construct a controller - pass in the presenter
     }
 
-    // have a function that returns something to the view
     public String[][] search(String text){
         searchInputData inputData = new searchInputData(text);
         this.searchController.search(inputData);
