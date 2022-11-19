@@ -57,7 +57,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.homeButton.setFocusable(false);
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.setForeground(Color.black);
-        this.homeButton.setBackground(Color.lightGray);
+        this.homeButton.setBackground(Color.white);
         this.homeButton.addActionListener(this);
     }
 
