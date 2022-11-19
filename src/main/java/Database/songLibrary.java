@@ -1,23 +1,22 @@
 package Database;
 
-import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.images.Artwork;
 
 import javax.imageio.ImageIO;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *  Uses the Eager Instantiation version of the Singleton design pattern.
@@ -30,6 +29,11 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     private final BufferedImage DEFAULT_COVER;
     private final HashMap<Integer, songDsData> library;
     private final String filepath;
+
+    private final String SONG_PATH = "src/songLib";
+
+    // Temporary cache of songs uploaded during current login cycle.
+    private ArrayList<songDsData> uploadQueue;
 
     private final int UPPER_ID_LIMIT = 10000;
 
@@ -55,18 +59,29 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         this.DEFAULT_COVER = tempCover;
 
         this.library = readFile();
+        this.uploadQueue = new ArrayList<>();
     }
 
     /**
-     * Saves the current version of the songLibrary to songs.csv
+     * Saves the updated song library to the database.
      */
-    public void saveFile(){
+    public void saveLibrary(){
         try {
+
+            // Update songLib
+            for(songDsData song: uploadQueue){
+                String songPath = this.SONG_PATH + "/" + song.getID() + ".mp3";
+                Files.copy(song.getSong().getFile().toPath(), Paths.get(songPath));
+                song.setFile(songPath);
+            }
+
+            // Update songlibrary.csv
             BufferedWriter bw = new BufferedWriter(new FileWriter(filepath));
             for(songDsData song: library.values()){
                 bw.write(song.buildToWrite());
             }
             bw.close();
+
         }
         catch(IOException e){
             System.out.println("IOException: " + e);
@@ -90,7 +105,6 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
                 songDsData song = readSongFromMetadata(id, uploader, new MP3File(songInfo[2].replaceAll("\\\\", "/")));
                 map.put(id, song);
-
             }
             br.close();
         } catch (FileNotFoundException e) {
@@ -114,7 +128,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         try{
             if(csv.createNewFile()){
                 BufferedWriter bw = new BufferedWriter(new FileWriter(filepath));
-                File rawLib = new File("src/songLib");
+                File rawLib = new File(SONG_PATH);
                 for(File rawSong: Objects.requireNonNull(rawLib.listFiles())){
 
                     String idStr = rawSong.getName();
@@ -186,12 +200,14 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     @Override
     public boolean saveSong(String uploader, String filepath){
+        System.out.println("saving");
         try {
             int id = -1;
-            while (!exists(id)) id = ThreadLocalRandom.current().nextInt(0, UPPER_ID_LIMIT);
+            while (exists(id) || id == -1) id = ThreadLocalRandom.current().nextInt(0, UPPER_ID_LIMIT);
             songDsData newSong = readSongFromMetadata(id, uploader, new MP3File(filepath));
             if(!exists(newSong)){
                 library.put(id, newSong);
+                uploadQueue.add(newSong);
                 return true;
             }
             return false;
@@ -199,8 +215,8 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
             return false;
         }
     }
-    
-    
+
+
      /**
      * @param id the unique id of the song to be deleted.
      * @return true iff delete was successful.
@@ -225,7 +241,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
     /**
      * @param song the songDsData representing song.
-     * @return true iff a song with the given ID exists.
+     * @return true iff a song with the given name and artists exists.
      */
     public boolean exists(songDsData song){
         return exists(song.getSong().getName(), song.getSong().getArtistList());
@@ -264,9 +280,15 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         return strLib;
     }
 
-    public String[][] getString(int[] ids){
-        String[][] strLib = new String[ids.length][4];
-        for(int i=0;i<ids.length;i++) strLib[i] = getSong(ids[i]).getString();
+    public String[][] getString(ArrayList<Integer> ids){
+        String[][] strLib = new String[ids.size()][4];
+        for(int i=0;i<ids.size();i++) strLib[i] = getSong(ids.get(i)).getString();
         return strLib;
+    }
+
+    public String[][] getString(String username){
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(songDsData song: getLibrary()) if(song.getSong().getUploader().equals(username)) ids.add(song.getID());
+        return getString(ids);
     }
 }

@@ -15,9 +15,10 @@ public class Main {
         // Look and Feel Setup
         FlatLightLaf.setup();
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
+        ImageIcon logoRed = new ImageIcon(LOGO_RED);
 
         // View Initialization
-        new artistView(windowIcon);
+        new artistView(windowIcon, logoRed);
 
 //        // TODO
 //        User user = new RegularUser("User", "");

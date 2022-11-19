@@ -3,8 +3,7 @@ package View;
 
 import Entities.ArtistUser;
 import Entities.User;
-//import ViewModel.EditSongViewModel;
-import ViewModel.uploadSongViewModel;
+import ViewModel.ArtistViewModel;
 
 import java.io.File;
 
@@ -19,27 +18,29 @@ import java.awt.event.ActionListener;
 public class artistView extends JFrame implements ActionListener {
 
 
-    private User user;
-    private uploadSongViewModel esvm;
+    private ArtistUser user;
+    private ArtistViewModel avm;
 
     private final int FONTSIZE = 10;
     private final int WIDTH = 1280;
     private final int HEIGHT = 640;
     private JFrame jframe;
     private JButton uploadButton;
-    private JButton deleteButton;
 
-    private JTable songTable;
+    private JPanel panel;
+    private JTable table;
 
-    private String[][] tableData = {{"TEST1", "TEST1", "TEST1"}, {"TEST2", "TEST2", "TEST2"}};
+    private final String[] COLUMN_NAMES = {"ID", "Song", "Artist(s)", "Genre"};
 
-    private final String[] COLUMN_NAMES = {"Song", "Artist(s)", "Genre"};
-
+    private JLabel welcomeMessage;
+    private JLabel logo;
     private final ImageIcon icon;
+    private final ImageIcon logoImg;
     private int deleteID;
 
-    public artistView(ImageIcon icon) {
+    public artistView(ImageIcon icon, ImageIcon logoImg) {
         this.icon = icon;
+        this.logoImg = logoImg;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
@@ -58,10 +59,9 @@ public class artistView extends JFrame implements ActionListener {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 String filepath = String.valueOf(file).replace("\\", "\\\\");
 
-                if(this.esvm.upload(filepath, user.getUsername())){
+                if(this.avm.upload(filepath, user.getUsername())){
                     JLabel label = new JLabel("Song Uploaded!", JLabel.CENTER);
                     JOptionPane.showMessageDialog(this, label, "Communify", JOptionPane.PLAIN_MESSAGE);
-                    //NEEDS: name, artist, genre, cover. Might need to change upload return... ugh
                 }
                 else{
                     JLabel label = new JLabel("Upload Unsuccessful.", JLabel.CENTER);
@@ -69,11 +69,6 @@ public class artistView extends JFrame implements ActionListener {
                 }
             }
 
-        }
-        else if(e.getSource() == this.deleteButton && deleteID != -1){
-//            if(esvm.delete(deleteID)){
-//                //TODO: Update JFrame, reset deleteID
-//            }
         }
     }
 
@@ -88,40 +83,49 @@ public class artistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setIconImage(this.icon.getImage());
 
+        this.avm = new ArtistViewModel();
+        this.user = new ArtistUser("MetroFolk", "metrofolk", "metrofolk"); //TODO: REPLACE. TEMPORARY
 
-        this.esvm = new uploadSongViewModel();
-        this.user = new ArtistUser("TEST", "TEST", "test"); //TODO: REPLACE. TEMPORARY
+        // Init JTable
+        String[][] data = this.avm.getArtistSongs(this.user.getUsername());
+        this.table = new JTable(data, this.COLUMN_NAMES);
+        this.table.setDefaultEditor(Object.class, null);
     }
 
     private void initializeComponents() {
 
+        this.logo = new JLabel(logoImg);
+        this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 50, logoImg.getIconWidth(), logoImg.getIconHeight());
 
-        this.deleteButton = new JButton();
-
-        this.deleteButton.setBounds(870, 500, 160, 40);
-        this.deleteButton.setText("Delete");
-        this.deleteButton.setFocusable(false);
-        this.deleteButton.setHorizontalTextPosition(JButton.CENTER);
+        this.welcomeMessage = new JLabel("Hey, " + this.user.getArtistName() + "!");
+        this.welcomeMessage.setFont(new Font(this.welcomeMessage.getFont().getName(), Font.PLAIN, 24));
+        this.welcomeMessage.setSize(this.welcomeMessage.getPreferredSize());
+        this.welcomeMessage.setLocation((this.jframe.getWidth() - welcomeMessage.getWidth())/2, 130);
 
         this.uploadButton = new JButton();
-
-        this.uploadButton.setBounds(1050, 500, 160, 40);
+        this.uploadButton.setBounds(1075, 510, 160, 40);
         this.uploadButton.setText("Upload");
         this.uploadButton.setFocusable(false);
         this.uploadButton.setHorizontalTextPosition(JButton.CENTER);
 
-
         // Setup JTable
-        // ...
+        this.panel = new JPanel(new BorderLayout());
 
+        JScrollPane scrollPane = new JScrollPane(this.table);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        panel.setBounds(35, 190, 1200, 300);
+        this.panel.add(scrollPane, BorderLayout.CENTER);
 
         this.uploadButton.addActionListener(this);
-        this.deleteButton.addActionListener(this);
     }
 
     private void initializeFrame() {
-        this.jframe.add(uploadButton);
-        this.jframe.add(deleteButton);
+        this.jframe.add(this.uploadButton);
+        this.jframe.add(this.logo);
+        this.jframe.add(this.welcomeMessage);
+
+        this.jframe.getContentPane().add(panel);
         this.jframe.setVisible(true);
     }
 
