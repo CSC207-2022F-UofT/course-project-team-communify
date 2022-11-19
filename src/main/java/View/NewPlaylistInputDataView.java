@@ -1,13 +1,12 @@
 package View;
 
+import Entities.User;
+import ViewModel.playlistViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Entities.User;
-import Controller.newPlaylistController;
-import ViewModel.musicEngineControllerViewModel;
-import ViewModel.playlistViewModel;
 
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private final int FONTSIZE = 10;
@@ -58,11 +57,8 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         // this.spaceViewModel = new spaceViewModel();
     }
     private void initializeComponents() {
-        this.createButton.addActionListener(this);
-        this.homeButton.addActionListener(this);
-
         this.playlistNameTextField = new JTextField();
-        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);;
+        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);
 
         this.createButton = new JButton();
         this.createButton.setBounds(this.WIDTH/2, (this.HEIGHT/2 )+50, 100, 50);
@@ -79,6 +75,9 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.setForeground(Color.black);
         this.homeButton.setBackground(Color.lightGray);
+
+        this.createButton.addActionListener(this);
+        this.homeButton.addActionListener(this);
     }
     private void initializeFrame() {
         this.jframe.add(createButton);
