@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Playlist {
     private String name;
     private final int id;
-    private final User owner;
+    private User owner;
     private final LinkedList<Song> songList;
 
     public Playlist(int id, String name, User owner){
@@ -47,7 +47,9 @@ public class Playlist {
     public User getOwner(){
         return this.owner;
     }
-
+    public void setOwner(User user){
+        this.owner = user;
+    }
     /**
      * Removes a given Song from a playlist.
      * @param song Song to be removed
