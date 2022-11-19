@@ -1,9 +1,9 @@
 package InputData;
 
-public class uploadSongInputData {
+public class UploadSongInputData {
     String filepath;
     String uploader;
-    public uploadSongInputData(String filepath, String uploader){
+    public UploadSongInputData(String filepath, String uploader){
         this.filepath = filepath;
         this.uploader = uploader;
     }

@@ -17,12 +17,9 @@ public class Main {
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
 
         // View Initialization
-        //new artistView(windowIcon);
+        new artistView(windowIcon);
 
-//        // TODO
-//        User user = new RegularUser("User", "");
-//        new playlistView(user);
-//        Thread.sleep(5000);
+
 
     }
 }

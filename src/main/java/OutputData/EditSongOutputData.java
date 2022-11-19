@@ -1,10 +1,10 @@
 package OutputData;
 
-public class uploadSongOutputData {
+public class EditSongOutputData {
 
     boolean success;
 
-    public uploadSongOutputData(boolean success){
+    public EditSongOutputData(boolean success){
         this.success = success;
     }
 
