@@ -1,6 +1,6 @@
 package InputData;
 
-import Database.playlistAccessInterface;
+import Database.GetPlaylistAccessInterface;
 import Database.playlistLibrary;
 import Entities.Song;
 
@@ -21,7 +21,7 @@ public class playlistInputData {
     }
 
     public playlistInputData(int id){
-        playlistAccessInterface library = playlistLibrary.getInstance();
+        GetPlaylistAccessInterface library = playlistLibrary.getInstance();
         this.name = library.findPlaylist(id).getPlaylist().getName();
         this.songList = new LinkedList<>(library.findPlaylist(id).getPlaylist().getSongList());
     }
