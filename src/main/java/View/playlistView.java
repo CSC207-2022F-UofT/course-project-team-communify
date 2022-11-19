@@ -72,6 +72,7 @@ public class playlistView extends JFrame implements ActionListener {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
             System.out.println(searchText);
+            new searchOutputView(searchText, this);
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
