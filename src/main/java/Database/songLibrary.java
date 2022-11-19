@@ -1,20 +1,23 @@
 package Database;
 
+import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.mp3.MP3File;
-import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.TagException;
+import org.jaudiotagger.tag.images.Artwork;
 
-import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.HashMap;
 import java.io.*;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *  Uses the Eager Instantiation version of the Singleton design pattern.
@@ -24,6 +27,7 @@ import java.io.*;
 public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterface {
 
     private static final songLibrary SONG_LIBRARY = new songLibrary("./src/main/java/Database/songs.csv");
+    private final BufferedImage DEFAULT_COVER;
     private final HashMap<Integer, songDsData> library;
     private final String filepath;
 
@@ -39,6 +43,17 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
     private songLibrary(String filepath){
         this.filepath = filepath;
+
+        BufferedImage tempCover;
+        try {
+            tempCover = ImageIO.read(new File(Paths.get("").toAbsolutePath() +
+                    "/src/songLib/cover/no_genre.png"));
+        } catch (IOException e) {
+            tempCover = null;
+            System.out.println(e.getMessage() + " - failed to find default cover.");
+        }
+        this.DEFAULT_COVER = tempCover;
+
         this.library = readFile();
     }
 
@@ -131,13 +146,14 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     private songDsData readSongFromMetadata(int id, String uploader, MP3File rawSong){
 
         Tag tag = rawSong.getTag();
-        // This is actually driving me insane thats the code that works for the thing whatever. replace below with commented
-        BufferedImage cover = (BufferedImage) tag.getFirstArtwork();
-        //BufferedImage cover = ImageIO.read(new File("./src/songLib/cover/no_genre.png"));
-        //Artwork rawCover = tag.getFirstArtwork();
-        //if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
-        
-        
+        BufferedImage cover = this.DEFAULT_COVER;
+        try {
+            Artwork rawCover = tag.getFirstArtwork();
+            if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         String name = format(tag.getFields(FieldKey.TITLE).toString());
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).toString());
