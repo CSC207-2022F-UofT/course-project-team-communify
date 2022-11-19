@@ -15,7 +15,7 @@ public class playlistDsData {
     private final Playlist playlist;
     private final int privacy;
     private final GetSongAccessInterface library;
-    private final userAccessInterface users;
+    private final GetUserAccessInterface users;
     
     public playlistDsData(Playlist p){
         // constructor for creation from use case to pass to database
@@ -49,12 +49,9 @@ public class playlistDsData {
         for (String song : songs){
             if (song.length() > 0) {
                 playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
-                // TODO: add this check back in once songLibrary is complete
-                /*
                 if (library.exists(Integer.parseInt(song))) {
                     playlist.addSong(library.getSong(Integer.parseInt(song)).getSong());
                 }
-                 */
             }
         }
 

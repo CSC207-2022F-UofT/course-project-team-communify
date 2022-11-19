@@ -16,7 +16,7 @@ import java.util.*;
  * Note: since this is a singleton class, the constructor is private, and it can NOT be created with the
  * new keyword outside this class.
  */
-public class playlistLibrary implements playlistAccessInterface {
+public class playlistLibrary implements GetPlaylistAccessInterface, SavePlaylistAccessInterface {
     private static final playlistLibrary PLAYLIST_LIBRARY =
             new playlistLibrary("./src/main/java/Database/playlists.csv");
     private final Map<Integer, playlistDsData> playlistDatabase;
@@ -94,9 +94,9 @@ public class playlistLibrary implements playlistAccessInterface {
     }
 
     /**
+     * To be used only by blue layer elements (view)
      * @return Collection of all existing Playlists
      */
-    @Override
     public Collection<playlistDsData> getPlaylists() {
         return playlistDatabase.values();
     }

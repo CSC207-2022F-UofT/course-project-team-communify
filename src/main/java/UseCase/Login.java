@@ -3,11 +3,11 @@ package UseCase;
 import InputBoundary.loginInputBoundary;
 import InputData.loginInputData;
 import OutputBoundary.loginOutputBoundary;
-import Database.userAccessInterface;
+import Database.GetUserAccessInterface;
 
 public class Login implements loginInputBoundary{
     private final loginOutputBoundary loginPresenter;
-    private final userAccessInterface allUsers;
+    private final GetUserAccessInterface allUsers;
 
     public Login(loginOutputBoundary loginPresenter) {
         this.allUsers = Database.userList.getInstance();

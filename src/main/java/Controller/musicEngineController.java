@@ -23,17 +23,17 @@ public class musicEngineController {
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
-    private playPlaylistInputBoundary playPlaylist;
-    private NextSongInputBoundary nextSong;
-    private final pauseSongInputBoundary pauseSong;
+    private final playPlaylistInputBoundary playPlaylist;
+    private final NextSongInputBoundary nextSong;
     
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();
-        this.pauseSong = new pauseSong();
         this.songPresenter = songPresenter;
         this.playing = NONE;
         this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
+        this.playPlaylist = new playPlaylist(songPresenter);
+        this.nextSong = new NextSong(songPresenter);
     }
 
     /**
@@ -43,8 +43,8 @@ public class musicEngineController {
     public void playSong(int id) {
         stop();
         songInputData data = new songInputData(id);
-        playSongInputBoundary playSong = new playSongInteractor(data, this.songPresenter);
-        playSong.playSong();
+        playSongInputBoundary playSong = new playSongInteractor(this.songPresenter);
+        playSong.playSong(data);
         playing = SONG;
     }
 
@@ -82,6 +82,7 @@ public class musicEngineController {
      * Function calling the use case for pausing or resuming song
      */
     public void pauseSong() {
+        pauseSongInputBoundary pauseSong = new pauseSong();
         if (playing != NONE)
             pauseSong.pause();
     }
@@ -93,9 +94,8 @@ public class musicEngineController {
     public void playPlaylist(int id) {
         stop();
         playlistInputData data = new playlistInputData(id);
-        playPlaylist = new playPlaylist(data, this.songPresenter);
-        nextSong = new NextSong(data, this.songPresenter);
-        playPlaylist.play();
+        this.nextSong.updatePlaylist(data);
+        playPlaylist.play(data);
         playing = PLAYLIST;
     }
 
@@ -106,8 +106,8 @@ public class musicEngineController {
     public void playRecommendation(int id){
         stop();
         playlistInputData data = new playlistInputData(id);
-        recommendationInputBoundary recommend = new recommendSong(data, songPresenter);
-        recommend.recommendation();
+        recommendationInputBoundary recommend = new recommendSong(songPresenter);
+        recommend.recommendation(data);
         playing = SONG;
     }
 
@@ -124,8 +124,6 @@ public class musicEngineController {
     }
 
     /**
-
-
      * Private helper method to stop the currently playing queue, if it exists.
      */
     private void stop(){
