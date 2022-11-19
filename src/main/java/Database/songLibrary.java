@@ -136,7 +136,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
         Tag tag = rawSong.getTag();
 
-        BufferedImage cover = ImageIO.read(new File("src\\songLib\\cover\\no_genre.png"));
+        BufferedImage cover = ImageIO.read(new File(".\\src\\songLib\\cover\\no_genre.png"));
         Artwork rawCover = tag.getFirstArtwork();
         if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
 
