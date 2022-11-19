@@ -15,7 +15,7 @@ public class PLibraryTest {
 
     @Test
     public void testExists(){
-        playlistAccessInterface library = Database.playlistLibrary.getInstance();
+        SavePlaylistAccessInterface library = Database.playlistLibrary.getInstance();
 
         // there is a 0 id playlist
         Assertions.assertTrue(library.exists(0));
@@ -26,7 +26,7 @@ public class PLibraryTest {
 
     @Test
     public void testSavePlaylist(){
-        playlistAccessInterface library = Database.playlistLibrary.getInstance();
+        SavePlaylistAccessInterface library = Database.playlistLibrary.getInstance();
         RegularUser u = new RegularUser("user", "pass");
         Random random = new Random();
         int id = random.nextInt();
@@ -39,12 +39,12 @@ public class PLibraryTest {
         Database.userList.getInstance().save(new userDsData(u));
 
         library.savePlaylist(new playlistDsData(p));
-        Assertions.assertEquals(p.getId(), library.findPlaylist(id).getId());
+        Assertions.assertEquals(p.getId(), playlistLibrary.getInstance().findPlaylist(id).getId());
     }
 
     @Test
     public void testGetPlaylist(){
-        playlistAccessInterface library = Database.playlistLibrary.getInstance();
+        GetPlaylistAccessInterface library = Database.playlistLibrary.getInstance();
         Assertions.assertEquals(library.findPlaylist(0).getId(), 0);
         Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getName(), "Playlist 1");
     }

@@ -19,19 +19,17 @@ import java.util.Random;
 public class recommendSong implements recommendationInputBoundary {
     private final GetSongAccessInterface library;
     private final songOutputBoundary out;
-    private final playlistInputData data;
 
-    public recommendSong(playlistInputData data, songOutputBoundary out){
+    public recommendSong(songOutputBoundary out){
         this.library = songLibrary.getInstance();
         this.out = out;
-        this.data = data;
     }
 
     /**
      * Generates a recommendation based on the given Playlist in the constructor.
      */
     @Override
-    public void recommendation() {
+    public void recommendation(playlistInputData data) {
         Random random = new Random();
         ArrayList<Song> playlist = data.getSongs();
 
@@ -49,7 +47,7 @@ public class recommendSong implements recommendationInputBoundary {
             }
         }
 
-        playSongInteractor play = new playSongInteractor(new songInputData(rec), out);
-        play.playSong();
+        playSongInteractor play = new playSongInteractor(out);
+        play.playSong(new songInputData(rec));
     }
 }

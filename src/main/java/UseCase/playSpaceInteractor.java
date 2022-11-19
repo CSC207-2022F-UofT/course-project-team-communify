@@ -28,13 +28,11 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
      * constructor
      */
     public playSpaceInteractor(spacePlayedOutputBoundary spacePlayedOutputBoundary,
-                               playSpaceInputData playSpaceInputData,
                                songOutputBoundary songOutputBoundary){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
         this.songLibrary = Database.songLibrary.getInstance();
         this.sync = MusicPlayer.getInstance().getSync();
         this.keepPlaying = true;
-        this.playSpaceInputData = playSpaceInputData;
         this.songOutputBoundary = songOutputBoundary;
     }
 
@@ -53,10 +51,10 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
         // call presenter
         this.spacePlayedOutputBoundary.spacePlayed();  // update button
 
-        playSongInteractor playSongInteractor = new playSongInteractor(new songInputData(songToPlay.getSong()),
-                this.songOutputBoundary);
+        playSongInteractor playSongInteractor = new playSongInteractor(this.songOutputBoundary);
 
-        playSongInteractor.playSong();  // play the song; this will also call presenter to update playbar
+        playSongInteractor.playSong(new songInputData(songToPlay.getSong()));
+        // play the song; this will also call presenter to update playbar
     }
 
     private songOutputData pickSongToPlay(ArrayList<songInputData> spaceSongList){
