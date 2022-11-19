@@ -131,8 +131,11 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     private songDsData readSongFromMetadata(int id, String uploader, MP3File rawSong){
 
         Tag tag = rawSong.getTag();
-        BufferedImage cover = (BufferedImage) tag.getFirstArtwork();
-        //TODO: OR set as default cover
+        BufferedImage cover = ImageIO.read(new File("src\\songLib\\cover\\no_genre.png"));
+        Artwork rawCover = tag.getFirstArtwork();
+        if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
+        
+        
         String name = format(tag.getFields(FieldKey.TITLE).toString());
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).toString());
