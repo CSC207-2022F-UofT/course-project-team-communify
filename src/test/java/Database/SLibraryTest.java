@@ -25,10 +25,10 @@ public class SLibraryTest {
 //        Assertions.assertFalse(lib.saveSong("testSaveSong", filepath));
 //    }
 //
-//    @Test
-//    public void testGetSong(){
-//        GetSongAccessInterface lib = songLibrary.getInstance();
-//        songDsData song = lib.getSong(2);
-//        Assertions.assertEquals(song.getID(), 2);
-//    }
+    @Test
+    public void testGetSong(){
+        GetSongAccessInterface lib = songLibrary.getInstance();
+        songDsData song = lib.getSong(2);
+        Assertions.assertEquals(song.getID(), 2);
+    }
 }
