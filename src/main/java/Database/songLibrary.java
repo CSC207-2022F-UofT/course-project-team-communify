@@ -23,7 +23,7 @@ import java.io.*;
  */
 public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterface {
 
-    private static final songLibrary SONG_LIBRARY = new songLibrary(".\\src\\main\\java\\Database\\songs.csv");
+    private static final songLibrary SONG_LIBRARY = new songLibrary("./src/main/java/Database/songs.csv");
     private final HashMap<Integer, songDsData> library;
     private final String filepath;
 
@@ -40,7 +40,6 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     private songLibrary(String filepath){
         this.filepath = filepath;
         this.library = readFile();
-
     }
 
     /**
