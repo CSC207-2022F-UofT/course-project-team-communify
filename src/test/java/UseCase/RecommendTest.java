@@ -27,8 +27,8 @@ public class RecommendTest {
             genres.add(s.getGenre());
         }
 
-        recommendSong recommend = new recommendSong(p, new songPresenter(new musicEngineControllerViewModel()));
-        recommend.recommendation();
+        recommendSong recommend = new recommendSong(new songPresenter(new musicEngineControllerViewModel()));
+        recommend.recommendation(p);
         Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }
 }
