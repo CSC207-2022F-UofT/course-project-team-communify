@@ -13,15 +13,19 @@ import java.awt.event.ActionListener;
 
 public class searchOutputView extends JFrame implements ActionListener {
 
+
+    private String searchText;
+    private int FONTSIZE = 10;
+    private int WIDTH = 640;
+    private int HEIGHT = 640;
+
     private JFrame jframe;
     private JPanel panel;
     private JScrollPane scrollPane;
     private JLabel title;
     private JButton homeButton;
     private Font font;
-    private int FONTSIZE = 10;
-    private int width = 640;
-    private int height = 640;
+
 
     private JTable table;
     private BorderLayout layout;
@@ -30,15 +34,15 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
 
     private searchViewModel searchViewModel;
-    private String searchText;
+
 
     public searchOutputView(String searchText){
-        initialise(searchText);
+        this.initialiseValues(searchText);
         this.setUpTable();
-        this.setVisible();
+        this.initialiseFrame();
     }
 
-    public void initialise(String searchText){
+    public void initialiseValues(String searchText){
         this.searchViewModel = new searchViewModel();
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
@@ -57,6 +61,9 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.homeButton.addActionListener(this);
     }
 
+    /**
+     * Method to set up JTable in View that outputs search results
+     */
     public void setUpTable(){
         this.data = this.searchViewModel.search(this.searchText);
 
@@ -70,7 +77,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(this.data, columnNames);
         TableColumnModel columnModel = table.getColumnModel();
-        setUpActions(columnModel, formattedData);
+        setUpActions(columnModel, formattedData.length);
 
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
         comboBox.addActionListener(this);
@@ -78,7 +85,13 @@ public class searchOutputView extends JFrame implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
-    public void setUpActions(TableColumnModel columnModel, String[][] formattedData){
+    /**
+     * Helper function for setUpTable.
+     * Makes the Actions column in the JTable
+     * @param columnModel is the Column Model of the JTable
+     * @param length is the length of the formatted data
+     */
+    public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
         comboBox.addItem("Add to Playlist 1");
@@ -87,14 +100,14 @@ public class searchOutputView extends JFrame implements ActionListener {
         columnModel.addColumn(new TableColumn());
 
         // make the default writing in last column a prompt for combo box
-        for (int i = 0; i < formattedData.length; i++) {
+        for (int i = 0; i < length; i++) {
             table.setValueAt("Add to..", i, 4);
         }
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
-    public void setVisible(){
-        this.jframe.setSize(this.width, this.height);
+    public void initialiseFrame(){
+        this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.add(title);
 
@@ -111,7 +124,6 @@ public class searchOutputView extends JFrame implements ActionListener {
 
     /**
      * Invoked when an action occurs.
-     *
      * @param e the event to be processed
      */
     @Override
