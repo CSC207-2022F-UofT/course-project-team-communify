@@ -13,11 +13,12 @@ public class SkipTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         playlistInputData p = new playlistInputData(0);
 
-        playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
-        play.play();
+        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel()));
+        play.play(p);
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
 
-        NextSong skip = new NextSong(p, new songPresenter(new musicEngineControllerViewModel()));
+        NextSong skip = new NextSong(new songPresenter(new musicEngineControllerViewModel()));
+        skip.updatePlaylist(p);
         skip.skipSong();
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(1));
     }
@@ -27,11 +28,12 @@ public class SkipTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         playlistInputData p = new playlistInputData(0);
 
-        playPlaylist play = new playPlaylist(p, new songPresenter(new musicEngineControllerViewModel()));
-        play.play();
+        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel()));
+        play.play(p);
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
 
-        NextSong skip = new NextSong(p, new songPresenter(new musicEngineControllerViewModel()));
+        NextSong skip = new NextSong(new songPresenter(new musicEngineControllerViewModel()));
+        skip.updatePlaylist(p);
         skip.skipSong();
         skip.skipSong();
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(2));

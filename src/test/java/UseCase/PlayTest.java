@@ -20,11 +20,9 @@ public class PlayTest {
     public void testPlay(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
         Song song = new Song(0, null, null, null, file, null, null);
-        MusicPlayer mp = MusicPlayer.getInstance();
 
-        playSongInteractor player = new playSongInteractor(new songInputData(song),
-                new songPresenter(new musicEngineControllerViewModel()));
-        player.playSong();
+        playSongInteractor player = new playSongInteractor(new songPresenter(new musicEngineControllerViewModel()));
+        player.playSong(new songInputData(song));
         // Assertions.assertTrue(mp.isPlaying());
         // Assertions.assertEquals(mp.getCurrentSong(), song);
     }
