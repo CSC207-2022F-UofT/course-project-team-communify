@@ -9,7 +9,7 @@ public class UploadSongTest {
     @Test
     public void testUploadSong(){
         SaveSongAccessInterface lib = songLibrary.getInstance();
-        String filepath = "./src/test/java/UseCase/test1.mp3";
+        String filepath = ".\\src\\test\\java\\UseCase\\test1.mp3";
         // TODO
     }
 
