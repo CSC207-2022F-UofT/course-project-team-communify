@@ -10,7 +10,6 @@ public class Main {
         // TODO
         User user = new RegularUser("", "");
         new playlistView(user);
-//        new searchOutputView();
         Thread.sleep(5000);
 
     }
