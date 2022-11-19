@@ -1,4 +1,7 @@
+import Entities.RegularUser;
+import Entities.User;
 import View.artistView;
+import View.playlistView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -20,8 +23,8 @@ public class Main {
         //new artistView(windowIcon);
 
 //        // TODO
-//        User user = new RegularUser("User", "");
-//        new playlistView(user);
+        User user = new RegularUser("User", "");
+        new playlistView(user);
 //        Thread.sleep(5000);
 
     }

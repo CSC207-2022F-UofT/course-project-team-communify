@@ -2,6 +2,7 @@ package View;
 
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
+import ViewModel.searchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,9 @@ public class playlistView extends JFrame implements ActionListener {
     private JLabel title;
     private Font font;
     private boolean spacePlaying;
-    private ViewModel.musicEngineControllerViewModel musicEngineControllerViewModel;
+    private JTextField searchBar;
+    private musicEngineControllerViewModel musicEngineControllerViewModel;
+    private searchViewModel searchViewModel;
 
     /**
      * Constructor
@@ -73,9 +76,11 @@ public class playlistView extends JFrame implements ActionListener {
 
             }
         } else if (e.getSource() == this.searchButton) {
+            String searchText = this.searchBar.getText();
+            this.searchViewModel.search(searchText);
 
             this.jframe.dispose();
-            searchOutputView searchWindow = new searchOutputView();
+            new searchOutputView(searchText);
 
         } // TODO -- NOTE: add your action commands as an else-if to this if statement
 
@@ -89,13 +94,15 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
+        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         // this.spaceViewModel = new spaceViewModel();
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel();
         this.spacePlaying = false;
+
+        this.searchViewModel = new searchViewModel();
     }
 
 
@@ -104,38 +111,44 @@ public class playlistView extends JFrame implements ActionListener {
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
 
         this.spaceButton = new JButton("Listen to space!");
-        this.spaceButton.setBounds(350,30, 150,55);
+        this.spaceButton.setBounds(475,30, 150,55);
         this.spaceButton.setFocusable(false);
         this.spaceButton.setHorizontalTextPosition(JButton.CENTER);
         this.spaceButton.setBackground(Color.white);
-        this.spaceButton.setOpaque(true);
         this.spaceButton.setFont(font);
 
         this.searchButton = new JButton("Seach for a song");
-        this.searchButton.setBounds(300,100, 150,55);
+        this.searchButton.setBounds(325,30, 135,55);
         this.searchButton.setFocusable(false);
         this.searchButton.setHorizontalTextPosition(JButton.CENTER);
         this.searchButton.setBackground(Color.white);
-        this.searchButton.setOpaque(true);
         this.searchButton.setFont(font);
 
+        this.setUpSearchBar();
 
         // Set up panel
         // TODO: determine whether this should go in a helper function or not (i.e. how many panels do we want?)
         this.panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 10, 10);  // TODO - *Update*: For layout ask Rohan or Christina do not make a panel take up the entire screen size, these are just test dimensions to edit afterwards
-        panel.setBackground(Color.GREEN);
+        panel.setBackground(new Color(156, 219, 250));
 
 
         this.spaceButton.addActionListener(this);
         this.searchButton.addActionListener(this);
     }
 
+    public void setUpSearchBar(){
+        this.searchBar = new JTextField();
+        this.searchBar.setBounds(20, 30, 300, 55);
+        this.searchBar.setFont(font);
+    }
+
 
     private void initializeFrame() {
         this.panel.add(title);
         this.panel.add(this.spaceButton);
+        this.panel.add(this.searchBar);
         this.panel.add(searchButton);
         this.jframe.add(panel);
         this.jframe.setVisible(true);
