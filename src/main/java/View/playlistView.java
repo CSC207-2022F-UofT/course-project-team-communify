@@ -1,5 +1,6 @@
 package View;
 
+import Entities.RegularUser;
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
@@ -17,7 +18,7 @@ public class playlistView extends JFrame implements ActionListener {
     private final int FONTSIZE = 10;
     private final int WIDTH = 640;
     private final int HEIGHT = 640;
-    private User user;
+    private InMemoryUser user;
     private JFrame jframe;
     private JPanel panel;
     private JButton spaceButton;
@@ -28,12 +29,14 @@ public class playlistView extends JFrame implements ActionListener {
     private JTextField searchBar;
     private musicEngineControllerViewModel musicEngineControllerViewModel;
     private searchViewModel searchViewModel;
+    private PlaylistPanelView playlistPanel;
+    private PlayBar playBar;
 
     /**
      * Constructor
      * @param user takes in the user's data to display their own dashboard
      */
-    public playlistView(User user){
+    public playlistView(InMemoryUser user){
 
         this.initializeValues(user);
         this.initializeComponents();            // set up space button
@@ -80,14 +83,14 @@ public class playlistView extends JFrame implements ActionListener {
             this.searchViewModel.search(searchText);
 
             this.jframe.dispose();
-            new searchOutputView(searchText);
+            new searchOutputView(searchText, user);
 
         } // TODO -- NOTE: add your action commands as an else-if to this if statement
 
     }
 
 
-    private void initializeValues(User user) {
+    private void initializeValues(InMemoryUser user) {
 
         this.user = user;
 
@@ -99,7 +102,7 @@ public class playlistView extends JFrame implements ActionListener {
 
 
         // this.spaceViewModel = new spaceViewModel();
-        this.musicEngineControllerViewModel = new musicEngineControllerViewModel();
+        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
@@ -123,6 +126,9 @@ public class playlistView extends JFrame implements ActionListener {
         this.searchButton.setHorizontalTextPosition(JButton.CENTER);
         this.searchButton.setBackground(Color.white);
         this.searchButton.setFont(font);
+
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
 
         this.setUpSearchBar();
 
@@ -149,6 +155,9 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.add(title);
         this.panel.add(this.spaceButton);
         this.panel.add(this.searchBar);
+        this.panel.add(this.playlistPanel.getPane());
+        this.panel.add(this.playBar.getPanel());
+
         this.panel.add(searchButton);
         this.jframe.add(panel);
         this.jframe.setVisible(true);

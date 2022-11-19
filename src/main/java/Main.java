@@ -1,10 +1,14 @@
+import Database.playlistLibrary;
+import Entities.Playlist;
 import Entities.RegularUser;
 import Entities.User;
 import View.artistView;
+import View.loginRegisterView;
 import View.playlistView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -23,8 +27,14 @@ public class Main {
         //new artistView(windowIcon);
 
 //        // TODO
-        User user = new RegularUser("User", "");
-        new playlistView(user);
+        ArrayList<Integer> p = new ArrayList<>();
+        p.add(0);
+        p.add(1);
+
+        System.out.println(playlistLibrary.getInstance().findPlaylist(0).getPlaylist().getSongList().size());
+
+        new loginRegisterView();
+
 //        Thread.sleep(5000);
 
     }

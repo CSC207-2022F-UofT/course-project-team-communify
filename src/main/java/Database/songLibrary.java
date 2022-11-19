@@ -8,6 +8,7 @@ import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
+import javax.imageio.ImageIO;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
@@ -134,6 +135,15 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         Tag tag = rawSong.getTag();
         BufferedImage cover = (BufferedImage) tag.getFirstArtwork();
         //TODO: OR set as default cover
+        if (cover == null){
+            try {
+                cover = ImageIO.read(new File("C:\\Users\\Rafael\\IdeaProjects\\course-project-team-communify\\src\\main\\java\\View\\assets\\icon_red.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println(System.getProperty("user.dir"));
+            }
+        }
+
         String name = format(tag.getFields(FieldKey.TITLE).toString());
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).toString());

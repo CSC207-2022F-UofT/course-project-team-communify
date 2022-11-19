@@ -9,7 +9,7 @@ public interface NextSongInputBoundary {
     /**
      * Method to skip to the next song in a playlist, if there is one.
      */
-    void skipSong();
+    playPlaylistInputBoundary skipSong();
 
     /**
      * @param data the new playlist to skip songs on

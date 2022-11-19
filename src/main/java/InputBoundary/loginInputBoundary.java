@@ -3,5 +3,5 @@ package InputBoundary;
 import InputData.loginInputData;
 
 public interface loginInputBoundary {
-    void login(loginInputData loginID);
+    boolean login(loginInputData loginID);
 }
