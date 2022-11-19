@@ -45,7 +45,7 @@ public class loginRegisterView extends JFrame implements ActionListener {
             if (isArtist) {                                       // should be: if (isArist && Use Case is successful)
 
                 this.jframe.dispose();
-                artistView artistDashboard = new artistView();    // should need an artist parameter
+                //artistView artistDashboard = new artistView();    // should need an artist parameter
 
             } else {                                              // should be: else if (isUser && Use Case is successful)
 
