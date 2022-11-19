@@ -8,7 +8,7 @@ public class uploadSongViewModel {
     private final uploadSongController uploadSongController;
     private boolean isUploaded;
 
-    uploadSongViewModel(){
+    public uploadSongViewModel(){
         this.uploadSongController = new uploadSongController(new uploadSongPresenter(this));
     }
 
