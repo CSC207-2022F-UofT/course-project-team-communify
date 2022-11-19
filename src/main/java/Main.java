@@ -2,6 +2,7 @@ import Entities.RegularUser;
 import Entities.User;
 import View.artistView;
 import View.playlistView;
+import View.searchOutputView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -24,7 +25,8 @@ public class Main {
 
 //        // TODO
         User user = new RegularUser("User", "");
-        new playlistView(user);
+        playlistView PlaylistView = new playlistView(user);
+//        new searchOutputView(PlaylistView);
 //        Thread.sleep(5000);
 
     }

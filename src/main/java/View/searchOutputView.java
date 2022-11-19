@@ -1,6 +1,5 @@
 package View;
 
-import Entities.RegularUser;
 import ViewModel.searchViewModel;
 
 import javax.swing.*;
@@ -11,18 +10,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class searchOutputView extends JFrame implements ActionListener {
-
+    private playlistView playlistView;
+    private String searchText;
+    private int FONTSIZE = 10;
+    private int WIDTH = 640;
+    private int HEIGHT = 640;
     private JFrame jframe;
     private JPanel panel;
-    private playlistView playlistView;
     private JScrollPane scrollPane;
     private JLabel title;
     private JButton homeButton;
     private Font font;
-    private int FONTSIZE = 10;
-    private int width = 640;
-    private int height = 640;
-
     private JTable table;
     private BorderLayout layout;
     private JComboBox comboBox;
@@ -30,19 +28,20 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
     private searchViewModel searchViewModel;
 
-    public searchOutputView(playlistView playlistView){
-        initialise(playlistView);
+    public searchOutputView(String searchText, playlistView playlistView){
+        this.initialiseValues(searchText, playlistView);
         this.setUpTable();
-        this.setVisible();
+        this.initializeFrame();
     }
 
-    public void initialise(playlistView playlistView){
+    public void initialiseValues(String searchText, playlistView playlistView){
         this.playlistView = playlistView;
         this.searchViewModel = new searchViewModel();
+        this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
         this.layout = new BorderLayout(30, 30);
         this.panel = new JPanel(layout);
-        this.title = new JLabel("Search results for ");
+        this.title = new JLabel("Search results for " + this.searchText);
         this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
         this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
 
@@ -51,11 +50,16 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.homeButton.setFocusable(false);
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.setForeground(Color.black);
-        this.homeButton.setBackground(Color.lightGray);
+        this.homeButton.setBackground(Color.white);
+        this.homeButton.addActionListener(this);
     }
 
+
+    /**
+     * Method to set up JTable in View that outputs search results
+     */
     public void setUpTable(){
-        this.data = this.searchViewModel.search("fo");
+        this.data = this.searchViewModel.search(this.searchText);
 
         String[][] formattedData = new String[data.length][3];
         this.ids = new String[data.length];
@@ -67,7 +71,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(this.data, columnNames);
         TableColumnModel columnModel = table.getColumnModel();
-        setUpActions(columnModel, formattedData);
+        setUpActions(columnModel, formattedData.length);
 
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
         comboBox.addActionListener(this);
@@ -75,22 +79,29 @@ public class searchOutputView extends JFrame implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
-    public void setUpActions(TableColumnModel columnModel, String[][] formattedData){
+    /**
+     * Helper function for setUpTable.
+     * Makes the Actions column in the JTable
+     * @param columnModel is the Column Model of the JTable
+     * @param length is the length of the formatted data
+     */
+    public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
         comboBox.addItem("Add to Playlist 1");
+        //TODO: get Playlist names and make this dynamic
 
         columnModel.addColumn(new TableColumn());
 
-        // for loop to make the default writing in last column a prompt for combo box
-        for (int i = 0; i < formattedData.length; i++) {
+        // make the default writing in last column a prompt for combo box
+        for (int i = 0; i < length; i++) {
             table.setValueAt("Add to..", i, 4);
         }
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
-    public void setVisible(){
-        this.jframe.setSize(this.width, this.height);
+    public void initializeFrame(){
+        this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.add(title);
         this.panel.add(title, BorderLayout.PAGE_START);
