@@ -1,6 +1,5 @@
 package UseCase;
 
-import Entities.MusicPlayer;
 import Entities.Song;
 import InputData.songInputData;
 import Presenter.songPresenter;
