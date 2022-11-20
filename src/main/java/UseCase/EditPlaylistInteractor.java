@@ -27,7 +27,7 @@ public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
                     break;
                 }
         }
-        String message = inputData.getSong().getName()+" removed ";
+        String message = inputData.getSong().getName()+" removed!";
         EditPlaylistOutputData outputData = new EditPlaylistOutputData(message);
         presenter.setEditPlaylistConfirmation(outputData);
     }
