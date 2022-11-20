@@ -1,15 +1,15 @@
 package UseCase;
 import Entities.Song;
-import InputBoundary.editPlaylistInputBoundary;
-import InputData.editPlaylistInputData;
-import OutputBoundary.newPlaylistOutputBoundary;
-import OutputData.editPlaylistOutputData;
+import InputBoundary.EditPlaylistInputBoundary;
+import InputData.EditPlaylistInputData;
+import OutputBoundary.NewPlaylistOutputBoundary;
+import OutputData.EditPlaylistOutputData;
 
-public class EditPlaylistInteractor implements editPlaylistInputBoundary{
+public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
 
-    private final newPlaylistOutputBoundary presenter;
+    private final NewPlaylistOutputBoundary presenter;
 
-    public EditPlaylistInteractor(newPlaylistOutputBoundary presenter){
+    public EditPlaylistInteractor(NewPlaylistOutputBoundary presenter){
         this.presenter = presenter;
     }
 
@@ -18,7 +18,7 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
      *                  and changeName()
      *
     */
-    public void removeSong(editPlaylistInputData inputData) {
+    public void removeSong(EditPlaylistInputData inputData) {
         //TODO: maybe make this a try-catch ?
         if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
             for (Song s : inputData.getPlaylist().getSongList())
@@ -28,15 +28,15 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
                 }
         }
         String message = inputData.getSong().getName()+" removed ";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message);
+        EditPlaylistOutputData outputData = new EditPlaylistOutputData(message);
         presenter.setEditPlaylistConfirmation(outputData);
     }
-    public void addSong(editPlaylistInputData inputData){
+    public void addSong(EditPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
             inputData.getPlaylist().addSong(inputData.getSong());
         }
         String message =  inputData.getSong().getName()+" added!";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message);
+        EditPlaylistOutputData outputData = new EditPlaylistOutputData(message);
         presenter.setEditPlaylistConfirmation(outputData);
     }
 }

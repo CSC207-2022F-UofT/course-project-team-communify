@@ -2,7 +2,7 @@ package Controller;
 
 import InputBoundary.RegisterArtistInputBoundary;
 import InputData.RegisterArtistInputData;
-import OutputBoundary.loginOutputBoundary;
+import OutputBoundary.LoginOutputBoundary;
 import UseCase.RegisterArtistInteractor;
 
 /**
@@ -10,9 +10,9 @@ import UseCase.RegisterArtistInteractor;
  */
 public class RegisterArtistController {
     RegisterArtistInputBoundary registerInteractor;
-    loginOutputBoundary registerPresenter;
+    LoginOutputBoundary registerPresenter;
 
-    public RegisterArtistController(loginOutputBoundary registerPresenter) {
+    public RegisterArtistController(LoginOutputBoundary registerPresenter) {
         this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterArtistInteractor(registerPresenter);
     }

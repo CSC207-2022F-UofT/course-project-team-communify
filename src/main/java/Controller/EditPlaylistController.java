@@ -2,15 +2,15 @@ package Controller;
 import Entities.RegularUser;
 import Entities.Playlist;
 import Entities.Song;
-import InputBoundary.editPlaylistInputBoundary;
-import InputData.editPlaylistInputData;
+import InputBoundary.EditPlaylistInputBoundary;
+import InputData.EditPlaylistInputData;
 
 public class EditPlaylistController {
 
-    private final editPlaylistInputBoundary EditPlaylistInteractor;
+    private final EditPlaylistInputBoundary EditPlaylistInteractor;
 
 
-    public EditPlaylistController(editPlaylistInputBoundary EditPlaylistInteractor){
+    public EditPlaylistController(EditPlaylistInputBoundary EditPlaylistInteractor){
         this.EditPlaylistInteractor = EditPlaylistInteractor;
     }
 
@@ -21,7 +21,7 @@ public class EditPlaylistController {
      * @param song Specific song object to add
      */
     public void addSong(RegularUser user, Playlist playlist, Song song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user,playlist,song);
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user,playlist,song);
         EditPlaylistInteractor.addSong(inputData);
     }
     /**
@@ -31,7 +31,7 @@ public class EditPlaylistController {
      * @param song Specific song object to remove
      */
     public void removeSong(RegularUser user, Playlist playlist, Song song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user,playlist,song);
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user,playlist,song);
         EditPlaylistInteractor.removeSong(inputData);
     }
 }

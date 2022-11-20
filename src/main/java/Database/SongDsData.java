@@ -1,0 +1,46 @@
+package Database;
+import Entities.Song;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+/**
+ * Data storage class between database class and entities.
+ */
+public class SongDsData {
+    private final Song song;
+
+    public SongDsData(Song song){
+        this.song = song;
+    }
+
+    public SongDsData(int id, String name, String[] artistList, String genre,
+                      File file, BufferedImage cover, String uploader){
+       this.song = new Song(id, name, artistList, genre, file, cover, uploader);
+    }
+
+    public String buildToWrite(){
+        return this.song.getID() + "," + this.song.getUploader() + "," + this.song.getFile().getPath() + "\n";
+    }
+
+    public Song getSong() {
+        return this.song;
+    }
+
+    public int getID(){
+        return this.song.getID();
+    }
+
+    /**
+     * @return The String[] representation of the Song.
+     */
+    public String[] getString(){
+        return new String[]{Integer.toString(this.getID()), this.getSong().getName(),
+                this.getSong().getArtistString(), this.getSong().getGenre()};
+    }
+    
+    public String getGenre() {
+        return this.song.getGenre();
+
+    }
+}

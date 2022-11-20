@@ -1,21 +1,22 @@
 package UseCase;
 
 import Database.SaveUserAccessInterface;
-import Database.userDsData;
+import Database.UserDsData;
+import Database.UserList;
 import Entities.User;
 import Entities.userFactory;
 import InputBoundary.RegisterArtistInputBoundary;
 import InputData.RegisterArtistInputData;
-import OutputBoundary.loginOutputBoundary;
+import OutputBoundary.LoginOutputBoundary;
 
 public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
-    private final loginOutputBoundary registerPresenter;
+    private final LoginOutputBoundary registerPresenter;
     private final userFactory userFactory;
 
     private final SaveUserAccessInterface allUsers;
 
-    public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
-        this.allUsers = Database.userList.getInstance();
+    public RegisterArtistInteractor(LoginOutputBoundary registerPresenter){
+        this.allUsers = UserList.getInstance();
         this.registerPresenter =registerPresenter;
         this.userFactory = new userFactory();
     }
@@ -32,7 +33,7 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
         //create artist user
         User user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
                 registerInputData.getPassword());
-        allUsers.save(new userDsData(user));
+        allUsers.save(new UserDsData(user));
         //TODO: prepare success view
     }
 

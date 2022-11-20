@@ -1,6 +1,6 @@
 package InputBoundary;
 
-import InputData.playlistInputData;
+import InputData.PlaylistInputData;
 
 /**
  * Use case layer input boundary that allows communication between outer layers and the next song use case.
@@ -14,5 +14,5 @@ public interface NextSongInputBoundary {
     /**
      * @param data the new playlist to skip songs on
      */
-    void updatePlaylist(playlistInputData data);
+    void updatePlaylist(PlaylistInputData data);
 }

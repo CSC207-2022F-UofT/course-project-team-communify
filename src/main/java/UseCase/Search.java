@@ -1,24 +1,24 @@
 package UseCase;
 
 import Entities.Song;
-import InputBoundary.searchInputBoundary;
-import OutputBoundary.searchOutputBoundary;
+import InputBoundary.SearchInputBoundary;
+import OutputBoundary.SearchOutputBoundary;
 import Database.GetSongAccessInterface;
-import InputData.searchInputData;
-import Database.songDsData;
-import OutputData.searchOutputData;
+import InputData.SearchInputData;
+import Database.SongDsData;
+import OutputData.SearchOutputData;
 
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Search implements searchInputBoundary {
-    private final searchOutputBoundary searchPresenter;
+public class Search implements SearchInputBoundary {
+    private final SearchOutputBoundary searchPresenter;
 
     GetSongAccessInterface songLibrary;
 
-    public Search(GetSongAccessInterface songLibrary, searchOutputBoundary searchPresenter){
+    public Search(GetSongAccessInterface songLibrary, SearchOutputBoundary searchPresenter){
         this.songLibrary = songLibrary;
         this.searchPresenter = searchPresenter;
     }
@@ -28,18 +28,18 @@ public class Search implements searchInputBoundary {
      * @param searchInputData: contains the text to search for
      */
     @Override
-    public void search(searchInputData searchInputData){
+    public void search(SearchInputData searchInputData){
         String name = searchInputData.getSearchText();
-        Collection<songDsData> library = songLibrary.getLibrary();
+        Collection<SongDsData> library = songLibrary.getLibrary();
         List<Song> foundSongs = new ArrayList<>();
 
-        for (songDsData song: library) {
+        for (SongDsData song: library) {
             String currentName = song.getSong().getName();
             if(currentName.equals(name)){
                 foundSongs.add(song.getSong());
             }
         }
-        searchOutputData outputData = new searchOutputData(foundSongs);
+        SearchOutputData outputData = new SearchOutputData(foundSongs);
         this.searchPresenter.foundSongs(outputData);
     }
 }
