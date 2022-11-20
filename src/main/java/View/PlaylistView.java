@@ -22,7 +22,6 @@ public class PlaylistView extends JFrame implements ActionListener {
     private JPanel panel;
     private JButton spaceButton;
     private JButton searchButton;
-
     private JPanel playlistpanel;
     private JButton newPlaylistButton;
     private JLabel title;

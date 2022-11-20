@@ -6,12 +6,12 @@ import Presenter.SongPresenter;
 import Presenter.SpacePresenter;
 
 public class MusicEngineControllerViewModel {
-    private final MusicEngineController musicEngineController;
+   MusicEngineController musicEngineController;
     private String spaceButtonText;
     private SongOutputData playing;
 
     public MusicEngineControllerViewModel(){
-        this.musicEngineController = new MusicEngineController(new SpacePresenter(this),
+        musicEngineController = new MusicEngineController(new SpacePresenter(this),
                 new SongPresenter(this));
     }
 
