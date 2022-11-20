@@ -1,8 +1,6 @@
-import Entities.RegularUser;
 import View.artistView;
-import View.loginRegisterView;
-import View.playlistView;
 import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 
 public class Main {
@@ -17,11 +15,6 @@ public class Main {
         // Look and Feel Setup
         FlatLightLaf.setup();
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
-        new loginRegisterView();
-        String username = "User1";
-        String password = "Password1";
-        RegularUser User = new RegularUser(username, password);
-        new playlistView(User);
 
         // View Initialization
         //new artistView(windowIcon);
