@@ -1,12 +1,9 @@
 package ViewModel;
 
 import Controller.searchController;
-import InputData.playlistInputData;
-import InputData.searchInputData;
 import OutputBoundary.searchOutputBoundary;
 import Presenter.searchPresenter;
 
-import java.util.ArrayList;
 
 public class searchViewModel {
 
@@ -21,8 +18,7 @@ public class searchViewModel {
     }
 
     public String[][] search(String text){
-        searchInputData inputData = new searchInputData(text);
-        this.searchController.search(inputData);
+        this.searchController.search(text);
         return this.outputSongs;
     }
 
