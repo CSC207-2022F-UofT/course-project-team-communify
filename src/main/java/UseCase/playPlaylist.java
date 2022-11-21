@@ -18,13 +18,12 @@ import java.util.ArrayList;
  */
 public class playPlaylist implements playPlaylistInputBoundary {
     private boolean queue;
-    private final ArrayList<Song> playlist;
     private final Object sync;
     private int nextSong;
     songOutputBoundary presenter;
+    private playlistInputData data;
 
-    public playPlaylist(playlistInputData data, songOutputBoundary presenter){
-        this.playlist = data.getSongs();
+    public playPlaylist(songOutputBoundary presenter){
         queue = true;
         nextSong = 0;
         sync = MusicPlayer.getInstance().getSync();
@@ -35,13 +34,15 @@ public class playPlaylist implements playPlaylistInputBoundary {
      * Plays the playlist given in the constructor.
      */
     @Override
-    public void play() {
+    public void play(playlistInputData data) {
+        this.data = data;
+        ArrayList<Song> playlist = data.getSongs();
         if (nextSong < playlist.size()){
-            playSongInputBoundary p = new playSongInteractor(new songInputData(playlist.get(nextSong)), presenter);
-            nextSong++;
+            playSongInputBoundary p = new playSongInteractor(presenter);
             final Thread t = new Thread(this::playNext);
             t.start();
-            p.playSong();
+            p.playSong(new songInputData(playlist.get(nextSong)));
+            nextSong++;
         }
     }
 
@@ -66,10 +67,7 @@ public class playPlaylist implements playPlaylistInputBoundary {
                 System.out.println("Thread interrupted.");
             }
             if (queue){
-                play();
-            }
-            else {
-                MusicPlayer.getInstance().pause();
+                play(this.data);
             }
         }
     }

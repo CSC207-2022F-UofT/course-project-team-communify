@@ -6,8 +6,7 @@
 
 package View;
 
-import Entities.RegularUser;
-import Entities.User;
+import ViewModel.userViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class loginRegisterView extends JFrame implements ActionListener {
-
-    private final int FONTSIZE = 10;
-    private final int WIDTH = 640;
-    private final int HEIGHT = 640;
+    private userViewModel viewModel;
     private JFrame jframe;
     private JButton submitButton;
     private JCheckBox isArtistCheckBox;
@@ -42,22 +38,23 @@ public class loginRegisterView extends JFrame implements ActionListener {
             String username = this.usernameTextField.getText();
             String password = this.passwordTextField.getText();
             boolean isArtist = isArtistCheckBox.isSelected();
+            InMemoryUser user;
 
-            // I DO NOT KNOW HOW THE USE CASE FOR LOGIN WORKS BUT THIS IS HOW WE SHOULD OPEN THE NEW WINDOWS
-
-            if (isArtist) {                                       // should be: if (isArist && Use Case is successful)
-
+            if (viewModel.loginAction(username, password, isArtist)){
                 this.jframe.dispose();
-                artistView artistDashboard = new artistView();    // should need an artist parameter
+                if (isArtist) {
+                    // artistView artistDashboard = new artistView();    // should need an artist parameter
 
-            } else {                                              // should be: else if (isUser && Use Case is successful)
-
-                this.jframe.dispose();
-                // playlistView userDashboard = new playlistView(); <- needs a user parameter, then uncomment
-                RegularUser User = new RegularUser(username, password);
-                playlistView userDashboard = new playlistView(User);
-
+                } else {
+                    user = (InMemoryUser) this.viewModel.getCurrentUser();
+                    new playlistView(user);
+                }
             }
+            else {
+                JOptionPane.showMessageDialog(this.jframe, "Sorry, your password was incorrect. Please double-check your password.");
+            }
+
+
 
             // The else branch should actually be: isNotSuccessful for either use case and you can prompt them to re-enter information
         }
@@ -66,11 +63,14 @@ public class loginRegisterView extends JFrame implements ActionListener {
 
     private void initializeValues() {
         this.jframe = new JFrame();
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int HEIGHT = 640;
+        int WIDTH = 640;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.viewModel = new userViewModel(new InMemoryUser());
     }
 
 

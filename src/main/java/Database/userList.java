@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Note: since this is a singleton class, the constructor is private, and it can NOT be created with the
  * new keyword outside this class.
  */
-public class userList implements userAccessInterface {
+public class userList implements GetUserAccessInterface, SaveUserAccessInterface, LoginUserAccessInterface {
     private static final userList USER_LIST =
             new userList("./src/main/java/Database/artists.csv",
                     "./src/main/java/Database/users.csv");
@@ -166,6 +166,8 @@ public class userList implements userAccessInterface {
      */
     @Override
     public boolean checkPassword(String username, String password) {
-        return userDatabase.get(username).getPassword().equals(password);
+        if (userDatabase.containsKey(username))
+            return userDatabase.get(username).getPassword().equals(password);
+        return false;
     }
 }
