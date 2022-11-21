@@ -22,6 +22,7 @@ public class EngineTest {
     @Test
     public void testRecommend(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
                 new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         playlistInputData p = new playlistInputData(0);
@@ -41,6 +42,7 @@ public class EngineTest {
     @Test
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
                 new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         songInputData s = new songInputData(2);
@@ -54,6 +56,7 @@ public class EngineTest {
     @Test
     public void testPause(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
                 new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         controller.playSong(2);
@@ -68,6 +71,7 @@ public class EngineTest {
     @Test
     public void testPlayPlaylist(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
                 new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         playlistInputData p = new playlistInputData(0);

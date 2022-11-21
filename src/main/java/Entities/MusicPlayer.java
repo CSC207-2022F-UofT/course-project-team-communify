@@ -168,7 +168,7 @@ public class MusicPlayer {
                 this.playing = false;
                 sync.notifyAll();
             } catch (JavaLayerException e) {
-                throw new RuntimeException(e);
+                startPlayback(resume);
             }
         }
     }

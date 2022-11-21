@@ -12,6 +12,7 @@ public class SkipTest {
     @Test
     public void testSkip(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         playlistInputData p = new playlistInputData(0);
 
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
@@ -27,6 +28,7 @@ public class SkipTest {
     @Test
     public void testSkipTwice(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         playlistInputData p = new playlistInputData(0);
 
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
