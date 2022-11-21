@@ -64,24 +64,6 @@ public class playlistView extends JFrame implements ActionListener {
     public playlistView(InMemoryUser user, List<Integer> spaceIDs) {
         this.initializeValues(user, spaceIDs);
         this.initializeComponents();            // set up space button
-
-        // set up actual playlists
-        // The playlists will need to be under a Scrollable JPanel - ask Rohan if you have questions,
-        // only needs a basic for look in action listener to print out the song data
-        // TODO -- note: when starting to play a playlist, please update the spaceButtonText if it was being played
-
-
-        // *IMPORTANT* WE HAVE DECIDED TO HAVE SEARCH BE ITS OWN PAGE LIKE IN SPOTIFY FOR SWING REASONS - TALK TO ROHAN OR CHRISTINA IF YOU HAVE QUESTIONS
-        // SETUP SEARCH FOR SONG BUTTON - TAKES YOU TO searchOutputView.java
-        // TODO
-
-
-        // set up play bar - Raf this playbar needs to be consistent even if we open the search page and
-        // go back to this page idk how to keep that consistent? Maybe just copy-paste theplaybar code along with
-        // whatever song is playing
-        // TODO
-
-        // set screen visible
         this.initializeFrame();
     }
 
@@ -95,6 +77,7 @@ public class playlistView extends JFrame implements ActionListener {
             if (!this.spacePlaying){   // clicking on button when space is playing does nothing
                 String message = this.musicEngineControllerViewModel.callPlaySpace();
                 this.spaceButton.setText(message);
+                this.spaceButton.setEnabled(false);
             }
         } else if(e.getSource() == this.searchButton){
             String searchText = this.searchBar.getText();

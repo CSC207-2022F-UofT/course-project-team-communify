@@ -94,9 +94,9 @@ public class searchOutputView extends JFrame implements ActionListener {
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
 
-        for (InMemoryPlaylist p : user.getPlaylists())
+        for (InMemoryPlaylist p : user.getPlaylists()) {
             comboBox.addItem("Add to " + p.getName());
-        //TODO: get Playlist names and make this dynamic
+        }
 
         columnModel.addColumn(new TableColumn());
 

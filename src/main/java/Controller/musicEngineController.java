@@ -78,6 +78,9 @@ public class musicEngineController {
         this.spacePresenter.addedToSpace(songToAdd.getName());
     }
 
+    /**
+     * @return returns list of integers in the space
+     */
     public List<Integer> returnSpace(){
         List<Integer> songs = new ArrayList<>();
         for (songInputData song : this.spaceSongList){
