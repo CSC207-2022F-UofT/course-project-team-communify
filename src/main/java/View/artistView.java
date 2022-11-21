@@ -1,17 +1,17 @@
 package View;
 
 
+import Database.songLibrary;
 import Entities.ArtistUser;
 import ViewModel.ArtistViewModel;
 
+import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class artistView extends JFrame implements ActionListener {
@@ -62,7 +62,6 @@ public class artistView extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, label, "Communify", JOptionPane.PLAIN_MESSAGE);
                 }
             }
-
         }
     }
 
@@ -113,6 +112,12 @@ public class artistView extends JFrame implements ActionListener {
         this.panel.add(scrollPane, BorderLayout.CENTER);
 
         this.uploadButton.addActionListener(this);
+        this.jframe.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                songLibrary.getInstance().saveLibrary();
+            }
+        });
     }
 
     private void initializeFrame() {
