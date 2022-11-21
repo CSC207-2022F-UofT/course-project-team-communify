@@ -20,7 +20,7 @@ public class musicEngineController {
     private final int NONE = -1;
     private final playSpaceInputBoundary playSpaceInteractor;
     private final SpacePlayedOutputBoundary spacePresenter;
-    private final ArrayList<songInputData> spaceSongList;
+    private final List<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
     private playPlaylistInputBoundary playPlaylist;
