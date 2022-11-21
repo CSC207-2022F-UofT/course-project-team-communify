@@ -1,16 +1,19 @@
 package UseCase;
 
-import Database.SaveSongAccessInterface;
-import Database.songLibrary;
+import View.InMemoryArtistUser;
+import ViewModel.ArtistViewModel;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class UploadSongTest {
 
     @Test
     public void testUploadSong(){
-        SaveSongAccessInterface lib = songLibrary.getInstance();
-        String filepath = "./src/test/java/UseCase/test1.mp3";
-        // TODO
+
+        InMemoryArtistUser artist = new InMemoryArtistUser("admin", "admin");
+        ArtistViewModel view = new ArtistViewModel(artist);
+        String filepath = "./src/test/java/UseCase/test_metadata.mp3";
+        Assertions.assertTrue(view.upload(filepath));
     }
 
 }

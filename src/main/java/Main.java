@@ -1,4 +1,4 @@
-import View.loginRegisterView;
+import View.launchView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -15,10 +15,10 @@ public class Main {
         // Look and Feel Setup
         FlatLightLaf.setup();
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
+        ImageIcon logoRed = new ImageIcon(LOGO_RED);
 
-        // View Initialization
-        // new artistView(windowIcon);
-        new loginRegisterView();
+        // FINAL
+        new launchView(windowIcon, logoRed);
 
     }
 }
