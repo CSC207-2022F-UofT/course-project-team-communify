@@ -18,12 +18,8 @@ public class Main {
         ImageIcon logoRed = new ImageIcon(LOGO_RED);
 
         // View Initialization
-        new artistView(windowIcon, logoRed);
-
-//        // TODO
-//        User user = new RegularUser("User", "");
-//        new playlistView(user);
-//        Thread.sleep(5000);
+        // new artistView(windowIcon);
+        new loginRegisterView();
 
     }
 }
