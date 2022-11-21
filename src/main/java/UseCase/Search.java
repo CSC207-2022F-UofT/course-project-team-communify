@@ -17,7 +17,6 @@ public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
        private GetSongAccessInterface songLibrary;
-    // TODO: Deal with singleton
 
     public Search(searchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
