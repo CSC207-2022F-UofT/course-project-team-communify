@@ -9,19 +9,30 @@ public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
     private String spaceButtonText;
     private songOutputData playing;
+    private final Object sync;
+    private final PlaylistDsView songMaker;
 
-    public musicEngineControllerViewModel(){
+    public musicEngineControllerViewModel(PlaylistDsView p){
         this.musicEngineController = new musicEngineController(new spacePresenter(this),
                 new songPresenter(this));
+        this.sync = new Object();
+        this.songMaker = p;
     }
 
     public void updatePlaying(songOutputData s){
         this.playing = s;
+        final Thread t = new Thread(this::notifyPlayBar);
+        t.start();
     }
 
-    public String playPlaylistAction(int id){
+    private void notifyPlayBar(){
+        synchronized (sync){
+            sync.notifyAll();
+        }
+    }
+
+    public void playPlaylistAction(int id){
         this.musicEngineController.playPlaylist(id);
-        return playing.getSong().getName();
     }
 
     public void getRecommendationAction(int id){
@@ -36,11 +47,21 @@ public class musicEngineControllerViewModel {
         this.musicEngineController.playNext();
     }
 
-    public String playSongAction(int id){
+    public void playSongAction(int id){
         this.musicEngineController.playSong(id);
-        return playing.getSong().getName();
     }
 
+    public SongDsView getPlaying() {
+        SongDsView out = songMaker.getNewSong();
+
+        out.setName(playing.getName());
+        out.setId(playing.getId());
+        out.setCover(playing.getCover());
+        out.setGenre(playing.getGenre());
+        out.setArtists(playing.getArtistList());
+
+        return out;
+    }
 
     public String callPlaySpace() {
         this.musicEngineController.playSpace();
@@ -53,5 +74,9 @@ public class musicEngineControllerViewModel {
 
     public String getSpaceButtonText(){
         return this.spaceButtonText;
+    }
+
+    public Object getSync() {
+        return sync;
     }
 }

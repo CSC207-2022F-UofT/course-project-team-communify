@@ -166,6 +166,8 @@ public class userList implements GetUserAccessInterface, SaveUserAccessInterface
      */
     @Override
     public boolean checkPassword(String username, String password) {
-        return userDatabase.get(username).getPassword().equals(password);
+        if (userDatabase.containsKey(username))
+            return userDatabase.get(username).getPassword().equals(password);
+        return false;
     }
 }
