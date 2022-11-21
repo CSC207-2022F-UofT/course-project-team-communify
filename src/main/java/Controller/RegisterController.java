@@ -20,8 +20,8 @@ public class RegisterController {
     /**
      * function calling the use case for registering a regular user
      */
-    public void registerRegular(String username, String password){
+    public boolean registerRegular(String username, String password){
         RegisterInputData registerInputData = new RegisterInputData(username, password);
-        registerInteractor.register(registerInputData);
+        return registerInteractor.register(registerInputData);
     }
 }

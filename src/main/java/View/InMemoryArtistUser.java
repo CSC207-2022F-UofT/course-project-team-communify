@@ -20,4 +20,14 @@ public class InMemoryArtistUser implements ArtistUserDsView {
     public String getUsername() {
         return this.username;
     }
+
+    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public void setArtistName(String artistName) {
+        this.name = artistName;
+    }
 }

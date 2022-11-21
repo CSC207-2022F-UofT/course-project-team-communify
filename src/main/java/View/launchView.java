@@ -31,12 +31,14 @@ public class launchView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == this.loginButton){
+        if(e.getSource() == this.loginButton) {
             this.jframe.dispose();
-            new loginView();
+            new loginView(icon, logoImg, false);
         }
-
-        // else registerView
+        else if (e.getSource() == this.registerButton){
+            this.jframe.dispose();
+            new loginView(icon, logoImg, true);
+        }
     }
 
 

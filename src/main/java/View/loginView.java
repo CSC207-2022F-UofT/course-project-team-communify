@@ -15,35 +15,53 @@ import java.awt.event.ActionListener;
 
 public class loginView extends JFrame implements ActionListener {
     private userViewModel viewModel;
+    private boolean register;
     private JFrame jframe;
     private JButton submitButton;
     private JCheckBox isArtistCheckBox;
     private JTextField usernameTextField;
     private JTextField passwordTextField;
+    private ImageIcon icon;
+    private ImageIcon logoImg;
+    private JTextField artistTextField;
 
 
-    public loginView() {
-
+    public loginView(ImageIcon icon, ImageIcon logoImg, boolean register) {
+        this.icon = icon;
+        this.logoImg = logoImg;
+        this.register = register;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
-
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String username = "", password = "", artistName = "";
+        InMemoryUser user;
+        InMemoryArtistUser artist;
+        boolean isArtist = isArtistCheckBox.isSelected();
 
-        if (e.getSource() == submitButton) {
-            String username = this.usernameTextField.getText();
-            String password = this.passwordTextField.getText();
-            boolean isArtist = isArtistCheckBox.isSelected();
-            InMemoryUser user;
+        if (e.getSource() != this.isArtistCheckBox){
+            username = this.usernameTextField.getText();
+            password = this.passwordTextField.getText();
+            artistName = this.artistTextField.getText();
 
+            if (isArtist){
+                this.viewModel = new userViewModel(new InMemoryArtistUser("", ""));
+            }
+            else {
+                this.viewModel = new userViewModel(new InMemoryUser());
+            }
+        }
+
+        if (e.getSource() == this.submitButton & !register) {
             if (viewModel.loginAction(username, password, isArtist)){
                 this.jframe.dispose();
                 if (isArtist) {
-                    // artistView artistDashboard = new artistView();    // should need an artist parameter
+                    artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
+                    new artistView(this.icon, this.logoImg, artist);
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
@@ -53,10 +71,25 @@ public class loginView extends JFrame implements ActionListener {
             else {
                 JOptionPane.showMessageDialog(this.jframe, "Sorry, your password was incorrect. Please double-check your password.");
             }
+        }
+        else if (e.getSource() == this.submitButton & register){
+            if (viewModel.registerAction(username, password, isArtist, artistName)){
+                this.jframe.dispose();
+                if (isArtist) {
+                    artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
+                    new artistView(this.icon, this.logoImg, artist);
 
-
-
-            // The else branch should actually be: isNotSuccessful for either use case and you can prompt them to re-enter information
+                } else {
+                    user = (InMemoryUser) this.viewModel.getCurrentUser();
+                    new playlistView(user);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(this.jframe, "Sorry, that username is taken or password is empty.");
+            }
+        }
+        else if (e.getSource() == this.isArtistCheckBox & register){
+            this.artistTextField.setVisible(isArtist);
         }
     }
 
@@ -70,7 +103,6 @@ public class loginView extends JFrame implements ActionListener {
         this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.viewModel = new userViewModel(new InMemoryUser());
         this.jframe.setLocationRelativeTo(null);
     }
 
@@ -79,7 +111,10 @@ public class loginView extends JFrame implements ActionListener {
 
         this.submitButton = new JButton();
         this.submitButton.setBounds(100, 400, 100, 50);  // fix up the bounds
-        this.submitButton.setText("Submit");
+        if (!this.register)
+            this.submitButton.setText("Login");
+        else
+            this.submitButton.setText("Register");
         this.submitButton.setFocusable(false);
         this.submitButton.setHorizontalTextPosition(JButton.CENTER);
         this.submitButton.setForeground(Color.cyan);
@@ -98,6 +133,11 @@ public class loginView extends JFrame implements ActionListener {
         this.passwordTextField.setBounds(300, 400, 150, 75);
         this.passwordTextField.setText("Password");
 
+        this.artistTextField = new JTextField();
+        this.artistTextField.setBounds(300, 500, 150,75);
+        this.artistTextField.setText("Artist Name");
+        this.artistTextField.setVisible(false);
+
 
         this.submitButton.addActionListener(this);
         this.isArtistCheckBox.addActionListener(this);
@@ -109,6 +149,7 @@ public class loginView extends JFrame implements ActionListener {
         this.jframe.add(this.isArtistCheckBox);
         this.jframe.add(this.usernameTextField);
         this.jframe.add(this.passwordTextField);
+        this.jframe.add(this.artistTextField);
         this.jframe.setVisible(true);
     }
 }

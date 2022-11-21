@@ -8,4 +8,7 @@ public interface ArtistUserDsView {
 
     String getUsername();
 
+    void setUsername(String username);
+
+    void setArtistName(String artistName);
 }

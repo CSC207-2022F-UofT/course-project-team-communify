@@ -24,8 +24,10 @@ public class userDsData {
         ArrayList<Song> library = new ArrayList<>();
 
         for (String id : songs){
-            songDsData song = songLibrary.getSong(Integer.parseInt(id));
-            library.add(song.getSong());
+            if (!id.equals(" ")) {
+                songDsData song = songLibrary.getSong(Integer.parseInt(id));
+                library.add(song.getSong());
+            }
         }
 
         this.user = factory.createArtistUser(artistName, username, password, library);

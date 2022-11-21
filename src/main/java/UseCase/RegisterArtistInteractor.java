@@ -7,6 +7,7 @@ import Entities.userFactory;
 import InputBoundary.RegisterArtistInputBoundary;
 import InputData.RegisterArtistInputData;
 import OutputBoundary.loginOutputBoundary;
+import OutputData.loginOutputData;
 
 public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
     private final loginOutputBoundary registerPresenter;
@@ -16,24 +17,25 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
 
     public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
         this.allUsers = Database.userList.getInstance();
-        this.registerPresenter =registerPresenter;
+        this.registerPresenter = registerPresenter;
         this.userFactory = new userFactory();
     }
     @Override
-    public void register(RegisterArtistInputData registerInputData){
-        if (allUsers.exists(registerInputData.getUsername())){
-            //TODO: prepare user exists failure view
-        } else if (registerInputData.getPassword() == "") {
-            //TODO: prepare no password failure view
-        } else if (registerInputData.getUsername() == "") {
-            //TODO: prepare no username failure view
-        }
+    public boolean register(RegisterArtistInputData registerInputData){
+        if (allUsers.exists(registerInputData.getUsername()) || registerInputData.getPassword().equals("") ||
+                registerInputData.getUsername().equals("")){return false;}
 
         //create artist user
         User user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
                 registerInputData.getPassword());
-        allUsers.save(new userDsData(user));
-        //TODO: prepare success view
+        userDsData newArtist = new userDsData(registerInputData.getUsername(), registerInputData.getPassword(),
+                registerInputData.getArtistName(), new String[0]);
+        allUsers.save(newArtist);
+
+
+        loginOutputData userCreated = new loginOutputData(user, true);
+        registerPresenter.userLogIn(userCreated);
+        return true;
     }
 
 }
