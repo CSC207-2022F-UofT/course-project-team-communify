@@ -8,25 +8,25 @@ import Presenter.getArtistSongPresenter;
 
 public class ArtistViewModel {
 
+    private ArtistUserDsView currentArtist;
     private final EditSongController editSongController;
     private final Controller.getArtistSongController getArtistSongController;
 
     private String[][] songTable;
     private boolean isUploaded;
 
-    public ArtistViewModel(){
+    public ArtistViewModel(ArtistUserDsView currentArtist){
+        this.currentArtist = currentArtist;
         this.editSongController = new EditSongController(new EditSongPresenter(this));
         this.getArtistSongController = new getArtistSongController(new getArtistSongPresenter(this));
     }
 
     /**
-     *
      * @param filepath Filepath to the desired song.
-     * @param user The username of the uploading user.
      * @return true iff song was successfully uploaded.
      */
-    public boolean upload(String filepath, String user){
-        UploadSongInputData inputdata = new UploadSongInputData(filepath, user);
+    public boolean upload(String filepath){
+        UploadSongInputData inputdata = new UploadSongInputData(filepath, this.currentArtist.getUsername());
         this.editSongController.upload(inputdata);
         return this.isUploaded;
     }
@@ -39,9 +39,11 @@ public class ArtistViewModel {
         this.isUploaded = isUploaded;
     }
 
-
-    public String[][] getArtistSongs(String user){
-        getArtistSongInputData inputdata = new getArtistSongInputData(user);
+    /**
+     * @return String[][] of all songs.
+     */
+    public String[][] getArtistSongs(){
+        getArtistSongInputData inputdata = new getArtistSongInputData(this.currentArtist.getUsername());
         this.getArtistSongController.getSong(inputdata);
         return this.songTable;
     }
@@ -52,5 +54,9 @@ public class ArtistViewModel {
      */
     public void updateSongTable(String[][] songTable){
         this.songTable = songTable;
+    }
+
+    public String getArtistName(){
+        return this.currentArtist.getArtistName();
     }
 }

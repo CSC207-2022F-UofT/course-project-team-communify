@@ -2,7 +2,6 @@ package View;
 
 
 import Entities.ArtistUser;
-import Entities.User;
 import ViewModel.ArtistViewModel;
 
 import java.io.File;
@@ -17,11 +16,7 @@ import java.awt.event.ActionListener;
 
 public class artistView extends JFrame implements ActionListener {
 
-
-    private ArtistUser user;
     private ArtistViewModel avm;
-
-    private final int FONTSIZE = 10;
     private final int WIDTH = 1280;
     private final int HEIGHT = 640;
     private JFrame jframe;
@@ -59,7 +54,7 @@ public class artistView extends JFrame implements ActionListener {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 String filepath = String.valueOf(file).replace("\\", "\\\\");
 
-                if(this.avm.upload(filepath, user.getUsername())){
+                if(this.avm.upload(filepath)){
                     JLabel label = new JLabel("Song Uploaded!", JLabel.CENTER);
                     JOptionPane.showMessageDialog(this, label, "Communify", JOptionPane.PLAIN_MESSAGE);
                 }
@@ -83,11 +78,12 @@ public class artistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setIconImage(this.icon.getImage());
 
-        this.avm = new ArtistViewModel();
-        this.user = new ArtistUser("MetroFolk", "metrofolk", "metrofolk"); //TODO: REPLACE. TEMPORARY
+
+        InMemoryArtistUser artist = new InMemoryArtistUser("admin", "admin"); //TODO: REPLACE. TEMPORARY
+        this.avm = new ArtistViewModel(artist);
 
         // Init JTable
-        String[][] data = this.avm.getArtistSongs(this.user.getUsername());
+        String[][] data = this.avm.getArtistSongs();
         this.table = new JTable(data, this.COLUMN_NAMES);
         this.table.setDefaultEditor(Object.class, null);
     }
@@ -97,7 +93,7 @@ public class artistView extends JFrame implements ActionListener {
         this.logo = new JLabel(logoImg);
         this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 50, logoImg.getIconWidth(), logoImg.getIconHeight());
 
-        this.welcomeMessage = new JLabel("Hey, " + this.user.getArtistName() + "!");
+        this.welcomeMessage = new JLabel("Hey, " + avm.getArtistName() + "!");
         this.welcomeMessage.setFont(new Font(this.welcomeMessage.getFont().getName(), Font.PLAIN, 24));
         this.welcomeMessage.setSize(this.welcomeMessage.getPreferredSize());
         this.welcomeMessage.setLocation((this.jframe.getWidth() - welcomeMessage.getWidth())/2, 130);
