@@ -17,8 +17,7 @@ public class Main {
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
         ImageIcon logoRed = new ImageIcon(LOGO_RED);
 
-        // View Initialization
-        //new artistView(windowIcon, logoRed);
+        // FINAL
         new launchView(windowIcon, logoRed);
 
     }
