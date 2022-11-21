@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Entities.User;
-import Controller.newPlaylistController;
-import ViewModel.musicEngineControllerViewModel;
 import ViewModel.playlistViewModel;
 
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
@@ -33,7 +31,8 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         if (e.getSource() == this.createButton) {
             String playlistname = this.playlistNameTextField.getText();
             String outputMessage = this.viewModel.callNewPlaylistUseCase(ID,owner, playlistname);
-
+            this.jframe.dispose();
+            new NewPlaylistOutputDataView(this.owner,outputMessage);
         }
         else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
@@ -58,8 +57,6 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         // this.spaceViewModel = new spaceViewModel();
     }
     private void initializeComponents() {
-        this.createButton.addActionListener(this);
-        this.homeButton.addActionListener(this);
 
         this.playlistNameTextField = new JTextField();
         this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);;
@@ -79,6 +76,9 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.setForeground(Color.black);
         this.homeButton.setBackground(Color.lightGray);
+
+        this.createButton.addActionListener(this);
+        this.homeButton.addActionListener(this);
     }
     private void initializeFrame() {
         this.jframe.add(createButton);

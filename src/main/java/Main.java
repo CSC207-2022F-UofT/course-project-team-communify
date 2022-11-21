@@ -18,8 +18,8 @@ public class Main {
         FlatLightLaf.setup();
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
         new loginRegisterView();
-        String username = "User1";
-        String password = "Password1";
+        String username = "user1178971984";
+        String password = "pass1178971984";
         RegularUser User = new RegularUser(username, password);
         new playlistView(User);
 

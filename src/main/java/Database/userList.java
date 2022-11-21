@@ -156,7 +156,7 @@ public class userList implements userAccessInterface {
      */
     @Override
     public boolean exists(String username) {
-        return userDatabase.get(username) != null;
+        return userDatabase.containsKey(username);
     }
 
     /**
