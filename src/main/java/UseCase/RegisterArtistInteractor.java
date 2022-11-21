@@ -28,7 +28,11 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
         //create artist user
         User user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
                 registerInputData.getPassword());
-        allUsers.save(new userDsData(user));
+        userDsData newArtist = new userDsData(registerInputData.getUsername(), registerInputData.getPassword(),
+                registerInputData.getArtistName(), new String[0]);
+        allUsers.save(newArtist);
+
+
         loginOutputData userCreated = new loginOutputData(user, true);
         registerPresenter.userLogIn(userCreated);
         return true;

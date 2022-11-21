@@ -56,6 +56,9 @@ public class ArtistUser extends User {
 
         if (songs.size() > 0)
             output.deleteCharAt(output.length() - 1);
+        else
+            output.append(" ");
+
         return output.toString();
     }
 }

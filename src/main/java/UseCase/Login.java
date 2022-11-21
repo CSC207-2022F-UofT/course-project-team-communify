@@ -23,8 +23,11 @@ public class Login implements loginInputBoundary{
         if (loginUsers.checkPassword(loginID.getUsername(), loginID.getPassword())){
             loginOutputData out = new loginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
                     loginID.isArtist());
-            loginPresenter.userLogIn(out);
-            return true;
+            if (out.isCorrectType()){
+                loginPresenter.userLogIn(out);
+                return true;
+            }
+            return false;
         }
         return false;
     }

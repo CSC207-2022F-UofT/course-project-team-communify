@@ -20,7 +20,7 @@ public class RegisterArtistController {
      * function calling the use case for registering a regular user
      */
     public boolean registerArtist(String username, String artistName, String password){
-        RegisterArtistInputData registerInputData = new RegisterArtistInputData(artistName, username, password);
+        RegisterArtistInputData registerInputData = new RegisterArtistInputData(username, password, artistName);
         return registerInteractor.register(registerInputData);
     }
 }

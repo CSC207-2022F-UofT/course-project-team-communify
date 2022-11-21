@@ -11,8 +11,10 @@ public class loginOutputData {
     private final boolean isArtist;
     private ArrayList<playlistInputData> playlists;
     private String artistName;
+    private boolean correctType;
 
     public loginOutputData(User u, boolean isArtist){
+        this.correctType = true;
         this.loggedIn = u;
         this.playlists = new ArrayList<>();
         this.isArtist = isArtist;
@@ -24,14 +26,22 @@ public class loginOutputData {
     }
 
     private void createArtistUser() {
-        ArtistUser artist = (ArtistUser) loggedIn;
-        this.artistName = artist.getArtistName();
+        try {
+            ArtistUser artist = (ArtistUser) loggedIn;
+            this.artistName = artist.getArtistName();
+        } catch (ClassCastException e){
+            this.correctType = false;
+        }
     }
 
     private void createRegularUser() {
-        RegularUser reg = (RegularUser) loggedIn;
-        for (Integer p : reg.getPlaylistList()){
-            playlists.add(new playlistInputData(p));
+        try {
+            RegularUser reg = (RegularUser) loggedIn;
+            for (Integer p : reg.getPlaylistList()){
+                playlists.add(new playlistInputData(p));
+            }
+        } catch (ClassCastException e){
+            this.correctType = false;
         }
     }
 
@@ -49,5 +59,9 @@ public class loginOutputData {
 
     public String getArtistName() {
         return artistName;
+    }
+
+    public boolean isCorrectType() {
+        return correctType;
     }
 }
