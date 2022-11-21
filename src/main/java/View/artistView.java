@@ -115,6 +115,7 @@ public class artistView extends JFrame implements ActionListener {
         this.jframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                // Since view and SongLibrary are on the same frameworks & drivers layer.
                 songLibrary.getInstance().saveLibrary();
             }
         });
