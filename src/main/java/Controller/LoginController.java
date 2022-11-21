@@ -20,8 +20,8 @@ public class LoginController {
     /**
      * function calling the use case for logging in
      */
-    public void login(String username, String password, boolean isArtist){
+    public boolean login(String username, String password, boolean isArtist){
         loginInputData loginInputData = new loginInputData(username, password, isArtist);
-        loginInteractor.login(loginInputData);
+        return loginInteractor.login(loginInputData);
     }
 }

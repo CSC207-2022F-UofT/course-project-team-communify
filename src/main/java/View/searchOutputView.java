@@ -1,7 +1,6 @@
 package View;
 
 
-import Entities.RegularUser;
 import ViewModel.searchViewModel;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class searchOutputView extends JFrame implements ActionListener {
 
-
+    private InMemoryUser user;
     private String searchText;
     private int FONTSIZE = 10;
     private int WIDTH = 640;
@@ -36,14 +35,15 @@ public class searchOutputView extends JFrame implements ActionListener {
     private searchViewModel searchViewModel;
 
 
-    public searchOutputView(String searchText){
-        this.initialiseValues(searchText);
+    public searchOutputView(String searchText, InMemoryUser user){
+        this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initialiseFrame();
     }
 
-    public void initialiseValues(String searchText){
+    public void initialiseValues(String searchText, InMemoryUser user){
         this.searchViewModel = new searchViewModel();
+        this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
         this.layout = new BorderLayout(30, 30);
@@ -94,7 +94,9 @@ public class searchOutputView extends JFrame implements ActionListener {
     public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
-        comboBox.addItem("Add to Playlist 1");
+
+        for (InMemoryPlaylist p : user.getPlaylists())
+            comboBox.addItem("Add to " + p.getName());
         //TODO: get Playlist names and make this dynamic
 
         columnModel.addColumn(new TableColumn());
@@ -137,7 +139,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
         } else if (e.getSource()  == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(new RegularUser("",""));
+            new playlistView(this.user);
             // TODO: make this into an actual user
         }
 

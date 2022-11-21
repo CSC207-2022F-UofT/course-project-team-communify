@@ -23,7 +23,7 @@ public class musicEngineController {
     private final ArrayList<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
-    private final playPlaylistInputBoundary playPlaylist;
+    private playPlaylistInputBoundary playPlaylist;
     private final NextSongInputBoundary nextSong;
     
     public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
@@ -33,7 +33,7 @@ public class musicEngineController {
         this.playing = NONE;
         this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
         this.playPlaylist = new playPlaylist(songPresenter);
-        this.nextSong = new NextSong(songPresenter);
+        this.nextSong = new NextSong(songPresenter, this.playPlaylist);
     }
 
     /**
@@ -82,6 +82,7 @@ public class musicEngineController {
      * Function calling the use case for pausing or resuming song
      */
     public void pauseSong() {
+        stop();
         pauseSongInputBoundary pauseSong = new pauseSong();
         if (playing != NONE)
             pauseSong.pause();
@@ -93,9 +94,10 @@ public class musicEngineController {
      */
     public void playPlaylist(int id) {
         stop();
+        this.playPlaylist = new playPlaylist(this.songPresenter);
         playlistInputData data = new playlistInputData(id);
         this.nextSong.updatePlaylist(data);
-        playPlaylist.play(data);
+        this.playPlaylist.play(data);
         playing = PLAYLIST;
     }
 
@@ -119,7 +121,7 @@ public class musicEngineController {
     public void playNext(){
         if (playing == PLAYLIST){
             stop();
-            nextSong.skipSong();
+            this.playPlaylist = nextSong.skipSong();
         }
     }
 
