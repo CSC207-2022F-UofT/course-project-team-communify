@@ -5,10 +5,13 @@ import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
 
+import java.util.List;
+
 public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
     private String spaceButtonText;
     private songOutputData playing;
+    private String SpaceAddedPopupText;
     private final Object sync;
     private final PlaylistDsView songMaker;
 
@@ -51,6 +54,11 @@ public class musicEngineControllerViewModel {
         this.musicEngineController.playSong(id);
     }
 
+    public String callAddToSpace(int id) {
+        this.musicEngineController.spaceAddSong(id);
+        return this.SpaceAddedPopupText;
+    }
+
     public SongDsView getPlaying() {
         SongDsView out = songMaker.getNewSong();
 
@@ -63,6 +71,9 @@ public class musicEngineControllerViewModel {
         return out;
     }
 
+    public void UpdateSpacePopupText(String msg){
+        this.SpaceAddedPopupText = msg;
+    }
     public String callPlaySpace() {
         this.musicEngineController.playSpace();
         return this.spaceButtonText;
@@ -78,5 +89,14 @@ public class musicEngineControllerViewModel {
 
     public Object getSync() {
         return sync;
+    }
+
+    public void updateSpace(List<Integer> spaceIDs) {
+        for (int id : spaceIDs)
+            this.musicEngineController.spaceAddSong(id);
+    }
+
+    public List<Integer> returnSpace(){
+        return this.musicEngineController.returnSpace();
     }
 }

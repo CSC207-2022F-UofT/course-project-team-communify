@@ -1,44 +1,42 @@
 package View;
 
-
+import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
-
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class searchOutputView extends JFrame implements ActionListener {
-
     private InMemoryUser user;
     private String searchText;
     private int FONTSIZE = 10;
     private int WIDTH = 640;
     private int HEIGHT = 640;
-
     private JFrame jframe;
     private JPanel panel;
     private JScrollPane scrollPane;
     private JLabel title;
     private JButton homeButton;
     private Font font;
-
-
     private JTable table;
     private BorderLayout layout;
     private JComboBox comboBox;
     private String[][] data;
     private String[] ids;
-
     private searchViewModel searchViewModel;
+    private List<Integer> spaceIDs;
+    private musicEngineControllerViewModel musicEngineControllerViewModel;
 
-
-    public searchOutputView(String searchText, InMemoryUser user){
+    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
+        this.spaceIDs = spaceIDs;
+        this.musicEngineControllerViewModel = engineVm;
         this.initialiseValues(searchText, user);
         this.setUpTable();
-        this.initialiseFrame();
+        this.initializeFrame();
     }
 
     public void initialiseValues(String searchText, InMemoryUser user){
@@ -60,6 +58,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.homeButton.setBackground(Color.white);
         this.homeButton.addActionListener(this);
     }
+
 
     /**
      * Method to set up JTable in View that outputs search results
@@ -95,9 +94,9 @@ public class searchOutputView extends JFrame implements ActionListener {
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
 
-        for (InMemoryPlaylist p : user.getPlaylists())
+        for (InMemoryPlaylist p : user.getPlaylists()) {
             comboBox.addItem("Add to " + p.getName());
-        //TODO: get Playlist names and make this dynamic
+        }
 
         columnModel.addColumn(new TableColumn());
 
@@ -108,7 +107,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
-    public void initialiseFrame(){
+    public void initializeFrame(){
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.add(title);
@@ -126,6 +125,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
     /**
      * Invoked when an action occurs.
+     *
      * @param e the event to be processed
      */
     @Override
@@ -135,13 +135,24 @@ public class searchOutputView extends JFrame implements ActionListener {
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
-            //TODO: pass id to play space or add to playlist
 
-        } else if (e.getSource()  == this.homeButton) {
+            if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
+                String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
+                this.spaceIDs = this.musicEngineControllerViewModel.returnSpace();
+                this.createPopup(PopupMessage);
+            }
+        } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user);
+            new playlistView(this.user, this.spaceIDs);
             // TODO: make this into an actual user
         }
-
     }
+
+    private void createPopup(String text){
+        JOptionPane pane = new JOptionPane(null);
+        pane.setMessage(text);
+        JDialog dialog = pane.createDialog(null, text);
+        dialog.setVisible(true);
+    }
+
 }

@@ -1,9 +1,9 @@
 package UseCase;
 
-import Database.GetSongAccessInterface;
 import Entities.Song;
 import InputBoundary.searchInputBoundary;
 import OutputBoundary.searchOutputBoundary;
+import Database.GetSongAccessInterface;
 import InputData.searchInputData;
 import Database.songDsData;
 import OutputData.searchOutputData;
@@ -19,6 +19,7 @@ public class Search implements searchInputBoundary {
        private GetSongAccessInterface songLibrary;
 
     public Search(searchOutputBoundary searchPresenter){
+        // import songLibrary instead of passing it in
         this.songLibrary = Database.songLibrary.getInstance();
         this.searchPresenter = searchPresenter;
     }

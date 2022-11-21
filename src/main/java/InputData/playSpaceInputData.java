@@ -1,16 +1,17 @@
 package InputData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class playSpaceInputData {
 
-    private final ArrayList<songInputData> spaceSongList;
+    private final List<songInputData> spaceSongList;
 
-    public playSpaceInputData(ArrayList<songInputData> spaceSongList) {
+    public playSpaceInputData(List<songInputData> spaceSongList) {
         this.spaceSongList = spaceSongList;
     }
 
-    public ArrayList<songInputData> getSpaceSongList(){
+    public List<songInputData> getSpaceSongList(){
         return this.spaceSongList;
     }
 }

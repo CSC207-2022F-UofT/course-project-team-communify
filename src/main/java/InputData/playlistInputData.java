@@ -14,7 +14,7 @@ import java.util.List;
 public class playlistInputData {
     private final String name;
     private final LinkedList<Song> songList;
-    private final ArrayList<songInputData> songInputList;
+    private final List<songInputData> songInputList;
     private final int id;
 
     public playlistInputData(String name, List<Song> songList){
@@ -62,7 +62,7 @@ public class playlistInputData {
     /**
      * @return list of songs in the playlist formatted as songInputData objects
      */
-    public ArrayList<songInputData> getSongInputList() {
+    public List<songInputData> getSongInputList() {
         return songInputList;
     }
 }
