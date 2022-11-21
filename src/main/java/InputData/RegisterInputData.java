@@ -3,7 +3,6 @@ package InputData;
 public class RegisterInputData {
     private final String username;
     private final String password;
-    private boolean isArtist = false;
 
     public RegisterInputData(String username, String password) {
         this.username = username;
@@ -22,11 +21,5 @@ public class RegisterInputData {
      */
     public String getPassword() {
         return this.password;
-    }
-    /**
-     * @return whether the user is an artist
-     */
-    public boolean isArtist() {
-        return this.isArtist;
     }
 }

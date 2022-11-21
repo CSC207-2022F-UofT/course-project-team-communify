@@ -4,7 +4,6 @@ public class RegisterArtistInputData {
     private final String username;
     private final String password;
     private final String artistName;
-    private boolean isArtist = true;
 
     public RegisterArtistInputData(String username, String password, String artistName) {
         this.username = username;
@@ -29,11 +28,5 @@ public class RegisterArtistInputData {
      */
     public String getPassword() {
         return this.password;
-    }
-    /**
-     * @return whether the user is an artist
-     */
-    public boolean isArtist() {
-        return this.isArtist;
     }
 }

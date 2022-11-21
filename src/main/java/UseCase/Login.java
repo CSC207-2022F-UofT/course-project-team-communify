@@ -20,19 +20,12 @@ public class Login implements loginInputBoundary{
 
     @Override
     public boolean login(loginInputData loginID) {
-        if (!loginID.isArtist()){
-            if (loginUsers.checkPassword(loginID.getUsername(), loginID.getPassword())){
-                loginOutputData out = new loginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
-                        loginID.isArtist());
-                loginPresenter.userLogIn(out);
-                return true;
-            }
-            else {
-                return false;
-            }
+        if (loginUsers.checkPassword(loginID.getUsername(), loginID.getPassword())){
+            loginOutputData out = new loginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
+                    loginID.isArtist());
+            loginPresenter.userLogIn(out);
+            return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }

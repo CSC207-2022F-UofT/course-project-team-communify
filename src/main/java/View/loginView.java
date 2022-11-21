@@ -20,10 +20,14 @@ public class loginView extends JFrame implements ActionListener {
     private JCheckBox isArtistCheckBox;
     private JTextField usernameTextField;
     private JTextField passwordTextField;
+    private ImageIcon icon;
+    private ImageIcon logoImg;
+    private JButton registerButton;
 
 
-    public loginView() {
-
+    public loginView(ImageIcon icon, ImageIcon logoImg) {
+        this.icon = icon;
+        this.logoImg = logoImg;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
@@ -39,13 +43,23 @@ public class loginView extends JFrame implements ActionListener {
             String password = this.passwordTextField.getText();
             boolean isArtist = isArtistCheckBox.isSelected();
             InMemoryUser user;
+            InMemoryArtistUser artist;
+
+            if (isArtist){
+                this.viewModel = new userViewModel(new InMemoryArtistUser("", ""));
+            }
+            else {
+                this.viewModel = new userViewModel(new InMemoryUser());
+            }
 
             if (viewModel.loginAction(username, password, isArtist)){
                 this.jframe.dispose();
                 if (isArtist) {
-                    // artistView artistDashboard = new artistView();    // should need an artist parameter
+                    artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
+                    new artistView(this.icon, this.logoImg, artist);
 
                 } else {
+
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
                     new playlistView(user);
                 }
@@ -70,7 +84,6 @@ public class loginView extends JFrame implements ActionListener {
         this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.viewModel = new userViewModel(new InMemoryUser());
         this.jframe.setLocationRelativeTo(null);
     }
 
@@ -79,11 +92,18 @@ public class loginView extends JFrame implements ActionListener {
 
         this.submitButton = new JButton();
         this.submitButton.setBounds(100, 400, 100, 50);  // fix up the bounds
-        this.submitButton.setText("Submit");
+        this.submitButton.setText("Login");
         this.submitButton.setFocusable(false);
         this.submitButton.setHorizontalTextPosition(JButton.CENTER);
         this.submitButton.setForeground(Color.cyan);
         this.submitButton.setBackground(Color.lightGray);
+        this.registerButton = new JButton();
+        this.registerButton.setBounds(100, 500, 100, 50);  // fix up the bounds
+        this.registerButton.setText("Register");
+        this.registerButton.setFocusable(false);
+        this.registerButton.setHorizontalTextPosition(JButton.CENTER);
+        this.registerButton.setForeground(Color.cyan);
+        this.registerButton.setBackground(Color.lightGray);
 
         this.isArtistCheckBox = new JCheckBox();
         this.isArtistCheckBox.setBounds(200, 200, 100, 50);
@@ -101,11 +121,13 @@ public class loginView extends JFrame implements ActionListener {
 
         this.submitButton.addActionListener(this);
         this.isArtistCheckBox.addActionListener(this);
+        this.registerButton.addActionListener(this);
     }
 
 
     private void initializeFrame() {
         this.jframe.add(this.submitButton);
+        this.jframe.add(this.registerButton);
         this.jframe.add(this.isArtistCheckBox);
         this.jframe.add(this.usernameTextField);
         this.jframe.add(this.passwordTextField);

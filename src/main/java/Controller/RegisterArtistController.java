@@ -19,8 +19,8 @@ public class RegisterArtistController {
     /**
      * function calling the use case for registering a regular user
      */
-    public void registerArtist(String username, String artistName, String password){
+    public boolean registerArtist(String username, String artistName, String password){
         RegisterArtistInputData registerInputData = new RegisterArtistInputData(artistName, username, password);
-        registerInteractor.register(registerInputData);
+        return registerInteractor.register(registerInputData);
     }
 }

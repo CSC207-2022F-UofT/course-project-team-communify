@@ -31,10 +31,12 @@ public class artistView extends JFrame implements ActionListener {
     private JLabel logo;
     private final ImageIcon icon;
     private final ImageIcon logoImg;
+    private final InMemoryArtistUser user;
 
-    public artistView(ImageIcon icon, ImageIcon logoImg) {
+    public artistView(ImageIcon icon, ImageIcon logoImg, InMemoryArtistUser user) {
         this.icon = icon;
         this.logoImg = logoImg;
+        this.user = user;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
@@ -78,7 +80,7 @@ public class artistView extends JFrame implements ActionListener {
         this.jframe.setIconImage(this.icon.getImage());
 
 
-        InMemoryArtistUser artist = new InMemoryArtistUser("admin", "admin"); //TODO: REPLACE. TEMPORARY
+        InMemoryArtistUser artist = new InMemoryArtistUser(user.getArtistName(), user.getUsername());
         this.avm = new ArtistViewModel(artist);
 
         // Init JTable
