@@ -16,7 +16,7 @@ import java.util.List;
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
-       private GetSongAccessInterface songLibrary;
+    private GetSongAccessInterface songLibrary;
 
     public Search(searchOutputBoundary searchPresenter){
         this.songLibrary = Database.songLibrary.getInstance();

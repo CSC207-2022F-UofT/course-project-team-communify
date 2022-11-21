@@ -12,7 +12,8 @@ public class searchController {
         this.searchInteractor = new Search(searchPresenter);
     }
 
-    public void search(searchInputData inputData){
+    public void search(String text){
+        searchInputData inputData = new searchInputData(text);
         this.searchInteractor.search(inputData);
     }
 }
