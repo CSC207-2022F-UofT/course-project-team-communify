@@ -1,5 +1,6 @@
 package View;
 
+import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
@@ -7,6 +8,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class searchOutputView extends JFrame implements ActionListener {
     private InMemoryUser user;
@@ -26,10 +28,12 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[][] data;
     private String[] ids;
     private searchViewModel searchViewModel;
-    private InMemorySpace space;
+    private List<Integer> spaceIDs;
+    private musicEngineControllerViewModel musicEngineControllerViewModel;
 
-    public searchOutputView(String searchText, InMemoryUser user, InMemorySpace space){
-        this.space = space;
+    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
+        this.spaceIDs = spaceIDs;
+        this.musicEngineControllerViewModel = engineVm;
         this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
@@ -133,12 +137,13 @@ public class searchOutputView extends JFrame implements ActionListener {
             System.out.println(ids[row]);
 
             if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
-                String PopupMessage = this.space.getMusicEngineControllerViewModel().callAddToSpace(Integer.parseInt(ids[row]));
+                String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
+                this.spaceIDs = this.musicEngineControllerViewModel.returnSpace();
                 this.createPopup(PopupMessage);
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.space);
+            new playlistView(this.user, this.spaceIDs);
             // TODO: make this into an actual user
         }
     }

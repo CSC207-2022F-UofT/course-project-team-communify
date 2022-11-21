@@ -5,6 +5,8 @@ import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
 
+import java.util.List;
+
 public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
     private String spaceButtonText;
@@ -87,5 +89,14 @@ public class musicEngineControllerViewModel {
 
     public Object getSync() {
         return sync;
+    }
+
+    public void updateSpace(List<Integer> spaceIDs) {
+        for (int id : spaceIDs)
+            this.musicEngineController.spaceAddSong(id);
+    }
+
+    public List<Integer> returnSpace(){
+        return this.musicEngineController.returnSpace();
     }
 }

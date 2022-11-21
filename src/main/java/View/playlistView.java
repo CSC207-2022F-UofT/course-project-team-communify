@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * view for the user dashboard
@@ -30,7 +31,6 @@ public class playlistView extends JFrame implements ActionListener {
     private searchViewModel searchViewModel;
     private PlaylistPanelView playlistPanel;
     private PlayBar playBar;
-    private InMemorySpace space;
 
     /**
      * constructor
@@ -61,8 +61,8 @@ public class playlistView extends JFrame implements ActionListener {
 
     }
 
-    public playlistView(InMemoryUser user, InMemorySpace space){
-        this.initializeValues(user, space);
+    public playlistView(InMemoryUser user, List<Integer> spaceIDs) {
+        this.initializeValues(user, spaceIDs);
         this.initializeComponents();            // set up space button
 
         // set up actual playlists
@@ -83,7 +83,6 @@ public class playlistView extends JFrame implements ActionListener {
 
         // set screen visible
         this.initializeFrame();
-
     }
 
     /**
@@ -102,7 +101,7 @@ public class playlistView extends JFrame implements ActionListener {
             this.searchViewModel.search(searchText);
             System.out.println(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.space);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel.returnSpace(), this.musicEngineControllerViewModel);
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
@@ -117,13 +116,12 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        this.space = new InMemorySpace(this.musicEngineControllerViewModel);   // initialize empty space
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
     }
 
-    private void initializeValues(InMemoryUser user, InMemorySpace space){
+    private void initializeValues(InMemoryUser user, List<Integer> spaceIDs){
         this.user = user;
 
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
@@ -133,7 +131,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        this.space = space;   // initialize empty space
+        this.musicEngineControllerViewModel.updateSpace(spaceIDs);
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();

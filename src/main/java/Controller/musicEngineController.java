@@ -11,6 +11,7 @@ import OutputBoundary.songOutputBoundary;
 import OutputBoundary.SpacePlayedOutputBoundary;
 import UseCase.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class musicEngineController {
     private final int SONG = 0;
@@ -75,6 +76,14 @@ public class musicEngineController {
             this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
         }
         this.spacePresenter.addedToSpace(songToAdd.getName());
+    }
+
+    public List<Integer> returnSpace(){
+        List<Integer> songs = new ArrayList<>();
+        for (songInputData song : this.spaceSongList){
+            songs.add(song.getId());
+        }
+        return songs;
     }
 
     // TODO: write unit tests
