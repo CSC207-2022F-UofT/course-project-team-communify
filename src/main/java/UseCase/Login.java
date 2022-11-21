@@ -1,21 +1,38 @@
 package UseCase;
 
+import Database.LoginUserAccessInterface;
 import InputBoundary.loginInputBoundary;
 import InputData.loginInputData;
 import OutputBoundary.loginOutputBoundary;
 import Database.GetUserAccessInterface;
+import OutputData.loginOutputData;
 
 public class Login implements loginInputBoundary{
     private final loginOutputBoundary loginPresenter;
-    private final GetUserAccessInterface allUsers;
+    private final LoginUserAccessInterface loginUsers;
+    private final GetUserAccessInterface getUsers;
 
     public Login(loginOutputBoundary loginPresenter) {
-        this.allUsers = Database.userList.getInstance();
+        this.loginUsers = Database.userList.getInstance();
+        this.getUsers = Database.userList.getInstance();
         this.loginPresenter = loginPresenter;
     }
 
     @Override
-    public void login(loginInputData loginID) {
-        //TODO: currently implementing
+    public boolean login(loginInputData loginID) {
+        if (!loginID.isArtist()){
+            if (loginUsers.checkPassword(loginID.getUsername(), loginID.getPassword())){
+                loginOutputData out = new loginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
+                        loginID.isArtist());
+                loginPresenter.userLogIn(out);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }

@@ -1,8 +1,4 @@
-import Entities.RegularUser;
-import Entities.User;
-import View.artistView;
-import View.playlistView;
-import View.searchOutputView;
+import View.loginRegisterView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -21,13 +17,8 @@ public class Main {
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
 
         // View Initialization
-        new artistView(windowIcon);
-
-//        // TODO
-        User user = new RegularUser("User", "");
-        playlistView PlaylistView = new playlistView(user);
-//        new searchOutputView(PlaylistView);
-//        Thread.sleep(5000);
+        // new artistView(windowIcon);
+        new loginRegisterView();
 
     }
 }

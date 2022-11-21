@@ -1,7 +1,6 @@
 package View;
 
 import ViewModel.searchViewModel;
-
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -10,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class searchOutputView extends JFrame implements ActionListener {
-    private playlistView playlistView;
+    private InMemoryUser user;
     private String searchText;
     private int FONTSIZE = 10;
     private int WIDTH = 640;
@@ -27,16 +26,18 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[][] data;
     private String[] ids;
     private searchViewModel searchViewModel;
+    private InMemorySpace space;
 
-    public searchOutputView(String searchText, playlistView playlistView){
-        this.initialiseValues(searchText, playlistView);
+    public searchOutputView(String searchText, InMemoryUser user, InMemorySpace space){
+        this.space = space;
+        this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
     }
 
-    public void initialiseValues(String searchText, playlistView playlistView){
-        this.playlistView = playlistView;
+    public void initialiseValues(String searchText, InMemoryUser user){
         this.searchViewModel = new searchViewModel();
+        this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
         this.layout = new BorderLayout(30, 30);
@@ -88,7 +89,9 @@ public class searchOutputView extends JFrame implements ActionListener {
     public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox();
         comboBox.addItem("Add to Space");
-        comboBox.addItem("Add to Playlist 1");
+
+        for (InMemoryPlaylist p : user.getPlaylists())
+            comboBox.addItem("Add to " + p.getName());
         //TODO: get Playlist names and make this dynamic
 
         columnModel.addColumn(new TableColumn());
@@ -104,12 +107,13 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.add(title);
+
         this.panel.add(title, BorderLayout.PAGE_START);
         this.panel.add(scrollPane,BorderLayout.CENTER);
         this.panel.add(homeButton, BorderLayout.PAGE_END);
+        this.panel.setBackground(new Color(156, 219, 250));
 
         this.jframe.add(panel);
-        this.panel.setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
 
@@ -129,12 +133,13 @@ public class searchOutputView extends JFrame implements ActionListener {
             System.out.println(ids[row]);
 
             if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
-                String PopupMessage = this.playlistView.callAddToSpace(Integer.parseInt(ids[row]));
+                String PopupMessage = this.space.getMusicEngineControllerViewModel().callAddToSpace(Integer.parseInt(ids[row]));
                 this.createPopup(PopupMessage);
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-//            playlistView userDashboard = new playlistView(); // pass in the user from the playlist view
+            new playlistView(this.user, this.space);
+            // TODO: make this into an actual user
         }
     }
 

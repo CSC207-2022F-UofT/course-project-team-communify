@@ -1,5 +1,6 @@
 package View;
 
+import Entities.RegularUser;
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
@@ -16,7 +17,7 @@ public class playlistView extends JFrame implements ActionListener {
     private final int FONTSIZE = 10;
     private final int WIDTH = 640;
     private final int HEIGHT = 640;
-    private User user;
+    private InMemoryUser user;
     private JFrame jframe;
     private JPanel panel;
     private JButton spaceButton;
@@ -27,13 +28,41 @@ public class playlistView extends JFrame implements ActionListener {
     private JTextField searchBar;
     private musicEngineControllerViewModel musicEngineControllerViewModel;
     private searchViewModel searchViewModel;
+    private PlaylistPanelView playlistPanel;
+    private PlayBar playBar;
+    private InMemorySpace space;
 
     /**
      * constructor
      * @param user takes in the user's data to display their own dashboard!
      */
-    public playlistView(User user){
+    public playlistView(InMemoryUser user){
         this.initializeValues(user);
+        this.initializeComponents();            // set up space button
+
+        // set up actual playlists
+        // The playlists will need to be under a Scrollable JPanel - ask Rohan if you have questions,
+        // only needs a basic for look in action listener to print out the song data
+        // TODO -- note: when starting to play a playlist, please update the spaceButtonText if it was being played
+
+
+        // *IMPORTANT* WE HAVE DECIDED TO HAVE SEARCH BE ITS OWN PAGE LIKE IN SPOTIFY FOR SWING REASONS - TALK TO ROHAN OR CHRISTINA IF YOU HAVE QUESTIONS
+        // SETUP SEARCH FOR SONG BUTTON - TAKES YOU TO searchOutputView.java
+        // TODO
+
+
+        // set up play bar - Raf this playbar needs to be consistent even if we open the search page and
+        // go back to this page idk how to keep that consistent? Maybe just copy-paste theplaybar code along with
+        // whatever song is playing
+        // TODO
+
+        // set screen visible
+        this.initializeFrame();
+
+    }
+
+    public playlistView(InMemoryUser user, InMemorySpace space){
+        this.initializeValues(user, space);
         this.initializeComponents();            // set up space button
 
         // set up actual playlists
@@ -72,12 +101,13 @@ public class playlistView extends JFrame implements ActionListener {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
             System.out.println(searchText);
-            new searchOutputView(searchText, this);
+            this.jframe.dispose();
+            new searchOutputView(searchText, this.user, this.space);
         }
         // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
 
-    private void initializeValues(User user){
+    private void initializeValues(InMemoryUser user){
         this.user = user;
 
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
@@ -86,8 +116,24 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // this.spaceViewModel = new spaceViewModel();
-        this.musicEngineControllerViewModel = new musicEngineControllerViewModel();
+        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
+        this.space = new InMemorySpace(this.musicEngineControllerViewModel);   // initialize empty space
+        this.spacePlaying = false;
+
+        this.searchViewModel = new searchViewModel();
+    }
+
+    private void initializeValues(InMemoryUser user, InMemorySpace space){
+        this.user = user;
+
+        this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
+        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        this.jframe.setResizable(false);
+        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
+        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
+        this.space = space;   // initialize empty space
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
@@ -99,9 +145,14 @@ public class playlistView extends JFrame implements ActionListener {
 
         this.setSpaceButton();
         this.setUpSearchButton();
+
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
+
         this.setUpSearchBar();
 
         // Set up panel
+        // TODO: determine whether this should go in a helper function or not (i.e. how many panels do we want?)
         this.panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 10, 10);  // TODO - *Update*: For layout ask Rohan or Christina do not make a panel take up the entire screen size, these are just test dimensions to edit afterwards
@@ -121,6 +172,9 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.add(title);
         this.panel.add(this.spaceButton);
         this.panel.add(this.searchBar);
+        this.panel.add(this.playlistPanel.getPane());
+        this.panel.add(this.playBar.getPanel());
+
         this.panel.add(searchButton);
         this.jframe.add(panel);
         this.jframe.setVisible(true);

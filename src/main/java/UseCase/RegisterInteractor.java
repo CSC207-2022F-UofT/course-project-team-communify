@@ -33,7 +33,7 @@ public class RegisterInteractor implements RegisterInputBoundary{
         // create regular user
         User user = this.userFactory.createRegularUser(registerInputData.getUsername(), registerInputData.getPassword());
         allUsers.save(new userDsData(user));
-        loginOutputData userCreated = new loginOutputData(); //Todo: pass in value for loginOD
+        // loginOutputData userCreated = new loginOutputData(); //Todo: pass in value for loginOD
         //TODO: registerPresenter.successView(userCreated);
     }
 
