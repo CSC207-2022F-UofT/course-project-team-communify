@@ -1,5 +1,4 @@
-import View.artistView;
-import View.loginRegisterView;
+import View.launchView;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -19,8 +18,8 @@ public class Main {
         ImageIcon logoRed = new ImageIcon(LOGO_RED);
 
         // View Initialization
-        new artistView(windowIcon, logoRed);
-        //new loginRegisterView();
+        //new artistView(windowIcon, logoRed);
+        new launchView(windowIcon, logoRed);
 
     }
 }

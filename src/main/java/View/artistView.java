@@ -31,7 +31,6 @@ public class artistView extends JFrame implements ActionListener {
     private JLabel logo;
     private final ImageIcon icon;
     private final ImageIcon logoImg;
-    private int deleteID;
 
     public artistView(ImageIcon icon, ImageIcon logoImg) {
         this.icon = icon;
@@ -44,7 +43,7 @@ public class artistView extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.uploadButton) {
+        if (e.getSource() == this.uploadButton){
 
             FileNameExtensionFilter filter = new FileNameExtensionFilter("MP3 Files (*.mp3)", "mp3");
             JFileChooser fileChooser = new JFileChooser();

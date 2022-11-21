@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class loginRegisterView extends JFrame implements ActionListener {
+public class loginView extends JFrame implements ActionListener {
     private userViewModel viewModel;
     private JFrame jframe;
     private JButton submitButton;
@@ -22,7 +22,7 @@ public class loginRegisterView extends JFrame implements ActionListener {
     private JTextField passwordTextField;
 
 
-    public loginRegisterView () {
+    public loginView() {
 
         this.initializeValues();
         this.initializeComponents();
@@ -71,6 +71,7 @@ public class loginRegisterView extends JFrame implements ActionListener {
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.viewModel = new userViewModel(new InMemoryUser());
+        this.jframe.setLocationRelativeTo(null);
     }
 
 
