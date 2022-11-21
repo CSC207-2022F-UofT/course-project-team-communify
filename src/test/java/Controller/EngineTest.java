@@ -81,6 +81,7 @@ public class EngineTest {
     @Test
     public void testPlayNext(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
                 new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         playlistInputData p = new playlistInputData(0);
@@ -89,6 +90,6 @@ public class EngineTest {
         controller.playNext();
 
         Assertions.assertTrue(mp.isPlaying());
-        Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(1));
+        Assertions.assertEquals(mp.getCurrentSong().getName(), p.getSongs().get(1).getName());
     }
 }
