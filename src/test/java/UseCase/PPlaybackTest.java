@@ -28,20 +28,7 @@ public class PPlaybackTest {
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
-        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
-    }
-
-    @Test
-    public void testPlayNext(){
-        MusicPlayer.getInstance().close();
-        playlistInputData p = new playlistInputData(0);
-        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
-
-        play.play(p);
-        final Thread t = new Thread(this::notifySync);
-        t.start();
-
-        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new playlistInputData(0).getSongs().get(0));
     }
 
     @Test
@@ -69,11 +56,5 @@ public class PPlaybackTest {
         }
 
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
-    }
-
-    private void notifySync(){
-        synchronized (MusicPlayer.getInstance().getSync()) {
-            MusicPlayer.getInstance().getSync().notifyAll();
-        }
     }
 }
