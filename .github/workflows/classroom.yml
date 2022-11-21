@@ -1,4 +1,4 @@
-name: GitHub Classroom Workflow
+name: Autograder
 
 on: [push]
 
