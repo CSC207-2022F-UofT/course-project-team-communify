@@ -17,6 +17,7 @@ public class PlayTest {
     @Test
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         playSongInteractor player = new playSongInteractor(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         player.playSong(new songInputData(2));
         Assertions.assertTrue(mp.isPlaying());

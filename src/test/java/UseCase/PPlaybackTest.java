@@ -23,6 +23,7 @@ public class PPlaybackTest {
 
     @Test
     public void testPlay(){
+        MusicPlayer.getInstance().close();
         playlistInputData p = new playlistInputData(0);
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
 
@@ -32,6 +33,7 @@ public class PPlaybackTest {
 
     @Test
     public void testPlayNext(){
+        MusicPlayer.getInstance().close();
         playlistInputData p = new playlistInputData(0);
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
 
@@ -44,6 +46,7 @@ public class PPlaybackTest {
 
     @Test
     public void testStopQueue(){
+        MusicPlayer.getInstance().close();
         File file = new File("./src/test/java/UseCase/test1.mp3");
         Song song = new Song(0, null, null, null, file, null, null);
         File file2 = new File("./src/test/java/UseCase/test2.mp3");
