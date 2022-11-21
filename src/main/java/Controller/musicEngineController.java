@@ -31,9 +31,11 @@ public class musicEngineController {
         this.spaceSongList = new ArrayList<>();
         this.songPresenter = songPresenter;
         this.playing = NONE;
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
+        playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
+        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter, playSpaceInputData);
         this.playPlaylist = new playPlaylist(songPresenter);
         this.nextSong = new NextSong(songPresenter, this.playPlaylist);
+
     }
 
     /**
@@ -53,8 +55,7 @@ public class musicEngineController {
      */
     public void playSpace(){
         stop();
-        playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
-        this.playSpaceInteractor.playSpace(playSpaceInputData);
+        this.playSpaceInteractor.playSpace();
     }
 
     /**
