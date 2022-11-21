@@ -9,7 +9,7 @@ public class Song {
     private final String name;
     private final String[] artistList;
     private final String genre;
-    private final File file;
+    private File file;
     private final BufferedImage cover;
     private final String uploader;
 
@@ -96,6 +96,10 @@ public class Song {
             if(i+1<artistList.length) artists.append(", ");
         }
         return artists.toString();
+    }
+
+    public void setFile(File file){
+        this.file = file;
     }
 
 }

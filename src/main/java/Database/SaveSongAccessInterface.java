@@ -1,5 +1,7 @@
 package Database;
 
+import java.util.ArrayList;
+
 public interface SaveSongAccessInterface {
 
     /**
@@ -15,4 +17,7 @@ public interface SaveSongAccessInterface {
      */
     public boolean deleteSong(int id);
 
+    public String[][] getString();
+    public String[][] getString(ArrayList<Integer> ids);
+    public String[][] getString(String username);
 }
