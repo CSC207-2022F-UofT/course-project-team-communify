@@ -164,9 +164,11 @@ public class MusicPlayer {
                 } else {
                     engine.play();
                 }
+                this.engine.close();
+                this.playing = false;
                 sync.notifyAll();
             } catch (JavaLayerException e) {
-                throw new RuntimeException(e);
+                startPlayback(resume);
             }
         }
     }

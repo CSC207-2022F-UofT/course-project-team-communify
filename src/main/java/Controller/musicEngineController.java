@@ -94,11 +94,11 @@ public class musicEngineController {
      */
     public void playPlaylist(int id) {
         stop();
+        playing = PLAYLIST;
         this.playPlaylist = new playPlaylist(this.songPresenter);
         playlistInputData data = new playlistInputData(id);
         this.nextSong.updatePlaylist(data);
         this.playPlaylist.play(data);
-        playing = PLAYLIST;
     }
 
     /**

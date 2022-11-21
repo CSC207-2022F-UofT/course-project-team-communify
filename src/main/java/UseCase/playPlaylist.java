@@ -39,10 +39,11 @@ public class playPlaylist implements playPlaylistInputBoundary {
         ArrayList<Song> playlist = data.getSongs();
         if (nextSong < playlist.size()){
             playSongInputBoundary p = new playSongInteractor(presenter);
+            int songToPlay = nextSong;
+            nextSong++;
             final Thread t = new Thread(this::playNext);
             t.start();
-            p.playSong(new songInputData(playlist.get(nextSong)));
-            nextSong++;
+            p.playSong(new songInputData(playlist.get(songToPlay)));
         }
     }
 
