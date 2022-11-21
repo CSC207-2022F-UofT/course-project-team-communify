@@ -4,6 +4,7 @@ import Entities.MusicPlayer;
 import Entities.Song;
 import InputData.playlistInputData;
 import Presenter.songPresenter;
+import View.InMemoryPlaylist;
 import ViewModel.musicEngineControllerViewModel;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +28,7 @@ public class RecommendTest {
             genres.add(s.getGenre());
         }
 
-        recommendSong recommend = new recommendSong(new songPresenter(new musicEngineControllerViewModel()));
+        recommendSong recommend = new recommendSong(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
         recommend.recommendation(p);
         Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }

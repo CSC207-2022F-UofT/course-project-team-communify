@@ -22,7 +22,7 @@ public class PauseTest {
 
         pauseSong pause = new pauseSong();
         pause.pause();
-        // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
 
     @Test
@@ -35,11 +35,12 @@ public class PauseTest {
 
         pauseSong pause = new pauseSong();
         pause.pause();
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
     @Test
     public void testPauseWhenNothingPlaying(){
+        MusicPlayer.getInstance().close();
         pauseSong pause = new pauseSong();
         pause.pause();
         Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());

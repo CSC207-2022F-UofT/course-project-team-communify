@@ -36,7 +36,7 @@ public class PPlaybackTest {
         playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class PPlaybackTest {
         final Thread t = new Thread(this::notifySync);
         t.start();
 
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
     @Test
@@ -76,11 +76,9 @@ public class PPlaybackTest {
 
         play.play(p);
         play.stopQueue();
-        final Thread t = new Thread(this::notifySync);
-        t.start();
 
         try {
-            Thread.sleep(5500);
+            Thread.sleep(6500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
