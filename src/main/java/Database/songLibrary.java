@@ -66,7 +66,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      * Saves the updated song library to the database.
      */
     public void saveLibrary(){
-        try {
+        if(!uploadQueue.isEmpty()) try{
 
             // Update songLib
             for(songDsData song: uploadQueue){
