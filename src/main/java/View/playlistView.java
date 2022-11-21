@@ -4,12 +4,14 @@ import Entities.RegularUser;
 import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
+import ViewModel.playlistViewModel;
+import java.util.Random;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.concurrent.ThreadLocalRandom;
 /**
  * View for the user dashboard
  */
@@ -23,6 +25,10 @@ public class playlistView extends JFrame implements ActionListener {
     private JPanel panel;
     private JButton spaceButton;
     private JButton searchButton;
+
+    private JPanel playlistpanel;
+    private JButton newPlaylistButton;
+
     private JLabel title;
     private Font font;
     private boolean spacePlaying;
@@ -61,8 +67,6 @@ public class playlistView extends JFrame implements ActionListener {
 
         this.initializeFrame();
     }
-
-
     /**
      * Invoked when an action occurs.
      * @param e the event to be processed
@@ -78,14 +82,26 @@ public class playlistView extends JFrame implements ActionListener {
                 this.spaceButton.setText(message);
 
             }
-        } else if (e.getSource() == this.searchButton) {
+        }
+        else if (e.getSource() == this.searchButton) {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
 
             this.jframe.dispose();
             new searchOutputView(searchText, user);
 
+
         } // TODO -- NOTE: add your action commands as an else-if to this if statement
+        else if(e.getSource() == this.newPlaylistButton){
+            int min = 0;
+            int max = 1000000000;
+            //int random_ID = (int)Math.floor(Math.random()*(max-min+1)+min);
+            int random_ID = ThreadLocalRandom.current().nextInt(0, 10000);
+
+            this.jframe.dispose();
+            NewPlaylistInputDataView newPlaylistwindow = new NewPlaylistInputDataView(this.user, random_ID);
+
+        }
 
     }
 
@@ -105,7 +121,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
         this.spacePlaying = false;
 
-        this.searchViewModel = new searchViewModel();
+        //this.searchViewModel = new searchViewModel();
     }
 
 
@@ -127,6 +143,14 @@ public class playlistView extends JFrame implements ActionListener {
         this.searchButton.setBackground(Color.white);
         this.searchButton.setFont(font);
 
+        this.newPlaylistButton =  new JButton("Create new Playlist!");
+        this.newPlaylistButton.setBounds(450,100,150,55);
+        this.newPlaylistButton.setFocusable(false);
+        this.newPlaylistButton.setHorizontalTextPosition(JButton.CENTER);
+        this.newPlaylistButton.setBackground(Color.white);
+        this.newPlaylistButton.setOpaque(true);
+        this.newPlaylistButton.setFont(font);
+
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
         this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
 
@@ -142,6 +166,7 @@ public class playlistView extends JFrame implements ActionListener {
 
         this.spaceButton.addActionListener(this);
         this.searchButton.addActionListener(this);
+        this.newPlaylistButton.addActionListener(this);
     }
 
     public void setUpSearchBar(){
@@ -157,6 +182,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.add(this.searchBar);
         this.panel.add(this.playlistPanel.getPane());
         this.panel.add(this.playBar.getPanel());
+
+        this.panel.add(newPlaylistButton);
 
         this.panel.add(searchButton);
         this.jframe.add(panel);
