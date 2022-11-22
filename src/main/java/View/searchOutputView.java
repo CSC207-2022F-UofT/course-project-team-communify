@@ -26,17 +26,14 @@ public class searchOutputView extends JFrame implements ActionListener {
     private JComboBox<String> comboBox;
     private String[] ids;
     private searchViewModel searchViewModel;
-    private List<Integer> spaceIDs;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
 
     /**
      * @param searchText the search query
      * @param user the logged-in user
-     * @param spaceIDs the IDs of the songs in the space
      * @param engineVm the view model containing the song data
      */
-    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
-        this.spaceIDs = spaceIDs;
+    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm){
         this.musicEngineControllerViewModel = engineVm;
         this.initialiseValues(searchText, user);
         this.setUpTable();
@@ -150,7 +147,6 @@ public class searchOutputView extends JFrame implements ActionListener {
 
             if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
                 String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
-                this.spaceIDs = this.musicEngineControllerViewModel.returnSpace();
                 this.createPopup(PopupMessage);
             }
             if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
@@ -158,7 +154,7 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.spaceIDs, this.musicEngineControllerViewModel);
+            new playlistView(this.user, this.musicEngineControllerViewModel);
         }
     }
 
