@@ -13,11 +13,21 @@ import java.util.ArrayList;
 public class userDsData {
     private final User user;
 
+    /**
+     * constructor for creation from use case to pass to database
+     * @param u user object to encapsulate
+     */
     public userDsData(User u){
-        // constructor for creation from use case to pass to database
         this.user = u;
     }
 
+    /**
+     * constructor for building an artistuser from the .csv database
+     * @param username string username of user
+     * @param password string password of user
+     * @param artistName string artistname of user
+     * @param songs string array of song ids owned by the user
+     */
     public userDsData(String username, String password, String artistName, String[] songs){
         userFactory factory = new userFactory();
         GetSongAccessInterface songLibrary = Database.songLibrary.getInstance();
@@ -33,6 +43,12 @@ public class userDsData {
         this.user = factory.createArtistUser(artistName, username, password, library);
     }
 
+    /**
+     * constructor for building a regularuser from the .csv database
+     * @param username string username of the user
+     * @param password string password of the user
+     * @param playlists string array of the playlist IDs belonging to the user
+     */
     public userDsData(String username, String password, String[] playlists){
         userFactory factory = new userFactory();
         ArrayList<Integer> library = new ArrayList<>();

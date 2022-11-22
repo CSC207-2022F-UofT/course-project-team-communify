@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Creates the main playlist panel for the view.
+ */
 public class PlaylistPanelView implements ActionListener {
     private final int WIDTH = 600;
     private final int HEIGHT = 400;
@@ -16,10 +19,18 @@ public class PlaylistPanelView implements ActionListener {
     private ArrayList<IDButton> buttons;
     private musicEngineControllerViewModel viewModel;
 
+    /**
+     * @param u the user logged in
+     * @param vm the view model with the song data
+     */
     public PlaylistPanelView(InMemoryUser u, musicEngineControllerViewModel vm){
         initializeComponents(u.getPlaylists(), vm);
     }
 
+    /**
+     * @param playlistList the playlists owned by the user
+     * @param vm the view model with the song data
+     */
     private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, musicEngineControllerViewModel vm) {
         this.viewModel = vm;
         this.panel = new JPanel();
@@ -74,10 +85,17 @@ public class PlaylistPanelView implements ActionListener {
         }
     }
 
+    /**
+     * @return the scrollable pane containing playlist view data
+     */
     public JScrollPane getPane() {
         return pane;
     }
 
+    /**
+     * Handles playlist button events.
+     * @param actionEvent the button press event
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (buttons.contains((IDButton) actionEvent.getSource())){

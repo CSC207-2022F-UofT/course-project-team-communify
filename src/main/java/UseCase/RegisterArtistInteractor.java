@@ -8,18 +8,28 @@ import InputBoundary.RegisterArtistInputBoundary;
 import InputData.RegisterArtistInputData;
 import OutputBoundary.loginOutputBoundary;
 import OutputData.loginOutputData;
-
+/**
+ * Application business rules use case class to register an artist.
+ */
 public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
     private final loginOutputBoundary registerPresenter;
     private final userFactory userFactory;
 
     private final SaveUserAccessInterface allUsers;
 
+    /**
+     * @param registerPresenter the register output presenter
+     */
     public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
         this.allUsers = Database.userList.getInstance();
         this.registerPresenter = registerPresenter;
         this.userFactory = new userFactory();
     }
+
+    /**
+     * @param registerInputData the input data of the new artist
+     * @return true if the register is successful
+     */
     @Override
     public boolean register(RegisterArtistInputData registerInputData){
         if (allUsers.exists(registerInputData.getUsername()) || registerInputData.getPassword().equals("") ||

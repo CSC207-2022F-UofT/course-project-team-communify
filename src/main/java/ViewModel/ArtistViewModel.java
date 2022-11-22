@@ -5,7 +5,10 @@ import InputData.UploadSongInputData;
 import InputData.getArtistSongInputData;
 import Presenter.EditSongPresenter;
 import Presenter.getArtistSongPresenter;
-
+/**
+ * The interface adapters layer view model which acts as a gateway between the view and the artist related
+ * parts of the program.
+ */
 public class ArtistViewModel {
 
     private ArtistUserDsView currentArtist;
@@ -15,6 +18,9 @@ public class ArtistViewModel {
     private String[][] songTable;
     private boolean isUploaded;
 
+    /**
+     * @param currentArtist the artist who is currently loaded in the program
+     */
     public ArtistViewModel(ArtistUserDsView currentArtist){
         this.currentArtist = currentArtist;
         this.editSongController = new EditSongController(new EditSongPresenter(this));
@@ -56,6 +62,9 @@ public class ArtistViewModel {
         this.songTable = songTable;
     }
 
+    /**
+     * @return the name of the artist
+     */
     public String getArtistName(){
         return this.currentArtist.getArtistName();
     }

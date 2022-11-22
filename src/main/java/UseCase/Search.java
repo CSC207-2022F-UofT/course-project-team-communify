@@ -12,12 +12,17 @@ import OutputData.searchOutputData;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+/**
+ * Application business rules use case class to search for a song.
+ */
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
     private GetSongAccessInterface songLibrary;
 
+    /**
+     * @param searchPresenter the search output presenter
+     */
     public Search(searchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
         this.songLibrary = Database.songLibrary.getInstance();
@@ -40,8 +45,8 @@ public class Search implements searchInputBoundary {
     /**
      * Helper function for search().
      * Goes through database and finds songs that have an exact match or start with the name
-     * @param name
-     * @param library
+     * @param name the name of the song to search for
+     * @param library the library of all songs
      * @return A List with the exact matches at the top and similar songs after
      */
     private static List<Song> findSongs(String name, Collection<songDsData> library) {

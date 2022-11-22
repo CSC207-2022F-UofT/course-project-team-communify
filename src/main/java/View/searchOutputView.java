@@ -10,27 +10,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * view for search output
+ */
 public class searchOutputView extends JFrame implements ActionListener {
     private InMemoryUser user;
     private String searchText;
-    private int FONTSIZE = 10;
-    private int WIDTH = 640;
-    private int HEIGHT = 640;
     private JFrame jframe;
     private JPanel panel;
     private JScrollPane scrollPane;
     private JLabel title;
     private JButton homeButton;
-    private Font font;
     private JTable table;
-    private BorderLayout layout;
-    private JComboBox comboBox;
-    private String[][] data;
+    private JComboBox<String> comboBox;
     private String[] ids;
     private searchViewModel searchViewModel;
     private List<Integer> spaceIDs;
-    private musicEngineControllerViewModel musicEngineControllerViewModel;
+    private final musicEngineControllerViewModel musicEngineControllerViewModel;
 
+    /**
+     * @param searchText the search query
+     * @param user the logged-in user
+     * @param spaceIDs the IDs of the songs in the space
+     * @param engineVm the view model containing the song data
+     */
     public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
         this.spaceIDs = spaceIDs;
         this.musicEngineControllerViewModel = engineVm;
@@ -39,16 +42,20 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.initializeFrame();
     }
 
+    /**
+     * @param searchText the search query
+     * @param user the logged-in user
+     */
     public void initialiseValues(String searchText, InMemoryUser user){
         this.searchViewModel = new searchViewModel();
         this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
-        this.layout = new BorderLayout(30, 30);
+        BorderLayout layout = new BorderLayout(30, 30);
         this.panel = new JPanel(layout);
         this.title = new JLabel("Search results for " + this.searchText);
-        this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
-        this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE * 2));
+        int FONTSIZE = 10;
+        this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, FONTSIZE * 2));
 
         this.homeButton = new JButton();
         this.homeButton.setText("Home");
@@ -64,7 +71,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      * Method to set up JTable in View that outputs search results
      */
     public void setUpTable(){
-        this.data = this.searchViewModel.search(this.searchText);
+        String[][] data = this.searchViewModel.search(this.searchText);
 
         String[][] formattedData = new String[data.length][3];
         this.ids = new String[data.length];
@@ -74,7 +81,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         }
 
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
-        table = new JTable(this.data, columnNames);
+        table = new JTable(data, columnNames);
         TableColumnModel columnModel = table.getColumnModel();
         setUpActions(columnModel, formattedData.length);
 
@@ -91,7 +98,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      * @param length is the length of the formatted data
      */
     public void setUpActions(TableColumnModel columnModel, int length){
-        comboBox = new JComboBox();
+        comboBox = new JComboBox<>();
         comboBox.addItem("Add to Space");
 
         for (InMemoryPlaylist p : user.getPlaylists()) {
@@ -107,8 +114,13 @@ public class searchOutputView extends JFrame implements ActionListener {
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
+    /**
+     * Initializes the main window frame and adds components.
+     */
     public void initializeFrame(){
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int HEIGHT = 640;
+        int WIDTH = 640;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.add(title);
 
@@ -131,7 +143,6 @@ public class searchOutputView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.comboBox){
-
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
@@ -144,10 +155,12 @@ public class searchOutputView extends JFrame implements ActionListener {
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
             new playlistView(this.user, this.spaceIDs);
-            // TODO: make this into an actual user
         }
     }
 
+    /**
+     * @param text the text to show in the popup
+     */
     private void createPopup(String text){
         JOptionPane pane = new JOptionPane(null);
         pane.setMessage(text);

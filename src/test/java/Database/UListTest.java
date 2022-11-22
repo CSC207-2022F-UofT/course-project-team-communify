@@ -2,17 +2,17 @@ package Database;
 
 import Entities.RegularUser;
 import Entities.User;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
-
+/**
+ * Tests for the user database.
+ */
 public class UListTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests checking if a user exists.
+     */
     @Test
     public void testExists(){
         SaveUserAccessInterface list = Database.userList.getInstance();
@@ -24,6 +24,9 @@ public class UListTest {
         Assertions.assertFalse(list.exists("Muhammed"));
     }
 
+    /**
+     * Tests saving a user.
+     */
     @Test
     public void testSaveUser(){
         SaveUserAccessInterface list = Database.userList.getInstance();
@@ -43,8 +46,11 @@ public class UListTest {
         Assertions.assertEquals(u.getPassword(), getter.getUser(username).getPassword());
     }
 
+    /**
+     * Tests getting a user.
+     */
     @Test
-    public void testGetPlaylist(){
+    public void testGetUser(){
         GetUserAccessInterface list = Database.userList.getInstance();
         User u = list.getUser("User1").getUser();
         Assertions.assertEquals(u.getUsername(), "User1");

@@ -2,8 +2,14 @@ package Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for the song database.
+ */
 public class SLibraryTest {
 
+    /**
+     * Tests checking if a song exists.
+     */
     @Test
     public void testExists(){
         GetSongAccessInterface lib = songLibrary.getInstance();
@@ -13,6 +19,9 @@ public class SLibraryTest {
         Assertions.assertFalse(lib.exists(-2));
     }
 
+    /**
+     * Tests saving a song.
+     */
     @Test
     public void testSaveSong(){
         SaveSongAccessInterface lib = songLibrary.getInstance();
@@ -25,6 +34,9 @@ public class SLibraryTest {
         Assertions.assertFalse(lib.saveSong("testSaveSong", filepath));
     }
 
+    /**
+     * Tests getting a song.
+     */
     @Test
     public void testGetSong(){
         GetSongAccessInterface lib = songLibrary.getInstance();

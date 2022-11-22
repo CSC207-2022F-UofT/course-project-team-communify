@@ -8,6 +8,7 @@ import InputData.playlistInputData;
 public interface playPlaylistInputBoundary {
     /**
      * Plays the playlist given in the constructor.
+     * @param data the input data containing the playlist to play
      */
     void play(playlistInputData data);
 

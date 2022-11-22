@@ -6,17 +6,18 @@ import InputData.playlistInputData;
 import Presenter.songPresenter;
 import View.InMemoryPlaylist;
 import ViewModel.musicEngineControllerViewModel;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+/**
+ * Tests recommend song use case.
+ */
 public class RecommendTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests recommending a song.
+     */
     @Test
     public void testRecommend(){
         MusicPlayer mp = MusicPlayer.getInstance();

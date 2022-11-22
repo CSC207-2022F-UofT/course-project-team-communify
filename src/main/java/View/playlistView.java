@@ -1,7 +1,5 @@
 package View;
 
-import Entities.RegularUser;
-import Entities.User;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
 
@@ -15,7 +13,6 @@ import java.util.List;
  * view for the user dashboard
  */
 public class playlistView extends JFrame implements ActionListener {
-    private final int FONTSIZE = 10;
     private final int WIDTH = 640;
     private final int HEIGHT = 640;
     private InMemoryUser user;
@@ -40,27 +37,15 @@ public class playlistView extends JFrame implements ActionListener {
         this.initializeValues(user);
         this.initializeComponents();            // set up space button
 
-        // set up actual playlists
-        // The playlists will need to be under a Scrollable JPanel - ask Rohan if you have questions,
-        // only needs a basic for look in action listener to print out the song data
-        // TODO -- note: when starting to play a playlist, please update the spaceButtonText if it was being played
-
-
-        // *IMPORTANT* WE HAVE DECIDED TO HAVE SEARCH BE ITS OWN PAGE LIKE IN SPOTIFY FOR SWING REASONS - TALK TO ROHAN OR CHRISTINA IF YOU HAVE QUESTIONS
-        // SETUP SEARCH FOR SONG BUTTON - TAKES YOU TO searchOutputView.java
-        // TODO
-
-
-        // set up play bar - Raf this playbar needs to be consistent even if we open the search page and
-        // go back to this page idk how to keep that consistent? Maybe just copy-paste theplaybar code along with
-        // whatever song is playing
-        // TODO
-
         // set screen visible
         this.initializeFrame();
 
     }
 
+    /**
+     * @param user the user logged in
+     * @param spaceIDs the song IDs in the space
+     */
     public playlistView(InMemoryUser user, List<Integer> spaceIDs) {
         this.initializeValues(user, spaceIDs);
         this.initializeComponents();            // set up space button
@@ -86,9 +71,12 @@ public class playlistView extends JFrame implements ActionListener {
             this.jframe.dispose();
             new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel.returnSpace(), this.musicEngineControllerViewModel);
         }
-        // TODO -- NOTE: add your action commands as an else-if to this if statement
     }
 
+    /**
+     * Initializes the values of the main Swing and logic objects.
+     * @param user the logged in user
+     */
     private void initializeValues(InMemoryUser user){
         this.user = user;
 
@@ -104,6 +92,10 @@ public class playlistView extends JFrame implements ActionListener {
         this.searchViewModel = new searchViewModel();
     }
 
+    /**
+     * @param user the logged-in user
+     * @param spaceIDs the IDs of the songs in the space
+     */
     private void initializeValues(InMemoryUser user, List<Integer> spaceIDs){
         this.user = user;
 
@@ -120,9 +112,13 @@ public class playlistView extends JFrame implements ActionListener {
         this.searchViewModel = new searchViewModel();
     }
 
+    /**
+     * Initializes Swing related components.
+     */
     private void initializeComponents() {
         this.title = new JLabel(this.user.getUsername() + " Dashboard");
-        this.font = new Font(title.getFont().getName(), Font.PLAIN, this.FONTSIZE);
+        int FONTSIZE = 10;
+        this.font = new Font(title.getFont().getName(), Font.PLAIN, FONTSIZE);
 
         this.setSpaceButton();
         this.setUpSearchButton();
@@ -133,22 +129,27 @@ public class playlistView extends JFrame implements ActionListener {
         this.setUpSearchBar();
 
         // Set up panel
-        // TODO: determine whether this should go in a helper function or not (i.e. how many panels do we want?)
         this.panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(0, 0, 10, 10);  // TODO - *Update*: For layout ask Rohan or Christina do not make a panel take up the entire screen size, these are just test dimensions to edit afterwards
+        panel.setBounds(0, 0, 10, 10);
         panel.setBackground(new Color(156, 219, 250));
 
         this.spaceButton.addActionListener(this);
         this.searchButton.addActionListener(this);
     }
 
+    /**
+     * Creates the search bar elements
+     */
     public void setUpSearchBar(){
         this.searchBar = new JTextField();
         this.searchBar.setBounds(20, 30, 300, 55);
         this.searchBar.setFont(font);
     }
 
+    /**
+     * Initializes the main window frame and adds components.
+     */
     private void initializeFrame() {
         this.panel.add(title);
         this.panel.add(this.spaceButton);
@@ -161,6 +162,9 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setVisible(true);
     }
 
+    /**
+     * Sets up the search button elements.
+     */
     public void setUpSearchButton(){
         this.searchButton = new JButton("Seach for a song");
         this.searchButton.setBounds(325,30, 135,55);
@@ -171,6 +175,9 @@ public class playlistView extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Sets up the space button elements.
+     */
     private void setSpaceButton(){
         this.spaceButton = new JButton("Listen to space!");
         this.spaceButton.setBounds(475,30, 150,55);
@@ -180,7 +187,4 @@ public class playlistView extends JFrame implements ActionListener {
         this.spaceButton.setFont(font);
     }
 
-    public String callAddToSpace(int id){   // this is for communication between views
-        return this.musicEngineControllerViewModel.callAddToSpace(id);
-    }
 }

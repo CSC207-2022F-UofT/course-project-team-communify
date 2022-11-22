@@ -4,9 +4,14 @@ import View.InMemoryArtistUser;
 import ViewModel.ArtistViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+/**
+ * Tests the upload song use case.
+ */
 public class UploadSongTest {
 
+    /**
+     * Tests uploading a single song.
+     */
     @Test
     public void testUploadSong(){
 
