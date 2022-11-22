@@ -10,9 +10,8 @@ public interface playSpaceInputBoundary {
 
     /**
      * function to play the space
-     * @param songInputData data required to play the space
      */
-    void playSpace(playSpaceInputData songInputData);
+    void playSpace();
 
     /**
      * function to play a random song given that the space controller has no songs queued

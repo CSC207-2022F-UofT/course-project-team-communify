@@ -6,7 +6,7 @@ import InputBoundary.playSpaceInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
-import OutputBoundary.spacePlayedOutputBoundary;
+import OutputBoundary.SpacePlayedOutputBoundary;
 import OutputData.songOutputData;
 
 import java.util.*;
@@ -18,33 +18,32 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
     // instance of global playlistLibrary
     private final Database.songLibrary songLibrary;
-    private final spacePlayedOutputBoundary spacePlayedOutputBoundary;
+    private final SpacePlayedOutputBoundary spacePlayedOutputBoundary;
     private final Object sync;
     private InputData.playSpaceInputData playSpaceInputData;
+    // we decided on avoiding storing input data in interactor, but it is needed for queueing
     private final songOutputBoundary songOutputBoundary;
     private boolean keepPlaying;
 
     /**
      * constructor
      */
-    public playSpaceInteractor(spacePlayedOutputBoundary spacePlayedOutputBoundary,
-                               playSpaceInputData playSpaceInputData,
-                               songOutputBoundary songOutputBoundary){
+    public playSpaceInteractor(SpacePlayedOutputBoundary spacePlayedOutputBoundary,
+                               songOutputBoundary songOutputBoundary, playSpaceInputData playSpaceInputData){
         this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
         this.songLibrary = Database.songLibrary.getInstance();
         this.sync = MusicPlayer.getInstance().getSync();
         this.keepPlaying = true;
-        this.playSpaceInputData = playSpaceInputData;
         this.songOutputBoundary = songOutputBoundary;
+        this.playSpaceInputData = playSpaceInputData;
     }
 
     /**
      * calls playSong's actuallyPlaySong function
      */
     @Override
-    public void playSpace(playSpaceInputData playSpaceInputData){
-        ArrayList<songInputData> spaceSongList = playSpaceInputData.getSpaceSongList();
-        songOutputData songToPlay = pickSongToPlay(spaceSongList);
+    public void playSpace(){
+        songOutputData songToPlay = pickSongToPlay();
 
         // open queue
         final Thread thread = new Thread(this::playNextSong);
@@ -53,16 +52,17 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
         // call presenter
         this.spacePlayedOutputBoundary.spacePlayed();  // update button
 
-        playSongInteractor playSongInteractor = new playSongInteractor(new songInputData(songToPlay.getSong()),
-                this.songOutputBoundary);
+        playSongInteractor playSongInteractor = new playSongInteractor(this.songOutputBoundary);
 
-        playSongInteractor.playSong();  // play the song; this will also call presenter to update playbar
+        playSongInteractor.playSong(new songInputData(songToPlay.getSong()));
+        // play the song; this will also call presenter to update playbar
     }
 
-    private songOutputData pickSongToPlay(ArrayList<songInputData> spaceSongList){
+    private songOutputData pickSongToPlay(){
         songOutputData songToPlay;
-        if (!spaceSongList.isEmpty()){
-            songToPlay = new songOutputData(spaceSongList.remove(0).getSong());  // remove song to be played
+        if (!this.playSpaceInputData.getSpaceSongList().isEmpty()){
+            songToPlay = new songOutputData(this.playSpaceInputData.getSpaceSongList().remove(0).getSong());
+            // remove song to be played
         }
         else{
             songToPlay = this.pickRandomSong();
@@ -110,7 +110,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
                 System.out.println("thread interrupted");
             }
             if (keepPlaying){  // start all over again
-                this.playSpace(this.playSpaceInputData);
+                this.playSpace();
             }
         }
     }

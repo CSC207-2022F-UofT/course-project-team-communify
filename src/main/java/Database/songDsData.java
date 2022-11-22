@@ -70,4 +70,7 @@ public class songDsData {
     public String getGenre() {
         return this.song.getGenre();
     }
+    void setFile(String filepath){
+        this.song.setFile(new File(filepath));
+    }
 }

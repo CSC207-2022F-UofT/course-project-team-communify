@@ -1,6 +1,6 @@
 package InputData;
 
-import Database.playlistAccessInterface;
+import Database.GetPlaylistAccessInterface;
 import Database.playlistLibrary;
 import Entities.Song;
 
@@ -14,6 +14,8 @@ import java.util.List;
 public class playlistInputData {
     private final String name;
     private final LinkedList<Song> songList;
+    private final List<songInputData> songInputList;
+    private final int id;
 
     /**
      * @param name String name of the playlist
@@ -22,6 +24,11 @@ public class playlistInputData {
     public playlistInputData(String name, List<Song> songList){
         this.name = name;
         this.songList = new LinkedList<>(songList);
+        this.id = -1;
+        this.songInputList = new ArrayList<>();
+
+        for (Song s : songList)
+            songInputList.add(new songInputData(s));
     }
 
     /**
@@ -29,9 +36,14 @@ public class playlistInputData {
      * @param id int ID of the Playlist
      */
     public playlistInputData(int id){
-        playlistAccessInterface library = playlistLibrary.getInstance();
+        GetPlaylistAccessInterface library = playlistLibrary.getInstance();
         this.name = library.findPlaylist(id).getPlaylist().getName();
         this.songList = new LinkedList<>(library.findPlaylist(id).getPlaylist().getSongList());
+        this.id = id;
+        this.songInputList = new ArrayList<>();
+
+        for (Song s : songList)
+            songInputList.add(new songInputData(s));
     }
 
     /**
@@ -46,5 +58,19 @@ public class playlistInputData {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @return the ID of the playlist if created via ID, -1 otherwise
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @return list of songs in the playlist formatted as songInputData objects
+     */
+    public List<songInputData> getSongInputList() {
+        return songInputList;
     }
 }

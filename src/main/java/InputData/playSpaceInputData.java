@@ -1,25 +1,17 @@
 package InputData;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Application Business Rules layer data structure for submitting space input to use cases.
- */
 public class playSpaceInputData {
 
-    private final ArrayList<songInputData> spaceSongList;
+    private final List<songInputData> spaceSongList;
 
-    /**
-     * @param spaceSongList list of songInputData queued in the space
-     */
-    public playSpaceInputData(ArrayList<songInputData> spaceSongList) {
+    public playSpaceInputData(List<songInputData> spaceSongList) {
         this.spaceSongList = spaceSongList;
     }
 
-    /**
-     * @return the song list queue of the space
-     */
-    public ArrayList<songInputData> getSpaceSongList(){
+    public List<songInputData> getSpaceSongList(){
         return this.spaceSongList;
     }
 }

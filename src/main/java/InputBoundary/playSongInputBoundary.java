@@ -1,10 +1,11 @@
 package InputBoundary;
-/**
- * Use case layer input boundary that allows communication between outer layers and the play song use case.
- */
+
+import InputData.songInputData;
+
 public interface playSongInputBoundary {
     /**
      * Plays a song.
+     * @param s the song to play
      */
-    void playSong();
+    void playSong(songInputData s);
 }
