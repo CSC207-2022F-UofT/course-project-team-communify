@@ -11,4 +11,4 @@ Communify is a music platform that aims to collaborize music streaming – allow
 | Christina| Artist Dashboard  |
 | Rohan | Audio System |
 | Sarah | Space (listening to & adding to) |
-| Siqi Zhang | Login/Register |
+| Jessica | Login/Register |
