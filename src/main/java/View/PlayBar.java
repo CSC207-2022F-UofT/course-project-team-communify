@@ -24,6 +24,7 @@ public class PlayBar implements ActionListener {
     private JLabel cover;
     private JLabel song;
     private JLabel artist;
+    private InMemorySong currSong;
 
     /**
      * @param vm the view model containing the song data
@@ -110,6 +111,7 @@ public class PlayBar implements ActionListener {
                 e.printStackTrace();
             }
             InMemorySong song = (InMemorySong) viewModel.getPlaying();
+            this.currSong = song;
             this.song.setText(song.getName());
             this.artist.setText(String.join(", ", song.getArtists()));
             this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
@@ -133,5 +135,22 @@ public class PlayBar implements ActionListener {
             else
                 this.pause.setText("Pause");
         }
+    }
+
+    /**
+     * @return the current playing Song
+     */
+    public InMemorySong getCurrSong() {
+        return currSong;
+    }
+
+    /**
+     * @param currSong the current playing Song
+     */
+    public void setCurrSong(InMemorySong currSong) {
+        this.currSong = currSong;
+        this.song.setText(currSong.getName());
+        this.artist.setText(String.join(", ", currSong.getArtists()));
+        this.cover.setIcon(new ImageIcon(currSong.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
     }
 }
