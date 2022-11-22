@@ -15,3 +15,16 @@ Communify is a music platform that aims to collaborize music streaming – allow
 | Rohan | Audio System |
 | Sarah | Space (listening to & adding to) |
 | Jessica | Login/Register |
+
+## Running the project
+It's pretty easy!
+1. Download the files
+2. Run Main.java
+3. Have fun!
+
+## Features
+- you can log in as an _ARTIST_ and a _REGULAR USER_ (i.e. a listener)
+- as an artist, you can upload songs that regular users can listen to
+- regular users can create and listen to playlists. the create playlist view portion has yet to be pushed to main, so just try listening to the existing playlists for now. in a playlist, you can skip, pause, and resume playing songs. 
+- there is also the search for a song feature. you can add the songs found to a space -- which is similar to a radio -- as well as the playlists, but the add to playlist has yet to be added to the view. so just try adding them to the space for now!
+- you can, of course, listen to the space. if there are songs "added", those will be played first, but it will randomly play songs if there isn't anything queued (like a radio!). you can't skip or pause songs when listening to the radio, though.
