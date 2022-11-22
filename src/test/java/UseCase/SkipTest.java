@@ -8,7 +8,13 @@ import ViewModel.musicEngineControllerViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests the skip song use case.
+ */
 public class SkipTest {
+    /**
+     * Tests a single skip.
+     */
     @Test
     public void testSkip(){
         MusicPlayer mp = MusicPlayer.getInstance();
@@ -25,6 +31,9 @@ public class SkipTest {
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(1));
     }
 
+    /**
+     * Tests two skips.
+     */
     @Test
     public void testSkipTwice(){
         MusicPlayer mp = MusicPlayer.getInstance();

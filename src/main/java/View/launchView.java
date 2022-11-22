@@ -3,11 +3,10 @@ package View;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Creates the launch view.
+ */
 public class launchView extends JFrame implements ActionListener {
-
-    private final int WIDTH = 1280;
-    private final int HEIGHT = 640;
 
     private JButton loginButton;
 
@@ -19,7 +18,10 @@ public class launchView extends JFrame implements ActionListener {
     private JFrame jframe;
 
 
-
+    /**
+     * @param icon the program icon
+     * @param logoImg the program logo
+     */
     public launchView(ImageIcon icon, ImageIcon logoImg){
         this.icon = icon;
         this.logoImg = logoImg;
@@ -29,6 +31,10 @@ public class launchView extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Handles launch button events.
+     * @param e the button press event
+     */
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.loginButton) {
@@ -41,11 +47,15 @@ public class launchView extends JFrame implements ActionListener {
         }
     }
 
-
+    /**
+     * Initializes the values of the main Swing and logic objects.
+     */
     private void initializeValues() {
 
         this.jframe = new JFrame("Communify");
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int WIDTH = 1280;
+        int HEIGHT = 640;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setLocationRelativeTo(null);
 
         this.jframe.setLayout(null);
@@ -54,7 +64,9 @@ public class launchView extends JFrame implements ActionListener {
         this.jframe.setIconImage(this.icon.getImage());
     }
 
-
+    /**
+     * Initializes Swing related components.
+     */
     private void initializeComponents() {
 
         this.logo = new JLabel(logoImg);
@@ -76,7 +88,9 @@ public class launchView extends JFrame implements ActionListener {
         this.loginButton.addActionListener(this);
     }
 
-
+    /**
+     * Initializes the main window frame and adds components.
+     */
     private void initializeFrame() {
         this.jframe.add(this.logo);
         this.jframe.add(this.registerButton);

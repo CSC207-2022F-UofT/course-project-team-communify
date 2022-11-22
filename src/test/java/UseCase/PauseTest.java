@@ -2,17 +2,18 @@ package UseCase;
 
 import Entities.MusicPlayer;
 import Entities.Song;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+/**
+ * Tests the pause song use case.
+ */
 public class PauseTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests a single pause.
+     */
     @Test
     public void testPause(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
@@ -25,6 +26,9 @@ public class PauseTest {
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
 
+    /**
+     * Tests a single resume.
+     */
     @Test
     public void testResume(){
         File file = new File("./src/test/java/UseCase/test1.mp3");
@@ -38,6 +42,9 @@ public class PauseTest {
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
+    /**
+     * Tests a single pause when there is nothing playing.
+     */
     @Test
     public void testPauseWhenNothingPlaying(){
         MusicPlayer.getInstance().close();

@@ -8,17 +8,18 @@ import Presenter.songPresenter;
 import Presenter.spacePresenter;
 import View.InMemoryPlaylist;
 import ViewModel.musicEngineControllerViewModel;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+/**
+ * Tests the music engine controller.
+ */
 public class EngineTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests the recommendation use case call.
+     */
     @Test
     public void testRecommend(){
         MusicPlayer mp = MusicPlayer.getInstance();
@@ -39,6 +40,9 @@ public class EngineTest {
         // Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }
 
+    /**
+     * Tests the play song use case call.
+     */
     @Test
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();
@@ -53,6 +57,9 @@ public class EngineTest {
         // Assertions.assertEquals(mp.getCurrentSong(), s.getSong());
     }
 
+    /**
+     * Tests the pause/resume use case call.
+     */
     @Test
     public void testPause(){
         MusicPlayer mp = MusicPlayer.getInstance();
@@ -68,6 +75,9 @@ public class EngineTest {
         // Assertions.assertTrue(mp.isPlaying());
     }
 
+    /**
+     * Tests the play playlist use case call.
+     */
     @Test
     public void testPlayPlaylist(){
         MusicPlayer mp = MusicPlayer.getInstance();
@@ -82,6 +92,9 @@ public class EngineTest {
         // Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
     }
 
+    /**
+     * Tests the skip song use case call.
+     */
     @Test
     public void testPlayNext(){
         MusicPlayer mp = MusicPlayer.getInstance();

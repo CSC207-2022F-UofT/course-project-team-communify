@@ -12,7 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * Creates the login view.
+ */
 public class loginView extends JFrame implements ActionListener {
     private userViewModel viewModel;
     private boolean register;
@@ -26,6 +28,11 @@ public class loginView extends JFrame implements ActionListener {
     private JTextField artistTextField;
 
 
+    /**
+     * @param icon the program icon
+     * @param logoImg the program logo
+     * @param register true if this window is for registering (vs. logging in)
+     */
     public loginView(ImageIcon icon, ImageIcon logoImg, boolean register) {
         this.icon = icon;
         this.logoImg = logoImg;
@@ -35,7 +42,10 @@ public class loginView extends JFrame implements ActionListener {
         this.initializeFrame();
     }
 
-
+    /**
+     * Handles login button events.
+     * @param e the button press event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String username = "", password = "", artistName = "";
@@ -93,7 +103,9 @@ public class loginView extends JFrame implements ActionListener {
         }
     }
 
-
+    /**
+     * Initializes the values of the main Swing and logic objects.
+     */
     private void initializeValues() {
         this.jframe = new JFrame();
         int HEIGHT = 640;
@@ -106,7 +118,9 @@ public class loginView extends JFrame implements ActionListener {
         this.jframe.setLocationRelativeTo(null);
     }
 
-
+    /**
+     * Initializes Swing related components.
+     */
     private void initializeComponents() {
 
         this.submitButton = new JButton();
@@ -143,7 +157,9 @@ public class loginView extends JFrame implements ActionListener {
         this.isArtistCheckBox.addActionListener(this);
     }
 
-
+    /**
+     * Initializes the main window frame and adds components.
+     */
     private void initializeFrame() {
         this.jframe.add(this.submitButton);
         this.jframe.add(this.isArtistCheckBox);

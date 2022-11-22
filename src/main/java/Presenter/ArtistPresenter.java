@@ -3,7 +3,6 @@ package Presenter;
 import OutputBoundary.loginOutputBoundary;
 import OutputData.loginOutputData;
 import ViewModel.ArtistUserDsView;
-import ViewModel.UserDsView;
 import ViewModel.userViewModel;
 
 /**

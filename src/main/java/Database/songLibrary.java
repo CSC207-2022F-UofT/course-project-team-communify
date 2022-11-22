@@ -11,7 +11,6 @@ import org.jaudiotagger.tag.images.Artwork;
 
 import javax.imageio.ImageIO;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;

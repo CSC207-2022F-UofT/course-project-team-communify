@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * view for search output
+ */
 public class searchOutputView extends JFrame implements ActionListener {
     private InMemoryUser user;
     private String searchText;
@@ -25,6 +28,12 @@ public class searchOutputView extends JFrame implements ActionListener {
     private List<Integer> spaceIDs;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
 
+    /**
+     * @param searchText the search query
+     * @param user the logged-in user
+     * @param spaceIDs the IDs of the songs in the space
+     * @param engineVm the view model containing the song data
+     */
     public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
         this.spaceIDs = spaceIDs;
         this.musicEngineControllerViewModel = engineVm;
@@ -33,6 +42,10 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.initializeFrame();
     }
 
+    /**
+     * @param searchText the search query
+     * @param user the logged-in user
+     */
     public void initialiseValues(String searchText, InMemoryUser user){
         this.searchViewModel = new searchViewModel();
         this.user = user;
@@ -85,7 +98,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      * @param length is the length of the formatted data
      */
     public void setUpActions(TableColumnModel columnModel, int length){
-        comboBox = new JComboBox();
+        comboBox = new JComboBox<>();
         comboBox.addItem("Add to Space");
 
         for (InMemoryPlaylist p : user.getPlaylists()) {
@@ -101,6 +114,9 @@ public class searchOutputView extends JFrame implements ActionListener {
         columnModel.getColumn(4).setCellEditor(new DefaultCellEditor(comboBox));
     }
 
+    /**
+     * Initializes the main window frame and adds components.
+     */
     public void initializeFrame(){
         int HEIGHT = 640;
         int WIDTH = 640;
@@ -127,7 +143,6 @@ public class searchOutputView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.comboBox){
-
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
@@ -143,6 +158,9 @@ public class searchOutputView extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * @param text the text to show in the popup
+     */
     private void createPopup(String text){
         JOptionPane pane = new JOptionPane(null);
         pane.setMessage(text);

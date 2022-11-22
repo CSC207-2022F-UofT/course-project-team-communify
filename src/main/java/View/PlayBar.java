@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Creates the play bar for the view.
+ */
 public class PlayBar implements ActionListener {
     private JPanel panel;
     private musicEngineControllerViewModel viewModel;
@@ -22,12 +25,19 @@ public class PlayBar implements ActionListener {
     private JLabel song;
     private JLabel artist;
 
+    /**
+     * @param vm the view model containing the song data
+     * @param sync the object to sync the play bar on
+     */
     public PlayBar(musicEngineControllerViewModel vm, Object sync) {
         this.sync = sync;
         initializeComponents(vm);
         waitForSong();
     }
 
+    /**
+     * @param vm the view model containing the song data
+     */
     private void initializeComponents(musicEngineControllerViewModel vm){
         this.viewModel = vm;
         this.panel = new JPanel();
@@ -73,16 +83,25 @@ public class PlayBar implements ActionListener {
         this.panel.add(this.skip);
     }
 
+    /**
+     * @return the play bar panel element
+     */
     public JPanel getPanel() {
         return panel;
     }
 
 
+    /**
+     * Thread which calls sync method for updating the bar
+     */
     private void waitForSong(){
         final Thread t = new Thread(this::updateOnNotify);
         t.start();
     }
 
+    /**
+     * Sync method to update the bar
+     */
     private void updateOnNotify(){
         synchronized (sync) {
             try {
@@ -98,6 +117,10 @@ public class PlayBar implements ActionListener {
         }
     }
 
+    /**
+     * Handles play bar button events.
+     * @param actionEvent the button press event
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == this.skip){
