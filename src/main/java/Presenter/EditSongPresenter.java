@@ -2,11 +2,16 @@ package Presenter;
 import OutputBoundary.EditSongOutputBoundary;
 import OutputData.EditSongOutputData;
 import ViewModel.ArtistViewModel;
-
+/**
+ * Interface adapters layer presenter for displaying edit song use case output.
+ */
 public class EditSongPresenter implements EditSongOutputBoundary {
 
     private final ArtistViewModel EditSongViewModel;
 
+    /**
+     * @param EditSongViewModel the view model for outputting artist data
+     */
     public EditSongPresenter(ArtistViewModel EditSongViewModel){
         this.EditSongViewModel = EditSongViewModel;
     }

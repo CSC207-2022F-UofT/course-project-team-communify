@@ -5,15 +5,16 @@ import InputData.songInputData;
 import Presenter.songPresenter;
 import View.InMemoryPlaylist;
 import ViewModel.musicEngineControllerViewModel;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for the play song use case.
+ */
 public class PlayTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests playing a song.
+     */
     @Test
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();

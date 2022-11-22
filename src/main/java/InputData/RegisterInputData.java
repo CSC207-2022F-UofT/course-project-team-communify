@@ -1,10 +1,15 @@
 package InputData;
-
+/**
+ * Application Business Rules layer data structure for submitting register input to use cases.
+ */
 public class RegisterInputData {
     private final String username;
     private final String password;
-    private boolean isArtist = false;
 
+    /**
+     * @param username the username of the new user
+     * @param password the password of the new user
+     */
     public RegisterInputData(String username, String password) {
         this.username = username;
         this.password = password;
@@ -22,11 +27,5 @@ public class RegisterInputData {
      */
     public String getPassword() {
         return this.password;
-    }
-    /**
-     * @return whether the user is an artist
-     */
-    public boolean isArtist() {
-        return this.isArtist;
     }
 }

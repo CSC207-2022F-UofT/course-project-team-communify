@@ -5,10 +5,16 @@ import InputData.editPlaylistInputData;
 import OutputBoundary.newPlaylistOutputBoundary;
 import OutputData.editPlaylistOutputData;
 
+/**
+ * Application business rules use case class to edit a playlist.
+ */
 public class EditPlaylistInteractor implements editPlaylistInputBoundary{
 
     private final newPlaylistOutputBoundary presenter;
 
+    /**
+     * @param presenter the presenter to output data to the view
+     */
     public EditPlaylistInteractor(newPlaylistOutputBoundary presenter){
         this.presenter = presenter;
     }
@@ -31,6 +37,10 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
         editPlaylistOutputData outputData = new editPlaylistOutputData(message);
         presenter.setEditPlaylistConfirmation(outputData);
     }
+
+    /**
+     * @param inputData the data containing playlist and song to add
+     */
     public void addSong(editPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
             inputData.getPlaylist().addSong(inputData.getSong());

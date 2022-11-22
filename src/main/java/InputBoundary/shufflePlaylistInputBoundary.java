@@ -7,6 +7,10 @@ import InputData.playlistInputData;
  */
 public interface shufflePlaylistInputBoundary {
 
+    /**
+     * Shuffles the order of a playlist.
+     * @param playlist the playlist to shuffle
+     */
     void shuffle(playlistInputData playlist);
 
 }

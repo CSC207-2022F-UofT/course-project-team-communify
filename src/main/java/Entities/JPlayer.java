@@ -1,4 +1,4 @@
-/**
+/*
  * Note to TAs: This code is from a dependency and is only
  * slightly modified to suit our needs better. Please ignore this file and assume that it is part
  * of a package we used - we did not write it, and we do not intend for it to be marked.
@@ -83,12 +83,20 @@ public class JPlayer
 
     /**
      * Creates a new <code>Player</code> instance.
+     * @param stream the input stream of the song
+     * @throws JavaLayerException when song fails to player
      */
     public JPlayer(InputStream stream) throws JavaLayerException
     {
         this(stream, null);
     }
 
+    /**
+     * Creates a new <code>Player</code> instance.
+     * @param stream the input stream of the song
+     * @param device the output device
+     * @throws JavaLayerException when song fails to player
+     */
     public JPlayer(InputStream stream, AudioDevice device) throws JavaLayerException
     {
         bitstream = new Bitstream(stream);
@@ -106,6 +114,9 @@ public class JPlayer
         audio.open(decoder);
     }
 
+    /**
+     * @throws JavaLayerException if the song fails to play
+     */
     public void play() throws JavaLayerException
     {
         play(Integer.MAX_VALUE);
@@ -117,6 +128,7 @@ public class JPlayer
      * @param frames	The number of frames to play.
      * @return	true if the last frame was played, or false if there are
      *			more frames.
+     * @throws JavaLayerException if the song fails to play
      */
     public boolean play(int frames) throws JavaLayerException
     {
@@ -145,7 +157,7 @@ public class JPlayer
     }
 
     /**
-     * Cloases this player. Any audio currently playing is stopped
+     * Closes this player. Any audio currently playing is stopped
      * immediately.
      */
     public synchronized void close()
@@ -165,6 +177,7 @@ public class JPlayer
             }
             catch (BitstreamException ex)
             {
+                System.out.println(ex.getMessage());
             }
         }
     }
@@ -185,6 +198,7 @@ public class JPlayer
      * sample being played. This method delegates to the <code>
      * AudioDevice</code> that is used by this player to sound
      * the decoded audio samples.
+     * @return the frame position of the song
      */
     public int getPosition()
     {
@@ -202,6 +216,7 @@ public class JPlayer
      * Decodes a single frame.
      *
      * @return true if there are no more frames to decode, false otherwise.
+     * @throws JavaLayerException if the frame cannot be decoded
      */
     protected boolean decodeFrame() throws JavaLayerException
     {
@@ -242,6 +257,7 @@ public class JPlayer
      * @param start	The first frame to play
      * @param end		The last frame to play
      * @return true if the last frame was played, or false if there are more frames.
+     * @throws JavaLayerException if the song cannot be played
      */
     public boolean play(final int start, final int end) throws JavaLayerException
     {
@@ -254,6 +270,7 @@ public class JPlayer
     /**
      * skips over a single frame
      * @return false	if there are no more frames to decode, true otherwise.
+     * @throws JavaLayerException if a frame cannot be skipped
      */
     protected boolean skipFrame() throws JavaLayerException
     {

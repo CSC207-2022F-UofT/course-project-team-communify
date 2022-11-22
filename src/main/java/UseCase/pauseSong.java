@@ -3,7 +3,13 @@ package UseCase;
 import Entities.MusicPlayer;
 import InputBoundary.pauseSongInputBoundary;
 
+/**
+ * Application business rules use case class to pause the playing song, or resume if paused.
+ */
 public class pauseSong implements pauseSongInputBoundary {
+    /**
+     * Empty constructor
+     */
     public pauseSong(){
 
     }

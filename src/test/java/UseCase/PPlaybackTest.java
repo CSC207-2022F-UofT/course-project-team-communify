@@ -9,18 +9,18 @@ import InputData.playlistInputData;
 import Presenter.songPresenter;
 import View.InMemoryPlaylist;
 import ViewModel.musicEngineControllerViewModel;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.LinkedList;
-
+/**
+ * Tests the play playlist use case.
+ */
 public class PPlaybackTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests playing a playlist.
+     */
     @Test
     public void testPlay(){
         MusicPlayer.getInstance().close();
@@ -31,6 +31,9 @@ public class PPlaybackTest {
         Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new playlistInputData(0).getSongs().get(0));
     }
 
+    /**
+     * Tests stopping the playlist queue.
+     */
     @Test
     public void testStopQueue(){
         MusicPlayer.getInstance().close();

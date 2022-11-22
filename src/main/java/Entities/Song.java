@@ -3,6 +3,9 @@ package Entities;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * The entity representing a song in the program.
+ */
 public class Song {
 
     private final int id;
@@ -98,6 +101,9 @@ public class Song {
         return artists.toString();
     }
 
+    /**
+     * @param file the file object representing the song
+     */
     public void setFile(File file){
         this.file = file;
     }

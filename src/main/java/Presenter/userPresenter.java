@@ -9,15 +9,25 @@ import ViewModel.SongDsView;
 import ViewModel.UserDsView;
 import ViewModel.userViewModel;
 
+/**
+ * Interface adapters layer presenter for displaying login use case output.
+ */
 public class userPresenter implements loginOutputBoundary {
     private final userViewModel viewModel;
     private final UserDsView output;
 
+    /**
+     * @param vm the login register view model
+     * @param out the output data for a newly logged-in user
+     */
     public userPresenter(userViewModel vm, UserDsView out){
         this.viewModel = vm;
         this.output = out;
     }
 
+    /**
+     * @param data the data to return to the view after a login
+     */
     @Override
     public void userLogIn(loginOutputData data){
         this.output.setUsername(data.getUsername());

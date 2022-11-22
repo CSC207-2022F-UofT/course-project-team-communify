@@ -27,6 +27,9 @@ public class MusicPlayer {
         return player;
     }
 
+    /**
+     * Private constructor for singleton entity.
+     */
     private MusicPlayer() {
         playing = false;
         sync = new Object();
@@ -155,6 +158,7 @@ public class MusicPlayer {
 
     /**
      * Internal synchronized play method which starts the audio output.
+     * @param resume whether the playback is being resumed
      */
     private void startPlayback(boolean resume){
         synchronized (sync){

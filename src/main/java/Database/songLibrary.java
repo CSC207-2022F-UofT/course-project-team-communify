@@ -11,7 +11,6 @@ import org.jaudiotagger.tag.images.Artwork;
 
 import javax.imageio.ImageIO;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -45,6 +44,10 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         return SONG_LIBRARY;
     }
 
+    /**
+     * Private constructor for singleton
+     * @param filepath path to the .csv file
+     */
     private songLibrary(String filepath){
         this.filepath = filepath;
 
@@ -121,6 +124,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     /**
      * if songs.csv does not exist, createFile will 1) create it, and
      * 2) write into both the csv and SONG_LIBRARY.
+     * @return a map of the songs in the database
      */
     private HashMap<Integer, songDsData> createFile(){
         File csv = new File(filepath);

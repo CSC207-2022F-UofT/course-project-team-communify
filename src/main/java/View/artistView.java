@@ -2,23 +2,24 @@ package View;
 
 
 import Database.songLibrary;
-import Entities.ArtistUser;
 import ViewModel.ArtistViewModel;
-
-import java.awt.event.*;
-import java.io.File;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 
 
+/**
+ * Creates the artist dashboard view.
+ */
 public class artistView extends JFrame implements ActionListener {
 
     private ArtistViewModel avm;
-    private final int WIDTH = 1280;
-    private final int HEIGHT = 640;
     private JFrame jframe;
     private JButton uploadButton;
 
@@ -31,16 +32,27 @@ public class artistView extends JFrame implements ActionListener {
     private JLabel logo;
     private final ImageIcon icon;
     private final ImageIcon logoImg;
+    private final InMemoryArtistUser user;
 
-    public artistView(ImageIcon icon, ImageIcon logoImg) {
+    /**
+     * @param icon the program icon
+     * @param logoImg the program logo
+     * @param user the active artist user
+     */
+    public artistView(ImageIcon icon, ImageIcon logoImg, InMemoryArtistUser user) {
         this.icon = icon;
         this.logoImg = logoImg;
+        this.user = user;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
     }
 
 
+    /**
+     * Handles artist dashboard button events.
+     * @param e the button press event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.uploadButton){
@@ -66,9 +78,14 @@ public class artistView extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * Initializes the values of the main Swing and logic objects.
+     */
     private void initializeValues() {
         this.jframe = new JFrame("Communify");
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int WIDTH = 1280;
+        int HEIGHT = 640;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setLocationRelativeTo(null);
 
         this.jframe.setLayout(null);
@@ -77,7 +94,7 @@ public class artistView extends JFrame implements ActionListener {
         this.jframe.setIconImage(this.icon.getImage());
 
 
-        InMemoryArtistUser artist = new InMemoryArtistUser("admin", "admin"); //TODO: REPLACE. TEMPORARY
+        InMemoryArtistUser artist = new InMemoryArtistUser(user.getArtistName(), user.getUsername());
         this.avm = new ArtistViewModel(artist);
 
         // Init JTable
@@ -86,6 +103,9 @@ public class artistView extends JFrame implements ActionListener {
         this.table.setDefaultEditor(Object.class, null);
     }
 
+    /**
+     * Initializes Swing related components.
+     */
     private void initializeComponents() {
 
         this.logo = new JLabel(logoImg);
@@ -121,6 +141,9 @@ public class artistView extends JFrame implements ActionListener {
         });
     }
 
+    /**
+     * Initializes the main window frame and adds components.
+     */
     private void initializeFrame() {
         this.jframe.add(this.uploadButton);
         this.jframe.add(this.logo);

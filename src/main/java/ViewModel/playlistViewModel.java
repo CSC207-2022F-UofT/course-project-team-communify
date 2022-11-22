@@ -1,9 +1,16 @@
 package ViewModel;
 import Presenter.playlistPresenter;
+/**
+ * The interface adapters layer view model which acts as a gateway between the view and the playlist related
+ * parts of the program.
+ */
 public class playlistViewModel {
     private playlistPresenter playlistPresenter;
     private String outputMessage;
 
+    /**
+     * Constructor.
+     */
     public playlistViewModel(){
         // get necessary information from View to construct a new playlist
         //TODO: This is the controller, just pass this to the controller, move to controller
@@ -13,10 +20,17 @@ public class playlistViewModel {
         //sets its presenter to itself
         this.playlistPresenter = new playlistPresenter(this);
     }
+
+    /**
+     * @param message the message to be outputted to the view
+     */
     public void setOutputMessage(String message){
         this.outputMessage = message;
     }
 
+    /**
+     * @return the message to be outputted to the view.
+     */
     public String getOutputMessage(){
         return this.outputMessage;
 
