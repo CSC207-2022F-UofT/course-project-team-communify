@@ -8,10 +8,10 @@ import javax.swing.*;
  */
 public class Main {
 
-    private static final String ICON_BLACK = "src\\main\\java\\View\\assets\\icon_black.png";
-    private static final String ICON_RED = "src\\main\\java\\View\\assets\\icon_red.png";
-    private static final String LOGO_BLACK = "src\\main\\java\\View\\assets\\logo_black.png";
-    private static final String LOGO_RED = "src\\main\\java\\View\\assets\\logo_red.png";
+    private static final String ICON_BLACK = "src/main/java/View/assets/icon_black.png";
+    private static final String ICON_RED = "src/main/java/View/assets/icon_red.png";
+    private static final String LOGO_BLACK = "src/main/java/View/assets/logo_black.png";
+    private static final String LOGO_RED = "src/main/java/View/assets/logo_red.png";
 
     /**
      * @param args command line arguments
