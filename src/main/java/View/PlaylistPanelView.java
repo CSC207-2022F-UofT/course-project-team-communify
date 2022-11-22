@@ -17,6 +17,7 @@ public class PlaylistPanelView implements ActionListener {
     private JPanel panel;
     private JScrollPane pane;
     private ArrayList<IDButton> buttons;
+    private ArrayList<IDButton> rButtons;
     private musicEngineControllerViewModel viewModel;
 
     /**
@@ -42,6 +43,7 @@ public class PlaylistPanelView implements ActionListener {
         pane.setBounds(15, 120, WIDTH, HEIGHT);
 
         this.buttons = new ArrayList<>();
+        this.rButtons = new ArrayList<>();
         for (InMemoryPlaylist p : playlistList){
             JPanel mainPanel = new JPanel();
             BoxLayout playlistLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
@@ -53,11 +55,16 @@ public class PlaylistPanelView implements ActionListener {
             JLabel name = new JLabel(p.getName());
             name.setFont(new Font("Segoe UI", Font.BOLD, 36));
             IDButton button = new IDButton(p.getId());
+            IDButton recommend = new IDButton(p.getId());
             button.addActionListener(this);
+            recommend.addActionListener(this);
             button.setText("Play");
+            recommend.setText("Play Recommendation");
             namePanel.add(name);
             namePanel.add(button);
+            namePanel.add(recommend);
             this.buttons.add(button);
+            this.rButtons.add(recommend);
             mainPanel.add(namePanel);
 
             JPanel songPanel = new JPanel();
@@ -101,6 +108,10 @@ public class PlaylistPanelView implements ActionListener {
         if (buttons.contains((IDButton) actionEvent.getSource())){
             int id = buttons.indexOf((IDButton) actionEvent.getSource());
             viewModel.playPlaylistAction(buttons.get(id).getId());
+        }
+        else if (rButtons.contains((IDButton) actionEvent.getSource())){
+            int id = rButtons.indexOf((IDButton) actionEvent.getSource());
+            viewModel.getRecommendationAction(rButtons.get(id).getId());
         }
     }
 }
