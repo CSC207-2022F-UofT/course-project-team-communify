@@ -8,6 +8,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,18 +28,15 @@ public class searchOutputView extends JFrame implements ActionListener {
     private searchViewModel searchViewModel;
     private List<Integer> spaceIDs;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
-    private final InMemorySong currSong;
 
     /**
      * @param searchText the search query
      * @param user the logged-in user
      * @param spaceIDs the IDs of the songs in the space
      * @param engineVm the view model containing the song data
-     * @param currSong current playing song
      */
-    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm, InMemorySong currSong){
+    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
         this.spaceIDs = spaceIDs;
-        this.currSong = currSong;
         this.musicEngineControllerViewModel = engineVm;
         this.initialiseValues(searchText, user);
         this.setUpTable();
@@ -87,7 +85,6 @@ public class searchOutputView extends JFrame implements ActionListener {
         table = new JTable(data, columnNames);
         TableColumnModel columnModel = table.getColumnModel();
         setUpActions(columnModel, formattedData.length);
-
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
         comboBox.addActionListener(this);
         this.scrollPane = new JScrollPane(table);
@@ -102,6 +99,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox<>();
+        comboBox.addItem("Play Song");
         comboBox.addItem("Add to Space");
 
         for (InMemoryPlaylist p : user.getPlaylists()) {
@@ -155,9 +153,12 @@ public class searchOutputView extends JFrame implements ActionListener {
                 this.spaceIDs = this.musicEngineControllerViewModel.returnSpace();
                 this.createPopup(PopupMessage);
             }
+            if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
+                this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
+            }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.spaceIDs, this.currSong, this.musicEngineControllerViewModel);
+            new playlistView(this.user, this.spaceIDs, this.musicEngineControllerViewModel);
         }
     }
 
