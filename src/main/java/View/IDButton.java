@@ -7,11 +7,18 @@ import javax.swing.*;
 public class IDButton extends JButton {
     private int id;
 
+    /**
+     * @param id the ID to store
+     */
     public IDButton(int id){
         super();
         this.id = id;
     }
 
+    /**
+     * @param id the ID to store
+     * @param text the text of the button
+     */
     public IDButton(int id, String text){
         super(text);
         this.id = id;

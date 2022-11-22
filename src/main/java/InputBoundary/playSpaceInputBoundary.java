@@ -15,6 +15,7 @@ public interface playSpaceInputBoundary {
 
     /**
      * function to play a random song given that the space controller has no songs queued
+     * @return the randomly chosen song
      */
     songOutputData pickRandomSong();
 

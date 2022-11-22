@@ -12,6 +12,7 @@ public class spacePresenter implements SpacePlayedOutputBoundary {
 
     /**
      * constructor.
+     * @param musicEngineControllerViewModel the view model for outputting music related output
      */
     public spacePresenter(musicEngineControllerViewModel musicEngineControllerViewModel){
         this.musicEngineControllerViewModel = musicEngineControllerViewModel;

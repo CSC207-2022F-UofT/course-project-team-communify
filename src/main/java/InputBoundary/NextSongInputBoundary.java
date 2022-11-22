@@ -8,6 +8,7 @@ import InputData.playlistInputData;
 public interface NextSongInputBoundary {
     /**
      * Method to skip to the next song in a playlist, if there is one.
+     * @return the new playlist playing interactor
      */
     playPlaylistInputBoundary skipSong();
 

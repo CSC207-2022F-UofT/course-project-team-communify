@@ -23,6 +23,9 @@ public class playPlaylist implements playPlaylistInputBoundary {
     songOutputBoundary presenter;
     private playlistInputData data;
 
+    /**
+     * @param presenter the song output presenter
+     */
     public playPlaylist(songOutputBoundary presenter){
         queue = true;
         nextSong = 0;

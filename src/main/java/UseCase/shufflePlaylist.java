@@ -5,7 +5,7 @@ import InputData.playlistInputData;
 import java.util.Collections;
 
 /**
- *
+ * Application business rules use case class to shuffle a playlist.
  */
 public class shufflePlaylist implements shufflePlaylistInputBoundary {
 

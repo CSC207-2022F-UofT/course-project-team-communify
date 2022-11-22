@@ -16,8 +16,14 @@ public interface SpacePlayedOutputBoundary {
      */
     void spaceNotPlayed();
 
+    /**
+     * @param songName the name of the song added to the space
+     */
     void addedToSpace(String songName);
 
+    /**
+     * @param songName the name of the song not added to the space
+     */
     void notAddedToSpace(String songName);
 
 }

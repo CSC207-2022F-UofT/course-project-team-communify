@@ -1,7 +1,9 @@
 package Database;
 
 import java.util.ArrayList;
-
+/**
+ * Application Business Rules layer interface for saving song data.
+ */
 public interface SaveSongAccessInterface {
 
     /**

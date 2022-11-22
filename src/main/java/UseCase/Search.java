@@ -12,12 +12,17 @@ import OutputData.searchOutputData;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+/**
+ * Application business rules use case class to search for a song.
+ */
 public class Search implements searchInputBoundary {
     private final searchOutputBoundary searchPresenter;
 
     private GetSongAccessInterface songLibrary;
 
+    /**
+     * @param searchPresenter the search output presenter
+     */
     public Search(searchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
         this.songLibrary = Database.songLibrary.getInstance();

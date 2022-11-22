@@ -13,12 +13,19 @@ public class RegisterController {
     RegisterInputBoundary registerInteractor;
     loginOutputBoundary registerPresenter;
 
+    /**
+     * @param registerPresenter the presenter for register output data
+     */
     public RegisterController(loginOutputBoundary registerPresenter) {
         this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterInteractor(registerPresenter);
     }
+
     /**
      * function calling the use case for registering a regular user
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if and only if the register is successful
      */
     public boolean registerRegular(String username, String password){
         RegisterInputData registerInputData = new RegisterInputData(username, password);

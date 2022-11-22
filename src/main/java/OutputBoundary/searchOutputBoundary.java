@@ -3,7 +3,7 @@ package OutputBoundary;
 import OutputData.searchOutputData;
 
 /**
- * Use case layer input boundary that allows communication between presenters and the search use case.
+ * Use case layer output boundary that allows communication between presenters and the search use case.
  */
 public interface searchOutputBoundary {
     /**

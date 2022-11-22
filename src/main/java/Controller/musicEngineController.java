@@ -9,7 +9,9 @@ import OutputBoundary.SpacePlayedOutputBoundary;
 import UseCase.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Interface adapters layer controller for playing music use cases.
+ */
 public class musicEngineController {
     private final int SONG = 0;
     private final int PLAYLIST = 1;
@@ -23,6 +25,10 @@ public class musicEngineController {
     private playPlaylistInputBoundary playPlaylist;
     private final NextSongInputBoundary nextSong;
 
+    /**
+     * @param spacePresenter the presenter for space output
+     * @param songPresenter the presenter for song output
+     */
     public musicEngineController(SpacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();
@@ -86,8 +92,6 @@ public class musicEngineController {
         }
         return songs;
     }
-
-    // TODO: write unit tests
 
     /**
      * Function calling the use case for pausing or resuming song

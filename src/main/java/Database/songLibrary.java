@@ -125,6 +125,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     /**
      * if songs.csv does not exist, createFile will 1) create it, and
      * 2) write into both the csv and SONG_LIBRARY.
+     * @return a map of the songs in the database
      */
     private HashMap<Integer, songDsData> createFile(){
         File csv = new File(filepath);

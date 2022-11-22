@@ -2,7 +2,7 @@ package OutputBoundary;
 import OutputData.editPlaylistOutputData;
 import OutputData.newPlaylistOutputData;
 /**
- * Use case layer input boundary that allows communication between presenters and the new playlist use case.
+ * Use case layer output boundary that allows communication between presenters and the new playlist use case.
  */
 public interface newPlaylistOutputBoundary {
     /**

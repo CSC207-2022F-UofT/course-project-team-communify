@@ -32,7 +32,6 @@ public class playlistPresenter implements newPlaylistOutputBoundary,editPlaylist
         return outputMessage;
     }
     /**
-     *
      * @param outputData outputData object containing confirmation message.
      */
     public void setPlaylistCreationConfirmation(newPlaylistOutputData outputData){

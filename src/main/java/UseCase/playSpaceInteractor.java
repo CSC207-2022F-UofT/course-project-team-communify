@@ -27,6 +27,9 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
     /**
      * constructor
+     * @param spacePlayedOutputBoundary the space output presenter
+     * @param songOutputBoundary the song output presenter
+     * @param playSpaceInputData the space input data to play
      */
     public playSpaceInteractor(SpacePlayedOutputBoundary spacePlayedOutputBoundary,
                                songOutputBoundary songOutputBoundary, playSpaceInputData playSpaceInputData){
@@ -58,6 +61,9 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
         // play the song; this will also call presenter to update playbar
     }
 
+    /**
+     * @return a random song to play
+     */
     private songOutputData pickSongToPlay(){
         songOutputData songToPlay;
         if (!this.playSpaceInputData.getSpaceSongList().isEmpty()){

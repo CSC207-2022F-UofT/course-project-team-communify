@@ -1,10 +1,17 @@
 package InputData;
-
+/**
+ * Application Business Rules layer data structure for submitting register artist to use cases.
+ */
 public class RegisterArtistInputData {
     private final String username;
     private final String password;
     private final String artistName;
 
+    /**
+     * @param username the username of the artist
+     * @param password the password of the artist
+     * @param artistName the name of the artist
+     */
     public RegisterArtistInputData(String username, String password, String artistName) {
         this.username = username;
         this.artistName = artistName;

@@ -3,7 +3,7 @@ package OutputBoundary;
 import OutputData.songOutputData;
 
 /**
- * Use case layer input boundary that allows communication between presenters and the play song use case.
+ * Use case layer output boundary that allows communication between presenters and the play song use case.
  */
 public interface songOutputBoundary {
 

@@ -5,12 +5,18 @@ import InputData.UploadSongInputData;
 import OutputBoundary.EditSongOutputBoundary;
 import OutputData.EditSongOutputData;
 
+/**
+ * Application business rules use case class to edit a song.
+ */
 public class EditSongInteractor implements EditSongInputBoundary {
 
     private final SaveSongAccessInterface songLibrary;
     private final EditSongOutputBoundary uploadSongPresenter;
 
 
+    /**
+     * @param uploadSongPresenter the presenter for edit song output
+     */
     public EditSongInteractor(EditSongOutputBoundary uploadSongPresenter){
         this.songLibrary = Database.songLibrary.getInstance();
         this.uploadSongPresenter = uploadSongPresenter;

@@ -16,7 +16,10 @@ public class playlistDsData {
     private final int privacy;
     private final GetSongAccessInterface library;
     private final GetUserAccessInterface users;
-    
+
+    /**
+     * @param p the playlist to create the data from
+     */
     public playlistDsData(Playlist p){
         // constructor for creation from use case to pass to database
         this.playlist = p;
@@ -24,7 +27,10 @@ public class playlistDsData {
         users = userList.getInstance();
         this.privacy = 1;
     }
-    
+
+    /**
+     * @param data the data to create the playlist from
+     */
     public playlistDsData(String[] data){
         library = songLibrary.getInstance();
         users = userList.getInstance();
