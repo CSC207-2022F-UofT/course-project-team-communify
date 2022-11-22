@@ -27,14 +27,17 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
     private searchViewModel searchViewModel;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
+    private final PlayBar playBar;
 
     /**
      * @param searchText the search query
      * @param user the logged-in user
      * @param engineVm the view model containing the song data
+     * @param pb the current play bar object
      */
-    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm){
+    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb){
         this.musicEngineControllerViewModel = engineVm;
+        this.playBar = pb;
         this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
@@ -154,7 +157,7 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.musicEngineControllerViewModel);
+            new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar);
         }
     }
 

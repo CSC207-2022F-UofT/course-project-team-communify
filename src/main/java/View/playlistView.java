@@ -44,9 +44,10 @@ public class playlistView extends JFrame implements ActionListener {
     /**
      * @param user the user logged in
      * @param vm old view model
+     * @param pb the current play bar
      */
-    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm) {
-        this.initializeValues(user, vm);
+    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb) {
+        this.initializeValues(user, vm, pb);
         this.initializeComponents();            // set up space button
         this.initializeFrame();
     }
@@ -68,13 +69,13 @@ public class playlistView extends JFrame implements ActionListener {
             this.searchViewModel.search(searchText);
             System.out.println(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar);
         }
     }
 
     /**
      * Initializes the values of the main Swing and logic objects.
-     * @param user the logged in user
+     * @param user the logged-in user
      */
     private void initializeValues(InMemoryUser user){
         this.user = user;
@@ -95,8 +96,9 @@ public class playlistView extends JFrame implements ActionListener {
     /**
      * @param user the logged-in user
      * @param vm the old view model
+     * @param pb the current play bar
      */
-    private void initializeValues(InMemoryUser user, musicEngineControllerViewModel vm){
+    private void initializeValues(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb){
         this.user = user;
 
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
@@ -106,7 +108,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.musicEngineControllerViewModel = vm;
-        this.playBar = new PlayBar(this.musicEngineControllerViewModel, this.musicEngineControllerViewModel.getSync());
+        this.playBar = pb;
         this.playBar.update();
         this.spacePlaying = false;
 
