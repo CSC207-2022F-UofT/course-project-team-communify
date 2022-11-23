@@ -2,12 +2,11 @@ package View;
 
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * view for the user dashboard
@@ -77,10 +76,10 @@ public class playlistView extends JFrame implements ActionListener {
             // TODO: move this to an inner method
             int min = 0;
             int max = 1000000000;
-            //int random_ID = (int)Math.floor(Math.random()*(max-min+1)+min);
-            int random_ID = ThreadLocalRandom.current().nextInt(0, 10000);
+            // int random_ID = (int)Math.floor(Math.random()*(max-min+1)+min);
+            // int random_ID = ThreadLocalRandom.current().nextInt(0, 10000);
 
-            new NewPlaylistInputDataView(this.user, random_ID);
+            new NewPlaylistInputDataView(this.user, 0);
         }
     }
 
