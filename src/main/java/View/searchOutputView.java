@@ -1,11 +1,12 @@
 package View;
 
-import Database.SavePlaylistAccessInterface;
-import Database.playlistDsData;
+import Database.*;
+import Entities.Playlist;
+import Entities.Song;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.playlistViewModel;
 import ViewModel.searchViewModel;
-import Database.playlistLibrary;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -35,7 +36,7 @@ public class searchOutputView extends JFrame implements ActionListener {
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
     private final playlistViewModel playlistViewModel;
 
-    private final SavePlaylistAccessInterface library;
+    private final GetSongAccessInterface library;
 
     private final PlayBar playBar;
 
@@ -48,7 +49,7 @@ public class searchOutputView extends JFrame implements ActionListener {
     public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb){
         this.musicEngineControllerViewModel = engineVm;
         this.playlistViewModel = new playlistViewModel();
-        this.library = playlistLibrary.getInstance();
+        this.library = songLibrary.getInstance();
         this.playBar = pb;
         this.initialiseValues(searchText, user);
         this.setUpTable();
@@ -174,11 +175,14 @@ public class searchOutputView extends JFrame implements ActionListener {
             if(this.comboBox.getSelectedItem().toString().contains("Remove from ")){
                 String playlistToRemove = this.comboBox.getSelectedItem().toString().
                         replace("Remove from ", "");
+
+                int songID = Integer.parseInt(ids[row]);
+                Song songToRemove = library.getSong(songID).getSong();
+
                 for (InMemoryPlaylist p : user.getPlaylists()) {
                     if (Objects.equals(p.getName(), playlistToRemove)){
-                        //TODO figure out how to retrieve specific song
-                    }
-                        this.playlistViewModel.callRemoveSong(user, p, )
+                        //TODO figure out thing w/ inMemoryPlaylist object
+                        this.playlistViewModel.callRemoveSong(user, p,songToRemove );
                     }
                 }
 
@@ -188,8 +192,11 @@ public class searchOutputView extends JFrame implements ActionListener {
                         replace("Add to", "");
                 for (InMemoryPlaylist p : user.getPlaylists()) {
                     if (Objects.equals(p.getName(), playlistToAddTo)){
-                        //TODO figure out how to retrieve specific song
-                        this.playlistViewModel.callAddSong(user, p, )
+                        //TODO figure out thing w/ inMemoryPlaylist object
+                        int songID = Integer.parseInt(ids[row]);
+                        Song songToAdd = library.getSong(songID).getSong();
+
+                        this.playlistViewModel.callAddSong(user, p,songToAdd );
                     }
             }
         } else if (e.getSource() == this.homeButton) {
