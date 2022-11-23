@@ -7,10 +7,16 @@ import ViewModel.searchViewModel;
 
 import java.util.List;
 
+/**
+ * Interface adapters layer presenter for displaying search use case output.
+ */
 public class searchPresenter implements searchOutputBoundary{
 
     private final searchViewModel searchViewModel;
 
+    /**
+     * @param searchViewModel the view model to display search results
+     */
     public searchPresenter(searchViewModel searchViewModel){
         this.searchViewModel = searchViewModel;
     }

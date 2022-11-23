@@ -12,18 +12,30 @@ public class Playlist {
     private User owner;
     private final LinkedList<Song> songList;
 
+    /**
+     * @param id int id of the playlist
+     * @param name string name of the playlist
+     * @param owner User who owns the playlist
+     */
     public Playlist(int id, String name, User owner){
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.songList = new LinkedList<Song>();
+        this.songList = new LinkedList<>();
     }
-    
+
+    /**
+     * Overloaded constructor for playlists with a first song
+     * @param id int id of the playlist
+     * @param name string name of the playlist
+     * @param owner User who owns the playlist
+     * @param firstSong the first Song in the playlist
+     */
     public Playlist(int id, String name, User owner, Song firstSong){
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.songList = new LinkedList<Song>();
+        this.songList = new LinkedList<>();
         this.songList.addFirst(firstSong);
     }
 
@@ -47,6 +59,10 @@ public class Playlist {
     public User getOwner(){
         return this.owner;
     }
+
+    /**
+     * @param user the new user which owns the playlist
+     */
     public void setOwner(User user){
         this.owner = user;
     }

@@ -23,6 +23,9 @@ public class playPlaylist implements playPlaylistInputBoundary {
     songOutputBoundary presenter;
     private playlistInputData data;
 
+    /**
+     * @param presenter the song output presenter
+     */
     public playPlaylist(songOutputBoundary presenter){
         queue = true;
         nextSong = 0;
@@ -39,10 +42,12 @@ public class playPlaylist implements playPlaylistInputBoundary {
         ArrayList<Song> playlist = data.getSongs();
         if (nextSong < playlist.size()){
             playSongInputBoundary p = new playSongInteractor(presenter);
+            int songToPlay = nextSong;
+            nextSong++;
             final Thread t = new Thread(this::playNext);
             t.start();
-            p.playSong(new songInputData(playlist.get(nextSong)));
-            nextSong++;
+            p.playSong(new songInputData(playlist.get(songToPlay)));
+            System.out.println("Now playing " + playlist.get(songToPlay).getName());
         }
     }
 

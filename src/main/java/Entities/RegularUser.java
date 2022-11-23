@@ -8,11 +8,21 @@ import java.util.ArrayList;
 public class RegularUser extends User {
     private final ArrayList<Integer> playlistList;
 
+    /**
+     * @param username string username of the user
+     * @param password string password of the user
+     */
     public RegularUser(String username, String password) {
         super(username, password);
         this.playlistList = new ArrayList<>();
     }
 
+    /**
+     * Overloaded constructor for Users which own playlists
+     * @param username string username of the user
+     * @param password string password of the user
+     * @param playlist arraylist of Playlist IDs owned by the User
+     */
     public RegularUser(String username, String password, ArrayList<Integer> playlist){
         super(username, password);
         this.playlistList = playlist;

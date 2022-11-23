@@ -20,6 +20,9 @@ public class recommendSong implements recommendationInputBoundary {
     private final GetSongAccessInterface library;
     private final songOutputBoundary out;
 
+    /**
+     * @param out the recommendation output presenter
+     */
     public recommendSong(songOutputBoundary out){
         this.library = songLibrary.getInstance();
         this.out = out;

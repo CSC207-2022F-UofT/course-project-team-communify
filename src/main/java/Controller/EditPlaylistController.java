@@ -5,11 +5,17 @@ import Entities.Song;
 import InputBoundary.editPlaylistInputBoundary;
 import InputData.editPlaylistInputData;
 
+/**
+ * Interface adapters layer controller for edit playlists use case.
+ */
 public class EditPlaylistController {
 
     private final editPlaylistInputBoundary EditPlaylistInteractor;
 
 
+    /**
+     * @param EditPlaylistInteractor the use case interactor for editing playlists
+     */
     public EditPlaylistController(editPlaylistInputBoundary EditPlaylistInteractor){
         this.EditPlaylistInteractor = EditPlaylistInteractor;
     }

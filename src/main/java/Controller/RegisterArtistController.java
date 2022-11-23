@@ -12,15 +12,22 @@ public class RegisterArtistController {
     RegisterArtistInputBoundary registerInteractor;
     loginOutputBoundary registerPresenter;
 
+    /**
+     * @param registerPresenter the presenter for register output data
+     */
     public RegisterArtistController(loginOutputBoundary registerPresenter) {
         this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterArtistInteractor(registerPresenter);
     }
     /**
      * function calling the use case for registering a regular user
+     * @param username the username of the artist
+     * @param artistName the name of the artist
+     * @param password the password of the artist
+     * @return if the register was successful
      */
-    public void registerArtist(String username, String artistName, String password){
-        RegisterArtistInputData registerInputData = new RegisterArtistInputData(artistName, username, password);
-        registerInteractor.register(registerInputData);
+    public boolean registerArtist(String username, String artistName, String password){
+        RegisterArtistInputData registerInputData = new RegisterArtistInputData(username, password, artistName);
+        return registerInteractor.register(registerInputData);
     }
 }
