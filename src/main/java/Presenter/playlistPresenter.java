@@ -5,7 +5,9 @@ import OutputData.editPlaylistOutputData;
 import OutputData.newPlaylistOutputData;
 import ViewModel.playlistViewModel;
 
-
+/**
+ * Interface adapters layer presenter for displaying edit playlists use case output.
+ */
 public class playlistPresenter implements newPlaylistOutputBoundary,editPlaylistOutputBoundary {
 
     private String outputMessage;
@@ -30,7 +32,6 @@ public class playlistPresenter implements newPlaylistOutputBoundary,editPlaylist
         return outputMessage;
     }
     /**
-     *
      * @param outputData outputData object containing confirmation message.
      */
     public void setPlaylistCreationConfirmation(newPlaylistOutputData outputData){
@@ -38,6 +39,9 @@ public class playlistPresenter implements newPlaylistOutputBoundary,editPlaylist
         this.viewModel.setOutputMessage(this.outputMessage);
     }
 
+    /**
+     * @param outputData the output to set as confirmation for edited playlist
+     */
     public void setEditPlaylistConfirmation(editPlaylistOutputData outputData){
         this.outputMessage = outputData.getPlaylistEditedConfirmation();
         this.viewModel.setOutputMessage(this.outputMessage);

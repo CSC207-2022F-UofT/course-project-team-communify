@@ -1,39 +1,44 @@
 package Controller;
 
 import InputBoundary.*;
-import InputBoundary.playSongInputBoundary;
-import InputBoundary.playSpaceInputBoundary;
-import InputBoundary.recommendationInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.playlistInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
-import OutputBoundary.spacePlayedOutputBoundary;
+import OutputBoundary.SpacePlayedOutputBoundary;
 import UseCase.*;
-
 import java.util.ArrayList;
-
+import java.util.List;
+/**
+ * Interface adapters layer controller for playing music use cases.
+ */
 public class musicEngineController {
     private final int SONG = 0;
     private final int PLAYLIST = 1;
     private final int SPACE = 2;
     private final int NONE = -1;
     private final playSpaceInputBoundary playSpaceInteractor;
-    private final spacePlayedOutputBoundary spacePresenter;
-    private final ArrayList<songInputData> spaceSongList;
+    private final SpacePlayedOutputBoundary spacePresenter;
+    private final List<songInputData> spaceSongList;
     private final songOutputBoundary songPresenter;
     private int playing;
     private playPlaylistInputBoundary playPlaylist;
     private final NextSongInputBoundary nextSong;
-    
-    public musicEngineController(spacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
+
+    /**
+     * @param spacePresenter the presenter for space output
+     * @param songPresenter the presenter for song output
+     */
+    public musicEngineController(SpacePlayedOutputBoundary spacePresenter, songOutputBoundary songPresenter) {
         this.spacePresenter = spacePresenter;
         this.spaceSongList = new ArrayList<>();
         this.songPresenter = songPresenter;
         this.playing = NONE;
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter);
+        playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
+        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter, playSpaceInputData);
         this.playPlaylist = new playPlaylist(songPresenter);
         this.nextSong = new NextSong(songPresenter, this.playPlaylist);
+
     }
 
     /**
@@ -53,30 +58,40 @@ public class musicEngineController {
      */
     public void playSpace(){
         stop();
-        playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
-        this.playSpaceInteractor.playSpace(playSpaceInputData);
+        this.playSpaceInteractor.playSpace();
     }
 
     /**
      * function calling the use case for adding a song to the space
-     * @param songInputData input data for adding a song to the space
+     * @param songToAddID id of song to add to space
      */
-    public void spaceAddSong(songInputData songInputData){
-        int songToAddID = songInputData.getSong().getID();
+    public void spaceAddSong(int songToAddID){
         for (songInputData currSongInputData : this.spaceSongList){
             int currSongID = currSongInputData.getSong().getID();
             if (currSongID == songToAddID){
+                this.spacePresenter.notAddedToSpace(currSongInputData.getName());
                 return;  // if the song is already in the playlist, do nothing
                 // TODO: make this cooler (i.e. upvote algo) if time
             }
         }
-        this.spaceSongList.add(songInputData);  // song is not in list, so append to the end
-        if (playing == SPACE){
+        songInputData songToAdd = new songInputData(songToAddID);  // song is not in list, so append to the end
+        this.spaceSongList.add(songToAdd);
+        if (playing == SPACE) {
             this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
         }
+        this.spacePresenter.addedToSpace(songToAdd.getName());
     }
 
-    // TODO: write unit tests
+    /**
+     * @return returns list of integers in the space
+     */
+    public List<Integer> returnSpace(){
+        List<Integer> songs = new ArrayList<>();
+        for (songInputData song : this.spaceSongList){
+            songs.add(song.getId());
+        }
+        return songs;
+    }
 
     /**
      * Function calling the use case for pausing or resuming song
@@ -94,11 +109,11 @@ public class musicEngineController {
      */
     public void playPlaylist(int id) {
         stop();
+        playing = PLAYLIST;
         this.playPlaylist = new playPlaylist(this.songPresenter);
         playlistInputData data = new playlistInputData(id);
         this.nextSong.updatePlaylist(data);
         this.playPlaylist.play(data);
-        playing = PLAYLIST;
     }
 
     /**

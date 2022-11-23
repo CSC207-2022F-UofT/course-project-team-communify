@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NewPlaylistOutputDataView extends JFrame implements ActionListener {
-    private final int FONTSIZE = 10;
     private final int WIDTH = 400;
     private final int HEIGHT = 400;
     private JFrame jframe;
@@ -16,9 +15,9 @@ public class NewPlaylistOutputDataView extends JFrame implements ActionListener 
 
     private String message;
 
-    private User user;
+    private InMemoryUser user;
 
-    public NewPlaylistOutputDataView(User user, String message){
+    public NewPlaylistOutputDataView(InMemoryUser user, String message){
         this.initializeValues(user,message);
         this.initializeComponents();
         this.initializeFrame();
@@ -28,11 +27,11 @@ public class NewPlaylistOutputDataView extends JFrame implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            playlistView userDashboard = new playlistView(user);
+            new playlistView(user);
         }
     }
 
-    private void initializeValues(User user, String message) {
+    private void initializeValues(InMemoryUser user, String message) {
 
         this.user = user;
         this.message = message + " Click to Return to dashboard!";

@@ -3,17 +3,18 @@
 
 package Entities;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+/**
+ * Tests the music player entity.
+ */
 public class PlayerTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests playing a song.
+     */
     @Test
     public void testPlay(){
         File file = new File("./src/test/java/Entities/test.mp3");
@@ -24,6 +25,9 @@ public class PlayerTest {
         // Assertions.assertTrue(player.isPlaying());
     }
 
+    /**
+     * Tests a single pause.
+     */
     @Test
     public void testPause(){
         File file = new File("./src/test/java/Entities/test.mp3");
@@ -34,6 +38,9 @@ public class PlayerTest {
         Assertions.assertFalse(player.isPlaying());
     }
 
+    /**
+     * Tests a single resume.
+     */
     @Test
     public void testResume(){
         File file = new File("./src/test/java/Entities/test.mp3");
@@ -45,6 +52,9 @@ public class PlayerTest {
         // Assertions.assertTrue(player.isPlaying());
     }
 
+    /**
+     * Tests playing a new song after a pause.
+     */
     @Test
     public void testPlayAfterPause(){
         File file = new File("./src/test/java/Entities/test.mp3");

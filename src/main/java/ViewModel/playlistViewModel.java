@@ -1,16 +1,24 @@
 package ViewModel;
-import Entities.RegularUser;
-import Entities.User;
-import Entities.Song;
-import Presenter.playlistPresenter;
 import Controller.newPlaylistController;
+import Entities.RegularUser;
+import Entities.Song;
+import Entities.User;
+import Presenter.playlistPresenter;
 import UseCase.CreatePlaylistInteractor;
+import View.InMemoryUser;
+
+/**
+ * The interface adapters layer view model which acts as a gateway between the view and the playlist related
+ * parts of the program.
+ */
 public class playlistViewModel {
     private playlistPresenter playlistPresenter;
     private String outputMessage;
-
     private final newPlaylistController controller;
 
+    /**
+     * Constructor.
+     */
     public playlistViewModel(){
         // get necessary information from View to construct a new playlist
         //TODO: This is the controller, just pass this to the controller, move to controller
@@ -19,13 +27,19 @@ public class playlistViewModel {
         //Blank output data object to extract success message from
         //sets its presenter to itself
         this.playlistPresenter = new playlistPresenter(this);
-
-        this.controller= new newPlaylistController(new CreatePlaylistInteractor(playlistPresenter));
+        this.controller = new newPlaylistController(new CreatePlaylistInteractor(playlistPresenter));
     }
+
+    /**
+     * @param message the message to be outputted to the view
+     */
     public void setOutputMessage(String message){
         this.outputMessage = message;
     }
 
+    /**
+     * @return the message to be outputted to the view.
+     */
     public String getOutputMessage(){
         return this.outputMessage;
 
@@ -56,8 +70,8 @@ public class playlistViewModel {
         return msg;
     }
 
-    public String callNewPlaylistUseCase(int id, User user, String playlistName){
-        this.controller.createNewPlaylist(id, (RegularUser) user,playlistName);
+    public String callNewPlaylistUseCase(int id, UserDsView user, String playlistName){
+        // this.controller.createNewPlaylist(id, user, playlistName);
         String msg = this.playlistPresenter.getOutputMessage();
         return msg;
     }

@@ -1,17 +1,16 @@
 package View;
 
+import ViewModel.playlistViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Entities.User;
-import ViewModel.playlistViewModel;
 
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
-    private final int FONTSIZE = 10;
     private final int WIDTH = 640;
     private final int HEIGHT = 640;
-    private User owner;
+    private InMemoryUser owner;
 
     private int ID;
     private JFrame jframe;
@@ -21,7 +20,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
 
     private ViewModel.playlistViewModel viewModel;
 
-    public NewPlaylistInputDataView(User owner, int ID){
+    public NewPlaylistInputDataView(InMemoryUser owner, int ID){
         this.initializeValues(owner, ID);
         this.initializeComponents();
         this.initializeFrame();
@@ -29,8 +28,8 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.createButton) {
-            String playlistname = this.playlistNameTextField.getText();
-            String outputMessage = this.viewModel.callNewPlaylistUseCase(ID,owner, playlistname);
+            String playlistName = this.playlistNameTextField.getText();
+            String outputMessage = this.viewModel.callNewPlaylistUseCase(ID,owner, playlistName);
             this.jframe.dispose();
             new NewPlaylistOutputDataView(this.owner,outputMessage);
         }
@@ -41,7 +40,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         }
     }
 
-    private void initializeValues(User owner, int ID) {
+    private void initializeValues(InMemoryUser owner, int ID) {
         this.owner = owner;
         this.ID = ID;
         this.jframe = new JFrame("Playlist creation");
@@ -59,7 +58,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private void initializeComponents() {
 
         this.playlistNameTextField = new JTextField();
-        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);;
+        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);
 
         this.createButton = new JButton();
         this.createButton.setBounds(this.WIDTH/2, (this.HEIGHT/2 )+50, 100, 50);

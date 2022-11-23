@@ -2,17 +2,18 @@ package Database;
 
 import Entities.Playlist;
 import Entities.RegularUser;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
+/**
+ * Tests for the playlist database.
+ */
 public class PLibraryTest {
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests if a playlist exists.
+     */
     @Test
     public void testExists(){
         SavePlaylistAccessInterface library = Database.playlistLibrary.getInstance();
@@ -24,6 +25,9 @@ public class PLibraryTest {
         Assertions.assertFalse(library.exists(999999));
     }
 
+    /**
+     * Tests saving a playlist.
+     */
     @Test
     public void testSavePlaylist(){
         SavePlaylistAccessInterface library = Database.playlistLibrary.getInstance();
@@ -42,6 +46,9 @@ public class PLibraryTest {
         Assertions.assertEquals(p.getId(), playlistLibrary.getInstance().findPlaylist(id).getId());
     }
 
+    /**
+     * Tests getting a playlist.
+     */
     @Test
     public void testGetPlaylist(){
         GetPlaylistAccessInterface library = Database.playlistLibrary.getInstance();

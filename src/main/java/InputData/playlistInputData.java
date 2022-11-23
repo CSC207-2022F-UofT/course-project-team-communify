@@ -14,9 +14,13 @@ import java.util.List;
 public class playlistInputData {
     private final String name;
     private final LinkedList<Song> songList;
-    private final ArrayList<songInputData> songInputList;
+    private final List<songInputData> songInputList;
     private final int id;
 
+    /**
+     * @param name String name of the playlist
+     * @param songList list of Songs in the playlist
+     */
     public playlistInputData(String name, List<Song> songList){
         this.name = name;
         this.songList = new LinkedList<>(songList);
@@ -27,6 +31,10 @@ public class playlistInputData {
             songInputList.add(new songInputData(s));
     }
 
+    /**
+     * Overloaded constructor to find a playlist in the database by ID
+     * @param id int ID of the Playlist
+     */
     public playlistInputData(int id){
         GetPlaylistAccessInterface library = playlistLibrary.getInstance();
         this.name = library.findPlaylist(id).getPlaylist().getName();
@@ -62,7 +70,7 @@ public class playlistInputData {
     /**
      * @return list of songs in the playlist formatted as songInputData objects
      */
-    public ArrayList<songInputData> getSongInputList() {
+    public List<songInputData> getSongInputList() {
         return songInputList;
     }
 }

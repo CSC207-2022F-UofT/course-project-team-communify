@@ -1,22 +1,25 @@
 package Database;
 import java.util.Collection;
 
+/**
+ * Application Business Rules layer interface for accessing song data.
+ */
 public interface GetSongAccessInterface {
     /**
      * @return Collection of all songs.
      */
-    public Collection<songDsData> getLibrary();
+    Collection<songDsData> getLibrary();
 
     /**
      * @param id the unique int ID of a given song.
      * @return true iff a song with the given ID exists.
      */
-    public boolean exists(int id);
+    boolean exists(int id);
 
     /**
      *
      * @param id the unique int ID of a given song.
      * @return Song inside a songDsData with matching ID.
      */
-    public songDsData getSong(int id);
+    songDsData getSong(int id);
 }
