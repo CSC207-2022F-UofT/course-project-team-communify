@@ -95,11 +95,13 @@ public class musicEngineControllerViewModel {
     public SongDsView getPlaying() {
         SongDsView out = songMaker.getNewSong();
 
-        out.setName(playing.getName());
-        out.setId(playing.getId());
-        out.setCover(playing.getCover());
-        out.setGenre(playing.getGenre());
-        out.setArtists(playing.getArtistList());
+        if (playing != null){
+            out.setName(playing.getName());
+            out.setId(playing.getId());
+            out.setCover(playing.getCover());
+            out.setGenre(playing.getGenre());
+            out.setArtists(playing.getArtistList());
+        }
 
         return out;
     }

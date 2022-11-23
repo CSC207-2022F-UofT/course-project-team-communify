@@ -1,6 +1,12 @@
 package InputData;
+import Database.GetPlaylistAccessInterface;
+import Database.GetUserAccessInterface;
+import Database.playlistLibrary;
+import Database.userList;
 import Entities.RegularUser;
 import Entities.Song;
+
+import java.util.Random;
 
 /**
  * Application Business Rules layer data structure for submitting new playlist input to use cases.
@@ -13,29 +19,25 @@ public class newPlaylistInputData {
     private final Song firstSong;
 
     /**
-     *
-     * @param id ID that is randomly generated in view
      * @param playlistName name of the playlist
-     * @param owner RegularUser object because only RegularUser's can create playlists
+     * @param owner username of the owner
      */
-    public newPlaylistInputData(int id, String playlistName, RegularUser owner){
-        this.id = id;
+    public newPlaylistInputData(String playlistName, String owner){
+        this.id = getNewID();
         this.playlistName = playlistName;
-        this.owner = owner;
+        this.owner = getUser(owner);
         this.firstSong = null;
     }
 
     /**
-     *
-     * @param id ID that is randomly generated in view
      * @param playlistName name of the playlist
-     * @param owner RegularUser object because only RegularUser's can create playlists
      * @param firstSong generate this playlist with a singular song
+     * @param owner username of the owner
      */
-    public newPlaylistInputData(int id, String playlistName, Song firstSong, RegularUser owner){
-        this.id = id;
+    public newPlaylistInputData(String playlistName, Song firstSong, String owner){
+        this.id = getNewID();
         this.playlistName = playlistName;
-        this.owner = owner;
+        this.owner = getUser(owner);
         this.firstSong = firstSong;
     }
 
@@ -74,4 +76,25 @@ public class newPlaylistInputData {
         return this.id;
     }
 
+    /**
+     * @param username the username of the user
+     * @return the user object representing this user
+     */
+    private RegularUser getUser(String username){
+        GetUserAccessInterface users = userList.getInstance();
+        return (RegularUser) users.getUser(username).getUser();
+    }
+
+    /**
+     * @return a new unused playlist ID
+     */
+    private int getNewID(){
+        GetPlaylistAccessInterface library = playlistLibrary.getInstance();
+        Random random = new Random();
+        int temp = Math.abs(random.nextInt(10000));
+        while (library.findPlaylist(temp) != null){
+            temp = Math.abs(random.nextInt(10000));
+        }
+        return temp;
+    }
 }

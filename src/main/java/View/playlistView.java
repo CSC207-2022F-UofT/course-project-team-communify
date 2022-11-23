@@ -1,5 +1,6 @@
 package View;
 
+import ViewModel.PlaylistDsView;
 import ViewModel.musicEngineControllerViewModel;
 import ViewModel.searchViewModel;
 
@@ -73,13 +74,7 @@ public class playlistView extends JFrame implements ActionListener {
             new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar);
         }
         else if(e.getSource() == this.newPlaylistButton){
-            // TODO: move this to an inner method
-            int min = 0;
-            int max = 1000000000;
-            // int random_ID = (int)Math.floor(Math.random()*(max-min+1)+min);
-            // int random_ID = ThreadLocalRandom.current().nextInt(0, 10000);
-
-            new NewPlaylistInputDataView(this.user, 0);
+            new NewPlaylistInputDataView(this.user, this);
         }
     }
 
@@ -135,15 +130,7 @@ public class playlistView extends JFrame implements ActionListener {
 
         this.setSpaceButton();
         this.setUpSearchButton();
-
-        // TODO: add to method?
-        this.newPlaylistButton =  new JButton("Create New Playlist!");
-        this.newPlaylistButton.setBounds(450,100,150,55);
-        this.newPlaylistButton.setFocusable(false);
-        this.newPlaylistButton.setHorizontalTextPosition(JButton.CENTER);
-        this.newPlaylistButton.setBackground(Color.white);
-        this.newPlaylistButton.setOpaque(true);
-        this.newPlaylistButton.setFont(font);
+        this.setUpPlaylistButton();
 
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
 
@@ -165,7 +152,7 @@ public class playlistView extends JFrame implements ActionListener {
      */
     public void setUpSearchBar(){
         this.searchBar = new JTextField();
-        this.searchBar.setBounds(20, 30, 300, 55);
+        this.searchBar.setBounds(20, 30, 230, 55);
         this.searchBar.setFont(font);
     }
 
@@ -189,8 +176,8 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the search button elements.
      */
     public void setUpSearchButton(){
-        this.searchButton = new JButton("Seach for a song");
-        this.searchButton.setBounds(325,30, 135,55);
+        this.searchButton = new JButton("Search");
+        this.searchButton.setBounds(260, 30, 100, 55);
         this.searchButton.setFocusable(false);
         this.searchButton.setHorizontalTextPosition(JButton.CENTER);
         this.searchButton.setBackground(Color.white);
@@ -203,11 +190,33 @@ public class playlistView extends JFrame implements ActionListener {
      */
     private void setSpaceButton(){
         this.spaceButton = new JButton("Listen to space!");
-        this.spaceButton.setBounds(475,30, 150,55);
+        this.spaceButton.setBounds(370, 30, 100, 55);
         this.spaceButton.setFocusable(false);
         this.spaceButton.setHorizontalTextPosition(JButton.CENTER);
         this.spaceButton.setBackground(Color.white);
         this.spaceButton.setFont(font);
     }
 
+    /**
+     * Sets up the playlist button elements.
+     */
+    private void setUpPlaylistButton(){
+        this.newPlaylistButton =  new JButton("Create New Playlist!");
+        this.newPlaylistButton.setBounds(480, 30, 140, 55);
+        this.newPlaylistButton.setFocusable(false);
+        this.newPlaylistButton.setHorizontalTextPosition(JButton.CENTER);
+        this.newPlaylistButton.setBackground(Color.white);
+        this.newPlaylistButton.setOpaque(true);
+        this.newPlaylistButton.setFont(font);
+    }
+
+    /**
+     * @param currPlaylist the new playlist to update the user with
+     */
+    public void updateUser(PlaylistDsView currPlaylist) {
+        this.user.addPlaylist(currPlaylist);
+        this.panel.remove(this.playlistPanel.getPane());
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        this.panel.add(this.playlistPanel.getPane());
+    }
 }

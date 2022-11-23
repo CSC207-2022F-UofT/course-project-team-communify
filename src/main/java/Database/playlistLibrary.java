@@ -124,7 +124,9 @@ public class playlistLibrary implements GetPlaylistAccessInterface, SavePlaylist
             return new playlistDsData(p);
         }
 
-        return playlistDatabase.get(id);
+        if (playlistDatabase.containsKey(id))
+            return playlistDatabase.get(id);
+        return null;
     }
 
     /**

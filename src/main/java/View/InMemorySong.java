@@ -17,7 +17,7 @@ public class InMemorySong implements SongDsView {
      * Empty constructor.
      */
     public InMemorySong(){
-
+        this.name = "";
     }
 
     /**
