@@ -14,6 +14,7 @@ It's pretty easy!
 
 ## Features
 - you can log in as an _ARTIST_ and a _REGULAR USER_ (i.e. a listener)
+- Regular User account for testing has username User1 and password Password1
 - as an artist, you can upload songs that regular users can listen to
 - regular users can create and listen to playlists. the create playlist view portion has yet to be pushed to main, so just try listening to the existing playlists for now. in a playlist, you can skip, pause, and resume playing songs. 
 - there is also the search for a song feature. you can add the songs found to a space -- which is similar to a radio -- as well as the playlists, but the add to playlist has yet to be added to the view. so just try adding them to the space for now!
