@@ -86,6 +86,25 @@ public class playlistView extends JFrame implements ActionListener {
 
     /**
      * @param user the logged-in user
+     */
+    private void initializeValues(InMemoryUser user){
+        this.user = user;
+
+        this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
+        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        this.jframe.setResizable(false);
+        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
+        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
+        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
+        this.spacePlaying = false;
+
+        this.searchViewModel = new searchViewModel();
+    }
+
+    /**
+     * @param user the logged-in user
      * @param vm the old view model
      * @param pb the current play bar
      */
@@ -101,25 +120,6 @@ public class playlistView extends JFrame implements ActionListener {
         this.musicEngineControllerViewModel = vm;
         this.playBar = pb;
         this.playBar.update();
-        this.spacePlaying = false;
-
-        this.searchViewModel = new searchViewModel();
-    }
-
-    /**
-     * @param user the logged-in user
-     */
-    private void initializeValues(InMemoryUser user){
-        this.user = user;
-
-        this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
-        this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
-        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
-        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
