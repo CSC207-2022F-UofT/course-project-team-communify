@@ -18,6 +18,8 @@ public interface PlaylistDsView {
      */
     void addSong(SongDsView s);
 
+    void removeSong(SongDsView s);
+
     /**
      * @return an empty SongDsView object
      */

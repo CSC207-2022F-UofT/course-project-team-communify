@@ -64,6 +64,11 @@ public class InMemoryPlaylist implements PlaylistDsView {
         songs.add((InMemorySong) s);
     }
 
+    @Override
+    public void removeSong(SongDsView s){
+        songs.remove((InMemorySong) s);
+    }
+
     /**
      * @return a blank song
      */
