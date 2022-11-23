@@ -137,6 +137,10 @@ public class PlayBar implements ActionListener {
      */
     public void update() {
         InMemorySong song = (InMemorySong) viewModel.getPlaying();
+
+        if(song.getName().equals(""))
+            return;
+
         this.song.setText(song.getName());
         this.artist.setText(String.join(", ", song.getArtists()));
         this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Playlist {
     private String name;
     private final int id;
-    private final User owner;
+    private User owner;
     private final LinkedList<Song> songList;
 
     /**
@@ -21,7 +21,7 @@ public class Playlist {
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.songList = new LinkedList<Song>();
+        this.songList = new LinkedList<>();
     }
 
     /**
@@ -35,7 +35,7 @@ public class Playlist {
         this.id = id;
         this.name = name;
         this.owner = owner;
-        this.songList = new LinkedList<Song>();
+        this.songList = new LinkedList<>();
         this.songList.addFirst(firstSong);
     }
 
@@ -60,6 +60,12 @@ public class Playlist {
         return this.owner;
     }
 
+    /**
+     * @param user the new user which owns the playlist
+     */
+    public void setOwner(User user){
+        this.owner = user;
+    }
     /**
      * Removes a given Song from a playlist.
      * @param song Song to be removed
