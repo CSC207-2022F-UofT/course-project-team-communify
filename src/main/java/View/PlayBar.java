@@ -109,10 +109,7 @@ public class PlayBar implements ActionListener {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            InMemorySong song = (InMemorySong) viewModel.getPlaying();
-            this.song.setText(song.getName());
-            this.artist.setText(String.join(", ", song.getArtists()));
-            this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+            this.update();
             waitForSong();
         }
     }
@@ -132,6 +129,28 @@ public class PlayBar implements ActionListener {
                 this.pause.setText("Resume");
             else
                 this.pause.setText("Pause");
+        }
+    }
+
+    /**
+     * Updates the play bar data.
+     */
+    public void update() {
+        InMemorySong song = (InMemorySong) viewModel.getPlaying();
+        this.song.setText(song.getName());
+        this.artist.setText(String.join(", ", song.getArtists()));
+        this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+        if (viewModel.getMediaType() == 2){
+            this.skip.setVisible(false);
+            this.pause.setVisible(false);
+        }
+        if (viewModel.getMediaType() == 0){
+            this.skip.setVisible(false);
+            this.pause.setVisible(true);
+        }
+        if (viewModel.getMediaType() == 1){
+            this.skip.setVisible(true);
+            this.pause.setVisible(true);
         }
     }
 }
