@@ -84,6 +84,7 @@ public class playlistView extends JFrame implements ActionListener {
     }
 
     /**
+     * Initializes the values of the main Swing and logic objects.
      * @param user the logged-in user
      */
     private void initializeValues(InMemoryUser user){
@@ -94,6 +95,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setResizable(false);
         this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
         this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
         this.spacePlaying = false;
@@ -144,7 +146,6 @@ public class playlistView extends JFrame implements ActionListener {
         this.newPlaylistButton.setFont(font);
 
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
-        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
 
         this.setUpSearchBar();
 
