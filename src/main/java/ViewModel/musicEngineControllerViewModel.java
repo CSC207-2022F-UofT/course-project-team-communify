@@ -5,7 +5,6 @@ import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
 
-import java.util.List;
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the music playing related
  * parts of the program.
@@ -135,17 +134,9 @@ public class musicEngineControllerViewModel {
     }
 
     /**
-     * @param spaceIDs the song IDs to add to the space
+     * @return the integer representation of type of media playing
      */
-    public void updateSpace(List<Integer> spaceIDs) {
-        for (int id : spaceIDs)
-            this.musicEngineController.spaceAddSong(id);
-    }
-
-    /**
-     * @return the song IDs in the space
-     */
-    public List<Integer> returnSpace(){
-        return this.musicEngineController.returnSpace();
+    public int getMediaType(){
+        return this.musicEngineController.getPlaying();
     }
 }

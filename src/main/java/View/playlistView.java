@@ -45,10 +45,11 @@ public class playlistView extends JFrame implements ActionListener {
 
     /**
      * @param user the user logged in
-     * @param spaceIDs the song IDs in the space
+     * @param vm old view model
+     * @param pb the current play bar
      */
-    public playlistView(InMemoryUser user, List<Integer> spaceIDs) {
-        this.initializeValues(user, spaceIDs);
+    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb) {
+        this.initializeValues(user, vm, pb);
         this.initializeComponents();            // set up space button
         this.initializeFrame();
     }
@@ -70,7 +71,7 @@ public class playlistView extends JFrame implements ActionListener {
             this.searchViewModel.search(searchText);
             System.out.println(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel.returnSpace(), this.musicEngineControllerViewModel);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar);
         }
         else if(e.getSource() == this.newPlaylistButton){
             // TODO: move this to an inner method
@@ -84,8 +85,29 @@ public class playlistView extends JFrame implements ActionListener {
     }
 
     /**
-     * Initializes the values of the main Swing and logic objects.
-     * @param user the logged in user
+     * @param user the logged-in user
+     * @param vm the old view model
+     * @param pb the current play bar
+     */
+    private void initializeValues(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb){
+        this.user = user;
+
+        this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
+        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        this.jframe.setResizable(false);
+        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
+        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.musicEngineControllerViewModel = vm;
+        this.playBar = pb;
+        this.playBar.update();
+        this.spacePlaying = false;
+
+        this.searchViewModel = new searchViewModel();
+    }
+
+    /**
+     * @param user the logged-in user
      */
     private void initializeValues(InMemoryUser user){
         this.user = user;
@@ -96,27 +118,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        this.spacePlaying = false;
-
-        this.searchViewModel = new searchViewModel();
-    }
-
-    /**
-     * @param user the logged-in user
-     * @param spaceIDs the IDs of the songs in the space
-     */
-    private void initializeValues(InMemoryUser user, List<Integer> spaceIDs){
-        this.user = user;
-
-        this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
-        this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
-        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        this.musicEngineControllerViewModel.updateSpace(spaceIDs);
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();

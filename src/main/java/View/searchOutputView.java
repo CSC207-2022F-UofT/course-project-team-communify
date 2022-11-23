@@ -8,6 +8,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,18 +26,18 @@ public class searchOutputView extends JFrame implements ActionListener {
     private JComboBox<String> comboBox;
     private String[] ids;
     private searchViewModel searchViewModel;
-    private List<Integer> spaceIDs;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
+    private final PlayBar playBar;
 
     /**
      * @param searchText the search query
      * @param user the logged-in user
-     * @param spaceIDs the IDs of the songs in the space
      * @param engineVm the view model containing the song data
+     * @param pb the current play bar object
      */
-    public searchOutputView(String searchText, InMemoryUser user, List<Integer> spaceIDs, musicEngineControllerViewModel engineVm){
-        this.spaceIDs = spaceIDs;
+    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb){
         this.musicEngineControllerViewModel = engineVm;
+        this.playBar = pb;
         this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
@@ -84,7 +85,6 @@ public class searchOutputView extends JFrame implements ActionListener {
         table = new JTable(data, columnNames);
         TableColumnModel columnModel = table.getColumnModel();
         setUpActions(columnModel, formattedData.length);
-
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
         comboBox.addActionListener(this);
         this.scrollPane = new JScrollPane(table);
@@ -99,6 +99,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     public void setUpActions(TableColumnModel columnModel, int length){
         comboBox = new JComboBox<>();
+        comboBox.addItem("Play Song");
         comboBox.addItem("Add to Space");
 
         for (InMemoryPlaylist p : user.getPlaylists()) {
@@ -149,12 +150,14 @@ public class searchOutputView extends JFrame implements ActionListener {
 
             if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
                 String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
-                this.spaceIDs = this.musicEngineControllerViewModel.returnSpace();
                 this.createPopup(PopupMessage);
+            }
+            if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
+                this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.spaceIDs);
+            new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar);
         }
     }
 

@@ -59,6 +59,7 @@ public class musicEngineController {
     public void playSpace(){
         stop();
         this.playSpaceInteractor.playSpace();
+        this.playing = this.SPACE;
     }
 
     /**
@@ -80,17 +81,6 @@ public class musicEngineController {
             this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
         }
         this.spacePresenter.addedToSpace(songToAdd.getName());
-    }
-
-    /**
-     * @return returns list of integers in the space
-     */
-    public List<Integer> returnSpace(){
-        List<Integer> songs = new ArrayList<>();
-        for (songInputData song : this.spaceSongList){
-            songs.add(song.getId());
-        }
-        return songs;
     }
 
     /**
@@ -154,5 +144,12 @@ public class musicEngineController {
                 this.playSpaceInteractor.stopSpace();
                 this.spacePresenter.spaceNotPlayed();
         }
+    }
+
+    /**
+     * @return the type of media currently playing
+     */
+    public int getPlaying() {
+        return playing;
     }
 }
