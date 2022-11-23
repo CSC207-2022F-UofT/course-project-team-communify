@@ -95,9 +95,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe.setResizable(false);
         this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
+        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
         this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
