@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Creates the main playlist panel for the view.
  */
 public class PlaylistPanelView implements ActionListener {
-    private final int WIDTH = 600;
+    private final int WIDTH = 1240;
     private final int HEIGHT = 400;
     private JPanel panel;
     private JScrollPane pane;
@@ -33,6 +33,12 @@ public class PlaylistPanelView implements ActionListener {
      * @param vm the view model with the song data
      */
     private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, musicEngineControllerViewModel vm) {
+
+        int DEFAULT_WIDTH = 130;
+        int DEFAULT_HEIGHT = 40;
+        int DEFAULT_KERNING = 20;
+
+
         this.viewModel = vm;
         this.panel = new JPanel();
         BoxLayout boxLayout = new BoxLayout(this.panel, BoxLayout.Y_AXIS);
@@ -40,7 +46,7 @@ public class PlaylistPanelView implements ActionListener {
         panel.setBounds(0, 0, WIDTH, HEIGHT);
         this.pane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        pane.setBounds(15, 120, WIDTH, HEIGHT);
+        pane.setBounds(15, 110, WIDTH, HEIGHT);
 
         this.buttons = new ArrayList<>();
         this.rButtons = new ArrayList<>();
@@ -50,7 +56,7 @@ public class PlaylistPanelView implements ActionListener {
             mainPanel.setLayout(playlistLayout);
 
             JPanel namePanel = new JPanel();
-            FlowLayout nameLayout = new FlowLayout(FlowLayout.CENTER, 20, 0);
+            FlowLayout nameLayout = new FlowLayout(FlowLayout.LEFT, 20, 0);
             namePanel.setLayout(nameLayout);
             JLabel name = new JLabel(p.getName());
             name.setFont(new Font("Segoe UI", Font.BOLD, 36));
@@ -58,8 +64,13 @@ public class PlaylistPanelView implements ActionListener {
             IDButton recommend = new IDButton(p.getId());
             button.addActionListener(this);
             recommend.addActionListener(this);
+
             button.setText("Play");
+            button.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+
             recommend.setText("Play Recommendation");
+            recommend.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+
             namePanel.add(name);
             namePanel.add(button);
             namePanel.add(recommend);
@@ -69,12 +80,12 @@ public class PlaylistPanelView implements ActionListener {
 
             JPanel songPanel = new JPanel();
             GridLayout songLayout = new GridLayout(p.getSongs().size(), 4);
-            songLayout.setVgap(10);
-            songLayout.setHgap(0);
+            songLayout.setVgap(DEFAULT_KERNING);
+            songLayout.setHgap(DEFAULT_KERNING);
             songPanel.setLayout(songLayout);
             for (InMemorySong s : p.getSongs()){
                 JPanel thisSongPanel = new JPanel();
-                FlowLayout thisSongLayout = new FlowLayout(FlowLayout.LEFT, 15, 0);
+                FlowLayout thisSongLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, 0);
                 thisSongPanel.setLayout(thisSongLayout);
                 JLabel cover = new JLabel(new ImageIcon(s.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
                 JLabel songName = new JLabel(s.getName());

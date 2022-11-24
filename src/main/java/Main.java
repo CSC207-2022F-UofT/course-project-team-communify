@@ -1,16 +1,19 @@
 import View.launchView;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
+import java.util.Collections;
 
 /**
  * The driver of the program.
  */
 public class Main {
 
-    private static final String ICON_BLACK = "src/main/java/View/assets/icon_black.png";
+
     private static final String ICON_RED = "src/main/java/View/assets/icon_red.png";
-    private static final String LOGO_BLACK = "src/main/java/View/assets/logo_black.png";
+    private static final String LOGO_SMALL = "src/main/java/View/assets/logo_red_small.png";
     private static final String LOGO_RED = "src/main/java/View/assets/logo_red.png";
 
     /**
@@ -19,12 +22,15 @@ public class Main {
     public static void main(String[] args){
 
         // Look and Feel Setup
-        FlatLightLaf.setup();
+        FlatDarculaLaf.setGlobalExtraDefaults( Collections.singletonMap( "@accentColor", "#ffffff" ) );
+        FlatDarculaLaf.setup();
+
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
         ImageIcon logoRed = new ImageIcon(LOGO_RED);
+        ImageIcon logoSmall = new ImageIcon(LOGO_SMALL);
 
         // FINAL
-        new launchView(windowIcon, logoRed);
+        new launchView(windowIcon, logoRed, logoSmall);
 
     }
 }

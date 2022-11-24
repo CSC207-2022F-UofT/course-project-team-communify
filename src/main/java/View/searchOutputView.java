@@ -48,6 +48,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      * @param user the logged-in user
      */
     public void initialiseValues(String searchText, InMemoryUser user){
+
         this.searchViewModel = new searchViewModel();
         this.user = user;
         this.searchText = searchText;
@@ -55,15 +56,11 @@ public class searchOutputView extends JFrame implements ActionListener {
         BorderLayout layout = new BorderLayout(30, 30);
         this.panel = new JPanel(layout);
         this.title = new JLabel("Search results for " + this.searchText);
-        int FONTSIZE = 10;
-        this.title.setFont(new Font(title.getFont().getName(), Font.PLAIN, FONTSIZE * 2));
 
         this.homeButton = new JButton();
         this.homeButton.setText("Home");
         this.homeButton.setFocusable(false);
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
-        this.homeButton.setForeground(Color.black);
-        this.homeButton.setBackground(Color.white);
         this.homeButton.addActionListener(this);
     }
 
@@ -119,16 +116,17 @@ public class searchOutputView extends JFrame implements ActionListener {
      * Initializes the main window frame and adds components.
      */
     public void initializeFrame(){
+
         int HEIGHT = 640;
-        int WIDTH = 640;
+        int WIDTH = 1280;
         this.jframe.setSize(WIDTH, HEIGHT);
+        this.jframe.setLocationRelativeTo(null);
         this.jframe.setResizable(false);
         this.jframe.add(title);
 
         this.panel.add(title, BorderLayout.PAGE_START);
         this.panel.add(scrollPane,BorderLayout.CENTER);
         this.panel.add(homeButton, BorderLayout.PAGE_END);
-        this.panel.setBackground(new Color(156, 219, 250));
 
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -15,16 +15,20 @@ public class launchView extends JFrame implements ActionListener {
 
     private JLabel logo;
     private final ImageIcon logoImg;
+
+    private final ImageIcon logoSmall;
     private JFrame jframe;
+
 
 
     /**
      * @param icon the program icon
      * @param logoImg the program logo
      */
-    public launchView(ImageIcon icon, ImageIcon logoImg){
+    public launchView(ImageIcon icon, ImageIcon logoImg, ImageIcon logoSmall){
         this.icon = icon;
         this.logoImg = logoImg;
+        this.logoSmall = logoSmall;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
@@ -39,11 +43,11 @@ public class launchView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.loginButton) {
             this.jframe.dispose();
-            new loginView(icon, logoImg, false);
+            new loginView(icon, logoImg, logoSmall, false);
         }
         else if (e.getSource() == this.registerButton){
             this.jframe.dispose();
-            new loginView(icon, logoImg, true);
+            new loginView(icon, logoImg, logoSmall,true);
         }
     }
 
@@ -69,17 +73,24 @@ public class launchView extends JFrame implements ActionListener {
      */
     private void initializeComponents() {
 
+        int DEFAULT_WIDTH = 160;
+        int DEFAULT_HEIGHT = 40;
+        int DEFAULT_KERNING = 20;
+
         this.logo = new JLabel(logoImg);
-        this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 200, logoImg.getIconWidth(), logoImg.getIconHeight());
+        this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2,
+                this.jframe.getHeight()/2 - logoImg.getIconHeight(), logoImg.getIconWidth(), logoImg.getIconHeight());
 
         this.registerButton = new JButton();
-        this.registerButton.setBounds((this.jframe.getWidth() - 320)/2, 300, 160, 40);
+        this.registerButton.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH*2  - DEFAULT_KERNING)/2,
+                this.jframe.getHeight()/2 + DEFAULT_KERNING, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.registerButton.setText("Register");
         this.registerButton.setFocusable(false);
         this.registerButton.setHorizontalTextPosition(JButton.CENTER);
 
         this.loginButton = new JButton();
-        this.loginButton.setBounds((this.jframe.getWidth())/2, 300, 160, 40);
+        this.loginButton.setBounds((this.jframe.getWidth() + DEFAULT_KERNING)/2,
+                this.jframe.getHeight()/2 + DEFAULT_KERNING, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.loginButton.setText("Login");
         this.loginButton.setFocusable(false);
         this.loginButton.setHorizontalTextPosition(JButton.CENTER);

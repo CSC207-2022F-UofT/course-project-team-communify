@@ -43,8 +43,8 @@ public class PlayBar implements ActionListener {
         this.panel = new JPanel();
         int WIDTH = 640;
         int HEIGHT = 100;
-        panel.setBounds(0, 540, WIDTH, HEIGHT);
-        FlowLayout barLayout = new FlowLayout(FlowLayout.CENTER, 50, 0);
+        panel.setBounds(-27, 530, WIDTH, HEIGHT);
+        FlowLayout barLayout = new FlowLayout(FlowLayout.LEFT, 50, 0);
         this.panel.setLayout(barLayout);
         this.skip = new JButton("Skip");
         this.pause = new JButton("Pause");
