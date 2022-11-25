@@ -47,6 +47,7 @@ public class playPlaylist implements playPlaylistInputBoundary {
             final Thread t = new Thread(this::playNext);
             t.start();
             p.playSong(new songInputData(playlist.get(songToPlay)));
+            System.out.println("Now playing " + playlist.get(songToPlay).getName());
         }
     }
 

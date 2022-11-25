@@ -1,8 +1,10 @@
 package Controller;
-import Entities.RegularUser;
 import Entities.Song;
 import InputBoundary.newPlaylistInputBoundary;
 import InputData.newPlaylistInputData;
+import ViewModel.PlaylistDsView;
+import ViewModel.UserDsView;
+
 /**
  * Controller-layer implementation for create playlist use case
  */
@@ -21,26 +23,32 @@ public class newPlaylistController {
 
     /**
      * Creates a playlist with one song
-     * @param id randomly generated ID to create new playlist with
      * @param user RegularUser retrieved from view
      * @param playlistName name to create playlist with
      * @param firstSong song to create playlist with
-     *
+     * @return the new playlist in a view layer DS
      */
-    public void createNewPlaylist(int id, RegularUser user, String playlistName, Song firstSong){
-        newPlaylistInputData inputData = new newPlaylistInputData(id,playlistName,firstSong,user);
-        this.newPlaylistInputBoundary.newPlaylist(inputData);
+    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, Song firstSong){
+        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSong, user.getUsername());
+        PlaylistDsView newPlaylist = user.getNewPlaylist();
+        newPlaylist.setName(playlistName);
+        newPlaylist.setId(inputData.getId());
+        return newPlaylist;
     }
 
     /**
      * Creates an empty playlist
-     * @param id randomly generated ID to create new playlist with
      * @param user RegularUser retrieved from view
      * @param playlistName name to create playlist with
+     * @return the new playlist in a view layer DS
      */
-    public void createNewPlaylist(int id, RegularUser user, String playlistName){
-        newPlaylistInputData inputData = new newPlaylistInputData(id,playlistName,user);
+    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName){
+        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, user.getUsername());
+        PlaylistDsView newPlaylist = user.getNewPlaylist();
+        newPlaylist.setName(playlistName);
+        newPlaylist.setId(inputData.getId());
         this.newPlaylistInputBoundary.newPlaylist(inputData);
+        return newPlaylist;
     }
 
 }

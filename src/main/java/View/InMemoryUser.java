@@ -30,6 +30,7 @@ public class InMemoryUser implements UserDsView {
     /**
      * @return the username of the user
      */
+    @Override
     public String getUsername() {
         return this.username;
     }
