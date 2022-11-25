@@ -43,10 +43,10 @@ public class playlistView extends JFrame implements ActionListener {
      * constructor
      * @param user takes in the user's data to display their own dashboard!
      */
-    public playlistView(InMemoryUser user, ImageIcon icon, ImageIcon logoImg, ImageIcon logoSmall){
+    public playlistView(InMemoryUser user, ImageIcon icon, ImageIcon logoImg){
         this.icon = icon;
         this.logoImg = logoImg;
-        this.logoSmall = logoSmall;
+        this.logoSmall = new ImageIcon(logoImg.getImage().getScaledInstance((int)(logoImg.getIconWidth()*0.7), (int)(logoImg.getIconHeight()*0.7), Image.SCALE_SMOOTH));
         this.initializeValues(user);
         this.initializeComponents();            // set up space button
 
@@ -60,7 +60,9 @@ public class playlistView extends JFrame implements ActionListener {
      * @param vm old view model
      * @param pb the current play bar
      */
-    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb) {
+    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
+        this.icon = icon;
+        this.logoImg = logoImg;
         this.initializeValues(user, vm, pb);
         this.initializeComponents();            // set up space button
         this.initializeFrame();
@@ -82,7 +84,7 @@ public class playlistView extends JFrame implements ActionListener {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar, icon, logoImg);
         }
         else if(e.getSource() == this.newPlaylistButton){
             new NewPlaylistInputDataView(this.user, this);

@@ -30,7 +30,7 @@ public class Main {
         ImageIcon logoSmall = new ImageIcon(LOGO_SMALL);
 
         // FINAL
-        new launchView(windowIcon, logoRed, logoSmall);
+        new launchView(windowIcon, logoRed);
 
     }
 }

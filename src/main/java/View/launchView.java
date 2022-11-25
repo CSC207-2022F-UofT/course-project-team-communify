@@ -15,8 +15,6 @@ public class launchView extends JFrame implements ActionListener {
 
     private JLabel logo;
     private final ImageIcon logoImg;
-
-    private final ImageIcon logoSmall;
     private JFrame jframe;
 
 
@@ -25,10 +23,9 @@ public class launchView extends JFrame implements ActionListener {
      * @param icon the program icon
      * @param logoImg the program logo
      */
-    public launchView(ImageIcon icon, ImageIcon logoImg, ImageIcon logoSmall){
+    public launchView(ImageIcon icon, ImageIcon logoImg){
         this.icon = icon;
         this.logoImg = logoImg;
-        this.logoSmall = logoSmall;
         this.initializeValues();
         this.initializeComponents();
         this.initializeFrame();
@@ -43,11 +40,11 @@ public class launchView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == this.loginButton) {
             this.jframe.dispose();
-            new loginView(icon, logoImg, logoSmall, false);
+            new loginView(icon, logoImg, false);
         }
         else if (e.getSource() == this.registerButton){
             this.jframe.dispose();
-            new loginView(icon, logoImg, logoSmall,true);
+            new loginView(icon, logoImg,true);
         }
     }
 

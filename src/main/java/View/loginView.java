@@ -25,7 +25,6 @@ public class loginView extends JFrame implements ActionListener {
     private JTextField passwordTextField;
     private ImageIcon icon;
     private ImageIcon logoImg;
-    private ImageIcon logoSmall;
     private JTextField artistTextField;
     private JButton backButton;
     private JLabel logo;
@@ -37,10 +36,9 @@ public class loginView extends JFrame implements ActionListener {
      * @param logoImg the program logo
      * @param register true if this window is for registering (vs. logging in)
      */
-    public loginView(ImageIcon icon, ImageIcon logoImg, ImageIcon logoSmall, boolean register) {
+    public loginView(ImageIcon icon, ImageIcon logoImg, boolean register) {
         this.icon = icon;
         this.logoImg = logoImg;
-        this.logoSmall = logoSmall;
         this.register = register;
         this.initializeValues();
         this.initializeComponents();
@@ -60,7 +58,7 @@ public class loginView extends JFrame implements ActionListener {
 
         if(e.getSource() == this.backButton){
             this.jframe.dispose();
-            new launchView(icon, logoImg, logoSmall);
+            new launchView(icon, logoImg);
         }
 
         if (e.getSource() != this.isArtistCheckBox){
@@ -85,7 +83,7 @@ public class loginView extends JFrame implements ActionListener {
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new playlistView(user, icon, logoImg, logoSmall);
+                    new playlistView(user, icon, logoImg);
                 }
             }
             else {
@@ -102,7 +100,7 @@ public class loginView extends JFrame implements ActionListener {
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new playlistView(user, icon, logoImg, logoSmall);
+                    new playlistView(user, icon, logoImg);
                 }
             }
             else {
