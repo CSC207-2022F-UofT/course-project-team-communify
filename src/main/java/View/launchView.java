@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
  * Creates the launch view.
  */
 public class launchView extends JFrame implements ActionListener {
-
     private JButton loginButton;
 
     private JButton registerButton;

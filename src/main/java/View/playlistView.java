@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
  * view for the user dashboard
  */
 public class playlistView extends JFrame implements ActionListener {
+
+    private static final ImageIcon SEARCH = new ImageIcon("src/main/java/View/assets/button/search.png");
+    private static final ImageIcon SPACE = new ImageIcon("src/main/java/View/assets/button/space.png");
+    private static final ImageIcon ADD_TO = new ImageIcon("src/main/java/View/assets/button/add_to.png");
     private final int WIDTH = 1280;
     private final int HEIGHT = 640;
     private InMemoryUser user;
@@ -171,7 +175,7 @@ public class playlistView extends JFrame implements ActionListener {
      */
     public void setUpSearchBar(){
         this.searchBar = new JTextField();
-        this.searchBar.setBounds(this.logoSmall.getIconWidth() + DEFAULT_KERNING * 2, 35,
+        this.searchBar.setBounds(this.logoSmall.getIconWidth() + DEFAULT_KERNING * 2, DEFAULT_KERNING * 2,
                 this.jframe.getWidth() - logo.getWidth() - DEFAULT_WIDTH * 3 - DEFAULT_KERNING * 4, DEFAULT_HEIGHT);
     }
 
@@ -200,9 +204,13 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the search button elements.
      */
     public void setUpSearchButton(){
-        this.searchButton = new JButton("Search");
+        this.searchButton = new JButton(SEARCH);
+        this.searchButton.setOpaque(false);
+        this.searchButton.setBorderPainted(false);
+        this.searchButton.setContentAreaFilled(false);
+
         this.searchButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + DEFAULT_KERNING * 2,
-                35, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.searchButton.setFocusable(false);
         this.searchButton.setHorizontalTextPosition(JButton.CENTER);
 
@@ -212,9 +220,12 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the space button elements.
      */
     private void setSpaceButton(){
-        this.spaceButton = new JButton("Listen to space!");
+        this.spaceButton = new JButton(SPACE);
+        this.spaceButton.setOpaque(false);
+        this.spaceButton.setBorderPainted(false);
+        this.spaceButton.setContentAreaFilled(false);
         this.spaceButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + this.searchButton.getWidth() + DEFAULT_KERNING * 2,
-                35, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.spaceButton.setFocusable(false);
         this.spaceButton.setHorizontalTextPosition(JButton.CENTER);
     }
@@ -223,9 +234,12 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the playlist button elements.
      */
     private void setUpPlaylistButton(){
-        this.newPlaylistButton =  new JButton("Create New Playlist!");
+        this.newPlaylistButton =  new JButton(ADD_TO);
+        this.newPlaylistButton.setOpaque(false);
+        this.newPlaylistButton.setBorderPainted(false);
+        this.newPlaylistButton.setContentAreaFilled(false);
         this.newPlaylistButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + this.searchButton.getWidth() + this.spaceButton.getWidth() + DEFAULT_KERNING * 2,
-                35, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.newPlaylistButton.setFocusable(false);
         this.newPlaylistButton.setHorizontalTextPosition(JButton.CENTER);
         this.newPlaylistButton.setOpaque(true);

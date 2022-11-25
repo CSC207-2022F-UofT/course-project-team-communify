@@ -16,10 +16,14 @@ import java.nio.file.Paths;
  * Creates the play bar for the view.
  */
 public class PlayBar implements ActionListener {
+
+    private static final ImageIcon PAUSE = new ImageIcon("src/main/java/View/assets/button/pause.png");
+    private static final ImageIcon PLAY = new ImageIcon("src/main/java/View/assets/button/play.png");
+    private static final ImageIcon FWD = new ImageIcon("src/main/java/View/assets/button/fwd.png");
+    private static final ImageIcon PREV = new ImageIcon("src/main/java/View/assets/button/prev.png");
     private JPanel panel;
     private musicEngineControllerViewModel viewModel;
     private final Object sync;
-
     private JButton prev;
     private JButton pause;
     private JButton skip;
@@ -55,13 +59,25 @@ public class PlayBar implements ActionListener {
         FlowLayout barLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, 0);
         this.panel.setLayout(barLayout);
 
-        this.prev = new JButton("Prev");
+        this.prev = new JButton(PREV);
+        this.prev.setFocusable(false);
+        this.prev.setOpaque(false);
+        this.prev.setBorderPainted(false);
+        this.prev.setContentAreaFilled(false);
         this.prev.setPreferredSize(DEFAULT_DIMENSION);
 
-        this.skip = new JButton("Skip");
+        this.skip = new JButton(FWD);
+        this.skip.setFocusable(false);
+        this.skip.setOpaque(false);
+        this.skip.setBorderPainted(false);
+        this.skip.setContentAreaFilled(false);
         this.skip.setPreferredSize(DEFAULT_DIMENSION);
 
-        this.pause = new JButton("Pause");
+        this.pause = new JButton(PAUSE);
+        this.pause.setFocusable(false);
+        this.pause.setOpaque(false);
+        this.pause.setBorderPainted(false);
+        this.pause.setContentAreaFilled(false);
         this.pause.setPreferredSize(DEFAULT_DIMENSION);
 
         this.skip.addActionListener(this);
@@ -148,10 +164,10 @@ public class PlayBar implements ActionListener {
         }
         else if (actionEvent.getSource() == this.pause){
             this.viewModel.pauseSongAction();
-            if (this.pause.getText().equals("Pause"))
-                this.pause.setText("Resume");
+            if (this.pause.getIcon() == PAUSE)
+                this.pause.setIcon(PLAY);
             else
-                this.pause.setText("Pause");
+                this.pause.setIcon(PAUSE);
         }
     }
 
