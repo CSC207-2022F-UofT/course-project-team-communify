@@ -29,13 +29,19 @@ public class searchOutputView extends JFrame implements ActionListener {
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
     private final PlayBar playBar;
 
+    private final ImageIcon icon;
+
+    private final ImageIcon logoImg;
+
     /**
      * @param searchText the search query
      * @param user the logged-in user
      * @param engineVm the view model containing the song data
      * @param pb the current play bar object
      */
-    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb){
+    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb, ImageIcon icon, ImageIcon logoImg){
+        this.icon = icon;
+        this.logoImg = logoImg;
         this.musicEngineControllerViewModel = engineVm;
         this.playBar = pb;
         this.initialiseValues(searchText, user);
@@ -53,15 +59,15 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
-        BorderLayout layout = new BorderLayout(30, 30);
+        BorderLayout layout = new BorderLayout(100, 0);
         this.panel = new JPanel(layout);
-        this.title = new JLabel("Search results for " + this.searchText);
+        this.title = new JLabel(this.searchText);
 
         this.homeButton = new JButton();
         this.homeButton.setText("Home");
         this.homeButton.setFocusable(false);
-        this.homeButton.setHorizontalTextPosition(JButton.CENTER);
         this.homeButton.addActionListener(this);
+        this.panel.add(this.playBar.getPanel());
     }
 
 
@@ -80,6 +86,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
         String[] columnNames = {"ID", "Name", "Artist", "Genre"};
         table = new JTable(data, columnNames);
+        table.setFocusable(false);
         TableColumnModel columnModel = table.getColumnModel();
         setUpActions(columnModel, formattedData.length);
         columnModel.removeColumn(table.getColumnModel().getColumn(0));
@@ -126,7 +133,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
         this.panel.add(title, BorderLayout.PAGE_START);
         this.panel.add(scrollPane,BorderLayout.CENTER);
-        this.panel.add(homeButton, BorderLayout.PAGE_END);
+        this.panel.add(homeButton, BorderLayout.PAGE_START);
 
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,7 +162,7 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar);
+            new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar, this.icon, this.logoImg);
         }
     }
 
