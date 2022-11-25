@@ -34,7 +34,7 @@ public class playlistView extends JFrame implements ActionListener {
     private ImageIcon logoSmall;
     private JLabel logo;
 
-    private int DEFAULT_WIDTH = 130;
+    private int DEFAULT_WIDTH = 40;
     private int DEFAULT_HEIGHT = 40;
     private int DEFAULT_KERNING = 20;
 
@@ -169,7 +169,8 @@ public class playlistView extends JFrame implements ActionListener {
      */
     public void setUpSearchBar(){
         this.searchBar = new JTextField();
-        this.searchBar.setBounds(this.logoSmall.getIconWidth() + DEFAULT_KERNING * 2, 35, 450, DEFAULT_HEIGHT);
+        this.searchBar.setBounds(this.logoSmall.getIconWidth() + DEFAULT_KERNING * 2, 35,
+                this.jframe.getWidth() - logo.getWidth() - DEFAULT_WIDTH * 3 - DEFAULT_KERNING * 4, DEFAULT_HEIGHT);
     }
 
     /**

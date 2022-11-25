@@ -19,6 +19,8 @@ public class PlayBar implements ActionListener {
     private JPanel panel;
     private musicEngineControllerViewModel viewModel;
     private final Object sync;
+
+    private JButton prev;
     private JButton pause;
     private JButton skip;
     private JLabel cover;
@@ -39,19 +41,35 @@ public class PlayBar implements ActionListener {
      * @param vm the view model containing the song data
      */
     private void initializeComponents(musicEngineControllerViewModel vm){
+
+        Dimension DEFAULT_DIMENSION = new Dimension(50, 50);
+
         this.viewModel = vm;
         this.panel = new JPanel();
-        int WIDTH = 640;
+
+        int DEFAULT_KERNING = 10;
+        int WIDTH = 1280;
         int HEIGHT = 100;
-        panel.setBounds(-27, 530, WIDTH, HEIGHT);
-        FlowLayout barLayout = new FlowLayout(FlowLayout.LEFT, 50, 0);
+
+        panel.setBounds(0, 530, WIDTH, HEIGHT);
+        FlowLayout barLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, 0);
         this.panel.setLayout(barLayout);
+
+        this.prev = new JButton("Prev");
+        this.prev.setPreferredSize(DEFAULT_DIMENSION);
+
         this.skip = new JButton("Skip");
+        this.skip.setPreferredSize(DEFAULT_DIMENSION);
+
         this.pause = new JButton("Pause");
+        this.pause.setPreferredSize(DEFAULT_DIMENSION);
+
         this.skip.addActionListener(this);
         this.pause.addActionListener(this);
 
+
         JPanel songArtistPanel = new JPanel();
+
         GridLayout songArtistLayout = new GridLayout(2, 1);
         songArtistLayout.setVgap(0);
         songArtistPanel.setLayout(songArtistLayout);
@@ -62,6 +80,7 @@ public class PlayBar implements ActionListener {
         this.artist = new JLabel("");
         songArtistPanel.add(this.song);
         songArtistPanel.add(this.artist);
+
 
         JPanel coverPanel = new JPanel();
         FlowLayout coverLayout = new FlowLayout(FlowLayout.LEFT, 15, 0);
@@ -75,10 +94,13 @@ public class PlayBar implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        coverPanel.setPreferredSize(new Dimension(WIDTH/2 - DEFAULT_KERNING * 2 - DEFAULT_DIMENSION.width * 2, 50));
         coverPanel.add(this.cover);
         coverPanel.add(songArtistPanel);
 
         this.panel.add(coverPanel);
+        this.panel.add(this.prev);
         this.panel.add(this.pause);
         this.panel.add(this.skip);
     }
@@ -120,6 +142,7 @@ public class PlayBar implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+
         if (actionEvent.getSource() == this.skip){
             this.viewModel.skipSongAction();
         }
