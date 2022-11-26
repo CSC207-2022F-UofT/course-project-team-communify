@@ -26,7 +26,6 @@ public class playlistView extends JFrame implements ActionListener {
     private JButton searchButton;
     private JButton newPlaylistButton;
     private JLabel title;
-    private boolean spacePlaying;
     private JTextField searchBar;
     private musicEngineControllerViewModel musicEngineControllerViewModel;
     private searchViewModel searchViewModel;
@@ -79,9 +78,11 @@ public class playlistView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.spaceButton){
-            if (!this.spacePlaying){   // clicking on button when space is playing does nothing
-                String message = this.musicEngineControllerViewModel.callPlaySpace();
-                this.spaceButton.setEnabled(false);
+            if (this.musicEngineControllerViewModel.getMediaType() != 2){
+                this.musicEngineControllerViewModel.callPlaySpace();
+            }
+            else{
+                this.createSpacePopup();
             }
         } else if(e.getSource() == this.searchButton){
             String searchText = this.searchBar.getText();
@@ -108,7 +109,6 @@ public class playlistView extends JFrame implements ActionListener {
 
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
         this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
-        this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
     }
@@ -130,7 +130,6 @@ public class playlistView extends JFrame implements ActionListener {
         this.musicEngineControllerViewModel = vm;
         this.playBar = pb;
         this.playBar.update();
-        this.spacePlaying = false;
 
         this.searchViewModel = new searchViewModel();
     }
@@ -156,13 +155,10 @@ public class playlistView extends JFrame implements ActionListener {
         // MIDDLE BAR
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
 
-
-
         // Set up panel
         this.panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 10, 10);
-
 
         this.searchButton.addActionListener(this);
         this.spaceButton.addActionListener(this);
@@ -252,5 +248,14 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.remove(this.playlistPanel.getPane());
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
         this.panel.add(this.playlistPanel.getPane());
+    }
+
+    /**
+     */
+    private void createSpacePopup(){
+        JOptionPane pane = new JOptionPane(null);
+        pane.setMessage("space is already playing!");
+        JDialog dialog = pane.createDialog(null, "space is already playing!");
+        dialog.setVisible(true);
     }
 }

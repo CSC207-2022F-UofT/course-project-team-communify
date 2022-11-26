@@ -35,7 +35,7 @@ public class musicEngineController {
         this.songPresenter = songPresenter;
         this.playing = NONE;
         playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter, playSpaceInputData);
+        this.playSpaceInteractor = new playSpaceInteractor(this.songPresenter, playSpaceInputData);
         this.playPlaylist = new playPlaylist(songPresenter);
         this.nextSong = new NextSong(songPresenter, this.playPlaylist);
 
@@ -142,7 +142,6 @@ public class musicEngineController {
                 this.playPlaylist.stopQueue();
             case SPACE:
                 this.playSpaceInteractor.stopSpace();
-                this.spacePresenter.spaceNotPlayed();
         }
     }
 

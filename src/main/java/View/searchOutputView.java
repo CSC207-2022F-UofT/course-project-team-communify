@@ -8,8 +8,6 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * view for search output
@@ -39,7 +37,8 @@ public class searchOutputView extends JFrame implements ActionListener {
      * @param engineVm the view model containing the song data
      * @param pb the current play bar object
      */
-    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb, ImageIcon icon, ImageIcon logoImg){
+    public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm,
+                            PlayBar pb, ImageIcon icon, ImageIcon logoImg){
         this.icon = icon;
         this.logoImg = logoImg;
         this.musicEngineControllerViewModel = engineVm;

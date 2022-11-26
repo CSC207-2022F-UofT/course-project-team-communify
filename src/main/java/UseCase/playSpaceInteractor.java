@@ -18,7 +18,6 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
     // instance of global playlistLibrary
     private final Database.songLibrary songLibrary;
-    private final SpacePlayedOutputBoundary spacePlayedOutputBoundary;
     private final Object sync;
     private InputData.playSpaceInputData playSpaceInputData;
     // we decided on avoiding storing input data in interactor, but it is needed for queueing
@@ -27,13 +26,10 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
 
     /**
      * constructor
-     * @param spacePlayedOutputBoundary the space output presenter
      * @param songOutputBoundary the song output presenter
      * @param playSpaceInputData the space input data to play
      */
-    public playSpaceInteractor(SpacePlayedOutputBoundary spacePlayedOutputBoundary,
-                               songOutputBoundary songOutputBoundary, playSpaceInputData playSpaceInputData){
-        this.spacePlayedOutputBoundary = spacePlayedOutputBoundary;
+    public playSpaceInteractor(songOutputBoundary songOutputBoundary, playSpaceInputData playSpaceInputData){
         this.songLibrary = Database.songLibrary.getInstance();
         this.sync = MusicPlayer.getInstance().getSync();
         this.keepPlaying = true;
@@ -51,9 +47,6 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
         // open queue
         final Thread thread = new Thread(this::playNextSong);
         thread.start();
-
-        // call presenter
-        this.spacePlayedOutputBoundary.spacePlayed();  // update button
 
         playSongInteractor playSongInteractor = new playSongInteractor(this.songOutputBoundary);
 

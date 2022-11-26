@@ -11,7 +11,6 @@ import Presenter.spacePresenter;
  */
 public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
-    private String spaceButtonText;
     private songOutputData playing;
     private String SpaceAddedPopupText;
     private final Object sync;
@@ -114,18 +113,10 @@ public class musicEngineControllerViewModel {
     }
 
     /**
-     * @return the message to display after playing the space
+     * calls play space use case
      */
-    public String callPlaySpace() {
+    public void callPlaySpace() {
         this.musicEngineController.playSpace();
-        return this.spaceButtonText;
-    }
-
-    /**
-     * @param spaceButtonText the message to display after playing the space
-     */
-    public void updateSpaceButton(String spaceButtonText) {
-        this.spaceButtonText  = spaceButtonText;
     }
 
     /**
