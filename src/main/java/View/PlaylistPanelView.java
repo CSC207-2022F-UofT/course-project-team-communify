@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -55,22 +56,38 @@ public class PlaylistPanelView implements ActionListener {
         this.buttons = new ArrayList<>();
         this.rButtons = new ArrayList<>();
         for (InMemoryPlaylist p : playlistList){
+
             JPanel mainPanel = new JPanel();
             BoxLayout playlistLayout = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
             mainPanel.setLayout(playlistLayout);
 
+            JPanel headerPanel = new JPanel();
+            FlowLayout headerLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, DEFAULT_KERNING);
+            headerPanel.setLayout(headerLayout);
+
+            JLabel pCover = new JLabel();
+
             JPanel namePanel = new JPanel();
-            FlowLayout nameLayout = new FlowLayout(FlowLayout.LEFT, 20, 0);
+            GridLayout nameLayout = new GridLayout(2, 1);
             namePanel.setLayout(nameLayout);
 
+            JPanel buttonPanel = new JPanel();
+            FlowLayout buttonLayout = new FlowLayout(FlowLayout.LEFT, 0, 0);
+            buttonPanel.setLayout(buttonLayout);
+
             JLabel name = new JLabel(p.getName());
-            name.setFont(UIManager.getFont( "h2.font" ));
-            name.setPreferredSize(new Dimension(640, 100));
+            name.setFont(UIManager.getFont( "h1.font" ));
 
             IDButton button = new IDButton(p.getId());
             IDButton recommend = new IDButton(p.getId());
             button.addActionListener(this);
             recommend.addActionListener(this);
+
+            buttonPanel.add(button);
+            buttonPanel.add(recommend);
+
+            namePanel.add(name);
+            namePanel.add(buttonPanel);
 
             button.setIcon(PAUSE);
             button.setPreferredSize(DEFAULT_DIMENSION);
@@ -78,12 +95,12 @@ public class PlaylistPanelView implements ActionListener {
             recommend.setIcon(REC);
             recommend.setPreferredSize(DEFAULT_DIMENSION);
 
-            namePanel.add(name);
-            namePanel.add(button);
-            namePanel.add(recommend);
+            headerPanel.add(pCover);
+            headerPanel.add(namePanel);
+
             this.buttons.add(button);
             this.rButtons.add(recommend);
-            mainPanel.add(namePanel);
+            mainPanel.add(headerPanel);
 
             JPanel songPanel = new JPanel();
             GridLayout songLayout = new GridLayout(p.getSongs().size(), 4);
@@ -91,13 +108,19 @@ public class PlaylistPanelView implements ActionListener {
             songLayout.setHgap(DEFAULT_KERNING);
             songPanel.setLayout(songLayout);
             for (InMemorySong s : p.getSongs()){
+
                 JPanel thisSongPanel = new JPanel();
                 FlowLayout thisSongLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, 0);
                 thisSongPanel.setLayout(thisSongLayout);
-                JLabel cover = new JLabel(new ImageIcon(s.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+
+                BufferedImage rawCover = s.getCover();
+                if(pCover.getIcon() == null) pCover.setIcon(new ImageIcon(rawCover.getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+                JLabel cover = new JLabel(new ImageIcon(rawCover.getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+
                 JLabel songName = new JLabel(s.getName());
                 JLabel artists = new JLabel(String.join(", ", s.getArtists()));
                 JLabel genre = new JLabel(s.getGenre());
+
                 thisSongPanel.add(cover);
                 thisSongPanel.add(songName);
 
