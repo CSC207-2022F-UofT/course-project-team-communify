@@ -1,7 +1,12 @@
 package View;
 
+import Database.*;
+import Entities.Playlist;
+import Entities.Song;
 import ViewModel.musicEngineControllerViewModel;
+import ViewModel.playlistViewModel;
 import ViewModel.searchViewModel;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -9,7 +14,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * view for search output
@@ -27,6 +34,10 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
     private searchViewModel searchViewModel;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
+    private final playlistViewModel playlistViewModel;
+
+    private final GetSongAccessInterface library;
+
     private final PlayBar playBar;
 
     /**
@@ -37,6 +48,8 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm, PlayBar pb){
         this.musicEngineControllerViewModel = engineVm;
+        this.playlistViewModel = new playlistViewModel();
+        this.library = songLibrary.getInstance();
         this.playBar = pb;
         this.initialiseValues(searchText, user);
         this.setUpTable();
@@ -106,6 +119,10 @@ public class searchOutputView extends JFrame implements ActionListener {
             comboBox.addItem("Add to " + p.getName());
         }
 
+        for (InMemoryPlaylist p : user.getPlaylists()) {
+            comboBox.addItem("Remove from " + p.getName());
+        }
+
         columnModel.addColumn(new TableColumn());
 
         // make the default writing in last column a prompt for combo box
@@ -154,6 +171,33 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
             if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
                 this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
+            }
+            if(this.comboBox.getSelectedItem().toString().contains("Remove from ")){
+                String playlistToRemove = this.comboBox.getSelectedItem().toString().
+                        replace("Remove from ", "");
+
+                int songID = Integer.parseInt(ids[row]);
+                Song songToRemove = library.getSong(songID).getSong();
+
+                for (InMemoryPlaylist p : user.getPlaylists()) {
+                    if (Objects.equals(p.getName(), playlistToRemove)){
+                        //TODO figure out thing w/ inMemoryPlaylist object
+                        this.playlistViewModel.callRemoveSong(user, p,songToRemove );
+                    }
+                }
+
+            }
+            if (this.comboBox.getSelectedItem().toString().contains("Add to " )){
+                String playlistToAddTo = this.comboBox.getSelectedItem().toString().
+                        replace("Add to", "");
+                for (InMemoryPlaylist p : user.getPlaylists()) {
+                    if (Objects.equals(p.getName(), playlistToAddTo)){
+                        //TODO figure out thing w/ inMemoryPlaylist object
+                        int songID = Integer.parseInt(ids[row]);
+                        Song songToAdd = library.getSong(songID).getSong();
+
+                        this.playlistViewModel.callAddSong(user, p,songToAdd );
+                    }
             }
         } else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();

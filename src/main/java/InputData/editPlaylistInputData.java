@@ -1,5 +1,8 @@
 package InputData;
+import Database.GetUserAccessInterface;
+import Database.userList;
 import Entities.Playlist;
+import Entities.RegularUser;
 import Entities.Song;
 import Entities.User;
 
@@ -9,17 +12,17 @@ import Entities.User;
 public class editPlaylistInputData {
     private final Playlist playlist;
     private final Song song;
-    private final User user;
+    private final RegularUser user;
 
     /**
      * @param user User which owns the playlist
      * @param playlist Playlist to be edited
      * @param song Song to be added/removed from the Playlist
      */
-    public editPlaylistInputData(User user, Playlist playlist, Song song){
+    public editPlaylistInputData(String user, Playlist playlist, Song song){
         this.playlist = playlist;
         this.song = song;
-        this.user = user;
+        this.user = getUser(user);
     }
 
     /**
@@ -48,6 +51,14 @@ public class editPlaylistInputData {
      */
     public Song getSong(){
         return this.song;
+    }
+    /**
+     * @param username the username of the user
+     * @return the user object representing this user
+     */
+    private RegularUser getUser(String username){
+        GetUserAccessInterface users = userList.getInstance();
+        return (RegularUser) users.getUser(username).getUser();
     }
 }
 
