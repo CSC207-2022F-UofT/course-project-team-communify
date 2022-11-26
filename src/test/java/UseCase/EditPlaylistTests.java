@@ -1,80 +1,78 @@
 package UseCase;
 
+import Database.playlistLibrary;
+import Database.songLibrary;
 import Entities.Playlist;
-import Entities.RegularUser;
 import Entities.Song;
 import InputData.editPlaylistInputData;
 import Presenter.playlistPresenter;
+import View.InMemoryPlaylist;
+import View.InMemoryUser;
 import ViewModel.playlistViewModel;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.junit.jupiter.api.Assertions;
+/**
+ * Tests the edit playlist use cases.
+ */
 public class EditPlaylistTests {
 
-    @Before
-    public void setUp(){
-    }
-
+    /**
+     * Tests removing a song and the message it returns.
+     */
     @Test
-    public void addSong(){
-        RegularUser BetterKanye = new RegularUser("BetterKanye","2007Kanye");
-        Song testsong = new Song(999,null,null,null,null,null,null);
-        Playlist KanyeNotBad = new Playlist(787,"When Kanye was good",BetterKanye);
-        editPlaylistInputData inputData = new editPlaylistInputData(BetterKanye,KanyeNotBad,testsong);
-        playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel);
-        EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
-        testInteractor.addSong(inputData);
+    public void RemoveSongAndMessage(){
+        InMemoryUser user = new InMemoryUser();
+        user.setUsername("User1");
+        int song = 10;
+        InMemoryPlaylist playlist = new InMemoryPlaylist();
+        playlist.setId(0);
+        Playlist p = playlistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
+        Song s = songLibrary.getInstance().getSong(song).getSong();
+        int numOccurrence = 0;
+        for (Song songs: p.getSongList()){
+            if (songs.equals(s))
+                numOccurrence++;
+        }
 
-        boolean actual = KanyeNotBad.getSongList().contains(testsong);
-        boolean expected = true;
-        assert actual == expected;
-    }
-
-    @Test
-    public void RemoveSong(){
-        RegularUser BetterKanye = new RegularUser("BetterKanye","2007Kanye");
-        Song testsong = new Song(999,null,null,null,null,null,null);
-        Playlist KanyeNotBad = new Playlist(787,"When Kanye was good",BetterKanye);
-        editPlaylistInputData inputData = new editPlaylistInputData(BetterKanye,KanyeNotBad,testsong);
+        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(), playlist.getId(), song);
         playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel);
+        playlistPresenter testPresenter= new playlistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
-        testInteractor.addSong(inputData);
-        testInteractor.removeSong(inputData);
-        boolean actual = !KanyeNotBad.getSongList().contains(testsong);
-        boolean expected = true;
-        assert actual == expected;
-    }
-    @Test
-    public void addSongConfirmationMessage(){
-        RegularUser Acrid = new RegularUser("Acrid","PoisonDoggo");
-        Song testsong = new Song(999,"Bingus",null,null,null,null,null);
-        Playlist PoisonDogTypeBeat = new Playlist(787,"PoisonDogTypeBeat",Acrid);
-        editPlaylistInputData inputData = new editPlaylistInputData(Acrid,PoisonDogTypeBeat,testsong);
-        playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel);
-        EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
-        testInteractor.addSong(inputData);
-
-        String actual = testPresenter.getOutputMessage();
-        String expected = "Bingus added!";
-        assert actual.equals(expected);
-    }
-
-    @Test
-    public void RemoveSongConfirmationMessage(){
-        RegularUser Acrid = new RegularUser("Acrid","PoisonDoggo");
-        Song testsong = new Song(999,"Bingus",null,null,null,null,null);
-        Playlist PoisonDogTypeBeat = new Playlist(787,"When PoisonDogTypeBeat was good",Acrid);
-        editPlaylistInputData inputData = new editPlaylistInputData(Acrid,PoisonDogTypeBeat,testsong);
-        playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel);
-        EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
-        testInteractor.addSong(inputData);
         testInteractor.removeSong(inputData);
         String actual = testPresenter.getOutputMessage();
-        String expected = "Bingus removed!";
-        assert actual.equals(expected);
+        String expected = songLibrary.getInstance().getSong(song).getSong().getName() + " removed!";
+        Assertions.assertEquals(expected, actual);
+
+        int newNumOccurrence = 0;
+        for (Song songs: p.getSongList()){
+            if (songs.equals(s))
+                newNumOccurrence++;
+        }
+        Assertions.assertEquals(newNumOccurrence, Math.max(0, numOccurrence - 1));
+    }
+
+    /**
+     * Tests adding a song and the message it returns.
+     */
+    @Test
+    public void addSongAndMessage(){
+        InMemoryUser user = new InMemoryUser();
+        user.setUsername("User1");
+        int song = 10;
+        InMemoryPlaylist playlist = new InMemoryPlaylist();
+        playlist.setId(0);
+        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(), playlist.getId(), song);
+        playlistViewModel testViewModel= new playlistViewModel();
+        playlistPresenter testPresenter= new playlistPresenter(testViewModel, new InMemoryUser());
+        EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
+        testInteractor.addSong(inputData);
+        String actual = testPresenter.getOutputMessage();
+        String expected = songLibrary.getInstance().getSong(song).getSong().getName() + " added!";
+        Assertions.assertEquals(expected, actual);
+
+        Playlist p = playlistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
+        Song s = songLibrary.getInstance().getSong(song).getSong();
+        Assertions.assertTrue(p.getSongList().contains(s));
     }
 }

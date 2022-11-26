@@ -18,10 +18,18 @@ public interface PlaylistDsView {
      */
     void addSong(SongDsView s);
 
+    /**
+     * @param s the song to remove
+     */
     void removeSong(SongDsView s);
 
     /**
      * @return an empty SongDsView object
      */
     SongDsView getNewSong();
+
+    /**
+     * @return the ID of the playlist
+     */
+    int getId();
 }

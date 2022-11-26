@@ -39,12 +39,12 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
                     break;
                 }
         }
-        String message = inputData.getSong().getName()+" removed ";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message);
+        String message = inputData.getSong().getName() + " removed!";
+        editPlaylistOutputData outputData = new editPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
 
         // save edited playlist
-        if (!library.exists(inputData.getPlaylist().getId())){
+        if (library.exists(inputData.getPlaylist().getId())){
             this.library.savePlaylist(new playlistDsData(inputData.getPlaylist()));
         }
         // save user
@@ -60,11 +60,11 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
             inputData.getPlaylist().addSong(inputData.getSong());
         }
-        String message =  inputData.getSong().getName()+" added!";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message);
+        String message =  inputData.getSong().getName() + " added!";
+        editPlaylistOutputData outputData = new editPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
         //save edited playlist
-        if (!library.exists(inputData.getPlaylist().getId())){
+        if (library.exists(inputData.getPlaylist().getId())){
             this.library.savePlaylist(new playlistDsData(inputData.getPlaylist()));
         }
         // save user

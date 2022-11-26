@@ -119,10 +119,6 @@ public class searchOutputView extends JFrame implements ActionListener {
             comboBox.addItem("Add to " + p.getName());
         }
 
-        for (InMemoryPlaylist p : user.getPlaylists()) {
-            comboBox.addItem("Remove from " + p.getName());
-        }
-
         columnModel.addColumn(new TableColumn());
 
         // make the default writing in last column a prompt for combo box
@@ -160,7 +156,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.comboBox){
+        if (e.getSource() == this.comboBox) {
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
@@ -172,34 +168,25 @@ public class searchOutputView extends JFrame implements ActionListener {
             if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
                 this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
             }
-            if(this.comboBox.getSelectedItem().toString().contains("Remove from ")){
-                String playlistToRemove = this.comboBox.getSelectedItem().toString().
-                        replace("Remove from ", "");
-
-                int songID = Integer.parseInt(ids[row]);
-                Song songToRemove = library.getSong(songID).getSong();
-
+            if (this.comboBox.getSelectedItem().toString().contains("Add to ")) {
+                String playlistToAddTo = this.comboBox.getSelectedItem().toString().
+                        replace("Add to ", "");
+                InMemoryPlaylist editedPlaylist = null;
                 for (InMemoryPlaylist p : user.getPlaylists()) {
-                    if (Objects.equals(p.getName(), playlistToRemove)){
-                        //TODO figure out thing w/ inMemoryPlaylist object
-                        this.playlistViewModel.callRemoveSong(user, p,songToRemove );
+                    if (Objects.equals(p.getName(), playlistToAddTo)) {
+                        editedPlaylist = p;
+                        int songID = Integer.parseInt(ids[row]);
+                        this.playlistViewModel.callAddSong(user, p, songID);
+                        break;
                     }
                 }
-
+                if (editedPlaylist != null){
+                    this.user.removePlaylist(editedPlaylist);
+                    this.user.addPlaylist(this.playlistViewModel.getCurrPlaylist());
+                }
             }
-            if (this.comboBox.getSelectedItem().toString().contains("Add to " )){
-                String playlistToAddTo = this.comboBox.getSelectedItem().toString().
-                        replace("Add to", "");
-                for (InMemoryPlaylist p : user.getPlaylists()) {
-                    if (Objects.equals(p.getName(), playlistToAddTo)){
-                        //TODO figure out thing w/ inMemoryPlaylist object
-                        int songID = Integer.parseInt(ids[row]);
-                        Song songToAdd = library.getSong(songID).getSong();
-
-                        this.playlistViewModel.callAddSong(user, p,songToAdd );
-                    }
-            }
-        } else if (e.getSource() == this.homeButton) {
+        }
+        if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
             new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar);
         }
