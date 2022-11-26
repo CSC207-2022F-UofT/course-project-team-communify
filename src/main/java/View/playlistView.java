@@ -81,7 +81,6 @@ public class playlistView extends JFrame implements ActionListener {
         if (e.getSource() == this.spaceButton){
             if (!this.spacePlaying){   // clicking on button when space is playing does nothing
                 String message = this.musicEngineControllerViewModel.callPlaySpace();
-                this.spaceButton.setText(message);
                 this.spaceButton.setEnabled(false);
             }
         } else if(e.getSource() == this.searchButton){

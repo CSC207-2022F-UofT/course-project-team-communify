@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * Creates the main playlist panel for the view.
  */
 public class PlaylistPanelView implements ActionListener {
+
+    private static final ImageIcon PAUSE = new ImageIcon("src/main/java/View/assets/button/pause_small.png");
+    private static final ImageIcon REC = new ImageIcon("src/main/java/View/assets/button/rec_small.png");
     private final int WIDTH = 1240;
     private final int HEIGHT = 400;
     private JPanel panel;
@@ -34,6 +37,7 @@ public class PlaylistPanelView implements ActionListener {
      */
     private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, musicEngineControllerViewModel vm) {
 
+        Dimension DEFAULT_DIMENSION = new Dimension(50,50);
         int DEFAULT_WIDTH = 130;
         int DEFAULT_HEIGHT = 40;
         int DEFAULT_KERNING = 20;
@@ -58,18 +62,21 @@ public class PlaylistPanelView implements ActionListener {
             JPanel namePanel = new JPanel();
             FlowLayout nameLayout = new FlowLayout(FlowLayout.LEFT, 20, 0);
             namePanel.setLayout(nameLayout);
+
             JLabel name = new JLabel(p.getName());
-            name.setFont(new Font("Segoe UI", Font.BOLD, 36));
+            name.setFont(UIManager.getFont( "h2.font" ));
+            name.setPreferredSize(new Dimension(640, 100));
+
             IDButton button = new IDButton(p.getId());
             IDButton recommend = new IDButton(p.getId());
             button.addActionListener(this);
             recommend.addActionListener(this);
 
-            button.setText("Play");
-            button.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            button.setIcon(PAUSE);
+            button.setPreferredSize(DEFAULT_DIMENSION);
 
-            recommend.setText("Play Recommendation");
-            recommend.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            recommend.setIcon(REC);
+            recommend.setPreferredSize(DEFAULT_DIMENSION);
 
             namePanel.add(name);
             namePanel.add(button);

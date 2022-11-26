@@ -158,7 +158,6 @@ public class PlayBar implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
         if (actionEvent.getSource() == this.skip){
             this.viewModel.skipSongAction();
         }
@@ -180,6 +179,7 @@ public class PlayBar implements ActionListener {
         if(song.getName().equals(""))
             return;
 
+        this.song.setFont(UIManager.getFont( "semibold.font" ));
         this.song.setText(song.getName());
         this.artist.setText(String.join(", ", song.getArtists()));
         this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
@@ -196,4 +196,12 @@ public class PlayBar implements ActionListener {
             this.pause.setVisible(true);
         }
     }
+
+    /**
+     * Notifies play button to change to 'play'.
+     */
+    public void playSong(){
+        this.pause.setIcon(PLAY);
+    }
+
 }
