@@ -114,7 +114,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         comboBox = new JComboBox<>();
         comboBox.addItem("Play Song");
         comboBox.addItem("Add to Space");
-
+        comboBox.addItem("Create Playlist");
         for (InMemoryPlaylist p : user.getPlaylists()) {
             comboBox.addItem("Add to " + p.getName());
         }
@@ -172,11 +172,13 @@ public class searchOutputView extends JFrame implements ActionListener {
                 String playlistToAddTo = this.comboBox.getSelectedItem().toString().
                         replace("Add to ", "");
                 InMemoryPlaylist editedPlaylist = null;
+                String playlistConfirmation;
                 for (InMemoryPlaylist p : user.getPlaylists()) {
                     if (Objects.equals(p.getName(), playlistToAddTo)) {
                         editedPlaylist = p;
                         int songID = Integer.parseInt(ids[row]);
-                        this.playlistViewModel.callAddSong(user, p, songID);
+                        playlistConfirmation = this.playlistViewModel.callAddSong(user, p, songID);
+                        this.createPopup(playlistConfirmation);
                         break;
                     }
                 }
@@ -184,7 +186,13 @@ public class searchOutputView extends JFrame implements ActionListener {
                     this.user.removePlaylist(editedPlaylist);
                     this.user.addPlaylist(this.playlistViewModel.getCurrPlaylist());
                 }
+
             }
+//            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
+//                //new NewPlaylistInputDataView(this.user,this,);
+//
+//            }
+            //TODO: create playlist w/ one song
         }
         if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
