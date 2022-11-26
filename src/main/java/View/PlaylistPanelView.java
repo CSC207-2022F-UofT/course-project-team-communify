@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public class PlaylistPanelView implements ActionListener {
 
+    private static final ImageIcon NO_SONG_FULL = new ImageIcon("src/main/java/View/assets/no_song.png");
+    private static final ImageIcon NO_SONG = new ImageIcon(NO_SONG_FULL.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
     private static final ImageIcon PAUSE = new ImageIcon("src/main/java/View/assets/button/pause_small.png");
     private static final ImageIcon REC = new ImageIcon("src/main/java/View/assets/button/rec_small.png");
     private final int WIDTH = 1240;
@@ -39,6 +41,7 @@ public class PlaylistPanelView implements ActionListener {
     private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, musicEngineControllerViewModel vm) {
 
         Dimension DEFAULT_DIMENSION = new Dimension(50,50);
+
         int DEFAULT_WIDTH = 130;
         int DEFAULT_HEIGHT = 40;
         int DEFAULT_KERNING = 20;
@@ -66,6 +69,7 @@ public class PlaylistPanelView implements ActionListener {
             headerPanel.setLayout(headerLayout);
 
             JLabel pCover = new JLabel();
+            pCover.setIcon(NO_SONG);
 
             JPanel namePanel = new JPanel();
             GridLayout nameLayout = new GridLayout(2, 1);
@@ -114,7 +118,7 @@ public class PlaylistPanelView implements ActionListener {
                 thisSongPanel.setLayout(thisSongLayout);
 
                 BufferedImage rawCover = s.getCover();
-                if(pCover.getIcon() == null) pCover.setIcon(new ImageIcon(rawCover.getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
+                if(pCover.getIcon() == NO_SONG) pCover.setIcon(new ImageIcon(rawCover.getScaledInstance(150, 150, Image.SCALE_DEFAULT)));
                 JLabel cover = new JLabel(new ImageIcon(rawCover.getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 
                 JLabel songName = new JLabel(s.getName());
