@@ -76,7 +76,7 @@ public class PlaylistPanelView implements ActionListener {
             buttonPanel.setLayout(buttonLayout);
 
             JLabel name = new JLabel(p.getName());
-            name.setFont(UIManager.getFont( "h1.font" ));
+            name.setFont(UIManager.getFont( "h0.font" ));
 
             IDButton button = new IDButton(p.getId());
             IDButton recommend = new IDButton(p.getId());
