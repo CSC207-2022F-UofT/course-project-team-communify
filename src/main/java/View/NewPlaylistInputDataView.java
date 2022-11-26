@@ -1,49 +1,55 @@
 package View;
 
+import ViewModel.playlistViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Entities.User;
-import ViewModel.playlistViewModel;
 
+/**
+ * view for making a new playlist
+ */
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
-    private final int FONTSIZE = 10;
     private final int WIDTH = 640;
     private final int HEIGHT = 640;
-    private User owner;
-
-    private int ID;
+    private InMemoryUser owner;
     private JFrame jframe;
     private JButton createButton;
     private JButton homeButton;
     private JTextField playlistNameTextField;
+    private playlistView mainWindow;
+    private playlistViewModel viewModel;
 
-    private ViewModel.playlistViewModel viewModel;
-
-    public NewPlaylistInputDataView(User owner, int ID){
-        this.initializeValues(owner, ID);
+    /**
+     * @param owner the owner of the playlist
+     * @param playlistView the main window view
+     */
+    public NewPlaylistInputDataView(InMemoryUser owner, playlistView playlistView){
+        this.mainWindow = playlistView;
+        this.initializeValues(owner);
         this.initializeComponents();
         this.initializeFrame();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.createButton) {
-            String playlistname = this.playlistNameTextField.getText();
-            String outputMessage = this.viewModel.callNewPlaylistUseCase(ID,owner, playlistname);
+            String playlistName = this.playlistNameTextField.getText();
+            String outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName);
+            mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             this.jframe.dispose();
-            new NewPlaylistOutputDataView(this.owner,outputMessage);
+            new NewPlaylistOutputDataView(outputMessage);
         }
         else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            // playlistView userDashboard = new playlistView();    enter a User parameter in playlistView() to open new window
-            playlistView userDashboard = new playlistView(owner);
         }
     }
 
-    private void initializeValues(User owner, int ID) {
+    /**
+     * @param owner the owner of the playlist
+     */
+    private void initializeValues(InMemoryUser owner) {
         this.owner = owner;
-        this.ID = ID;
         this.jframe = new JFrame("Playlist creation");
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
@@ -53,13 +59,15 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.jframe.setVisible(true);
 
         this.viewModel = new playlistViewModel();
-        //this.jframe.getContentPane().setBackground(new Color(34, 139, 34));
-        // this.spaceViewModel = new spaceViewModel();
     }
+
+    /**
+     * Initializes Swing components.
+     */
     private void initializeComponents() {
 
         this.playlistNameTextField = new JTextField();
-        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);;
+        this.playlistNameTextField.setBounds(this.WIDTH/2, this.HEIGHT/2, 300, 50);
 
         this.createButton = new JButton();
         this.createButton.setBounds(this.WIDTH/2, (this.HEIGHT/2 )+50, 100, 50);
@@ -80,6 +88,10 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.createButton.addActionListener(this);
         this.homeButton.addActionListener(this);
     }
+
+    /**
+     * Initializes main window
+     */
     private void initializeFrame() {
         this.jframe.add(createButton);
         this.jframe.add(playlistNameTextField);

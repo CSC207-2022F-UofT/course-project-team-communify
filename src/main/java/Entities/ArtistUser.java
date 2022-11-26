@@ -9,12 +9,24 @@ public class ArtistUser extends User {
     private final String artistName;
     private final ArrayList<Song> songs;
 
+    /**
+     * @param artistName string artist name of the artist
+     * @param username string username of the artist
+     * @param password string password of the artist
+     */
     public ArtistUser(String artistName, String username, String password){
         super(username, password);
         this.artistName = artistName;
         this.songs = new ArrayList<>();
     }
 
+    /**
+     * Overloaded constructor for when an Artist owns songs.
+     * @param artistName string artist name of the artist
+     * @param username string username of the artist
+     * @param password string password of the artist
+     * @param songs arraylist of songs owned by the artist
+     */
     public ArtistUser(String artistName, String username, String password, ArrayList<Song> songs){
         super(username, password);
         this.artistName = artistName;
@@ -56,6 +68,9 @@ public class ArtistUser extends User {
 
         if (songs.size() > 0)
             output.deleteCharAt(output.length() - 1);
+        else
+            output.append(" ");
+
         return output.toString();
     }
 }

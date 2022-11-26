@@ -31,6 +31,10 @@ public class playlistLibrary implements GetPlaylistAccessInterface, SavePlaylist
         return PLAYLIST_LIBRARY;
     }
 
+    /**
+     * Private constructor for eager instantiation singleton
+     * @param path filepath of the .csv database
+     */
     private playlistLibrary(String path){
         this.filepath = path;
         playlistDatabase = loadFile();
@@ -120,7 +124,9 @@ public class playlistLibrary implements GetPlaylistAccessInterface, SavePlaylist
             return new playlistDsData(p);
         }
 
-        return playlistDatabase.get(id);
+        if (playlistDatabase.containsKey(id))
+            return playlistDatabase.get(id);
+        return null;
     }
 
     /**

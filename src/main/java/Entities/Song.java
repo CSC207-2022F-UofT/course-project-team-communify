@@ -3,13 +3,16 @@ package Entities;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * The entity representing a song in the program.
+ */
 public class Song {
 
     private final int id;
     private final String name;
     private final String[] artistList;
     private final String genre;
-    private final File file;
+    private File file;
     private final BufferedImage cover;
     private final String uploader;
 
@@ -96,6 +99,13 @@ public class Song {
             if(i+1<artistList.length) artists.append(", ");
         }
         return artists.toString();
+    }
+
+    /**
+     * @param file the file object representing the song
+     */
+    public void setFile(File file){
+        this.file = file;
     }
 
 }
