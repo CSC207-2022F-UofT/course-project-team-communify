@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private final int WIDTH = 640;
-    private final int HEIGHT = 320;
+    private final int HEIGHT = 300;
     private InMemoryUser owner;
     private JFrame jframe;
     private JPanel fieldPanel;
@@ -51,7 +51,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
      */
     private void initializeValues(InMemoryUser owner) {
         this.owner = owner;
-        this.jframe = new JFrame("Create a Playlist");
+        this.jframe = new JFrame("Create Playlist");
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.setLayout(null);
@@ -67,25 +67,36 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
      */
     private void initializeComponents() {
 
+        int DEFAULT_WIDTH = 280;
+        int DEFAULT_HEIGHT = 120;
+
         this.fieldPanel = new JPanel();
-        this.fieldPanel.setBounds(0, 0, WIDTH, HEIGHT);
+        this.fieldPanel.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, (this.jframe.getHeight() - DEFAULT_HEIGHT)/3, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         GridLayout fieldLayout = new GridLayout(2, 1);
         this.fieldPanel.setLayout(fieldLayout);
+        fieldLayout.setHgap(20);
+        fieldLayout.setVgap(20);
+
 
         JPanel buttonPanel = new JPanel();
         GridLayout buttonLayout = new GridLayout(1, 2);
         buttonPanel.setLayout(buttonLayout);
+        buttonLayout.setHgap(20);
+        buttonLayout.setVgap(20);
 
         this.playlistNameTextField = new JTextField();
         this.playlistNameTextField.setText("Playlist Name");
+        this.playlistNameTextField.setPreferredSize(new Dimension(DEFAULT_WIDTH * 2, DEFAULT_HEIGHT));
 
         this.createButton = new JButton();
         this.createButton.setText("Create!");
         this.createButton.setHorizontalTextPosition(JButton.CENTER);
+        this.createButton.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
         this.homeButton = new JButton();
         this.homeButton.setText("Cancel");
         this.homeButton.setHorizontalTextPosition(JButton.CENTER);
+        this.homeButton.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
         buttonPanel.add(createButton);
         buttonPanel.add(homeButton);
