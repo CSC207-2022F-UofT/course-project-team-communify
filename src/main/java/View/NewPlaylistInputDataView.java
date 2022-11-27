@@ -1,5 +1,6 @@
 package View;
 
+import Entities.Song;
 import ViewModel.playlistViewModel;
 
 import javax.swing.*;
@@ -21,6 +22,8 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private playlistView mainWindow;
     private playlistViewModel viewModel;
 
+    private Song song;
+
     /**
      * @param owner the owner of the playlist
      * @param playlistView the main window view
@@ -30,12 +33,27 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.initializeValues(owner);
         this.initializeComponents();
         this.initializeFrame();
+        this.song = null;
+    }
+
+    public NewPlaylistInputDataView(InMemoryUser owner, playlistView playlistView, Song song){
+        this.mainWindow = playlistView;
+        this.song = song;
+        this.initializeValues(owner);
+        this.initializeComponents();
+        this.initializeFrame();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.createButton) {
             String playlistName = this.playlistNameTextField.getText();
-            String outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName);
+            String outputMessage;
+            if (song == null) {
+                outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName);
+            }
+            else{
+                outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName, song);
+            }
             mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             this.jframe.dispose();
             new NewPlaylistOutputDataView(outputMessage);
