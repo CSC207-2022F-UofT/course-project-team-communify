@@ -57,4 +57,11 @@ public class InMemoryUser implements UserDsView {
     public PlaylistDsView getNewPlaylist(){
         return new InMemoryPlaylist();
     }
+
+    /**
+     * @param p the playlist to remove from the user
+     */
+    public void removePlaylist(InMemoryPlaylist p) {
+        this.playlists.remove(p);
+    }
 }

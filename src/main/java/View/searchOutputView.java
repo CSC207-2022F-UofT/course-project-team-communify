@@ -1,7 +1,12 @@
 package View;
 
+import Database.*;
+import Entities.Playlist;
+import Entities.Song;
 import ViewModel.musicEngineControllerViewModel;
+import ViewModel.playlistViewModel;
 import ViewModel.searchViewModel;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -9,7 +14,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * view for search output
@@ -27,6 +34,10 @@ public class searchOutputView extends JFrame implements ActionListener {
     private String[] ids;
     private searchViewModel searchViewModel;
     private final musicEngineControllerViewModel musicEngineControllerViewModel;
+    private final playlistViewModel playlistViewModel;
+
+    private final GetSongAccessInterface library;
+
     private final PlayBar playBar;
 
     private final ImageIcon icon;
@@ -43,6 +54,8 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.icon = icon;
         this.logoImg = logoImg;
         this.musicEngineControllerViewModel = engineVm;
+        this.playlistViewModel = new playlistViewModel();
+        this.library = songLibrary.getInstance();
         this.playBar = pb;
         this.initialiseValues(searchText, user);
         this.setUpTable();
@@ -105,7 +118,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         comboBox = new JComboBox<>();
         comboBox.addItem("Play Song");
         comboBox.addItem("Add to Space");
-
+        comboBox.addItem("Create Playlist");
         for (InMemoryPlaylist p : user.getPlaylists()) {
             comboBox.addItem("Add to " + p.getName());
         }
@@ -148,7 +161,7 @@ public class searchOutputView extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.comboBox){
+        if (e.getSource() == this.comboBox) {
             System.out.println(this.comboBox.getSelectedItem().toString());
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
@@ -160,7 +173,33 @@ public class searchOutputView extends JFrame implements ActionListener {
             if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
                 this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
             }
-        } else if (e.getSource() == this.homeButton) {
+            if (this.comboBox.getSelectedItem().toString().contains("Add to ")) {
+                String playlistToAddTo = this.comboBox.getSelectedItem().toString().
+                        replace("Add to ", "");
+                InMemoryPlaylist editedPlaylist = null;
+                String playlistConfirmation;
+                for (InMemoryPlaylist p : user.getPlaylists()) {
+                    if (Objects.equals(p.getName(), playlistToAddTo)) {
+                        editedPlaylist = p;
+                        int songID = Integer.parseInt(ids[row]);
+                        playlistConfirmation = this.playlistViewModel.callAddSong(user, p, songID);
+                        this.createPopup(playlistConfirmation);
+                        break;
+                    }
+                }
+                if (editedPlaylist != null){
+                    this.user.removePlaylist(editedPlaylist);
+                    this.user.addPlaylist(this.playlistViewModel.getCurrPlaylist());
+                }
+
+            }
+//            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
+//                //new NewPlaylistInputDataView(this.user,this,);
+//
+//            }
+            //TODO: create playlist w/ one song
+        }
+        if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
             new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar, this.icon, this.logoImg);
         }

@@ -36,6 +36,7 @@ public class InMemoryPlaylist implements PlaylistDsView {
     /**
      * @return the ID of the playlist
      */
+    @Override
     public int getId() {
         return id;
     }
@@ -62,6 +63,14 @@ public class InMemoryPlaylist implements PlaylistDsView {
     @Override
     public void addSong(SongDsView s){
         songs.add((InMemorySong) s);
+    }
+
+    /**
+     * @param s the song to remove
+     */
+    @Override
+    public void removeSong(SongDsView s){
+        songs.remove((InMemorySong) s);
     }
 
     /**
