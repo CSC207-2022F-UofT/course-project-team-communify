@@ -35,9 +35,10 @@ public class playPlaylist implements playPlaylistInputBoundary {
 
     /**
      * Plays the playlist given in the constructor.
+     * @return whether there are songs left to play
      */
     @Override
-    public void play(playlistInputData data) {
+    public boolean play(playlistInputData data) {
         this.data = data;
         ArrayList<Song> playlist = data.getSongs();
         if (nextSong < playlist.size()){
@@ -48,6 +49,12 @@ public class playPlaylist implements playPlaylistInputBoundary {
             t.start();
             p.playSong(new songInputData(playlist.get(songToPlay)));
             System.out.println("Now playing " + playlist.get(songToPlay).getName());
+            return true;
+        }
+        else {
+            presenter.songPlayed(null);
+            System.out.println("Playlist over");
+            return false;
         }
     }
 
