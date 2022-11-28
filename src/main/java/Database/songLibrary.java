@@ -172,9 +172,6 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         String[] artistList = format(tag.getFields(FieldKey.ARTIST).get(0).toString()).split(";");
         String genre = format(tag.getFields(FieldKey.GENRE).get(0).toString());
 
-        System.out.println(name + " " + genre);
-        for(String artist: artistList) System.out.println(artist);
-
         try {
             Artwork rawCover = tag.getFirstArtwork();
             if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
@@ -192,7 +189,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     private String format(String line){
         if(line.length() < 3) return "Unknown";
-        else return line.replace("Text=\"", "").replace("\"", "").replace(";", "");
+        else return line.replace("Text=\"", "").replace("\";", "");
     }
 
     /**

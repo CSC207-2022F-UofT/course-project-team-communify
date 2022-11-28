@@ -67,6 +67,7 @@ public class playlistView extends JFrame implements ActionListener {
     public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
         this.icon = icon;
         this.logoImg = logoImg;
+        this.logoSmall = new ImageIcon(logoImg.getImage().getScaledInstance((int)(logoImg.getIconWidth()*0.7), (int)(logoImg.getIconHeight()*0.7), Image.SCALE_SMOOTH));
         this.initializeValues(user, vm, pb);
         this.initializeComponents();            // set up space button
         this.initializeFrame();
