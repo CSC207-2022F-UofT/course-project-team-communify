@@ -13,7 +13,11 @@ import java.awt.event.ActionListener;
  * view for the user dashboard
  */
 public class playlistView extends JFrame implements ActionListener {
-    private final int WIDTH = 640;
+
+    private static final ImageIcon SEARCH = new ImageIcon("src/main/java/View/assets/button/search.png");
+    private static final ImageIcon SPACE = new ImageIcon("src/main/java/View/assets/button/space.png");
+    private static final ImageIcon ADD_TO = new ImageIcon("src/main/java/View/assets/button/add_to.png");
+    private final int WIDTH = 1280;
     private final int HEIGHT = 640;
     private InMemoryUser user;
     private JFrame jframe;
@@ -22,7 +26,6 @@ public class playlistView extends JFrame implements ActionListener {
     private JButton searchButton;
     private JButton newPlaylistButton;
     private JLabel title;
-    private Font font;
     private boolean spacePlaying;
     private JTextField searchBar;
     private musicEngineControllerViewModel musicEngineControllerViewModel;
@@ -30,11 +33,24 @@ public class playlistView extends JFrame implements ActionListener {
     private PlaylistPanelView playlistPanel;
     private PlayBar playBar;
 
+    private ImageIcon icon;
+    private ImageIcon logoImg;
+    private ImageIcon logoSmall;
+    private JLabel logo;
+
+    private int DEFAULT_WIDTH = 40;
+    private int DEFAULT_HEIGHT = 40;
+    private int DEFAULT_KERNING = 20;
+
+
     /**
      * constructor
      * @param user takes in the user's data to display their own dashboard!
      */
-    public playlistView(InMemoryUser user){
+    public playlistView(InMemoryUser user, ImageIcon icon, ImageIcon logoImg){
+        this.icon = icon;
+        this.logoImg = logoImg;
+        this.logoSmall = new ImageIcon(logoImg.getImage().getScaledInstance((int)(logoImg.getIconWidth()*0.7), (int)(logoImg.getIconHeight()*0.7), Image.SCALE_SMOOTH));
         this.initializeValues(user);
         this.initializeComponents();            // set up space button
 
@@ -48,7 +64,10 @@ public class playlistView extends JFrame implements ActionListener {
      * @param vm old view model
      * @param pb the current play bar
      */
-    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb) {
+    public playlistView(InMemoryUser user, musicEngineControllerViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
+        this.icon = icon;
+        this.logoImg = logoImg;
+        this.logoSmall = new ImageIcon(logoImg.getImage().getScaledInstance((int)(logoImg.getIconWidth()*0.7), (int)(logoImg.getIconHeight()*0.7), Image.SCALE_SMOOTH));
         this.initializeValues(user, vm, pb);
         this.initializeComponents();            // set up space button
         this.initializeFrame();
@@ -63,15 +82,13 @@ public class playlistView extends JFrame implements ActionListener {
         if (e.getSource() == this.spaceButton){
             if (!this.spacePlaying){   // clicking on button when space is playing does nothing
                 String message = this.musicEngineControllerViewModel.callPlaySpace();
-                this.spaceButton.setText(message);
                 this.spaceButton.setEnabled(false);
             }
         } else if(e.getSource() == this.searchButton){
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
-            System.out.println(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar, icon, logoImg);
         }
         else if(e.getSource() == this.newPlaylistButton){
             new NewPlaylistInputDataView(this.user, this);
@@ -88,7 +105,6 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.musicEngineControllerViewModel = new musicEngineControllerViewModel(new InMemoryPlaylist());
@@ -109,8 +125,8 @@ public class playlistView extends JFrame implements ActionListener {
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
         this.jframe.setSize(this.WIDTH, this.HEIGHT);
         this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(156, 219, 250));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.jframe.setIconImage(this.icon.getImage());
 
         this.musicEngineControllerViewModel = vm;
         this.playBar = pb;
@@ -124,26 +140,33 @@ public class playlistView extends JFrame implements ActionListener {
      * Initializes Swing related components.
      */
     private void initializeComponents() {
+
+        this.jframe.setIconImage(icon.getImage());
         this.title = new JLabel(this.user.getUsername() + " Dashboard");
-        int FONTSIZE = 10;
-        this.font = new Font(title.getFont().getName(), Font.PLAIN, FONTSIZE);
 
-        this.setSpaceButton();
-        this.setUpSearchButton();
-        this.setUpPlaylistButton();
-
-        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        // TOP BAR
+        this.logo = new JLabel(logoSmall);
+        this.logo.setBounds(DEFAULT_KERNING,
+                DEFAULT_KERNING, logoSmall.getIconWidth(), logoSmall.getIconHeight());
 
         this.setUpSearchBar();
+        this.setUpSearchButton();
+        this.setSpaceButton();
+        this.setUpPlaylistButton();
+
+        // MIDDLE BAR
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+
+
 
         // Set up panel
         this.panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 10, 10);
-        panel.setBackground(new Color(156, 219, 250));
 
-        this.spaceButton.addActionListener(this);
+
         this.searchButton.addActionListener(this);
+        this.spaceButton.addActionListener(this);
         this.newPlaylistButton.addActionListener(this);
     }
 
@@ -152,14 +175,18 @@ public class playlistView extends JFrame implements ActionListener {
      */
     public void setUpSearchBar(){
         this.searchBar = new JTextField();
-        this.searchBar.setBounds(20, 30, 230, 55);
-        this.searchBar.setFont(font);
+        this.searchBar.setBounds(this.logoSmall.getIconWidth() + DEFAULT_KERNING * 2, DEFAULT_KERNING * 2,
+                this.jframe.getWidth() - logo.getWidth() - DEFAULT_WIDTH * 3 - DEFAULT_KERNING * 4, DEFAULT_HEIGHT);
     }
 
     /**
      * Initializes the main window frame and adds components.
      */
     private void initializeFrame() {
+
+        this.jframe.setLocationRelativeTo(null);
+
+        this.jframe.add(this.logo);
         this.panel.add(title);
         this.panel.add(this.spaceButton);
         this.panel.add(this.searchBar);
@@ -168,6 +195,7 @@ public class playlistView extends JFrame implements ActionListener {
         this.panel.add(this.playBar.getPanel());
 
         this.panel.add(searchButton);
+
         this.jframe.add(panel);
         this.jframe.setVisible(true);
     }
@@ -176,12 +204,15 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the search button elements.
      */
     public void setUpSearchButton(){
-        this.searchButton = new JButton("Search");
-        this.searchButton.setBounds(260, 30, 100, 55);
+        this.searchButton = new JButton(SEARCH);
+        this.searchButton.setOpaque(false);
+        this.searchButton.setBorderPainted(false);
+        this.searchButton.setContentAreaFilled(false);
+
+        this.searchButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + DEFAULT_KERNING * 2,
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.searchButton.setFocusable(false);
         this.searchButton.setHorizontalTextPosition(JButton.CENTER);
-        this.searchButton.setBackground(Color.white);
-        this.searchButton.setFont(font);
 
     }
 
@@ -189,25 +220,29 @@ public class playlistView extends JFrame implements ActionListener {
      * Sets up the space button elements.
      */
     private void setSpaceButton(){
-        this.spaceButton = new JButton("Listen to space!");
-        this.spaceButton.setBounds(370, 30, 100, 55);
+        this.spaceButton = new JButton(SPACE);
+        this.spaceButton.setOpaque(false);
+        this.spaceButton.setBorderPainted(false);
+        this.spaceButton.setContentAreaFilled(false);
+        this.spaceButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + this.searchButton.getWidth() + DEFAULT_KERNING * 2,
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.spaceButton.setFocusable(false);
         this.spaceButton.setHorizontalTextPosition(JButton.CENTER);
-        this.spaceButton.setBackground(Color.white);
-        this.spaceButton.setFont(font);
     }
 
     /**
      * Sets up the playlist button elements.
      */
     private void setUpPlaylistButton(){
-        this.newPlaylistButton =  new JButton("Create New Playlist!");
-        this.newPlaylistButton.setBounds(480, 30, 140, 55);
+        this.newPlaylistButton =  new JButton(ADD_TO);
+        this.newPlaylistButton.setOpaque(false);
+        this.newPlaylistButton.setBorderPainted(false);
+        this.newPlaylistButton.setContentAreaFilled(false);
+        this.newPlaylistButton.setBounds(this.logoSmall.getIconWidth() + this.searchBar.getWidth() + this.searchButton.getWidth() + this.spaceButton.getWidth() + DEFAULT_KERNING * 2,
+                DEFAULT_KERNING * 2, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.newPlaylistButton.setFocusable(false);
         this.newPlaylistButton.setHorizontalTextPosition(JButton.CENTER);
-        this.newPlaylistButton.setBackground(Color.white);
         this.newPlaylistButton.setOpaque(true);
-        this.newPlaylistButton.setFont(font);
     }
 
     /**
