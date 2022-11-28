@@ -63,8 +63,8 @@ public class EditPlaylistTests {
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
         editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(), playlist.getId(), song);
-        playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel, new InMemoryUser());
+        playlistViewModel testViewModel = new playlistViewModel();
+        playlistPresenter testPresenter = new playlistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
         testInteractor.addSong(inputData);
         String actual = testPresenter.getOutputMessage();

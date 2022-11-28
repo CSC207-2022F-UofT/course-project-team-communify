@@ -189,10 +189,13 @@ public class searchOutputView extends JFrame implements ActionListener {
                 }
 
             }
-//            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
-//                //new NewPlaylistInputDataView(this.user,this,);
-//
-//            }
+            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
+                int songID = Integer.parseInt(ids[row]);
+                playlistView view = new playlistView(this.user, this.musicEngineControllerViewModel,
+                                this.playBar, this.icon, this.logoImg);
+                new NewPlaylistInputDataView(this.user,view,songID);
+                System.out.println(songID);
+            }
             //TODO: create playlist w/ one song
         }
         if (e.getSource() == this.homeButton) {

@@ -25,11 +25,11 @@ public class newPlaylistController {
      * Creates a playlist with one song
      * @param user RegularUser retrieved from view
      * @param playlistName name to create playlist with
-     * @param firstSong song to create playlist with
+     * @param firstSongID song to create playlist with
      * @return the new playlist in a view layer DS
      */
-    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, Song firstSong){
-        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSong, user.getUsername());
+    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, int firstSongID){
+        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSongID, user.getUsername());
         PlaylistDsView newPlaylist = user.getNewPlaylist();
         newPlaylist.setName(playlistName);
         newPlaylist.setId(inputData.getId());

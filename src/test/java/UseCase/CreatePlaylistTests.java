@@ -33,9 +33,9 @@ public class CreatePlaylistTests {
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testname = "test";
-        int song = 10;
-        Song s = songLibrary.getInstance().getSong(song).getSong();
-        newPlaylistInputData inputData = new newPlaylistInputData(testname,s,user.getUsername());
+        int songID = 10;
+        Song s = songLibrary.getInstance().getSong(songID).getSong();
+        newPlaylistInputData inputData = new newPlaylistInputData(testname,songID,user.getUsername());
         playlistViewModel testViewModel = new playlistViewModel();
         playlistPresenter testPresenter = new playlistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
