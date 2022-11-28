@@ -99,7 +99,7 @@ public class playlistViewModel {
      * @param song the song to edit the playlist with
      * @return confirmation message
      */
-    public String callRemoveSong(UserDsView user, PlaylistDsView playlist, int song){
+    public String callRemoveSong(UserDsView user, int playlist, int song){
         this.editPlaylistController.removeSong(user,playlist,song);
         return this.playlistPresenter.getOutputMessage();
     }

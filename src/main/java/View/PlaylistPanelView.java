@@ -26,10 +26,12 @@ public class PlaylistPanelView implements ActionListener {
     private ArrayList<IDButton> buttons;
     private ArrayList<IDButton> rButtons;
 
-    private ArrayList<IDButton> dButtons;
+    private ArrayList<DoubleIDButton> dButtons;
     private musicEngineControllerViewModel viewModel;
 
     private playlistViewModel playlistViewModel;
+
+    private InMemoryUser user;
 
 
     /**
@@ -38,6 +40,8 @@ public class PlaylistPanelView implements ActionListener {
      */
     public PlaylistPanelView(InMemoryUser u, musicEngineControllerViewModel vm){
         initializeComponents(u.getPlaylists(), vm);
+        this.user = u;
+        this.playlistViewModel = new playlistViewModel();
     }
 
     /**
@@ -133,10 +137,11 @@ public class PlaylistPanelView implements ActionListener {
                 JLabel artists = new JLabel(String.join(", ", s.getArtists()));
                 JLabel genre = new JLabel(s.getGenre());
 
-//                JButton removeSong = new JButton("Remove Song!");
                 thisSongPanel.add(cover);
                 thisSongPanel.add(songName);
-                IDButton removeSong = new IDButton(s.getId(),"Remove Song");
+                //IDButton removeSong = new IDButton(s.getId(),"Remove Song");
+                //new ID button class that stores both a song's ID and its playlist's associated ID
+                DoubleIDButton removeSong = new DoubleIDButton(p.getId(),s.getId(),"Remove Song");
                 removeSong.addActionListener(this);
                 this.dButtons.add(removeSong);
 
@@ -164,16 +169,25 @@ public class PlaylistPanelView implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if (buttons.contains((IDButton) actionEvent.getSource())){
+        //TODO: Had to remove casting of action event as (ID button) in headers because it wouldnt work for my double
+        // ID object (correct later if possible)
+        if (buttons.contains(actionEvent.getSource())){
             int id = buttons.indexOf((IDButton) actionEvent.getSource());
             viewModel.playPlaylistAction(buttons.get(id).getId());
         }
-        else if (rButtons.contains((IDButton) actionEvent.getSource())){
+        else if (rButtons.contains(actionEvent.getSource())){
             int id = rButtons.indexOf((IDButton) actionEvent.getSource());
             viewModel.getRecommendationAction(rButtons.get(id).getId());
         }
-        else if(dButtons.contains((IDButton) actionEvent.getSource())){
-            int songID= dButtons.indexOf((IDButton) actionEvent.getSource());
+//        if(dButtons.contains((DoubleIDButton) actionEvent.getSource())){
+//            int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
+//            int songID = dButtons.get(id).getSongID();
+//            int playlistID = dButtons.get(id).getPlaylistID();
+        if (this.dButtons.contains(actionEvent.getSource())){
+            int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
+            int songID = dButtons.get(id).getSongID();
+            int playlistID = dButtons.get(id).getPlaylistID();
+            playlistViewModel.callRemoveSong(user,playlistID,songID);
             //TODO: get necessary components/ make double id button
             //playlistViewModel.callRemoveSong(Us)
         }
