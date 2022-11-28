@@ -163,11 +163,17 @@ public class PlayBar implements ActionListener {
         }
         else if (actionEvent.getSource() == this.pause){
             this.viewModel.pauseSongAction();
-            if (this.pause.getIcon() == PAUSE)
-                this.pause.setIcon(PLAY);
-            else
-                this.pause.setIcon(PAUSE);
+            updatePlayButton(this.pause.getIcon() == PAUSE);
         }
+    }
+
+    /**
+     * Updates the icon of the play button.
+     * @param play true iff song is playing
+     */
+    public void updatePlayButton(boolean play){
+        if (play) this.pause.setIcon(PLAY);
+        else this.pause.setIcon(PAUSE);
     }
 
     /**
@@ -183,25 +189,21 @@ public class PlayBar implements ActionListener {
         this.song.setText(song.getName());
         this.artist.setText(String.join(", ", song.getArtists()));
         this.cover.setIcon(new ImageIcon(song.getCover().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
-        if (viewModel.getMediaType() == 2){
-            this.skip.setVisible(false);
-            this.pause.setVisible(false);
+        if (viewModel.getMediaType() == 2){ //SPACE
+            this.prev.setEnabled(false);
+            this.skip.setEnabled(false);
+            this.pause.setEnabled(false);
         }
-        if (viewModel.getMediaType() == 0){
-            this.skip.setVisible(false);
-            this.pause.setVisible(true);
+        if (viewModel.getMediaType() == 0){ //SONG
+            this.prev.setEnabled(false);
+            this.skip.setEnabled(false);
+            this.pause.setEnabled(true);
         }
-        if (viewModel.getMediaType() == 1){
-            this.skip.setVisible(true);
-            this.pause.setVisible(true);
+        if (viewModel.getMediaType() == 1){ //PLAYLIST
+            this.prev.setEnabled(true);
+            this.skip.setEnabled(true);
+            this.pause.setEnabled(true);
         }
+        updatePlayButton(true);
     }
-
-    /**
-     * Notifies play button to change to 'play'.
-     */
-    public void playSong(){
-        this.pause.setIcon(PLAY);
-    }
-
 }

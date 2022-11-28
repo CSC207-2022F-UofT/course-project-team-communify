@@ -31,13 +31,16 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
      */
     public void newPlaylist(newPlaylistInputData newplaylistInputData) {
         Playlist playlist;
+        String successMessage;
         if (!newplaylistInputData.hasFirstSong()) {
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
                     newplaylistInputData.getOwner());
+            successMessage = "Playlist created!";
         }
         else{
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(), newplaylistInputData.getOwner(),
                      newplaylistInputData.getFirstSong());
+            successMessage = "Playlist created with "+ newplaylistInputData.getFirstSong().getName()+"!";
         }
         newplaylistInputData.getOwner().addPlaylist(playlist);
         // save the newly created playlist to the RegularUser's playlist list
@@ -51,7 +54,8 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         //TODO #2: Regain will to live
         //TODO #3: delete commented lines when finalizing this implementation in a future push
         //generate output data
-        newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
+        //newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
+        newPlaylistOutputData outputData = new newPlaylistOutputData(successMessage);
 
         //set message attribute to output data
         this.presenter.setPlaylistCreationConfirmation(outputData);

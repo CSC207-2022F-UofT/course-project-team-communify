@@ -4,10 +4,12 @@ import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.FieldDataInvalidException;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
+import org.jaudiotagger.tag.images.ArtworkFactory;
 
 import javax.imageio.ImageIO;
 import java.nio.file.Files;
@@ -165,16 +167,17 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
         Tag tag = rawSong.getTag();
         BufferedImage cover = this.DEFAULT_COVER;
+
+        String name = format(tag.getFields(FieldKey.TITLE).get(0).toString());
+        String[] artistList = format(tag.getFields(FieldKey.ARTIST).get(0).toString()).split(";");
+        String genre = format(tag.getFields(FieldKey.GENRE).get(0).toString());
+
         try {
             Artwork rawCover = tag.getFirstArtwork();
             if(rawCover != null) cover = (BufferedImage) rawCover.getImage();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        String name = format(tag.getFields(FieldKey.TITLE).toString());
-        String[] artistList = format(tag.getFields(FieldKey.ARTIST).toString()).split(";");
-        String genre = format(tag.getFields(FieldKey.GENRE).toString());
 
         return new songDsData(id, name, artistList, genre, rawSong.getFile(), cover, uploader);
     }
@@ -186,7 +189,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     private String format(String line){
         if(line.length() < 3) return "Unknown";
-        else return line.substring(7, line.length() - 5);
+        else return line.replace("Text=\"", "").replace("\";", "");
     }
 
     /**
