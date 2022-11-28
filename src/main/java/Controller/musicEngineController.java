@@ -35,7 +35,7 @@ public class musicEngineController {
         this.songPresenter = songPresenter;
         this.playing = NONE;
         playSpaceInputData playSpaceInputData = new playSpaceInputData(this.spaceSongList);
-        this.playSpaceInteractor = new playSpaceInteractor(this.spacePresenter, this.songPresenter, playSpaceInputData);
+        this.playSpaceInteractor = new playSpaceInteractor(this.songPresenter, playSpaceInputData);
         this.playPlaylist = new playPlaylist(songPresenter);
         this.nextSong = new NextSong(songPresenter, this.playPlaylist);
 
@@ -50,7 +50,7 @@ public class musicEngineController {
         songInputData data = new songInputData(id);
         playSongInputBoundary playSong = new playSongInteractor(this.songPresenter);
         playSong.playSong(data);
-        playing = SONG;
+        this.playing = SONG;
     }
 
     /**
@@ -77,7 +77,7 @@ public class musicEngineController {
         }
         songInputData songToAdd = new songInputData(songToAddID);  // song is not in list, so append to the end
         this.spaceSongList.add(songToAdd);
-        if (playing == SPACE) {
+        if (this.playing == SPACE) {
             this.playSpaceInteractor.updateSpace(new playSpaceInputData(this.spaceSongList));
         }
         this.spacePresenter.addedToSpace(songToAdd.getName());
@@ -103,7 +103,8 @@ public class musicEngineController {
         this.playPlaylist = new playPlaylist(this.songPresenter);
         playlistInputData data = new playlistInputData(id);
         this.nextSong.updatePlaylist(data);
-        this.playPlaylist.play(data);
+        if (!this.playPlaylist.play(data))
+            this.playing = NONE;
     }
 
     /**
@@ -115,7 +116,7 @@ public class musicEngineController {
         playlistInputData data = new playlistInputData(id);
         recommendationInputBoundary recommend = new recommendSong(songPresenter);
         recommend.recommendation(data);
-        playing = SONG;
+        this.playing = SONG;
     }
 
     /**
@@ -127,6 +128,9 @@ public class musicEngineController {
         if (playing == PLAYLIST){
             stop();
             this.playPlaylist = nextSong.skipSong();
+            if (this.playPlaylist == null){
+                this.playing = NONE;
+            }
         }
     }
 
@@ -142,7 +146,6 @@ public class musicEngineController {
                 this.playPlaylist.stopQueue();
             case SPACE:
                 this.playSpaceInteractor.stopSpace();
-                this.spacePresenter.spaceNotPlayed();
         }
     }
 

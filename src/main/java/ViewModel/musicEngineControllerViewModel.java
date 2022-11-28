@@ -5,13 +5,18 @@ import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the music playing related
  * parts of the program.
  */
 public class musicEngineControllerViewModel {
     private final musicEngineController musicEngineController;
-    private String spaceButtonText;
     private songOutputData playing;
     private String SpaceAddedPopupText;
     private final Object sync;
@@ -102,6 +107,19 @@ public class musicEngineControllerViewModel {
             out.setGenre(playing.getGenre());
             out.setArtists(playing.getArtistList());
         }
+        else {
+            try {
+                BufferedImage tempCover = ImageIO.read(new File(Paths.get("").toAbsolutePath() +
+                        "/src/songLib/cover/no_genre.png"));
+                out.setCover(tempCover);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.setName("Nothing playing");
+            out.setId(0);
+            out.setArtists(new String[]{""});
+            out.setGenre("");
+        }
 
         return out;
     }
@@ -114,18 +132,10 @@ public class musicEngineControllerViewModel {
     }
 
     /**
-     * @return the message to display after playing the space
+     * calls play space use case
      */
-    public String callPlaySpace() {
+    public void callPlaySpace() {
         this.musicEngineController.playSpace();
-        return this.spaceButtonText;
-    }
-
-    /**
-     * @param spaceButtonText the message to display after playing the space
-     */
-    public void updateSpaceButton(String spaceButtonText) {
-        this.spaceButtonText  = spaceButtonText;
     }
 
     /**

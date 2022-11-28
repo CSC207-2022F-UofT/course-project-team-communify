@@ -1,9 +1,8 @@
 package Controller;
-import Entities.RegularUser;
-import Entities.Playlist;
-import Entities.Song;
 import InputBoundary.editPlaylistInputBoundary;
 import InputData.editPlaylistInputData;
+import ViewModel.PlaylistDsView;
+import ViewModel.UserDsView;
 
 /**
  * Interface adapters layer controller for edit playlists use case.
@@ -26,8 +25,8 @@ public class EditPlaylistController {
      * @param playlist Playlist object to add a song to
      * @param song Specific song object to add
      */
-    public void addSong(RegularUser user, Playlist playlist, Song song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user,playlist,song);
+    public void addSong(UserDsView user, PlaylistDsView playlist, int song){
+        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlist.getId(),song);
         EditPlaylistInteractor.addSong(inputData);
     }
     /**
@@ -36,8 +35,8 @@ public class EditPlaylistController {
      * @param playlist Playlist object to remove a song from
      * @param song Specific song object to remove
      */
-    public void removeSong(RegularUser user, Playlist playlist, Song song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user,playlist,song);
+    public void removeSong(UserDsView user, PlaylistDsView playlist, int song){
+        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlist.getId(),song);
         EditPlaylistInteractor.removeSong(inputData);
     }
 }

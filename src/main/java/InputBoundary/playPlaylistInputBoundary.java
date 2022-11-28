@@ -8,9 +8,11 @@ import InputData.playlistInputData;
 public interface playPlaylistInputBoundary {
     /**
      * Plays the playlist given in the constructor.
+     *
      * @param data the input data containing the playlist to play
+     * @return whether there are songs left to play
      */
-    void play(playlistInputData data);
+    boolean play(playlistInputData data);
 
     /**
      * Dequeues the playlist, such that after the currently playing song ends the playlist

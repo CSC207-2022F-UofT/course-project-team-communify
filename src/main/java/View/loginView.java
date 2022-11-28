@@ -26,7 +26,10 @@ public class loginView extends JFrame implements ActionListener {
     private ImageIcon icon;
     private ImageIcon logoImg;
     private JTextField artistTextField;
+    private JButton backButton;
+    private JLabel logo;
 
+    private int UI_TOP_LEFT;
 
     /**
      * @param icon the program icon
@@ -53,6 +56,11 @@ public class loginView extends JFrame implements ActionListener {
         InMemoryArtistUser artist;
         boolean isArtist = isArtistCheckBox.isSelected();
 
+        if(e.getSource() == this.backButton){
+            this.jframe.dispose();
+            new launchView(icon, logoImg);
+        }
+
         if (e.getSource() != this.isArtistCheckBox){
             username = this.usernameTextField.getText();
             password = this.passwordTextField.getText();
@@ -75,7 +83,7 @@ public class loginView extends JFrame implements ActionListener {
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new playlistView(user);
+                    new playlistView(user, icon, logoImg);
                 }
             }
             else {
@@ -85,13 +93,14 @@ public class loginView extends JFrame implements ActionListener {
         else if (e.getSource() == this.submitButton & register){
             if (viewModel.registerAction(username, password, isArtist, artistName)){
                 this.jframe.dispose();
+                this.jframe.dispose();
                 if (isArtist) {
                     artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
                     new artistView(this.icon, this.logoImg, artist);
 
                 } else {
                     user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new playlistView(user);
+                    new playlistView(user, icon, logoImg);
                 }
             }
             else {
@@ -109,10 +118,9 @@ public class loginView extends JFrame implements ActionListener {
     private void initializeValues() {
         this.jframe = new JFrame();
         int HEIGHT = 640;
-        int WIDTH = 640;
+        int WIDTH = 1280;
         this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setResizable(false);
-        this.jframe.getContentPane().setBackground(new Color(185, 226, 246));
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setLocationRelativeTo(null);
@@ -123,49 +131,63 @@ public class loginView extends JFrame implements ActionListener {
      */
     private void initializeComponents() {
 
-        this.submitButton = new JButton();
-        this.submitButton.setBounds(100, 400, 100, 50);  // fix up the bounds
-        if (!this.register)
-            this.submitButton.setText("Login");
-        else
-            this.submitButton.setText("Register");
-        this.submitButton.setFocusable(false);
-        this.submitButton.setHorizontalTextPosition(JButton.CENTER);
-        this.submitButton.setForeground(Color.cyan);
-        this.submitButton.setBackground(Color.lightGray);
+        int DEFAULT_WIDTH = 280;
+        int DEFAULT_HEIGHT = 40;
+        int DEFAULT_KERNING = 10;
 
-        this.isArtistCheckBox = new JCheckBox();
-        this.isArtistCheckBox.setBounds(200, 200, 100, 50);
-        this.isArtistCheckBox.setText("I am an Artist");
-        this.isArtistCheckBox.setFocusable(false);
+        this.logo = new JLabel(logoImg);
+        this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 120, logoImg.getIconWidth(), logoImg.getIconHeight());
+
+        this.artistTextField = new JTextField();
+        this.artistTextField.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 240, DEFAULT_WIDTH,DEFAULT_HEIGHT);
+        this.artistTextField.setText("Artist Name");
+        this.artistTextField.setVisible(false);
 
         this.usernameTextField = new JTextField();
-        this.usernameTextField.setBounds(300, 300, 150,75);
+        this.usernameTextField.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 290, DEFAULT_WIDTH,DEFAULT_HEIGHT);
         this.usernameTextField.setText("Username");
 
         this.passwordTextField = new JTextField();
-        this.passwordTextField.setBounds(300, 400, 150, 75);
+        this.passwordTextField.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 340, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.passwordTextField.setText("Password");
 
-        this.artistTextField = new JTextField();
-        this.artistTextField.setBounds(300, 500, 150,75);
-        this.artistTextField.setText("Artist Name");
-        this.artistTextField.setVisible(false);
+        this.isArtistCheckBox = new JCheckBox();
+        this.isArtistCheckBox.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 380, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        this.isArtistCheckBox.setText("I am an Artist");
+        this.isArtistCheckBox.setFocusable(false);
+
+        this.submitButton = new JButton();
+        this.submitButton.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 420, DEFAULT_WIDTH, DEFAULT_HEIGHT);  // fix up the bounds
+
+        if (!this.register) this.submitButton.setText("Login");
+        else this.submitButton.setText("Register");
+
+        this.submitButton.setFocusable(false);
+        this.submitButton.setHorizontalTextPosition(JButton.CENTER);
+
+        this.backButton = new JButton("Back");
+        this.backButton.setBounds((this.jframe.getWidth() - DEFAULT_WIDTH)/2, 460, DEFAULT_WIDTH, DEFAULT_HEIGHT);  // fix up the bounds
+        this.backButton.setOpaque(false);
+        this.backButton.setContentAreaFilled(false);
+        this.backButton.setBorderPainted(false);
 
 
         this.submitButton.addActionListener(this);
         this.isArtistCheckBox.addActionListener(this);
+        this.backButton.addActionListener(this);
     }
 
     /**
      * Initializes the main window frame and adds components.
      */
     private void initializeFrame() {
+        this.jframe.add(this.logo);
         this.jframe.add(this.submitButton);
         this.jframe.add(this.isArtistCheckBox);
         this.jframe.add(this.usernameTextField);
         this.jframe.add(this.passwordTextField);
         this.jframe.add(this.artistTextField);
+        this.jframe.add(this.backButton);
         this.jframe.setVisible(true);
     }
 }
