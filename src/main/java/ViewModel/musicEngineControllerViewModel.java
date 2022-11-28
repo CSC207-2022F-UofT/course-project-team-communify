@@ -5,6 +5,12 @@ import OutputData.songOutputData;
 import Presenter.songPresenter;
 import Presenter.spacePresenter;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the music playing related
  * parts of the program.
@@ -101,6 +107,19 @@ public class musicEngineControllerViewModel {
             out.setCover(playing.getCover());
             out.setGenre(playing.getGenre());
             out.setArtists(playing.getArtistList());
+        }
+        else {
+            try {
+                BufferedImage tempCover = ImageIO.read(new File(Paths.get("").toAbsolutePath() +
+                        "/src/songLib/cover/no_genre.png"));
+                out.setCover(tempCover);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.setName("Nothing playing");
+            out.setId(0);
+            out.setArtists(new String[]{""});
+            out.setGenre("");
         }
 
         return out;
