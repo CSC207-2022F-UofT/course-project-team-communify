@@ -51,10 +51,11 @@ public class NextSong implements NextSongInputBoundary {
 
         if (id == playlist.size() - 1){
             presenter.songPlayed(null);
-            return play;
+            mp.close();
+            return null;
         }
 
-        playlistInputData newPlaylist = new playlistInputData(name, playlist.subList(id + 1, playlist.size() - 1));
+        playlistInputData newPlaylist = new playlistInputData(name, playlist.subList(id + 1, playlist.size()));
         // play playlist handles presenter call
         this.play.play(newPlaylist);
         return play;
