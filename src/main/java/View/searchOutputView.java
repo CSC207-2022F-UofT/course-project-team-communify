@@ -188,10 +188,10 @@ public class searchOutputView extends JFrame implements ActionListener {
                 }
 
             }
-//            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
-//                //new NewPlaylistInputDataView(this.user,this,);
-//
-//            }
+            if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
+                //new NewPlaylistInputDataView(this.user,this,);
+
+            }
             //TODO: create playlist w/ one song
         }
         if (e.getSource() == this.homeButton) {
