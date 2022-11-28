@@ -144,11 +144,12 @@ public class searchOutputView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.comboBox){
-            System.out.println(this.comboBox.getSelectedItem().toString());
+            String item = this.comboBox.getSelectedItem() == null? "": this.comboBox.getSelectedItem().toString();
+            System.out.println(item);
             int row = this.table.getSelectedRow();
             System.out.println(ids[row]);
 
-            if (this.comboBox.getSelectedItem().toString().equals("Add to Space")) {
+            if (item.equals("Add to Space")) {
                 String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
                 this.createPopup(PopupMessage);
             }
