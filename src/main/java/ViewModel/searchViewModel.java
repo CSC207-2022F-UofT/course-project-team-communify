@@ -37,4 +37,8 @@ public class searchViewModel {
     public void updateOutput(String[][] songs){
         this.outputSongs = songs;
     }
+
+    public String[][] getOutputSongs() {
+        return outputSongs;
+    }
 }
