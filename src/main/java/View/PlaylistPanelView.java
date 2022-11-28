@@ -1,6 +1,7 @@
 package View;
 
 import ViewModel.musicEngineControllerViewModel;
+import ViewModel.playlistViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,12 @@ public class PlaylistPanelView implements ActionListener {
     private JScrollPane pane;
     private ArrayList<IDButton> buttons;
     private ArrayList<IDButton> rButtons;
+
+    private ArrayList<IDButton> dButtons;
     private musicEngineControllerViewModel viewModel;
+
+    private playlistViewModel playlistViewModel;
+
 
     /**
      * @param u the user logged in
@@ -58,6 +64,7 @@ public class PlaylistPanelView implements ActionListener {
 
         this.buttons = new ArrayList<>();
         this.rButtons = new ArrayList<>();
+        this.dButtons = new ArrayList<>();
         for (InMemoryPlaylist p : playlistList){
 
             JPanel mainPanel = new JPanel();
@@ -112,6 +119,7 @@ public class PlaylistPanelView implements ActionListener {
             songLayout.setHgap(DEFAULT_KERNING);
             songPanel.setLayout(songLayout);
             for (InMemorySong s : p.getSongs()){
+                //S is the song just call the ID
 
                 JPanel thisSongPanel = new JPanel();
                 FlowLayout thisSongLayout = new FlowLayout(FlowLayout.LEFT, DEFAULT_KERNING, 0);
@@ -125,12 +133,18 @@ public class PlaylistPanelView implements ActionListener {
                 JLabel artists = new JLabel(String.join(", ", s.getArtists()));
                 JLabel genre = new JLabel(s.getGenre());
 
+//                JButton removeSong = new JButton("Remove Song!");
                 thisSongPanel.add(cover);
                 thisSongPanel.add(songName);
+                IDButton removeSong = new IDButton(s.getId(),"Remove Song");
+                removeSong.addActionListener(this);
+                this.dButtons.add(removeSong);
 
                 songPanel.add(thisSongPanel);
                 songPanel.add(artists);
                 songPanel.add(genre);
+                songPanel.add(removeSong);
+                //Remove song button
             }
             mainPanel.add(songPanel);
             this.panel.add(mainPanel);
@@ -157,6 +171,11 @@ public class PlaylistPanelView implements ActionListener {
         else if (rButtons.contains((IDButton) actionEvent.getSource())){
             int id = rButtons.indexOf((IDButton) actionEvent.getSource());
             viewModel.getRecommendationAction(rButtons.get(id).getId());
+        }
+        else if(dButtons.contains((IDButton) actionEvent.getSource())){
+            int songID= dButtons.indexOf((IDButton) actionEvent.getSource());
+            //TODO: get necessary components/ make double id button
+            //playlistViewModel.callRemoveSong(Us)
         }
     }
 }
