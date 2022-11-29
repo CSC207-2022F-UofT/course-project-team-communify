@@ -55,9 +55,12 @@ public class Search implements searchInputBoundary {
 
         for (songDsData song: library) {
             String currentName = song.getSong().getName().toLowerCase();
-            if(currentName.equals(name)){
+            if(currentName.substring(0, currentName.length() - 2).equals(name)){
+                // take the substring because of a weird icon at the end of song names
+                System.out.println("in the first If!");
                 foundSongs.add(song.getSong());
             } else if (currentName.startsWith(name)){
+                System.out.println("in the second If!");
                 similarSongs.add(song.getSong());
             } else if (currentName.contains(name)) {
                 similarSongs.add(song.getSong());
