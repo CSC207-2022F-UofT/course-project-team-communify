@@ -64,4 +64,13 @@ public class EngineTest {
         String popupText = mv.callAddToSpace(2);
         Assertions.assertNotEquals(popupText, null);
     }
+
+    /**
+     * testing if the else clause of getPlaying works.
+     */
+    @Test
+    public void testGetPlaying(){
+        musicEngineControllerViewModel mv = new musicEngineControllerViewModel(new InMemoryPlaylist());
+        Assertions.assertNotEquals(mv.getPlaying(), null);
+    }
 }
