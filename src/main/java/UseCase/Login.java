@@ -36,7 +36,6 @@ public class Login implements loginInputBoundary{
                 loginPresenter.userLogIn(out);
                 return true;
             }
-            return false;
         }
         return false;
     }
