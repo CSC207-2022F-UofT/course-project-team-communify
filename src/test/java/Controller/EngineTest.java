@@ -109,4 +109,14 @@ public class EngineTest {
         // Assertions.assertTrue(mp.isPlaying());
         // Assertions.assertEquals(mp.getCurrentSong().getName(), p.getSongs().get(1).getName());
     }
+
+    @Test
+    public void testPlaySpace(){
+        MusicPlayer mp = MusicPlayer.getInstance();
+        musicEngineController controller = new musicEngineController(new spacePresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())),
+                new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        controller.playSpace();
+        // Assertions.assertTrue(mp.isPlaying());
+    }
+
 }
