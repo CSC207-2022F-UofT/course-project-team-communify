@@ -38,7 +38,8 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
             successMessage = "Playlist created!";
         }
         else{
-            playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(), newplaylistInputData.getOwner(),
+            playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
+                    newplaylistInputData.getOwner(),
                      newplaylistInputData.getFirstSong());
             successMessage = "Playlist created with "+ newplaylistInputData.getFirstSong().getName()+"!";
         }
@@ -51,10 +52,7 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         if (userDatabase.exists(playlist.getOwner().getUsername())) {
             this.userDatabase.save(new userDsData(playlist.getOwner()));
         }
-        //TODO #2: Regain will to live
-        //TODO #3: delete commented lines when finalizing this implementation in a future push
         //generate output data
-        //newPlaylistOutputData outputData = new newPlaylistOutputData("Playlist created!");
         newPlaylistOutputData outputData = new newPlaylistOutputData(successMessage);
 
         //set message attribute to output data

@@ -39,6 +39,8 @@ public class searchOutputView extends JFrame implements ActionListener {
 
     private final ImageIcon logoImg;
 
+//    private final playlistView playlistView;
+
     /**
      * @param searchText the search query
      * @param user the logged-in user
@@ -53,6 +55,7 @@ public class searchOutputView extends JFrame implements ActionListener {
         this.playlistViewModel = new playlistViewModel();
         this.library = songLibrary.getInstance();
         this.playBar = pb;
+//        this.playlistView = playlistView;
         this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
@@ -193,6 +196,7 @@ public class searchOutputView extends JFrame implements ActionListener {
                 int songID = Integer.parseInt(ids[row]);
                 playlistView view = new playlistView(this.user, this.musicEngineControllerViewModel,
                                 this.playBar, this.icon, this.logoImg);
+                this.jframe.dispose();
                 new NewPlaylistInputDataView(this.user,view,songID);
                 System.out.println(songID);
             }

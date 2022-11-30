@@ -18,9 +18,6 @@ public class newPlaylistController {
     public newPlaylistController(newPlaylistInputBoundary createPlaylistInteractor){
         this.newPlaylistInputBoundary = createPlaylistInteractor;
     }
-    //TODO: remove uncommented lines later
-    //TODO: this is given info via the view
-
     /**
      * Creates a playlist with one song
      * @param user RegularUser retrieved from view

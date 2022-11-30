@@ -187,9 +187,16 @@ public class PlaylistPanelView implements ActionListener {
             int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
             int songID = dButtons.get(id).getSongID();
             int playlistID = dButtons.get(id).getPlaylistID();
-            playlistViewModel.callRemoveSong(user,playlistID,songID);
+            String output = playlistViewModel.callRemoveSong(user,playlistID,songID);
+            this.createPopup(output);
             //TODO: get necessary components/ make double id button
             //playlistViewModel.callRemoveSong(Us)
         }
+    }
+    private void createPopup(String text){
+        JOptionPane pane = new JOptionPane(null);
+        pane.setMessage(text);
+        JDialog dialog = pane.createDialog(null, text);
+        dialog.setVisible(true);
     }
 }

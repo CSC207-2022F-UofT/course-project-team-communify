@@ -23,7 +23,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private playlistView mainWindow;
     private playlistViewModel viewModel;
 
-    private int songID ;
+    private int songID;
 
     /**
      * @param owner the owner of the playlist
@@ -51,17 +51,19 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
             String playlistName = this.playlistNameTextField.getText();
             String outputMessage;
             if (songID == -1) {
-                outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName);
+                outputMessage = this.viewModel.callNewEmptyPlaylistUseCase(owner, playlistName);
                 System.out.println("Empty");
+                mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             }
             else{
                 outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName, songID);
+                System.out.println(songID);
                 this.songID = -1;
                 System.out.println("OneSong");
+                mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             }
-            mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             this.jframe.dispose();
-            new NewPlaylistOutputDataView(outputMessage);
+            this.createPopup(outputMessage);
         }
         else if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
@@ -136,5 +138,12 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private void initializeFrame() {
         this.jframe.add(fieldPanel);
         this.jframe.setVisible(true);
+    }
+
+    private void createPopup(String text){
+        JOptionPane pane = new JOptionPane(null);
+        pane.setMessage(text);
+        JDialog dialog = pane.createDialog(null, text);
+        dialog.setVisible(true);
     }
 }
