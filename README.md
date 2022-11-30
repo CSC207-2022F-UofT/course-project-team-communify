@@ -9,7 +9,7 @@ Communify is a music platform that aims to collaborize music streaming – allow
 ## Running the project
 It's pretty easy!
 1. Download the files
-2. Run Main.java
+2. Run src/main/java/Main.java
 3. Have fun!
 
 ## Features
@@ -40,12 +40,16 @@ We remade the default Autograder GitHub Action because it was having some diffic
 
 Controllers: 
 - musicEngineController 100% method coverage, 96% line coverage
+
 Input Datas: 
 - spaceInputData 100%
+
 Presenters: 
 - spacePresenter 100%
+
 Use Cases: 
 - playSpaceInteractor 100% method coverage, 93% line coverage
+
 View Models: 
 - musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
 
