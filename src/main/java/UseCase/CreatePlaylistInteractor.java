@@ -35,12 +35,14 @@ public class CreatePlaylistInteractor implements newPlaylistInputBoundary {
         if (!newplaylistInputData.hasFirstSong()) {
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
                     newplaylistInputData.getOwner());
+            newplaylistInputData.getOwner().addPlaylist(playlist);
             successMessage = "Playlist created!";
         }
         else{
             playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
                     newplaylistInputData.getOwner(),
                      newplaylistInputData.getFirstSong());
+            newplaylistInputData.getOwner().addPlaylist(playlist);
             successMessage = "Playlist created with "+ newplaylistInputData.getFirstSong().getName()+"!";
         }
         newplaylistInputData.getOwner().addPlaylist(playlist);

@@ -192,11 +192,18 @@ public class PlaylistPanelView implements ActionListener {
             //TODO: get necessary components/ make double id button
             //playlistViewModel.callRemoveSong(Us)
         }
+        this.refresh();
     }
     private void createPopup(String text){
         JOptionPane pane = new JOptionPane(null);
         pane.setMessage(text);
         JDialog dialog = pane.createDialog(null, text);
         dialog.setVisible(true);
+    }
+
+    public void refresh(){
+        this.panel.invalidate();
+        this.panel.validate();
+        this.panel.repaint();
     }
 }

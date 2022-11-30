@@ -36,7 +36,8 @@ public class Playlist {
         this.name = name;
         this.owner = owner;
         this.songList = new LinkedList<>();
-        this.songList.addFirst(firstSong);
+        this.songList.add(firstSong);
+        //this.songList.addFirst(firstSong);
     }
 
     /**

@@ -28,6 +28,7 @@ public class newPlaylistController {
     public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, int firstSongID){
         newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSongID, user.getUsername());
         PlaylistDsView newPlaylist = user.getNewPlaylist();
+        this.newPlaylistInputBoundary.newPlaylist(inputData);
         newPlaylist.setName(playlistName);
         newPlaylist.setId(inputData.getId());
         return newPlaylist;

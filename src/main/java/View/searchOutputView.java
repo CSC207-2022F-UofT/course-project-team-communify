@@ -39,7 +39,7 @@ public class searchOutputView extends JFrame implements ActionListener {
 
     private final ImageIcon logoImg;
 
-//    private final playlistView playlistView;
+    private final playlistView playlistView;
 
     /**
      * @param searchText the search query
@@ -48,14 +48,14 @@ public class searchOutputView extends JFrame implements ActionListener {
      * @param pb the current play bar object
      */
     public searchOutputView(String searchText, InMemoryUser user, musicEngineControllerViewModel engineVm,
-                            PlayBar pb, ImageIcon icon, ImageIcon logoImg){
+                            PlayBar pb, ImageIcon icon, ImageIcon logoImg, playlistView playlistView){
         this.icon = icon;
         this.logoImg = logoImg;
         this.musicEngineControllerViewModel = engineVm;
         this.playlistViewModel = new playlistViewModel();
         this.library = songLibrary.getInstance();
         this.playBar = pb;
-//        this.playlistView = playlistView;
+        this.playlistView = playlistView;
         this.initialiseValues(searchText, user);
         this.setUpTable();
         this.initializeFrame();
@@ -194,10 +194,10 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
             if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
                 int songID = Integer.parseInt(ids[row]);
-                playlistView view = new playlistView(this.user, this.musicEngineControllerViewModel,
-                                this.playBar, this.icon, this.logoImg);
-                this.jframe.dispose();
-                new NewPlaylistInputDataView(this.user,view,songID);
+//                playlistView view = new playlistView(this.user, this.musicEngineControllerViewModel,
+//                                this.playBar, this.icon, this.logoImg);
+                new NewPlaylistInputDataView(this.user,this.playlistView,songID);
+
                 System.out.println(songID);
             }
             //TODO: create playlist w/ one song
