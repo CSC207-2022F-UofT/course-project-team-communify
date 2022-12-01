@@ -40,15 +40,34 @@ We remade the default Autograder GitHub Action because it was having some diffic
 
 Controllers: 
 - musicEngineController 100% method coverage, 96% line coverage
+- RegisterController 100%
+- RegisterArtistController 100%
+- LoginController 100%
+
+Entities:
+- userFactory 100%
+- User 100%
+- RegularUser 100%
+- Artist User 100%
 
 Input Datas: 
 - spaceInputData 100%
+- loginInputData 100%
+- RegisterInputData 100%
+- RegisterArtistInputData 100%
+
+Output Datas: 
+- loginOutputData 100%
 
 Presenters: 
 - spacePresenter 100%
+- userPresenter 100%
 
 Use Cases: 
 - playSpaceInteractor 100% method coverage, 93% line coverage
+- Login 100%
+- RegisterInteractor 100%
+- RegisterArtistInteractor 100%
 
 View Models: 
 - musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
@@ -56,7 +75,7 @@ View Models:
 ### Design Patterns Used
 - singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
 - a facade, removing the Swing code from Main.java
-- 
+- a factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
 - dependency inversion
