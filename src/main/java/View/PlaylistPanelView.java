@@ -169,8 +169,6 @@ public class PlaylistPanelView implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        //TODO: Had to remove casting of action event as (ID button) in headers because it wouldnt work for my double
-        // ID object (correct later if possible)
         if (buttons.contains(actionEvent.getSource())){
             int id = buttons.indexOf((IDButton) actionEvent.getSource());
             viewModel.playPlaylistAction(buttons.get(id).getId());
@@ -179,18 +177,12 @@ public class PlaylistPanelView implements ActionListener {
             int id = rButtons.indexOf((IDButton) actionEvent.getSource());
             viewModel.getRecommendationAction(rButtons.get(id).getId());
         }
-//        if(dButtons.contains((DoubleIDButton) actionEvent.getSource())){
-//            int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
-//            int songID = dButtons.get(id).getSongID();
-//            int playlistID = dButtons.get(id).getPlaylistID();
         if (this.dButtons.contains(actionEvent.getSource())){
             int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
             int songID = dButtons.get(id).getSongID();
             int playlistID = dButtons.get(id).getPlaylistID();
             String output = playlistViewModel.callRemoveSong(user,playlistID,songID);
             this.createPopup(output);
-            //TODO: get necessary components/ make double id button
-            //playlistViewModel.callRemoveSong(Us)
         }
         this.refresh();
     }

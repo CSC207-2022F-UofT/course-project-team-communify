@@ -194,20 +194,16 @@ public class searchOutputView extends JFrame implements ActionListener {
             }
             if(this.comboBox.getSelectedItem().toString().equals("Create Playlist")){
                 int songID = Integer.parseInt(ids[row]);
-//                playlistView view = new playlistView(this.user, this.musicEngineControllerViewModel,
-//                                this.playBar, this.icon, this.logoImg);
                 new NewPlaylistInputDataView(this.user,this.playlistView,songID);
 
                 System.out.println(songID);
             }
-            //TODO: create playlist w/ one song
         }
         if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
             new playlistView(this.user, this.musicEngineControllerViewModel, this.playBar, this.icon, this.logoImg);
         }
     }
-
     /**
      * @param text the text to show in the popup
      */
