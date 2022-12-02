@@ -12,12 +12,6 @@ public interface SaveSongAccessInterface {
      * @return true iff save was successful.
      */
     boolean saveSong(String uploader, String filepath);
-    
-     /**
-     * @param id the unique id of the song to be deleted.
-     * @return true iff delete was successful.
-     */
-     boolean deleteSong(int id);
 
     /**
      * @return a 2d String array representation of the library
