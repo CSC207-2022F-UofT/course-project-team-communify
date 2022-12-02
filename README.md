@@ -44,12 +44,21 @@ Controllers:
 - RegisterArtistController 100%
 - LoginController 100%
 - SearchController 100%
+- EditSongController 100%
+- GetArtistSongController 50% TODO
+
+Database:
+All database files contain a createFile() called when the csv it uses does not exist. Cannot be tested easily.
+- playlistLibrary 90%
+- songLibrary 88%
+- userList 90%
+
 
 Entities:
 - userFactory 100%
 - User 100%
 - RegularUser 100%
-- Artist User 100%
+- ArtistUser 100%
 
 Input Datas: 
 - spaceInputData 100%
@@ -57,15 +66,22 @@ Input Datas:
 - RegisterInputData 100%
 - RegisterArtistInputData 100%
 - SearchInputData 100%
+- EditPlaylistInputData 100%
+- GetArtistSongInputData 0%
 
 Output Datas: 
 - loginOutputData 100%
 - SearchOutputData 100%
+- EditPlaylistOutputData 100%
+- GetArtistSongOutputData 0%
 
 Presenters: 
 - spacePresenter 100%
 - userPresenter 100%
 - SearchPresenter 100%
+- ArtistPresenter 0%
+- EditSongPresenter 100%
+- getArtistSongPresenter 50%
 
 Use Cases: 
 - playSpaceInteractor 100% method coverage, 93% line coverage
@@ -73,6 +89,8 @@ Use Cases:
 - RegisterInteractor 100%
 - RegisterArtistInteractor 100%
 - SearchInteractor 100%
+- EditSongInteractor 100%
+- getArtistSongInteractor 50%
 
 View Models: 
 - musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
