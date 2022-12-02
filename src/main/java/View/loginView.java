@@ -73,9 +73,14 @@ public class loginView extends JFrame implements ActionListener {
                 this.viewModel = new userViewModel(new InMemoryUser());
             }
         }
-
         if (e.getSource() == this.submitButton & !register) {
-            if (viewModel.loginAction(username, password, isArtist)){
+            if (username.equals("")){
+                JOptionPane.showMessageDialog(this.jframe, "Empty Username. Please enter a username.");
+            }
+            else if (password.equals("")){
+                JOptionPane.showMessageDialog(this.jframe, "Empty Password. Please enter a password.");
+            }
+            else if (viewModel.loginAction(username, password, isArtist)){
                 this.jframe.dispose();
                 if (isArtist) {
                     artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
@@ -87,7 +92,7 @@ public class loginView extends JFrame implements ActionListener {
                 }
             }
             else {
-                JOptionPane.showMessageDialog(this.jframe, "Sorry, your password was incorrect. Please double-check your password.");
+                JOptionPane.showMessageDialog(this.jframe, "Sorry, invalid credentials. Please double-check your password.");
             }
         }
         else if (e.getSource() == this.submitButton & register){
@@ -104,7 +109,7 @@ public class loginView extends JFrame implements ActionListener {
                 }
             }
             else {
-                JOptionPane.showMessageDialog(this.jframe, "Sorry, that username is taken or password is empty.");
+                JOptionPane.showMessageDialog(this.jframe, "Sorry, that username is taken.");
             }
         }
         else if (e.getSource() == this.isArtistCheckBox & register){

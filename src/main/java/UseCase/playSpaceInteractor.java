@@ -6,7 +6,6 @@ import InputBoundary.playSpaceInputBoundary;
 import InputData.playSpaceInputData;
 import InputData.songInputData;
 import OutputBoundary.songOutputBoundary;
-import OutputBoundary.SpacePlayedOutputBoundary;
 import OutputData.songOutputData;
 
 import java.util.*;
@@ -42,7 +41,7 @@ public class playSpaceInteractor implements playSpaceInputBoundary {
      */
     @Override
     public void playSpace(){
-        songOutputData songToPlay = pickSongToPlay();
+        songOutputData songToPlay = this.pickSongToPlay();
 
         // open queue
         final Thread thread = new Thread(this::playNextSong);

@@ -9,7 +9,7 @@ Communify is a music platform that aims to collaborize music streaming – allow
 ## Running the project
 It's pretty easy!
 1. Download the files
-2. Run Main.java
+2. Run src/main/java/Main.java
 3. Have fun!
 
 ## Features
@@ -20,7 +20,7 @@ It's pretty easy!
 - there is also the search for a song feature. you can add the songs found to a space -- which is similar to a radio -- as well as the playlists, but the add to playlist has yet to be added to the view. so just try adding them to the space for now!
 - you can, of course, listen to the space. if there are songs "added", those will be played first, but it will randomly play songs if there isn't anything queued (like a radio!). you can't skip or pause songs when listening to the radio, though.
 
-### Feature Developers
+## Feature Developers
 | Name  | Responsibility |
 | :-------------: | :-------------: |
 | Rafael | Recommendation Algorithm |
@@ -30,3 +30,52 @@ It's pretty easy!
 | Rohan | Audio System |
 | Sarah | Space (listening to & adding to) |
 | Jessica | Login/Register |
+
+## Comments to the TAs!
+
+### Autograder & GitHub Actions
+We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all of the tests will pass on a local repo when run individually. 
+
+### Code Coverage Overview (To Complete) 
+
+Controllers: 
+- musicEngineController 100% method coverage, 96% line coverage
+- RegisterController 100%
+- RegisterArtistController 100%
+- LoginController 100%
+
+Entities:
+- userFactory 100%
+- User 100%
+- RegularUser 100%
+- Artist User 100%
+
+Input Datas: 
+- spaceInputData 100%
+- loginInputData 100%
+- RegisterInputData 100%
+- RegisterArtistInputData 100%
+
+Output Datas: 
+- loginOutputData 100%
+
+Presenters: 
+- spacePresenter 100%
+- userPresenter 100%
+
+Use Cases: 
+- playSpaceInteractor 100% method coverage, 93% line coverage
+- Login 100%
+- RegisterInteractor 100%
+- RegisterArtistInteractor 100%
+
+View Models: 
+- musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
+
+### Design Patterns Used
+- singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
+- a facade, removing the Swing code from Main.java
+- a factory, creating both types of user (regular and Artist)
+
+### Examples of SOLID 
+- dependency inversion
