@@ -1,6 +1,6 @@
 package UseCase;
 
-import ViewModel.searchViewModel;
+import ViewModel.SearchViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -8,7 +8,7 @@ public class SearchTest {
 
     @Test
     public void testExactSearch(){
-        searchViewModel searchViewModel = new searchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel();
         searchViewModel.search("Food");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -22,7 +22,7 @@ public class SearchTest {
 
     @Test
     public void testSearch(){
-        searchViewModel searchViewModel = new searchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel();
         searchViewModel.search("foo");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -36,7 +36,7 @@ public class SearchTest {
 
     @Test
     public void testEmptySearch(){
-        searchViewModel searchViewModel = new searchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel();
         searchViewModel.search("");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -48,7 +48,7 @@ public class SearchTest {
 
     @Test
     public void testNotInDatabaseSearch(){
-        searchViewModel searchViewModel = new searchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel();
         searchViewModel.search("abc");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;

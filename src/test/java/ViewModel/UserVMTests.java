@@ -15,7 +15,7 @@ public class UserVMTests {
     public void testregisterAction(){
         String username = "user" + ThreadLocalRandom.current().nextInt(0, 99999);
         String password = "password" + ThreadLocalRandom.current().nextInt(0, 99999);
-        userViewModel vm = new userViewModel(new InMemoryUser());
+        UserViewModel vm = new UserViewModel(new InMemoryUser());
         Assertions.assertTrue(vm.registerAction(username,password, false,""));
     }
     /**
@@ -26,7 +26,7 @@ public class UserVMTests {
         String username = "user" + ThreadLocalRandom.current().nextInt(0, 99999);
         String artistname = "artist" + ThreadLocalRandom.current().nextInt(0, 99999);
         String password = "password" + ThreadLocalRandom.current().nextInt(0, 99999);
-        userViewModel vm = new userViewModel(new InMemoryArtistUser("", ""));
+        UserViewModel vm = new UserViewModel(new InMemoryArtistUser("", ""));
         Assertions.assertTrue(vm.registerAction(username,password, true, artistname));
     }
 }

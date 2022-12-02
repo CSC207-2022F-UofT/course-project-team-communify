@@ -1,7 +1,6 @@
 package View;
 
-import Entities.Song;
-import ViewModel.playlistViewModel;
+import ViewModel.PlaylistViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +19,8 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private JButton createButton;
     private JButton homeButton;
     private JTextField playlistNameTextField;
-    private playlistView mainWindow;
-    private playlistViewModel viewModel;
+    private PlaylistView mainWindow;
+    private PlaylistViewModel viewModel;
 
     private int songID;
 
@@ -29,7 +28,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
      * @param owner the owner of the playlist
      * @param playlistView the main window view
      */
-    public NewPlaylistInputDataView(InMemoryUser owner, playlistView playlistView){
+    public NewPlaylistInputDataView(InMemoryUser owner, PlaylistView playlistView){
         this.mainWindow = playlistView;
         this.initializeValues(owner);
         this.initializeComponents();
@@ -38,7 +37,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
 //        this.songID = Integer.parseInt(null);
     }
 
-    public NewPlaylistInputDataView(InMemoryUser owner, playlistView playlistView, int songID){
+    public NewPlaylistInputDataView(InMemoryUser owner, PlaylistView playlistView, int songID){
         this.mainWindow = playlistView;
         this.songID = songID;
         this.initializeValues(owner);
@@ -83,7 +82,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
 
-        this.viewModel = new playlistViewModel();
+        this.viewModel = new PlaylistViewModel();
     }
 
     /**
