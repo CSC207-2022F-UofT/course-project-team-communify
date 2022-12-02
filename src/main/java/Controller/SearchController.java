@@ -3,7 +3,7 @@ package Controller;
 import InputBoundary.SearchInputBoundary;
 import InputData.SearchInputData;
 import OutputBoundary.SearchOutputBoundary;
-import UseCase.Search;
+import UseCase.SearchInteractor;
 /**
  * Interface adapters layer controller for search use case.
  */
@@ -14,7 +14,7 @@ public class SearchController {
      * @param searchPresenter the presenter for search output data
      */
     public SearchController(SearchOutputBoundary searchPresenter){
-        this.searchInteractor = new Search(searchPresenter);
+        this.searchInteractor = new SearchInteractor(searchPresenter);
     }
 
     /**

@@ -3,7 +3,7 @@ package Controller;
 import InputBoundary.LoginInputBoundary;
 import InputData.LoginInputData;
 import OutputBoundary.LoginOutputBoundary;
-import UseCase.Login;
+import UseCase.LoginInteractor;
 
 
 /**
@@ -18,7 +18,7 @@ public class LoginController {
      */
     public LoginController(LoginOutputBoundary loginPresenter) {
         this.loginPresenter = loginPresenter;
-        this.loginInteractor = new Login(loginPresenter);
+        this.loginInteractor = new LoginInteractor(loginPresenter);
     }
 
     /**

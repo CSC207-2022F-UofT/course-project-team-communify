@@ -25,7 +25,7 @@ public class PPlaybackTest {
     public void testPlay(){
         MusicPlayer.getInstance().close();
         PlaylistInputData p = new PlaylistInputData(0);
-        PlayPlaylist play = new PlayPlaylist(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
         Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new PlaylistInputData(0).getSongs().get(0));
@@ -47,7 +47,7 @@ public class PPlaybackTest {
         songs.add(song2);
 
         PlaylistInputData p = new PlaylistInputData("", songs);
-        PlayPlaylist play = new PlayPlaylist(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
         play.stopQueue();

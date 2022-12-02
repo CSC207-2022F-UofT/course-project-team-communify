@@ -20,7 +20,7 @@ public class PauseTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.play(song);
 
-        PauseSong pause = new PauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
@@ -36,7 +36,7 @@ public class PauseTest {
         mp.play(song);
         mp.pause();
 
-        PauseSong pause = new PauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
@@ -47,7 +47,7 @@ public class PauseTest {
     @Test
     public void testPauseWhenNothingPlaying(){
         MusicPlayer.getInstance().close();
-        PauseSong pause = new PauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
