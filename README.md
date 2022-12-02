@@ -84,5 +84,9 @@ View Models:
 - a factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
-- Dependency inversion
+- Single Responsibility Principle: each of our classes have a single, defined purpose.
+- Open/Closed Principle: any case of an extended class has no modification of the original superclass
 - Liskov Substitution Principle: When defining our instance variables, we used the super classes for the datatypes so that we can use different implementations in the future.
+- Interface Segregation Principle: our databases have multiple interfaces such that client code only has access to the methods that it needs
+- Dependency Inversion: we used dependency inversion frequently throughout the project (i.e. input/output boundaries, database access layers)
+
