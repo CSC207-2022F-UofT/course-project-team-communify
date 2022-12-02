@@ -70,7 +70,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     /**
      * Saves the updated song library to the database.
      */
-    public void saveLibrary(){
+    public boolean saveLibrary(){
         if(!uploadQueue.isEmpty()) try{
 
             // Update songLib
@@ -80,17 +80,21 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
                 song.setFile(songPath);
             }
 
+            uploadQueue.clear();
+
             // Update songlibrary.csv
-            BufferedWriter bw = new BufferedWriter(new FileWriter(filepath));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true));
             for(songDsData song: library.values()){
                 bw.write(song.buildToWrite());
             }
-            bw.close();
 
+            bw.close();
+            return true;
         }
         catch(IOException e){
             System.out.println("IOException: " + e);
         }
+        return false;
     }
 
     /**
@@ -223,20 +227,6 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         }
     }
 
-
-     /**
-     * @param id the unique id of the song to be deleted.
-     * @return true iff delete was successful.
-     */
-    @Override
-    public boolean deleteSong(int id){
-        if(exists(id)){
-            library.remove(id);
-            return true;
-        }
-        return false;
-    }
-
     /**
      * @param id the unique int ID of a given song.
      * @return true iff a song with the given ID exists.
@@ -276,6 +266,7 @@ public class songLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     public songDsData getSong(int id){
         return this.library.get(id);
     }
+
 
     public String[][] getString(){
         int i=0;
