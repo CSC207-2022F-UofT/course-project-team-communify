@@ -1,11 +1,8 @@
 package InputData;
-import Database.GetPlaylistAccessInterface;
-import Database.GetUserAccessInterface;
-import Database.playlistLibrary;
-import Database.userList;
+import Database.*;
 import Entities.RegularUser;
 import Entities.Song;
-
+import View.InMemorySong;
 import java.util.Random;
 
 /**
@@ -18,9 +15,11 @@ public class newPlaylistInputData {
     //Based off of Assumption that only RegularUser objects can generate playlists
     private final Song firstSong;
 
-    /**
+    /**data for creating an empty playlist
      * @param playlistName name of the playlist
      * @param owner username of the owner
+     *
+     *
      */
     public newPlaylistInputData(String playlistName, String owner){
         this.id = getNewID();
@@ -29,16 +28,19 @@ public class newPlaylistInputData {
         this.firstSong = null;
     }
 
-    /**
+    /**data for creating a playlist with one object
      * @param playlistName name of the playlist
-     * @param firstSong generate this playlist with a singular song
+     * @param firstSongID generate this playlist with a singular song of this ID
      * @param owner username of the owner
+     *
+     *
      */
-    public newPlaylistInputData(String playlistName, Song firstSong, String owner){
+    public newPlaylistInputData(String playlistName, int firstSongID, String owner){
         this.id = getNewID();
         this.playlistName = playlistName;
         this.owner = getUser(owner);
-        this.firstSong = firstSong;
+        GetSongAccessInterface sLib = songLibrary.getInstance();
+        this.firstSong = sLib.getSong(firstSongID).getSong();
     }
 
     /**

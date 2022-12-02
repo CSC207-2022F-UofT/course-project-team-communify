@@ -32,11 +32,11 @@ public class EditPlaylistController {
     /**
      *To remove multiple occurrences of a Song from a playlist you must call this method that number of times
      * @param user User object passed in from view
-     * @param playlist Playlist object to remove a song from
+     * @param playlistID Playlist object to remove a song from
      * @param song Specific song object to remove
      */
-    public void removeSong(UserDsView user, PlaylistDsView playlist, int song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlist.getId(),song);
+    public void removeSong(UserDsView user, int playlistID, int song){
+        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlistID,song);
         EditPlaylistInteractor.removeSong(inputData);
     }
 }

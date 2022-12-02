@@ -37,7 +37,7 @@ public class NewPlaylistOutputDataView extends JFrame implements ActionListener 
     private void initializeValues(String message) {
         this.message = message + " Click to return to dashboard!";
         this.jframe = new JFrame();
-        this.jframe.setSize(200, 100);
+        this.jframe.setSize(300, 300);
         this.jframe.setResizable(false);
         this.jframe.getContentPane().setBackground(new Color(49, 0, 74));
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

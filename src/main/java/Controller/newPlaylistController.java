@@ -18,19 +18,17 @@ public class newPlaylistController {
     public newPlaylistController(newPlaylistInputBoundary createPlaylistInteractor){
         this.newPlaylistInputBoundary = createPlaylistInteractor;
     }
-    //TODO: remove uncommented lines later
-    //TODO: this is given info via the view
-
     /**
      * Creates a playlist with one song
      * @param user RegularUser retrieved from view
      * @param playlistName name to create playlist with
-     * @param firstSong song to create playlist with
+     * @param firstSongID song to create playlist with
      * @return the new playlist in a view layer DS
      */
-    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, Song firstSong){
-        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSong, user.getUsername());
+    public PlaylistDsView createNewPlaylist(UserDsView user, String playlistName, int firstSongID){
+        newPlaylistInputData inputData = new newPlaylistInputData(playlistName, firstSongID, user.getUsername());
         PlaylistDsView newPlaylist = user.getNewPlaylist();
+        this.newPlaylistInputBoundary.newPlaylist(inputData);
         newPlaylist.setName(playlistName);
         newPlaylist.setId(inputData.getId());
         return newPlaylist;

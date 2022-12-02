@@ -89,7 +89,7 @@ public class playlistView extends JFrame implements ActionListener {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
             this.jframe.dispose();
-            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar, icon, logoImg);
+            new searchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar, icon, logoImg,this);
         }
         else if(e.getSource() == this.newPlaylistButton){
             new NewPlaylistInputDataView(this.user, this);
