@@ -191,7 +191,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
      */
     private String format(String line){
         if(line.length() < 3) return "Unknown";
-        else return line.replace("Text=\"", "").replace("\";", "");
+        else return line.replace("Text=\"", "").replace("\";", "").trim();
     }
 
     /**

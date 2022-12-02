@@ -56,8 +56,7 @@ public class SearchInteractor implements SearchInputBoundary {
 
         for (SongDsData song: library) {
             String currentName = song.getSong().getName().toLowerCase();
-            if(currentName.substring(0, currentName.length() - 2).equals(name)){
-                // take the substring because of a weird icon at the end of song names
+            if(currentName.equals(name)){
                 foundSongs.add(song.getSong());
             } else if (currentName.startsWith(name)){
                 similarSongs.add(song.getSong());
