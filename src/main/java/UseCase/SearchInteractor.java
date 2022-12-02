@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Application business rules use case class to search for a song.
  */
-public class Search implements SearchInputBoundary {
+public class SearchInteractor implements SearchInputBoundary {
     private final SearchOutputBoundary searchPresenter;
 
     private final GetSongAccessInterface songLibrary;
@@ -24,7 +24,7 @@ public class Search implements SearchInputBoundary {
     /**
      * @param searchPresenter the search output presenter
      */
-    public Search(SearchOutputBoundary searchPresenter){
+    public SearchInteractor(SearchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
         this.songLibrary = SongLibrary.getInstance();
         this.searchPresenter = searchPresenter;

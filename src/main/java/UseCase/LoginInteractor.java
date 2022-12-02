@@ -10,7 +10,7 @@ import OutputData.LoginOutputData;
 /**
  * Application business rules use case class to log in.
  */
-public class Login implements LoginInputBoundary {
+public class LoginInteractor implements LoginInputBoundary {
     private final LoginOutputBoundary loginPresenter;
     private final LoginUserAccessInterface loginUsers;
     private final GetUserAccessInterface getUsers;
@@ -18,7 +18,7 @@ public class Login implements LoginInputBoundary {
     /**
      * @param loginPresenter the presenter for login output.
      */
-    public Login(LoginOutputBoundary loginPresenter) {
+    public LoginInteractor(LoginOutputBoundary loginPresenter) {
         this.loginUsers = UserList.getInstance();
         this.getUsers = UserList.getInstance();
         this.loginPresenter = loginPresenter;

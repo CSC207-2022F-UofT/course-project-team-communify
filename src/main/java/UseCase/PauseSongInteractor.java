@@ -6,11 +6,11 @@ import InputBoundary.PauseSongInputBoundary;
 /**
  * Application business rules use case class to pause the playing song, or resume if paused.
  */
-public class PauseSong implements PauseSongInputBoundary {
+public class PauseSongInteractor implements PauseSongInputBoundary {
     /**
      * Empty constructor
      */
-    public PauseSong(){
+    public PauseSongInteractor(){
 
     }
 

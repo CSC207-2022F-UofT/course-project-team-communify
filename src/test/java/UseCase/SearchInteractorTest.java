@@ -4,7 +4,7 @@ import ViewModel.SearchViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class SearchTest {
+public class SearchInteractorTest {
 
     @Test
     public void testExactSearch(){
@@ -13,7 +13,7 @@ public class SearchTest {
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
         for (String[] outputSong : outputSongs) {
-            if (outputSong[1].substring(0, outputSong[1].length()-2).equals("Food")) {
+            if (outputSong[1].equals("Food")) {
                 count++;
             }
         }

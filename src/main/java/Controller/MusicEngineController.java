@@ -36,8 +36,8 @@ public class MusicEngineController {
         this.playing = NONE;
         PlaySpaceInputData playSpaceInputData = new PlaySpaceInputData(this.spaceSongList);
         this.playSpaceInteractor = new PlaySpaceInteractor(this.songPresenter, playSpaceInputData);
-        this.playPlaylist = new PlayPlaylist(songPresenter);
-        this.nextSong = new NextSong(songPresenter, this.playPlaylist);
+        this.playPlaylist = new PlayPlaylistInteractor(songPresenter);
+        this.nextSong = new NextSongInteractor(songPresenter, this.playPlaylist);
 
     }
 
@@ -88,7 +88,7 @@ public class MusicEngineController {
      */
     public void pauseSong() {
         stop();
-        PauseSongInputBoundary pauseSong = new PauseSong();
+        PauseSongInputBoundary pauseSong = new PauseSongInteractor();
         if (playing != NONE)
             pauseSong.pause();
     }
@@ -100,7 +100,7 @@ public class MusicEngineController {
     public void playPlaylist(int id) {
         stop();
         playing = PLAYLIST;
-        this.playPlaylist = new PlayPlaylist(this.songPresenter);
+        this.playPlaylist = new PlayPlaylistInteractor(this.songPresenter);
         PlaylistInputData data = new PlaylistInputData(id);
         this.nextSong.updatePlaylist(data);
         if (!this.playPlaylist.play(data))

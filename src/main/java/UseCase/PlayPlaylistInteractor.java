@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * use case. Thus, this use case has no output boundary, as the currently playing song is displayed
  * by the play song use case.
  */
-public class PlayPlaylist implements PlayPlaylistInputBoundary {
+public class PlayPlaylistInteractor implements PlayPlaylistInputBoundary {
     private boolean queue;
     private final Object sync;
     private int nextSong;
@@ -26,7 +26,7 @@ public class PlayPlaylist implements PlayPlaylistInputBoundary {
     /**
      * @param presenter the song output presenter
      */
-    public PlayPlaylist(SongOutputBoundary presenter){
+    public PlayPlaylistInteractor(SongOutputBoundary presenter){
         queue = true;
         nextSong = 0;
         sync = MusicPlayer.getInstance().getSync();

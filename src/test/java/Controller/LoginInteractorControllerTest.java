@@ -6,7 +6,7 @@ import ViewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LoginControllerTest {
+public class LoginInteractorControllerTest {
     /**
      * Tests the login failure due to user existed as a regular user.
      */

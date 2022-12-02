@@ -7,7 +7,7 @@ import ViewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LoginTest {
+public class LoginInteractorTest {
     /**
      * Tests the login success.
      */
@@ -19,9 +19,9 @@ public class LoginTest {
     @Test
     public void testArtistSuccess(){
         LoginInputData artist = new LoginInputData("admin","admin", true);
-        Login login = new Login(new UserPresenter(new UserViewModel(
+        LoginInteractor loginInteractor = new LoginInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        Assertions.assertTrue(login.login(artist));
+        Assertions.assertTrue(loginInteractor.login(artist));
     }
     /**
      * Tests the login failure due to invalid password.
@@ -29,9 +29,9 @@ public class LoginTest {
     @Test
     public void testInvalidPassword(){
         LoginInputData regularUser = new LoginInputData("UserRegular","bla", false);
-        Login login = new Login(new UserPresenter(new UserViewModel(
+        LoginInteractor loginInteractor = new LoginInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        Assertions.assertFalse(login.login(regularUser));
+        Assertions.assertFalse(loginInteractor.login(regularUser));
     }
     /**
      * Tests the login failure due to invalid credential.
@@ -39,8 +39,8 @@ public class LoginTest {
     @Test
     public void testInvalidCredentials(){
         LoginInputData regularUser = new LoginInputData("","bla", false);
-        Login login = new Login(new UserPresenter(new UserViewModel(
+        LoginInteractor loginInteractor = new LoginInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        Assertions.assertFalse(login.login(regularUser));
+        Assertions.assertFalse(loginInteractor.login(regularUser));
     }
 }

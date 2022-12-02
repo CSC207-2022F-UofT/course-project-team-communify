@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Application business rules use case class to skip a song.
  */
-public class NextSong implements NextSongInputBoundary {
+public class NextSongInteractor implements NextSongInputBoundary {
     private ArrayList<Song> playlist;
     private String name;
     private final SongOutputBoundary presenter;
@@ -21,7 +21,7 @@ public class NextSong implements NextSongInputBoundary {
      * @param presenter the presenter for song output
      * @param play the play playlist interactor
      */
-    public NextSong(SongOutputBoundary presenter, PlayPlaylistInputBoundary play){
+    public NextSongInteractor(SongOutputBoundary presenter, PlayPlaylistInputBoundary play){
         this.presenter = presenter;
         this.play = play;
     }
@@ -41,7 +41,7 @@ public class NextSong implements NextSongInputBoundary {
     @Override
     public PlayPlaylistInputBoundary skipSong() {
         MusicPlayer mp = MusicPlayer.getInstance();
-        this.play = new PlayPlaylist(this.presenter);
+        this.play = new PlayPlaylistInteractor(this.presenter);
 
         int id = playlist.size() - 1;
         if (mp.getCurrentSong() != null){

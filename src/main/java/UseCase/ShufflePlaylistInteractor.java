@@ -7,12 +7,12 @@ import java.util.Collections;
 /**
  * Application business rules use case class to shuffle a playlist.
  */
-public class ShufflePlaylist implements ShufflePlaylistInputBoundary {
+public class ShufflePlaylistInteractor implements ShufflePlaylistInputBoundary {
 
     /**
      * Empty Constructor
      */
-    public ShufflePlaylist() {
+    public ShufflePlaylistInteractor() {
     }
 
     /**

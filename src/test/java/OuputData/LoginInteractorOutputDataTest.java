@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import OutputData.LoginOutputData;
 
-public class LoginOutputDataTest {
+public class LoginInteractorOutputDataTest {
     ArtistUser artistUser = new ArtistUser("Artsit", "artsit","pass");
     LoginOutputData artist = new LoginOutputData(artistUser,true);
     /**
