@@ -1,13 +1,11 @@
 package UseCase;
 
-import Entities.MusicPlayer;
-import InputData.playSpaceInputData;
-import InputData.songInputData;
-import OutputBoundary.songOutputBoundary;
-import Presenter.songPresenter;
+import InputData.PlaySpaceInputData;
+import InputData.SongInputData;
+import OutputBoundary.SongOutputBoundary;
+import Presenter.SongPresenter;
 import View.InMemoryPlaylist;
-import ViewModel.musicEngineControllerViewModel;
-import org.junit.jupiter.api.Assertions;
+import ViewModel.MusicEngineControllerViewModel;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,24 +20,24 @@ public class PlaySpaceTests {
 
     @Test
     public void testPlaySpaceOnSongExist(){
-        songInputData songInputData = new songInputData(10);
-        musicEngineControllerViewModel mecv = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        songOutputBoundary spacePresenter = new songPresenter(mecv);
-        List<songInputData> lst = new ArrayList<>();
+        SongInputData songInputData = new SongInputData(10);
+        MusicEngineControllerViewModel mecv = new MusicEngineControllerViewModel(new InMemoryPlaylist());
+        SongOutputBoundary spacePresenter = new SongPresenter(mecv);
+        List<SongInputData> lst = new ArrayList<>();
         lst.add(songInputData);
-        playSpaceInputData playSpaceInputData = new playSpaceInputData(lst);
-        playSpaceInteractor playSpaceInteractor = new playSpaceInteractor(spacePresenter, playSpaceInputData);
+        PlaySpaceInputData playSpaceInputData = new PlaySpaceInputData(lst);
+        PlaySpaceInteractor playSpaceInteractor = new PlaySpaceInteractor(spacePresenter, playSpaceInputData);
         playSpaceInteractor.playSpace();
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
     @Test
     public void testPickRandomSong(){
-        musicEngineControllerViewModel mecv = new musicEngineControllerViewModel(new InMemoryPlaylist());
-        songOutputBoundary spacePresenter = new songPresenter(mecv);
-        List<songInputData> lst = new ArrayList<>();
-        playSpaceInputData playSpaceInputData = new playSpaceInputData(lst);
-        playSpaceInteractor playSpaceInteractor = new playSpaceInteractor(spacePresenter, playSpaceInputData);
+        MusicEngineControllerViewModel mecv = new MusicEngineControllerViewModel(new InMemoryPlaylist());
+        SongOutputBoundary spacePresenter = new SongPresenter(mecv);
+        List<SongInputData> lst = new ArrayList<>();
+        PlaySpaceInputData playSpaceInputData = new PlaySpaceInputData(lst);
+        PlaySpaceInteractor playSpaceInteractor = new PlaySpaceInteractor(spacePresenter, playSpaceInputData);
         playSpaceInteractor.playSpace();
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }

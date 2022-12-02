@@ -1,6 +1,6 @@
 package Controller;
-import InputBoundary.editPlaylistInputBoundary;
-import InputData.editPlaylistInputData;
+import InputBoundary.EditPlaylistInputBoundary;
+import InputData.EditPlaylistInputData;
 import ViewModel.PlaylistDsView;
 import ViewModel.UserDsView;
 
@@ -9,13 +9,13 @@ import ViewModel.UserDsView;
  */
 public class EditPlaylistController {
 
-    private final editPlaylistInputBoundary EditPlaylistInteractor;
+    private final EditPlaylistInputBoundary EditPlaylistInteractor;
 
 
     /**
      * @param EditPlaylistInteractor the use case interactor for editing playlists
      */
-    public EditPlaylistController(editPlaylistInputBoundary EditPlaylistInteractor){
+    public EditPlaylistController(EditPlaylistInputBoundary EditPlaylistInteractor){
         this.EditPlaylistInteractor = EditPlaylistInteractor;
     }
 
@@ -26,7 +26,7 @@ public class EditPlaylistController {
      * @param song Specific song object to add
      */
     public void addSong(UserDsView user, PlaylistDsView playlist, int song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlist.getId(),song);
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(),playlist.getId(),song);
         EditPlaylistInteractor.addSong(inputData);
     }
     /**
@@ -36,7 +36,7 @@ public class EditPlaylistController {
      * @param song Specific song object to remove
      */
     public void removeSong(UserDsView user, int playlistID, int song){
-        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(),playlistID,song);
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(),playlistID,song);
         EditPlaylistInteractor.removeSong(inputData);
     }
 }

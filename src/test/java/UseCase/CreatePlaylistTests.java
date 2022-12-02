@@ -1,17 +1,16 @@
 package UseCase;
 
-import Database.playlistDsData;
-import Database.songLibrary;
+import Database.PlaylistDsData;
+import Database.SongLibrary;
 import Entities.Song;
-import Presenter.playlistPresenter;
+import Presenter.PlaylistPresenter;
 import View.InMemoryUser;
-import ViewModel.playlistViewModel;
-import org.junit.Assert;
+import ViewModel.PlaylistViewModel;
 import org.junit.Test;
-import InputData.newPlaylistInputData;
+import InputData.NewPlaylistInputData;
 import org.junit.jupiter.api.Assertions;
 
-import Database.playlistLibrary;
+import Database.PlaylistLibrary;
 
 import java.util.Collection;
 
@@ -22,20 +21,20 @@ public class CreatePlaylistTests {
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testname = "test";
-        newPlaylistInputData inputData = new newPlaylistInputData(testname,user.getUsername());
-        playlistViewModel testViewModel = new playlistViewModel();
-        playlistPresenter testPresenter = new playlistPresenter(testViewModel, new InMemoryUser());
+        NewPlaylistInputData inputData = new NewPlaylistInputData(testname,user.getUsername());
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
+        PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
         testInteractor.newPlaylist(inputData);
         String actual1 = testPresenter.getOutputMessage();
         String expected1 = "Playlist created!";
         boolean created = actual1.equals(expected1);
 
-        playlistLibrary library  = playlistLibrary.getInstance();
-        Collection<playlistDsData> PlaylistLibrary =  library.getPlaylists();
+        PlaylistLibrary library  = PlaylistLibrary.getInstance();
+        Collection<PlaylistDsData> PlaylistLibrary =  library.getPlaylists();
         boolean actual2 = false;
         boolean expected2 = true;
-        for(playlistDsData playlist:PlaylistLibrary){
+        for(PlaylistDsData playlist:PlaylistLibrary){
             if (playlist.getPlaylist().getName().equals(testname)){
                 if(playlist.getPlaylist().getSongList().isEmpty()){
                     actual2 = true;
@@ -53,21 +52,21 @@ public class CreatePlaylistTests {
         user.setUsername("User1");
         String testname = "test";
         int songID = 10;
-        Song s = songLibrary.getInstance().getSong(songID).getSong();
-        newPlaylistInputData inputData = new newPlaylistInputData(testname,songID,user.getUsername());
-        playlistViewModel testViewModel = new playlistViewModel();
-        playlistPresenter testPresenter = new playlistPresenter(testViewModel, new InMemoryUser());
+        Song s = SongLibrary.getInstance().getSong(songID).getSong();
+        NewPlaylistInputData inputData = new NewPlaylistInputData(testname,songID,user.getUsername());
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
+        PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
         testInteractor.newPlaylist(inputData);
         String actual1 = testPresenter.getOutputMessage();
         String expected1 = "Playlist created with "+s.getName()+"!";
         boolean created = actual1.equals(expected1);
 
-        playlistLibrary library  = playlistLibrary.getInstance();
-        Collection<playlistDsData> PlaylistLibrary =  library.getPlaylists();
+        PlaylistLibrary library  = PlaylistLibrary.getInstance();
+        Collection<PlaylistDsData> PlaylistLibrary =  library.getPlaylists();
         boolean actual2 = false;
         boolean expected2 = true;
-        for(playlistDsData playlist:PlaylistLibrary){
+        for(PlaylistDsData playlist:PlaylistLibrary){
             if (playlist.getPlaylist().getName().equals(testname)){
                 if(!playlist.getPlaylist().getSongList().isEmpty()){
                     actual2 = true;

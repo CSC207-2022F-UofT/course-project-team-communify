@@ -1,8 +1,8 @@
 package Controller;
 
-import Presenter.userPresenter;
+import Presenter.UserPresenter;
 import View.InMemoryUser;
-import ViewModel.userViewModel;
+import ViewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class LoginControllerTest {
      */
     @Test
     public void testLoginExistentRegular(){
-        LoginController loginController = new LoginController(new userPresenter(new userViewModel(
+        LoginController loginController = new LoginController(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertFalse(loginController.login("User1","Password1",true));
     }
@@ -21,7 +21,7 @@ public class LoginControllerTest {
      */
     @Test
     public void testLoginExistentArtist(){
-        LoginController loginController = new LoginController(new userPresenter(new userViewModel(
+        LoginController loginController = new LoginController(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertFalse(loginController.login("admin","admin",false));
     }

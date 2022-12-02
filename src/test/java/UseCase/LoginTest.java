@@ -1,9 +1,9 @@
 package UseCase;
 
-import InputData.loginInputData;
-import Presenter.userPresenter;
+import InputData.LoginInputData;
+import Presenter.UserPresenter;
 import View.InMemoryUser;
-import ViewModel.userViewModel;
+import ViewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,13 +13,13 @@ public class LoginTest {
      */
     @Test
     public void testRegularSuccess(){
-        userViewModel view = new userViewModel(new InMemoryUser());
+        UserViewModel view = new UserViewModel(new InMemoryUser());
         Assertions.assertTrue(view.loginAction("User1","Password1", false));
     }
     @Test
     public void testArtistSuccess(){
-        loginInputData artist = new loginInputData("admin","admin", true);
-        Login login = new Login(new userPresenter(new userViewModel(
+        LoginInputData artist = new LoginInputData("admin","admin", true);
+        Login login = new Login(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertTrue(login.login(artist));
     }
@@ -28,8 +28,8 @@ public class LoginTest {
      */
     @Test
     public void testInvalidPassword(){
-        loginInputData regularUser = new loginInputData("UserRegular","bla", false);
-        Login login = new Login(new userPresenter(new userViewModel(
+        LoginInputData regularUser = new LoginInputData("UserRegular","bla", false);
+        Login login = new Login(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertFalse(login.login(regularUser));
     }
@@ -38,8 +38,8 @@ public class LoginTest {
      */
     @Test
     public void testInvalidCredentials(){
-        loginInputData regularUser = new loginInputData("","bla", false);
-        Login login = new Login(new userPresenter(new userViewModel(
+        LoginInputData regularUser = new LoginInputData("","bla", false);
+        Login login = new Login(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertFalse(login.login(regularUser));
     }

@@ -8,7 +8,7 @@ public interface SavePlaylistAccessInterface {
      * Saves a new playlist to the database.
      * @param p newly created Playlist object to be saved to the database
      */
-    void savePlaylist(playlistDsData p);
+    void savePlaylist(PlaylistDsData p);
 
     /**
      * A method to check whether a playlist exists by id. Necessary when creating new playlists,

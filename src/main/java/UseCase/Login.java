@@ -1,25 +1,26 @@
 package UseCase;
 
 import Database.LoginUserAccessInterface;
-import InputBoundary.loginInputBoundary;
-import InputData.loginInputData;
-import OutputBoundary.loginOutputBoundary;
+import Database.UserList;
+import InputBoundary.LoginInputBoundary;
+import InputData.LoginInputData;
+import OutputBoundary.LoginOutputBoundary;
 import Database.GetUserAccessInterface;
-import OutputData.loginOutputData;
+import OutputData.LoginOutputData;
 /**
  * Application business rules use case class to log in.
  */
-public class Login implements loginInputBoundary{
-    private final loginOutputBoundary loginPresenter;
+public class Login implements LoginInputBoundary {
+    private final LoginOutputBoundary loginPresenter;
     private final LoginUserAccessInterface loginUsers;
     private final GetUserAccessInterface getUsers;
 
     /**
      * @param loginPresenter the presenter for login output.
      */
-    public Login(loginOutputBoundary loginPresenter) {
-        this.loginUsers = Database.userList.getInstance();
-        this.getUsers = Database.userList.getInstance();
+    public Login(LoginOutputBoundary loginPresenter) {
+        this.loginUsers = UserList.getInstance();
+        this.getUsers = UserList.getInstance();
         this.loginPresenter = loginPresenter;
     }
 
@@ -28,9 +29,9 @@ public class Login implements loginInputBoundary{
      * @return true if the login is successful
      */
     @Override
-    public boolean login(loginInputData loginID) {
+    public boolean login(LoginInputData loginID) {
         if (loginUsers.checkPassword(loginID.getUsername(), loginID.getPassword())){
-            loginOutputData out = new loginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
+            LoginOutputData out = new LoginOutputData(getUsers.getUser(loginID.getUsername()).getUser(),
                     loginID.isArtist());
             if (out.isCorrectType()){
                 loginPresenter.userLogIn(out);

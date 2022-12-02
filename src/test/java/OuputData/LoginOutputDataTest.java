@@ -3,11 +3,11 @@ package OuputData;
 import Entities.ArtistUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import OutputData.loginOutputData;
+import OutputData.LoginOutputData;
 
 public class LoginOutputDataTest {
     ArtistUser artistUser = new ArtistUser("Artsit", "artsit","pass");
-    loginOutputData artist = new loginOutputData(artistUser,true);
+    LoginOutputData artist = new LoginOutputData(artistUser,true);
     /**
      * Tests the getting artist name.
      */

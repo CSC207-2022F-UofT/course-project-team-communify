@@ -1,12 +1,13 @@
 package UseCase;
 
+import Database.SongLibrary;
 import Entities.Song;
-import InputBoundary.searchInputBoundary;
-import OutputBoundary.searchOutputBoundary;
+import InputBoundary.SearchInputBoundary;
+import OutputBoundary.SearchOutputBoundary;
 import Database.GetSongAccessInterface;
-import InputData.searchInputData;
-import Database.songDsData;
-import OutputData.searchOutputData;
+import InputData.SearchInputData;
+import Database.SongDsData;
+import OutputData.SearchOutputData;
 
 
 import java.util.ArrayList;
@@ -15,17 +16,17 @@ import java.util.List;
 /**
  * Application business rules use case class to search for a song.
  */
-public class Search implements searchInputBoundary {
-    private final searchOutputBoundary searchPresenter;
+public class Search implements SearchInputBoundary {
+    private final SearchOutputBoundary searchPresenter;
 
     private final GetSongAccessInterface songLibrary;
 
     /**
      * @param searchPresenter the search output presenter
      */
-    public Search(searchOutputBoundary searchPresenter){
+    public Search(SearchOutputBoundary searchPresenter){
         // import songLibrary instead of passing it in
-        this.songLibrary = Database.songLibrary.getInstance();
+        this.songLibrary = SongLibrary.getInstance();
         this.searchPresenter = searchPresenter;
     }
 
@@ -34,11 +35,11 @@ public class Search implements searchInputBoundary {
      * @param searchInputData: contains the text to search for
      */
     @Override
-    public void search(searchInputData searchInputData){
+    public void search(SearchInputData searchInputData){
         String name = searchInputData.getSearchText().toLowerCase();
-        Collection<songDsData> library = songLibrary.getLibrary();
+        Collection<SongDsData> library = songLibrary.getLibrary();
         List<Song> foundSongs = findSongs(name, library);
-        searchOutputData outputData = new searchOutputData(foundSongs);
+        SearchOutputData outputData = new SearchOutputData(foundSongs);
         this.searchPresenter.foundSongs(outputData);
     }
 
@@ -49,11 +50,11 @@ public class Search implements searchInputBoundary {
      * @param library the library of all songs
      * @return A List with the exact matches at the top and similar songs after
      */
-    private static List<Song> findSongs(String name, Collection<songDsData> library) {
+    private static List<Song> findSongs(String name, Collection<SongDsData> library) {
         List<Song> foundSongs = new ArrayList<>();
         List<Song> similarSongs = new ArrayList<>();
 
-        for (songDsData song: library) {
+        for (SongDsData song: library) {
             String currentName = song.getSong().getName().toLowerCase();
             if(currentName.substring(0, currentName.length() - 2).equals(name)){
                 // take the substring because of a weird icon at the end of song names

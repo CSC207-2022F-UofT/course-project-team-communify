@@ -8,7 +8,7 @@ public interface SaveUserAccessInterface {
      * Saves a new user to the database.
      * @param u newly created User object in a userDsData object to be saved to the database
      */
-    void save(userDsData u);
+    void save(UserDsData u);
 
     /**
      * A method to check whether a User exists by username.

@@ -3,9 +3,9 @@ package UseCase;
 import Entities.MusicPlayer;
 import Entities.Song;
 import InputBoundary.NextSongInputBoundary;
-import InputBoundary.playPlaylistInputBoundary;
-import InputData.playlistInputData;
-import OutputBoundary.songOutputBoundary;
+import InputBoundary.PlayPlaylistInputBoundary;
+import InputData.PlaylistInputData;
+import OutputBoundary.SongOutputBoundary;
 
 import java.util.ArrayList;
 /**
@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class NextSong implements NextSongInputBoundary {
     private ArrayList<Song> playlist;
     private String name;
-    private final songOutputBoundary presenter;
-    private playPlaylistInputBoundary play;
+    private final SongOutputBoundary presenter;
+    private PlayPlaylistInputBoundary play;
 
     /**
      * @param presenter the presenter for song output
      * @param play the play playlist interactor
      */
-    public NextSong(songOutputBoundary presenter, playPlaylistInputBoundary play){
+    public NextSong(SongOutputBoundary presenter, PlayPlaylistInputBoundary play){
         this.presenter = presenter;
         this.play = play;
     }
@@ -30,7 +30,7 @@ public class NextSong implements NextSongInputBoundary {
      * @param data the new playlist to skip songs on
      */
     @Override
-    public void updatePlaylist(playlistInputData data){
+    public void updatePlaylist(PlaylistInputData data){
         this.playlist = data.getSongs();
         this.name = data.getName();
     }
@@ -39,9 +39,9 @@ public class NextSong implements NextSongInputBoundary {
      * @return the new play playlist interactor
      */
     @Override
-    public playPlaylistInputBoundary skipSong() {
+    public PlayPlaylistInputBoundary skipSong() {
         MusicPlayer mp = MusicPlayer.getInstance();
-        this.play = new playPlaylist(this.presenter);
+        this.play = new PlayPlaylist(this.presenter);
 
         int id = playlist.size() - 1;
         if (mp.getCurrentSong() != null){
@@ -55,7 +55,7 @@ public class NextSong implements NextSongInputBoundary {
             return null;
         }
 
-        playlistInputData newPlaylist = new playlistInputData(name, playlist.subList(id + 1, playlist.size()));
+        PlaylistInputData newPlaylist = new PlaylistInputData(name, playlist.subList(id + 1, playlist.size()));
         // play playlist handles presenter call
         this.play.play(newPlaylist);
         return play;

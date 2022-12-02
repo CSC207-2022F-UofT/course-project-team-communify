@@ -1,10 +1,10 @@
 package UseCase;
 
 import Entities.MusicPlayer;
-import InputData.songInputData;
-import Presenter.songPresenter;
+import InputData.SongInputData;
+import Presenter.SongPresenter;
 import View.InMemoryPlaylist;
-import ViewModel.musicEngineControllerViewModel;
+import ViewModel.MusicEngineControllerViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +19,8 @@ public class PlayTest {
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        playSongInteractor player = new playSongInteractor(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
-        player.playSong(new songInputData(2));
-        Assertions.assertEquals(mp.getCurrentSong(), new songInputData(2).getSong());
+        PlaySongInteractor player = new PlaySongInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        player.playSong(new SongInputData(2));
+        Assertions.assertEquals(mp.getCurrentSong(), new SongInputData(2).getSong());
     }
 }
