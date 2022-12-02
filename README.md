@@ -43,6 +43,7 @@ Controllers:
 - RegisterController 100%
 - RegisterArtistController 100%
 - LoginController 100%
+- SearchController 100%
 
 Entities:
 - userFactory 100%
@@ -55,22 +56,27 @@ Input Datas:
 - loginInputData 100%
 - RegisterInputData 100%
 - RegisterArtistInputData 100%
+- SearchInputData 100%
 
 Output Datas: 
 - loginOutputData 100%
+- SearchOutputData 100%
 
 Presenters: 
 - spacePresenter 100%
 - userPresenter 100%
+- SearchPresenter 100%
 
 Use Cases: 
 - playSpaceInteractor 100% method coverage, 93% line coverage
 - Login 100%
 - RegisterInteractor 100%
 - RegisterArtistInteractor 100%
+- SearchInteractor 100%
 
 View Models: 
 - musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
+- SearchViewModel 100%
 
 ### Design Patterns Used
 - singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
@@ -78,4 +84,5 @@ View Models:
 - a factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
-- dependency inversion
+- Dependency inversion
+- Liskov Substitution Principle: When defining our instance variables, we used the super classes for the datatypes so that we can use different implementations in the future.
