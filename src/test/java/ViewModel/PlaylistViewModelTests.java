@@ -1,7 +1,7 @@
 package ViewModel;
 
 
-import Database.songLibrary;
+import Database.SongLibrary;
 import Entities.Song;
 import View.InMemoryPlaylist;
 import View.InMemoryUser;
@@ -14,7 +14,7 @@ public class PlaylistViewModelTests {
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testname = "test";
-        playlistViewModel testViewModel = new playlistViewModel();
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
         String actual = testViewModel.callNewEmptyPlaylistUseCase(user,testname);
         String expected = "Playlist created!";
         Assertions.assertEquals(actual,expected);
@@ -26,8 +26,8 @@ public class PlaylistViewModelTests {
         user.setUsername("User2");
         String testname = "tes2";
         int songID = 10;
-        Song s = songLibrary.getInstance().getSong(songID).getSong();
-        playlistViewModel testViewModel = new playlistViewModel();
+        Song s = SongLibrary.getInstance().getSong(songID).getSong();
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
         String actual = testViewModel.callNewPlaylistUseCase(user,testname,songID);
         String expected = "Playlist created with " + s.getName()+"!";
         Assertions.assertEquals(actual,expected);
@@ -42,8 +42,8 @@ public class PlaylistViewModelTests {
         int songID = 10;
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
-        Song s = songLibrary.getInstance().getSong(songID).getSong();
-        playlistViewModel testViewModel = new playlistViewModel();
+        Song s = SongLibrary.getInstance().getSong(songID).getSong();
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
         String actual = testViewModel.callAddSong(user,playlist,songID);
         String expected = s.getName()+" added!";
         Assertions.assertEquals(actual,expected);
@@ -55,8 +55,8 @@ public class PlaylistViewModelTests {
         user.setUsername("User2");
         String testname = "tes2";
         int songID = 10;
-        Song s2 = songLibrary.getInstance().getSong(songID).getSong();
-        playlistViewModel testViewModel = new playlistViewModel();
+        Song s2 = SongLibrary.getInstance().getSong(songID).getSong();
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
         testViewModel.callNewPlaylistUseCase(user,testname,songID);
         int playlist_ID = testViewModel.getCurrPlaylist().getId();
         String actual = testViewModel.callRemoveSong(user,playlist_ID,songID);
