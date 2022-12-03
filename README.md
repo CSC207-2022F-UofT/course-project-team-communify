@@ -39,7 +39,7 @@ We remade the default Autograder GitHub Action because it was having some diffic
 ### Code Coverage Overview (To Complete) 
 
 Controllers: 
-- musicEngineController 100% method coverage, 96% line coverage
+- MusicEngineController 100% method coverage, 96% line coverage
 - RegisterController 100%
 - RegisterArtistController 100%
 - LoginController 100%
@@ -49,20 +49,20 @@ Controllers:
 
 Database:
 All database files contain a createFile() called when the csv it uses does not exist. Cannot be tested easily.
-- playlistLibrary 90%
-- songLibrary 88%
-- userList 90%
+- PlaylistLibrary 90%
+- SongLibrary 88%
+- UserList 90%
 
 
 Entities:
-- userFactory 100%
+- UserFactory 100%
 - User 100%
 - RegularUser 100%
 - ArtistUser 100%
 
 Input Datas: 
-- spaceInputData 100%
-- loginInputData 100%
+- SpaceInputData 100%
+- LoginInputData 100%
 - RegisterInputData 100%
 - RegisterArtistInputData 100%
 - SearchInputData 100%
@@ -70,36 +70,36 @@ Input Datas:
 - GetArtistSongInputData 0%
 
 Output Datas: 
-- loginOutputData 100%
+- LoginOutputData 100%
 - SearchOutputData 100%
 - EditPlaylistOutputData 100%
 - GetArtistSongOutputData 0%
 
 Presenters: 
-- spacePresenter 100%
-- userPresenter 100%
+- SpacePresenter 100%
+- UserPresenter 100%
 - SearchPresenter 100%
 - ArtistPresenter 0%
 - EditSongPresenter 100%
-- getArtistSongPresenter 50%
+- GetArtistSongPresenter 50%
 
 Use Cases: 
-- playSpaceInteractor 100% method coverage, 93% line coverage
+- PlaySpaceInteractor 100% method coverage, 93% line coverage
 - Login 100%
 - RegisterInteractor 100%
 - RegisterArtistInteractor 100%
 - SearchInteractor 100%
 - EditSongInteractor 100%
-- getArtistSongInteractor 50%
+- GetArtistSongInteractor 50%
 
 View Models: 
-- musicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
+- MusicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
 - SearchViewModel 100%
 
 ### Design Patterns Used
-- singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
-- a facade, removing the Swing code from Main.java
-- a factory, creating both types of user (regular and Artist)
+- Singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
+- A facade, removing the Swing code from Main.java
+- A factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
 - Single Responsibility Principle: each of our classes have a single, defined purpose.
