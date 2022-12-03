@@ -1,10 +1,10 @@
 package UseCase;
 
 import Entities.MusicPlayer;
-import InputData.playlistInputData;
-import Presenter.songPresenter;
+import InputData.PlaylistInputData;
+import Presenter.SongPresenter;
 import View.InMemoryPlaylist;
-import ViewModel.musicEngineControllerViewModel;
+import ViewModel.MusicEngineControllerViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +19,13 @@ public class SkipTest {
     public void testSkip(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        playlistInputData p = new playlistInputData(0);
+        PlaylistInputData p = new PlaylistInputData(0);
 
-        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
         play.play(p);
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
 
-        NextSong skip = new NextSong(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())), play);
+        NextSongInteractor skip = new NextSongInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())), play);
         skip.updatePlaylist(p);
         skip.skipSong();
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(1));
@@ -38,13 +38,13 @@ public class SkipTest {
     public void testSkipTwice(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        playlistInputData p = new playlistInputData(0);
+        PlaylistInputData p = new PlaylistInputData(0);
 
-        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
         play.play(p);
         Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
 
-        NextSong skip = new NextSong(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())), play);
+        NextSongInteractor skip = new NextSongInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())), play);
         skip.updatePlaylist(p);
         skip.skipSong();
         skip.skipSong();

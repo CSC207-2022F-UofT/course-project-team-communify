@@ -2,7 +2,6 @@ package UseCase;
 
 import Entities.MusicPlayer;
 import Entities.Song;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -21,7 +20,7 @@ public class PauseTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.play(song);
 
-        pauseSong pause = new pauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
@@ -37,7 +36,7 @@ public class PauseTest {
         mp.play(song);
         mp.pause();
 
-        pauseSong pause = new pauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
@@ -48,7 +47,7 @@ public class PauseTest {
     @Test
     public void testPauseWhenNothingPlaying(){
         MusicPlayer.getInstance().close();
-        pauseSong pause = new pauseSong();
+        PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }

@@ -9,5 +9,5 @@ public interface GetPlaylistAccessInterface {
      * @param id the unique identifier of the playlist to be retrieved
      * @return Playlist with matching id or null
      */
-    playlistDsData findPlaylist(int id);
+    PlaylistDsData findPlaylist(int id);
 }

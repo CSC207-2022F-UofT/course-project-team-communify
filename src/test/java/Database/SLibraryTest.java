@@ -2,7 +2,6 @@ package Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +14,7 @@ public class SLibraryTest {
      */
     @Test
     public void testExists(){
-        GetSongAccessInterface lib = songLibrary.getInstance();
+        GetSongAccessInterface lib = SongLibrary.getInstance();
         // A song with id 2 exists.
         Assertions.assertTrue(lib.exists(2));
         // A song with id -2 does not exist.
@@ -27,7 +26,7 @@ public class SLibraryTest {
      */
     @Test
     public void testSaveSong(){
-        SaveSongAccessInterface lib = songLibrary.getInstance();
+        SaveSongAccessInterface lib = SongLibrary.getInstance();
         String filepath = "./src/test/java/Database/test.mp3";
 
         // Song is new. Song is added.
@@ -42,46 +41,46 @@ public class SLibraryTest {
      */
     @Test
     public void testGetSong(){
-        GetSongAccessInterface lib = songLibrary.getInstance();
-        songDsData song = lib.getSong(2);
+        GetSongAccessInterface lib = SongLibrary.getInstance();
+        SongDsData song = lib.getSong(2);
         Assertions.assertEquals(song.getID(), 2);
     }
 
     @Test
     public void testGetString(){
-        Assertions.assertNotEquals(songLibrary.getInstance().getString(), null);
+        Assertions.assertNotEquals(SongLibrary.getInstance().getString(), null);
     }
 
     @Test
     public void testGetStringID(){
-        Assertions.assertNotEquals(null, songLibrary.getInstance().getString("metrofolk"));
+        Assertions.assertNotEquals(null, SongLibrary.getInstance().getString("metrofolk"));
     }
 
     @Test
     public void testGetStringUsername(){
         ArrayList<Integer> ids = new ArrayList<>();
         ids.add(2);
-        Assertions.assertNotEquals(null, songLibrary.getInstance().getString(ids));
+        Assertions.assertNotEquals(null, SongLibrary.getInstance().getString(ids));
     }
 
     @Test
     public void testGetSongID(){
-        Assertions.assertNotEquals(null, songLibrary.getInstance().getSong(2));
+        Assertions.assertNotEquals(null, SongLibrary.getInstance().getSong(2));
     }
 
     @Test
     public void testExistsString(){
-        Assertions.assertFalse(songLibrary.getInstance().exists("Not a Real Song", new String[]{"Not by This Person"}));
+        Assertions.assertFalse(SongLibrary.getInstance().exists("Not a Real Song", new String[]{"Not by This Person"}));
     }
 
     @Test
     public void testExistsSongDsData(){
-        songDsData song = songLibrary.getInstance().getSong(2);
-        Assertions.assertTrue(songLibrary.getInstance().exists(song));
+        SongDsData song = SongLibrary.getInstance().getSong(2);
+        Assertions.assertTrue(SongLibrary.getInstance().exists(song));
     }
 
     @Test
     public void testExistsID(){
-        Assertions.assertTrue(songLibrary.getInstance().exists(2));
+        Assertions.assertTrue(SongLibrary.getInstance().exists(2));
     }
 }

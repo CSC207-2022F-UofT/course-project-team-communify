@@ -7,7 +7,7 @@ public interface GetSongAccessInterface {
     /**
      * @return Collection of all songs.
      */
-    Collection<songDsData> getLibrary();
+    Collection<SongDsData> getLibrary();
 
     /**
      * @param id the unique int ID of a given song.
@@ -20,5 +20,5 @@ public interface GetSongAccessInterface {
      * @param id the unique int ID of a given song.
      * @return Song inside a songDsData with matching ID.
      */
-    songDsData getSong(int id);
+    SongDsData getSong(int id);
 }

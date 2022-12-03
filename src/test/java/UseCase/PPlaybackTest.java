@@ -5,10 +5,10 @@ package UseCase;
 
 import Entities.MusicPlayer;
 import Entities.Song;
-import InputData.playlistInputData;
-import Presenter.songPresenter;
+import InputData.PlaylistInputData;
+import Presenter.SongPresenter;
 import View.InMemoryPlaylist;
-import ViewModel.musicEngineControllerViewModel;
+import ViewModel.MusicEngineControllerViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -24,11 +24,11 @@ public class PPlaybackTest {
     @Test
     public void testPlay(){
         MusicPlayer.getInstance().close();
-        playlistInputData p = new playlistInputData(0);
-        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlaylistInputData p = new PlaylistInputData(0);
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
-        Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new playlistInputData(0).getSongs().get(0));
+        Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new PlaylistInputData(0).getSongs().get(0));
     }
 
     /**
@@ -46,8 +46,8 @@ public class PPlaybackTest {
         songs.add(song);
         songs.add(song2);
 
-        playlistInputData p = new playlistInputData("", songs);
-        playPlaylist play = new playPlaylist(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlaylistInputData p = new PlaylistInputData("", songs);
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
 
         play.play(p);
         play.stopQueue();

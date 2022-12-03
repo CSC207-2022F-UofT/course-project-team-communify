@@ -1,15 +1,14 @@
 package UseCase;
 
-import Database.playlistLibrary;
-import Database.songLibrary;
+import Database.PlaylistLibrary;
+import Database.SongLibrary;
 import Entities.Playlist;
 import Entities.Song;
-import InputData.editPlaylistInputData;
-import Presenter.playlistPresenter;
+import InputData.EditPlaylistInputData;
+import Presenter.PlaylistPresenter;
 import View.InMemoryPlaylist;
 import View.InMemoryUser;
-import ViewModel.playlistViewModel;
-import org.junit.Before;
+import ViewModel.PlaylistViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 /**
@@ -27,21 +26,21 @@ public class EditPlaylistTests {
         int song = 10;
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
-        Playlist p = playlistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
-        Song s = songLibrary.getInstance().getSong(song).getSong();
+        Playlist p = PlaylistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
+        Song s = SongLibrary.getInstance().getSong(song).getSong();
         int numOccurrence = 0;
         for (Song songs: p.getSongList()){
             if (songs.equals(s))
                 numOccurrence++;
         }
 
-        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(), playlist.getId(), song);
-        playlistViewModel testViewModel= new playlistViewModel();
-        playlistPresenter testPresenter= new playlistPresenter(testViewModel, new InMemoryUser());
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(), playlist.getId(), song);
+        PlaylistViewModel testViewModel= new PlaylistViewModel();
+        PlaylistPresenter testPresenter= new PlaylistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
         testInteractor.removeSong(inputData);
         String actual = testPresenter.getOutputMessage();
-        String expected = songLibrary.getInstance().getSong(song).getSong().getName() + " removed!";
+        String expected = SongLibrary.getInstance().getSong(song).getSong().getName() + " removed!";
         Assertions.assertEquals(expected, actual);
 
         int newNumOccurrence = 0;
@@ -62,17 +61,17 @@ public class EditPlaylistTests {
         int song = 10;
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
-        editPlaylistInputData inputData = new editPlaylistInputData(user.getUsername(), playlist.getId(), song);
-        playlistViewModel testViewModel = new playlistViewModel();
-        playlistPresenter testPresenter = new playlistPresenter(testViewModel, new InMemoryUser());
+        EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(), playlist.getId(), song);
+        PlaylistViewModel testViewModel = new PlaylistViewModel();
+        PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
         testInteractor.addSong(inputData);
         String actual = testPresenter.getOutputMessage();
-        String expected = songLibrary.getInstance().getSong(song).getSong().getName() + " added!";
+        String expected = SongLibrary.getInstance().getSong(song).getSong().getName() + " added!";
         Assertions.assertEquals(expected, actual);
 
-        Playlist p = playlistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
-        Song s = songLibrary.getInstance().getSong(song).getSong();
+        Playlist p = PlaylistLibrary.getInstance().findPlaylist(playlist.getId()).getPlaylist();
+        Song s = SongLibrary.getInstance().getSong(song).getSong();
         Assertions.assertTrue(p.getSongList().contains(s));
     }
 }

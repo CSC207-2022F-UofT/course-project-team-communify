@@ -1,29 +1,30 @@
 package UseCase;
 
+import Database.UserList;
 import Entities.User;
-import OutputBoundary.loginOutputBoundary;
-import OutputData.loginOutputData;
+import OutputBoundary.LoginOutputBoundary;
+import OutputData.LoginOutputData;
 import InputData.RegisterInputData;
 import InputBoundary.RegisterInputBoundary;
 import Database.SaveUserAccessInterface;
-import Database.userDsData;
-import Entities.userFactory;
+import Database.UserDsData;
+import Entities.UserFactory;
 /**
  * Application business rules use case class to register a user.
  */
 public class RegisterInteractor implements RegisterInputBoundary{
-    private final loginOutputBoundary registerPresenter;
-    private final userFactory userFactory;
+    private final LoginOutputBoundary registerPresenter;
+    private final UserFactory userFactory;
 
     private final SaveUserAccessInterface allUsers;
 
     /**
      * @param registerPresenter the register output presenter
      */
-    public RegisterInteractor(loginOutputBoundary registerPresenter){
-        this.allUsers = Database.userList.getInstance();
+    public RegisterInteractor(LoginOutputBoundary registerPresenter){
+        this.allUsers = UserList.getInstance();
         this.registerPresenter =registerPresenter;
-        this.userFactory = new userFactory();
+        this.userFactory = new UserFactory();
     }
 
     /**
@@ -37,8 +38,8 @@ public class RegisterInteractor implements RegisterInputBoundary{
 
         // create regular user
         User user = this.userFactory.createRegularUser(registerInputData.getUsername(), registerInputData.getPassword());
-        allUsers.save(new userDsData(user));
-        loginOutputData userCreated = new loginOutputData(user, false);
+        allUsers.save(new UserDsData(user));
+        LoginOutputData userCreated = new LoginOutputData(user, false);
         registerPresenter.userLogIn(userCreated);
         return true;
     }

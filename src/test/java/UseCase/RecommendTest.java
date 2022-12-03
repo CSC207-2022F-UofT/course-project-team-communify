@@ -2,10 +2,10 @@ package UseCase;
 
 import Entities.MusicPlayer;
 import Entities.Song;
-import InputData.playlistInputData;
-import Presenter.songPresenter;
+import InputData.PlaylistInputData;
+import Presenter.SongPresenter;
 import View.InMemoryPlaylist;
-import ViewModel.musicEngineControllerViewModel;
+import ViewModel.MusicEngineControllerViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class RecommendTest {
     @Test
     public void testRecommend(){
         MusicPlayer mp = MusicPlayer.getInstance();
-        playlistInputData p = new playlistInputData(0);
+        PlaylistInputData p = new PlaylistInputData(0);
 
         ArrayList<String> genres = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class RecommendTest {
             genres.add(s.getGenre());
         }
 
-        recommendSong recommend = new recommendSong(new songPresenter(new musicEngineControllerViewModel(new InMemoryPlaylist())));
+        RecommendSong recommend = new RecommendSong(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
         recommend.recommendation(p);
         Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }

@@ -1,5 +1,6 @@
 package UseCase;
 import Database.SaveSongAccessInterface;
+import Database.SongLibrary;
 import InputBoundary.EditSongInputBoundary;
 import InputData.UploadSongInputData;
 import OutputBoundary.EditSongOutputBoundary;
@@ -18,7 +19,7 @@ public class EditSongInteractor implements EditSongInputBoundary {
      * @param uploadSongPresenter the presenter for edit song output
      */
     public EditSongInteractor(EditSongOutputBoundary uploadSongPresenter){
-        this.songLibrary = Database.songLibrary.getInstance();
+        this.songLibrary = SongLibrary.getInstance();
         this.uploadSongPresenter = uploadSongPresenter;
     }
 
