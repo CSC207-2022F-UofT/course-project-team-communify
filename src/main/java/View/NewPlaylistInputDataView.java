@@ -25,7 +25,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
 
     private int songID;
 
-    /**
+    /** constructor for creating playlist with one song
      * @param owner the owner of the playlist
      * @param playlistView the main window view
      */
@@ -37,7 +37,11 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.songID = -1;
 //        this.songID = Integer.parseInt(null);
     }
-
+    /** constructor for creating playlist with one song
+     * @param owner the owner of the playlist
+     * @param playlistView the main window view
+     * @param songID ID of song to create this playlist with
+     */
     public NewPlaylistInputDataView(InMemoryUser owner, playlistView playlistView, int songID){
         this.mainWindow = playlistView;
         this.songID = songID;
@@ -52,14 +56,11 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
             String outputMessage;
             if (songID == -1) {
                 outputMessage = this.viewModel.callNewEmptyPlaylistUseCase(owner, playlistName);
-                System.out.println("Empty");
                 mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             }
             else{
                 outputMessage = this.viewModel.callNewPlaylistUseCase(owner, playlistName, songID);
-                System.out.println(songID);
                 this.songID = -1;
-                System.out.println("OneSong");
                 mainWindow.updateUser(this.viewModel.getCurrPlaylist());
             }
             this.jframe.dispose();
