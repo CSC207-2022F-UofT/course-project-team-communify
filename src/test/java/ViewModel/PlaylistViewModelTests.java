@@ -35,7 +35,7 @@ public class PlaylistViewModelTests {
 
 
     @Test
-    public void callAddSongTest(){
+    public void CallAddSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
         String testname = "tes2";
@@ -50,7 +50,7 @@ public class PlaylistViewModelTests {
     }
 
     @Test
-    public void callRemoveSongTest(){
+    public void CallRemoveSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
         String testname = "tes2";
