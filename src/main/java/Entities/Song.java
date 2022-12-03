@@ -92,7 +92,6 @@ public class Song {
      * @return String representation of all artists.
      */
     public String getArtistString(){
-        //TODO: Replace this terrible lazy implementation
         StringBuilder artists = new StringBuilder();
         for(int i=0;i<artistList.length;i++){
             artists.append(artistList[i]);

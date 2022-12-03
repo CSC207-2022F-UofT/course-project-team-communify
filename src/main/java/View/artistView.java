@@ -22,12 +22,9 @@ public class artistView extends JFrame implements ActionListener {
     private ArtistViewModel avm;
     private JFrame jframe;
     private JButton uploadButton;
-
     private JPanel panel;
     private JTable table;
-
     private final String[] COLUMN_NAMES = {"ID", "Song", "Artist(s)", "Genre"};
-
     private JLabel welcomeMessage;
     private JLabel logo;
     private final ImageIcon icon;
@@ -70,7 +67,7 @@ public class artistView extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(this, label, "Communify", JOptionPane.PLAIN_MESSAGE);
                 }
                 else{
-                    JLabel label = new JLabel("Upload Unsuccessful.", JLabel.CENTER);
+                    JLabel label = new JLabel("Upload Unsuccessful. Song exists!", JLabel.CENTER);
                     JOptionPane.showMessageDialog(this, label, "Communify", JOptionPane.PLAIN_MESSAGE);
                 }
             }
