@@ -37,69 +37,105 @@ It's pretty easy!
 We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all of the tests will pass on a local repo when run individually. 
 
 ### Code Coverage Overview (To Complete) 
-
 Controllers: 
-- MusicEngineController 100% method coverage, 96% line coverage
-- RegisterController 100%
-- RegisterArtistController 100%
-- LoginController 100%
-- SearchController 100%
+- EditPlaylistController 33% TODO
 - EditSongController 100%
-- GetArtistSongController 50% TODO
+- GetArtistSongController 75%
+- LoginController 100%
+- MusicEngineController 100%
+- NewPlayistController 33%
+- PlaylistController 0% TODO
+- RegisterArtistController 100%
+- RegisterController 100%
+- SearchController 100%
+
 
 Database:
 All database files contain a createFile() called when the csv it uses does not exist. Cannot be tested easily.
 - PlaylistLibrary 90%
+- PlaylistDsData 100%
+- SongDsData 63%
 - SongLibrary 88%
+- UserDsData 100%
 - UserList 90%
 
 
 Entities:
-- UserFactory 100%
-- User 100%
-- RegularUser 100%
 - ArtistUser 100%
+- JPlayer 80%
+- MusicPlayer 92%
+- userFactory 100%
+- Playlist 89%
+- RegularUser 100%
+- Song 95%
+- User 100%
+- UserFactory 100%
+
 
 Input Datas: 
-- SpaceInputData 100%
-- LoginInputData 100%
-- RegisterInputData 100%
-- RegisterArtistInputData 100%
-- SearchInputData 100%
 - EditPlaylistInputData 100%
-- GetArtistSongInputData 0%
+- GetArtistSongInputData 0% TODO
+- LoginInputData 100%
+- NewPlaylistInputData 100%
+- PlaylistInputData 100%
+- PlaySpaceInputData 100%
+- RegisterArtistInputData 100%
+- RegisterInputData 100%
+- SearchInputData 100%
+- SongInputData 91%
+- UploadSongInputData 100%
+
 
 Output Datas: 
-- LoginOutputData 100%
-- SearchOutputData 100%
 - EditPlaylistOutputData 100%
-- GetArtistSongOutputData 0%
+- EditSongOutputData 100%
+- GetArtistSongOutputData 0% TODO
+- LoginOutputData 100%
+- NewPlaylistOutputData 100%
+- SearchOutputData 100%
+- SongOutputData 88%
+
 
 Presenters: 
+- ArtistPresenter 100%
+- EditSongPresenter 100%
+- GetArtistSongPresenter 66%
+- PlaylistPresenter 100%
+- SearchPresenter 100%
+- SongPresenter 100%
 - SpacePresenter 100%
 - UserPresenter 100%
-- SearchPresenter 100%
-- ArtistPresenter 0%
-- EditSongPresenter 100%
-- GetArtistSongPresenter 50%
+
 
 Use Cases: 
-- PlaySpaceInteractor 100% method coverage, 93% line coverage
-- Login 100%
-- RegisterInteractor 100%
-- RegisterArtistInteractor 100%
-- SearchInteractor 100%
+- CreatePlaylistInteractor 100%
+- EditPlaylistInteractor 100%
 - EditSongInteractor 100%
-- GetArtistSongInteractor 50%
+- GetArtistSongInteractor 60%
+- LoginInteractor 100%
+- NextSongInteractor 100%
+- PauseSongInteractor 100%
+- PlayPlaylistInteractor 100%
+- PlaySongInteractor 100%
+- PlaySpaceInteractor 100%
+- RecommendSongInteractor 100%
+- RegisterArtistInteractor 100%
+- RegisterInteractor 100%
+- SearchInteractor 100%
+- ShufflePlaylistInteractor 0% TODO
+
 
 View Models: 
-- MusicEngineViewModel 57% method coverage, 78% line coverage. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
+- ArtistViewModel 61%
+- MusicEngineViewModel 78%. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
+- PlaylistViewModel 41% TODO
 - SearchViewModel 100%
+- UserViewModel 85%
 
 ### Design Patterns Used
-- Singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
-- A facade, removing the Swing code from Main.java
-- A factory, creating both types of user (regular and Artist)
+- singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
+- a facade, removing the Swing code from Main.java
+- a factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
 - Single Responsibility Principle: each of our classes have a single, defined purpose.
