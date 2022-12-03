@@ -1,7 +1,7 @@
 package Controller;
 
 import InputBoundary.RegisterInputBoundary;
-import OutputBoundary.loginOutputBoundary;
+import OutputBoundary.LoginOutputBoundary;
 import InputData.RegisterInputData;
 import UseCase.RegisterInteractor;
 
@@ -11,12 +11,12 @@ import UseCase.RegisterInteractor;
  */
 public class RegisterController {
     RegisterInputBoundary registerInteractor;
-    loginOutputBoundary registerPresenter;
+    LoginOutputBoundary registerPresenter;
 
     /**
      * @param registerPresenter the presenter for register output data
      */
-    public RegisterController(loginOutputBoundary registerPresenter) {
+    public RegisterController(LoginOutputBoundary registerPresenter) {
         this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterInteractor(registerPresenter);
     }

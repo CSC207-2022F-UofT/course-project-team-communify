@@ -1,7 +1,5 @@
-import View.launchView;
+import View.LaunchView;
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.util.Collections;
@@ -30,7 +28,7 @@ public class Main {
         ImageIcon logoSmall = new ImageIcon(LOGO_SMALL);
 
         // FINAL
-        new launchView(windowIcon, logoRed);
+        new LaunchView(windowIcon, logoRed);
 
     }
 }

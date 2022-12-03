@@ -1,17 +1,17 @@
 package UseCase;
 import Database.*;
 import Entities.Song;
-import InputBoundary.editPlaylistInputBoundary;
-import InputData.editPlaylistInputData;
-import OutputBoundary.newPlaylistOutputBoundary;
-import OutputData.editPlaylistOutputData;
+import InputBoundary.EditPlaylistInputBoundary;
+import InputData.EditPlaylistInputData;
+import OutputBoundary.NewPlaylistOutputBoundary;
+import OutputData.EditPlaylistOutputData;
 
 /**
  * Application business rules use case class to edit a playlist.
  */
-public class EditPlaylistInteractor implements editPlaylistInputBoundary{
+public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
 
-    private final newPlaylistOutputBoundary presenter;
+    private final NewPlaylistOutputBoundary presenter;
     private final SavePlaylistAccessInterface library;
 
     private final SaveUserAccessInterface userDatabase;
@@ -19,10 +19,10 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
     /**
      * @param presenter the presenter to output data to the view
      */
-    public EditPlaylistInteractor(newPlaylistOutputBoundary presenter){
+    public EditPlaylistInteractor(NewPlaylistOutputBoundary presenter){
         this.presenter = presenter;
-        this.library = playlistLibrary.getInstance();
-        this.userDatabase = userList.getInstance();
+        this.library = PlaylistLibrary.getInstance();
+        this.userDatabase = UserList.getInstance();
     }
 
     /**
@@ -30,7 +30,7 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
      *                  and changeName()
      *
     */
-    public void removeSong(editPlaylistInputData inputData) {
+    public void removeSong(EditPlaylistInputData inputData) {
         //TODO: maybe make this a try-catch ?
         if (inputData.getPlaylist().getOwner() == inputData.getUser()) {
             for (Song s : inputData.getPlaylist().getSongList())
@@ -40,36 +40,36 @@ public class EditPlaylistInteractor implements editPlaylistInputBoundary{
                 }
         }
         String message = inputData.getSong().getName() + " removed!";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message, inputData.getPlaylist());
+        EditPlaylistOutputData outputData = new EditPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
 
         // save edited playlist
         if (library.exists(inputData.getPlaylist().getId())){
-            this.library.savePlaylist(new playlistDsData(inputData.getPlaylist()));
+            this.library.savePlaylist(new PlaylistDsData(inputData.getPlaylist()));
         }
         // save user
         if (userDatabase.exists(inputData.getPlaylist().getOwner().getUsername())) {
-            this.userDatabase.save(new userDsData(inputData.getPlaylist().getOwner()));
+            this.userDatabase.save(new UserDsData(inputData.getPlaylist().getOwner()));
         }
     }
 
     /**
      * @param inputData the data containing playlist and song to add
      */
-    public void addSong(editPlaylistInputData inputData){
+    public void addSong(EditPlaylistInputData inputData){
         if(inputData.getPlaylist().getOwner() == inputData.getUser()) {
             inputData.getPlaylist().addSong(inputData.getSong());
         }
         String message =  inputData.getSong().getName() + " added!";
-        editPlaylistOutputData outputData = new editPlaylistOutputData(message, inputData.getPlaylist());
+        EditPlaylistOutputData outputData = new EditPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
         //save edited playlist
         if (library.exists(inputData.getPlaylist().getId())){
-            this.library.savePlaylist(new playlistDsData(inputData.getPlaylist()));
+            this.library.savePlaylist(new PlaylistDsData(inputData.getPlaylist()));
         }
         // save user
         if (userDatabase.exists(inputData.getPlaylist().getOwner().getUsername())) {
-            this.userDatabase.save(new userDsData(inputData.getPlaylist().getOwner()));
+            this.userDatabase.save(new UserDsData(inputData.getPlaylist().getOwner()));
         }
     }
 }

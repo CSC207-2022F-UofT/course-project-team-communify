@@ -1,29 +1,30 @@
 package UseCase;
 
 import Database.SaveUserAccessInterface;
-import Database.userDsData;
+import Database.UserDsData;
+import Database.UserList;
 import Entities.User;
-import Entities.userFactory;
+import Entities.UserFactory;
 import InputBoundary.RegisterArtistInputBoundary;
 import InputData.RegisterArtistInputData;
-import OutputBoundary.loginOutputBoundary;
-import OutputData.loginOutputData;
+import OutputBoundary.LoginOutputBoundary;
+import OutputData.LoginOutputData;
 /**
  * Application business rules use case class to register an artist.
  */
 public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
-    private final loginOutputBoundary registerPresenter;
-    private final userFactory userFactory;
+    private final LoginOutputBoundary registerPresenter;
+    private final UserFactory userFactory;
 
     private final SaveUserAccessInterface allUsers;
 
     /**
      * @param registerPresenter the register output presenter
      */
-    public RegisterArtistInteractor(loginOutputBoundary registerPresenter){
-        this.allUsers = Database.userList.getInstance();
+    public RegisterArtistInteractor(LoginOutputBoundary registerPresenter){
+        this.allUsers = UserList.getInstance();
         this.registerPresenter = registerPresenter;
-        this.userFactory = new userFactory();
+        this.userFactory = new UserFactory();
     }
 
     /**
@@ -38,12 +39,12 @@ public class RegisterArtistInteractor implements RegisterArtistInputBoundary{
         //create artist user
         User user = this.userFactory.createArtistUser(registerInputData.getArtistName(),registerInputData.getUsername(),
                 registerInputData.getPassword());
-        userDsData newArtist = new userDsData(registerInputData.getUsername(), registerInputData.getPassword(),
+        UserDsData newArtist = new UserDsData(registerInputData.getUsername(), registerInputData.getPassword(),
                 registerInputData.getArtistName(), new String[0]);
         allUsers.save(newArtist);
 
 
-        loginOutputData userCreated = new loginOutputData(user, true);
+        LoginOutputData userCreated = new LoginOutputData(user, true);
         registerPresenter.userLogIn(userCreated);
         return true;
     }

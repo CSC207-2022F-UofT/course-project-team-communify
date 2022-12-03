@@ -1,7 +1,7 @@
 package View;
 
-import ViewModel.musicEngineControllerViewModel;
-import ViewModel.playlistViewModel;
+import ViewModel.MusicEngineControllerViewModel;
+import ViewModel.PlaylistViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,9 +27,9 @@ public class PlaylistPanelView implements ActionListener {
     private ArrayList<IDButton> rButtons;
 
     private ArrayList<DoubleIDButton> dButtons;
-    private musicEngineControllerViewModel viewModel;
+    private MusicEngineControllerViewModel viewModel;
 
-    private playlistViewModel playlistViewModel;
+    private PlaylistViewModel playlistViewModel;
 
     private InMemoryUser user;
 
@@ -38,17 +38,17 @@ public class PlaylistPanelView implements ActionListener {
      * @param u the user logged in
      * @param vm the view model with the song data
      */
-    public PlaylistPanelView(InMemoryUser u, musicEngineControllerViewModel vm){
+    public PlaylistPanelView(InMemoryUser u, MusicEngineControllerViewModel vm){
         initializeComponents(u.getPlaylists(), vm);
         this.user = u;
-        this.playlistViewModel = new playlistViewModel();
+        this.playlistViewModel = new PlaylistViewModel();
     }
 
     /**
      * @param playlistList the playlists owned by the user
      * @param vm the view model with the song data
      */
-    private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, musicEngineControllerViewModel vm) {
+    private void initializeComponents(ArrayList<InMemoryPlaylist> playlistList, MusicEngineControllerViewModel vm) {
 
         Dimension DEFAULT_DIMENSION = new Dimension(50,50);
 

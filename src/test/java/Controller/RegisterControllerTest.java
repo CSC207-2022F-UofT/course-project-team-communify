@@ -1,9 +1,9 @@
 package Controller;
 
-import Database.userList;
-import Presenter.userPresenter;
+import Database.UserList;
+import Presenter.UserPresenter;
 import View.InMemoryUser;
-import ViewModel.userViewModel;
+import ViewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +13,9 @@ public class RegisterControllerTest {
      */
     @Test
     public void testRegisterRegular(){
-        RegisterController registerController = new RegisterController(new userPresenter(new userViewModel(
+        RegisterController registerController = new RegisterController(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        if (userList.getInstance().exists("UserRegular"))
+        if (UserList.getInstance().exists("UserRegular"))
             Assertions.assertFalse(registerController.registerRegular("UserRegular","regular"));
         else
             Assertions.assertTrue(registerController.registerRegular("UserRegular","regular"));
@@ -25,9 +25,9 @@ public class RegisterControllerTest {
      */
     @Test
     public void testRegisterArtist(){
-        RegisterArtistController registerController = new RegisterArtistController(new userPresenter(new userViewModel(
+        RegisterArtistController registerController = new RegisterArtistController(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        if (userList.getInstance().exists("UserArtist"))
+        if (UserList.getInstance().exists("UserArtist"))
             Assertions.assertFalse(registerController.registerArtist("UserArtist","artist","pw"));
         else
             Assertions.assertTrue(registerController.registerArtist("UserArtist","artist","pw"));

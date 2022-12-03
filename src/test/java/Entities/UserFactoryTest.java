@@ -9,7 +9,7 @@ public class UserFactoryTest {
      */
     @Test
     public void testcreateRegularUser(){
-        userFactory userFactory = new userFactory();
+        UserFactory userFactory = new UserFactory();
         Assertions.assertNotNull(userFactory.createRegularUser("User1", "password"));
     }
 }
