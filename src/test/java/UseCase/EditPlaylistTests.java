@@ -55,7 +55,7 @@ public class EditPlaylistTests {
      * Tests adding a song and the message it returns.
      */
     @Test
-    public void addSongAndMessage(){
+    public void AddSongAndMessage(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         int song = 10;

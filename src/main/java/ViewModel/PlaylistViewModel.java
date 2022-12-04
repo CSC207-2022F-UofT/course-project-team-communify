@@ -23,13 +23,10 @@ public class PlaylistViewModel {
     private String message;
 
     /**
-     * Constructor.
+     * Constructor to call use cases
      */
     public PlaylistViewModel(){
         // get necessary information from View to construct a new playlist
-        //TODO: This is the controller, just pass this to the controller, move to controller
-        //TODO: Create controller once in the view as an instance variable / pass as a parameter in main
-
         //Blank output data object to extract success message from
         //sets its presenter to itself
         this.playlistPresenter = new PlaylistPresenter(this, new InMemoryUser());
@@ -86,12 +83,12 @@ public class PlaylistViewModel {
 
     /**
      * @param user the owner of the playlist
-     * @param playlist the playlist to edit
-     * @param song the song to edit the playlist with
+     * @param playlistID ID of the playlist to edit
+     * @param songID the song to edit the playlist with
      * @return confirmation message
      */
-    public String callRemoveSong(UserDsView user, int playlist, int song){
-        this.editPlaylistController.removeSong(user,playlist,song);
+    public String callRemoveSong(UserDsView user, int playlistID, int songID){
+        this.editPlaylistController.removeSong(user,playlistID,songID);
         return this.playlistPresenter.getOutputMessage();
     }
 
