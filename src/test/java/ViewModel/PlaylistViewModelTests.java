@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Assertions;
 public class PlaylistViewModelTests {
 
     @Test
-    public void CallNewPlaylistEmptyTest(){
+    public void callNewPlaylistEmptyTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testName = "test";
@@ -21,7 +21,7 @@ public class PlaylistViewModelTests {
     }
 
     @Test
-    public void CallNewPlaylistTest(){
+    public void callNewPlaylistTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
         String testName = "tes2";
@@ -35,10 +35,9 @@ public class PlaylistViewModelTests {
 
 
     @Test
-    public void CallAddSongTest(){
+    public void callAddSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
-        String testName = "tes2";
         int songID = 10;
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
@@ -50,7 +49,7 @@ public class PlaylistViewModelTests {
     }
 
     @Test
-    public void CallRemoveSongTest(){
+    public void callRemoveSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
         String testName = "tes2";
