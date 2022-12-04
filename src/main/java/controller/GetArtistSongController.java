@@ -1,5 +1,4 @@
 package controller;
-
 import inputBoundary.GetArtistSongInputBoundary;
 import inputData.GetArtistSongInputData;
 import outputBoundary.GetArtistSongOutputBoundary;
