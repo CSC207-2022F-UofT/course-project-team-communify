@@ -1,7 +1,6 @@
 package inputBoundary;
 
 import inputData.PlaySpaceInputData;
-import outputData.SongOutputData;
 
 /**
  * interface for wrapping the space controller for the playing the space use case.
