@@ -43,6 +43,10 @@ public class PlaylistViewModel {
     public void setOutputMessage(String message){
         this.message = message;
     }
+
+    /**
+     * @return the output message
+     */
     public String returnOutputMessage(){
         return this.message;
     }
