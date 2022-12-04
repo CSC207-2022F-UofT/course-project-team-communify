@@ -9,10 +9,10 @@ public class DoubleIDButton extends JButton{
      *
      * @param playlistID ID of playlist
      * @param songID ID of song
-     * @param text text of the button
+     * @param icon Icon of the button
      */
-    public DoubleIDButton(int playlistID, int songID, String text){
-        super(text);
+    public DoubleIDButton(int playlistID, int songID, ImageIcon icon){
+        super(icon);
         this.playlistID = playlistID;
         this.songID = songID;
     }

@@ -16,15 +16,17 @@ import java.util.ArrayList;
  */
 public class PlaylistPanelView implements ActionListener {
 
+    private static final ImageIcon REMOVE = new ImageIcon("src/main/java/view/assets/button/remove.png");
     private static final ImageIcon NO_SONG_FULL = new ImageIcon("src/main/java/View/assets/no_song.png");
     private static final ImageIcon NO_SONG = new ImageIcon(NO_SONG_FULL.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
     private static final ImageIcon PAUSE = new ImageIcon("src/main/java/View/assets/button/pause_small.png");
     private static final ImageIcon REC = new ImageIcon("src/main/java/View/assets/button/rec_small.png");
+    private static final ImageIcon SHUFFLE = new ImageIcon("src/main/java/View/assets/button/shuffle.png");
     private JPanel panel;
     private JScrollPane pane;
     private ArrayList<IDButton> buttons;
     private ArrayList<IDButton> rButtons;
-
+    private ArrayList<IDButton> sButtons;
     private ArrayList<DoubleIDButton> dButtons;
     private MusicEngineViewModel viewModel;
 
@@ -67,6 +69,7 @@ public class PlaylistPanelView implements ActionListener {
 
         this.buttons = new ArrayList<>();
         this.rButtons = new ArrayList<>();
+        this.sButtons = new ArrayList<>();
         this.dButtons = new ArrayList<>();
         for (InMemoryPlaylist p : playlistList){
 
@@ -94,10 +97,13 @@ public class PlaylistPanelView implements ActionListener {
 
             IDButton button = new IDButton(p.getId());
             IDButton recommend = new IDButton(p.getId());
+            IDButton shuffle = new IDButton(p.getId());
             button.addActionListener(this);
             recommend.addActionListener(this);
+            shuffle.addActionListener(this);
 
             buttonPanel.add(button);
+            buttonPanel.add(shuffle);
             buttonPanel.add(recommend);
 
             namePanel.add(name);
@@ -109,11 +115,15 @@ public class PlaylistPanelView implements ActionListener {
             recommend.setIcon(REC);
             recommend.setPreferredSize(DEFAULT_DIMENSION);
 
+            shuffle.setIcon(SHUFFLE);
+            shuffle.setPreferredSize(DEFAULT_DIMENSION);
+
             headerPanel.add(pCover);
             headerPanel.add(namePanel);
 
             this.buttons.add(button);
             this.rButtons.add(recommend);
+            this.sButtons.add(shuffle);
             mainPanel.add(headerPanel);
 
             JPanel songPanel = new JPanel();
@@ -138,9 +148,13 @@ public class PlaylistPanelView implements ActionListener {
 
                 thisSongPanel.add(cover);
                 thisSongPanel.add(songName);
-                //IDButton removeSong = new IDButton(s.getId(),"Remove Song");
+
                 //new ID button class that stores both a song's ID and its playlist's associated ID
-                DoubleIDButton removeSong = new DoubleIDButton(p.getId(),s.getId(),"Remove Song");
+                DoubleIDButton removeSong = new DoubleIDButton(p.getId(),s.getId(), REMOVE);
+                removeSong.setFocusable(false);
+                removeSong.setOpaque(false);
+                removeSong.setBorderPainted(false);
+                removeSong.setContentAreaFilled(false);
                 removeSong.addActionListener(this);
                 this.dButtons.add(removeSong);
 

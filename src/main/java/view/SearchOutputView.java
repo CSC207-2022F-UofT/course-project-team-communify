@@ -15,6 +15,8 @@ import java.util.Objects;
  * view for search output
  */
 public class SearchOutputView extends JFrame implements ActionListener {
+
+    private static final ImageIcon BACK = new ImageIcon("src/main/java/view/assets/button/back.png");
     private InMemoryUser user;
     private String searchText;
     private JFrame jframe;
@@ -28,14 +30,12 @@ public class SearchOutputView extends JFrame implements ActionListener {
     private SearchViewModel searchViewModel;
     private final viewModel.MusicEngineViewModel musicEngineViewModel;
     private final PlaylistViewModel playlistViewModel;
-
+    private JPanel topBar;
     private final PlayBar playBar;
-
     private final ImageIcon icon;
-
     private final ImageIcon logoImg;
-
     private final PlaylistView playlistView;
+    private final int WIDTH = 1280;
 
     /**
      * @param searchText the search query
@@ -62,21 +62,38 @@ public class SearchOutputView extends JFrame implements ActionListener {
      */
     public void initialiseValues(String searchText, InMemoryUser user){
 
+        Dimension DEFAULT_SIZE = new Dimension(50, 50);
+        int DEFAULT_KERNING = 20;
+
         this.searchViewModel = new SearchViewModel();
         this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");
         BorderLayout layout = new BorderLayout(100, 0);
         this.panel = new JPanel(layout);
-        this.title = new JLabel(this.searchText);
 
-        this.homeButton = new JButton();
-        this.homeButton.setText("Home");
+        this.homeButton = new JButton(BACK);
+        this.homeButton.setPreferredSize(DEFAULT_SIZE);
         this.homeButton.setFocusable(false);
+        this.homeButton.setOpaque(false);
+        this.homeButton.setBorderPainted(false);
+        this.homeButton.setContentAreaFilled(false);
         this.homeButton.addActionListener(this);
-        this.panel.add(this.playBar.getPanel());
-    }
 
+        this.title = new JLabel();
+        if(searchText.equals("")) this.title.setText("Showing All Songs:");
+        else this.title.setText("Showing Search Results For \"" + searchText + "\":");
+
+        this.title.setFont(UIManager.getFont( "h2.regular" ));
+        this.title.setBounds(DEFAULT_SIZE.width + DEFAULT_KERNING, DEFAULT_KERNING/3, this.WIDTH - DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+
+        this.topBar = new JPanel();
+        FlowLayout topLayout = new FlowLayout(FlowLayout.LEFT);
+        this.topBar.setLayout(topLayout);
+
+        this.topBar.add(this.homeButton);
+        this.topBar.add(this.title);
+    }
 
     /**
      * Method to set up JTable in View that outputs search results
@@ -132,15 +149,16 @@ public class SearchOutputView extends JFrame implements ActionListener {
     public void initializeFrame(){
 
         int HEIGHT = 640;
-        int WIDTH = 1280;
+
+        this.jframe = new JFrame("Communify");
+        this.jframe.setIconImage(this.icon.getImage());
         this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setLocationRelativeTo(null);
         this.jframe.setResizable(false);
         this.jframe.add(title);
 
-        this.panel.add(title, BorderLayout.PAGE_START);
+        this.panel.add(topBar, BorderLayout.NORTH);
         this.panel.add(scrollPane,BorderLayout.CENTER);
-        this.panel.add(homeButton, BorderLayout.PAGE_START);
 
         this.jframe.add(panel);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -79,16 +79,17 @@ public class ArtistView extends JFrame implements ActionListener {
      * Initializes the values of the main Swing and logic objects.
      */
     private void initializeValues() {
-        this.jframe = new JFrame("Communify");
+
         int WIDTH = 1280;
         int HEIGHT = 640;
+        this.jframe = new JFrame("Communify");
         this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setLocationRelativeTo(null);
 
         this.jframe.setLayout(null);
         this.jframe.setResizable(false);
-        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setIconImage(this.icon.getImage());
+        this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         InMemoryArtistUser artist = new InMemoryArtistUser(user.getArtistName(), user.getUsername());
@@ -109,9 +110,9 @@ public class ArtistView extends JFrame implements ActionListener {
         this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 50, logoImg.getIconWidth(), logoImg.getIconHeight());
 
         this.welcomeMessage = new JLabel("Hey, " + avm.getArtistName() + "!");
-        this.welcomeMessage.setFont(new Font(this.welcomeMessage.getFont().getName(), Font.PLAIN, 24));
+        this.welcomeMessage.setFont(UIManager.getFont("h1.font"));
         this.welcomeMessage.setSize(this.welcomeMessage.getPreferredSize());
-        this.welcomeMessage.setLocation((this.jframe.getWidth() - welcomeMessage.getWidth())/2, 130);
+        this.welcomeMessage.setLocation((this.jframe.getWidth() - welcomeMessage.getWidth())/2, 140);
 
         this.uploadButton = new JButton();
         this.uploadButton.setBounds(1075, 510, 160, 40);
@@ -121,7 +122,6 @@ public class ArtistView extends JFrame implements ActionListener {
 
         // Setup JTable
         this.panel = new JPanel(new BorderLayout());
-
         JScrollPane scrollPane = new JScrollPane(this.table);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 

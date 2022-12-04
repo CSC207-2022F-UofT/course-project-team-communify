@@ -114,7 +114,7 @@ public class LoginView extends JFrame implements ActionListener {
      * Initializes the values of the main Swing and logic objects.
      */
     private void initializeValues() {
-        this.jframe = new JFrame();
+        this.jframe = new JFrame("Communify");
         int HEIGHT = 640;
         int WIDTH = 1280;
         this.jframe.setSize(WIDTH, HEIGHT);
@@ -122,6 +122,7 @@ public class LoginView extends JFrame implements ActionListener {
         this.jframe.setLayout(null);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setLocationRelativeTo(null);
+        this.jframe.setIconImage(this.icon.getImage());
     }
 
     /**
