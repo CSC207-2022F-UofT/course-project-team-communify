@@ -1,9 +1,9 @@
 # Project Planning and Development with GitHu
 
-In this course project, you are expected to use GitHubto manage your code. This document describes the workflow for using GitHubwhen you are developing the course project. Please read it carefully and follow the instructions. **Try to work through the steps with the help of your team first, but please ask for help if your team gets stuck on any of the steps or needs something clarified.**
+In this course project, you are expected to use GitHub to manage your code. This document describes the workflow for using GitHub when you are developing the course project. Please read it carefully and follow the instructions. **Try to work through the steps with the help of your team first, but please ask for help if your team gets stuck on any of the steps or needs something clarified.**
 
 ## Create a New GitHuProject
-[Github Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) (*Yes, the name of this product is called "Github Projects", do not confuse it with the course project*) is a lightweight project management tool that is integrated to GitHub. You can use it to track issues, pull requests, visualize tasks status, and track responsibilities. **TAs will mark you project implementation plan and track your progression using the GitHubproject.**
+[GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) (*Yes, the name of this product is called "GitHub Projects", do not confuse it with the course project*) is a lightweight project management tool that is integrated to GitHub. You can use it to track issues, pull requests, visualize tasks status, and track responsibilities. **TAs will mark you project implementation plan and track your progression using the GitHub project.**
 
 1. Navigate to **Projects** Page on [CSC207 organization page](https://github.com/orgs/CSC207-2022F-UofT/projects)
 
@@ -21,7 +21,7 @@ In this course project, you are expected to use GitHubto manage your code. This 
 1. The project will show up in the list below.
 
 ## Define Your Features for the Implementation Plan
-As a part of the project planning, you are required to record all features formulated from your user stories, as **issues** in your GitHubrepository.
+As a part of the project planning, you are required to record all features formulated from your user stories, as **issues** in your GitHub repository.
 
 1. Navigate to your repository and select **Issues** tab, then click **New issue**.
 

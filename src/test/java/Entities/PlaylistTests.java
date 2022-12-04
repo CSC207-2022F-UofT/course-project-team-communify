@@ -26,11 +26,11 @@ public class PlaylistTests {
     @Test public void testRemoveSong(){
         RegularUser joe = new RegularUser("joe","mama");
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
-        Song testsong = new Song(999,null,null,null,null,null,null);
-        joesPlaylist.addSong(testsong);
-        joesPlaylist.removeSong(testsong);
+        Song testSong = new Song(999,null,null,null,null,null,null);
+        joesPlaylist.addSong(testSong);
+        joesPlaylist.removeSong(testSong);
         boolean expected = true;
-        boolean actual = !joesPlaylist.getSongList().contains(testsong);
+        boolean actual = !joesPlaylist.getSongList().contains(testSong);
         assert expected == actual;
     }
     @Test public void getID(){

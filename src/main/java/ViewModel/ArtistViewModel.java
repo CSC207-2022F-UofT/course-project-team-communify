@@ -49,8 +49,8 @@ public class ArtistViewModel {
      * @return String[][] of all songs.
      */
     public String[][] getArtistSongs(){
-        GetArtistSongInputData inputdata = new GetArtistSongInputData(this.currentArtist.getUsername());
-        this.getArtistSongController.getSong(inputdata);
+        GetArtistSongInputData inputData = new GetArtistSongInputData(this.currentArtist.getUsername());
+        this.getArtistSongController.getSong(inputData);
         return this.songTable;
     }
 

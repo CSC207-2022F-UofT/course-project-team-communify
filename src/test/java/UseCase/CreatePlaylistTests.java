@@ -50,10 +50,10 @@ public class CreatePlaylistTests {
     public void CreatePlaylistMessageAndNonEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
-        String testname = "test";
+        String testName = "test";
         int songID = 10;
         Song s = SongLibrary.getInstance().getSong(songID).getSong();
-        NewPlaylistInputData inputData = new NewPlaylistInputData(testname,songID,user.getUsername());
+        NewPlaylistInputData inputData = new NewPlaylistInputData(testName,songID,user.getUsername());
         PlaylistViewModel testViewModel = new PlaylistViewModel();
         PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
@@ -67,7 +67,7 @@ public class CreatePlaylistTests {
         boolean actual2 = false;
         boolean expected2 = true;
         for(PlaylistDsData playlist:PlaylistLibrary){
-            if (playlist.getPlaylist().getName().equals(testname)){
+            if (playlist.getPlaylist().getName().equals(testName)){
                 if(!playlist.getPlaylist().getSongList().isEmpty()){
                     actual2 = true;
                     break;

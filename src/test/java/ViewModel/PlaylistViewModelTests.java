@@ -24,11 +24,11 @@ public class PlaylistViewModelTests {
     public void CallNewPlaylistTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
-        String testname = "tes2";
+        String testName = "tes2";
         int songID = 10;
         Song s = SongLibrary.getInstance().getSong(songID).getSong();
         PlaylistViewModel testViewModel = new PlaylistViewModel();
-        String actual = testViewModel.callNewPlaylistUseCase(user,testname,songID);
+        String actual = testViewModel.callNewPlaylistUseCase(user,testName,songID);
         String expected = "Playlist created with " + s.getName()+"!";
         Assertions.assertEquals(actual,expected);
     }
@@ -53,11 +53,11 @@ public class PlaylistViewModelTests {
     public void CallRemoveSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
-        String testname = "tes2";
+        String testName = "tes2";
         int songID = 10;
         Song s2 = SongLibrary.getInstance().getSong(songID).getSong();
         PlaylistViewModel testViewModel = new PlaylistViewModel();
-        testViewModel.callNewPlaylistUseCase(user,testname,songID);
+        testViewModel.callNewPlaylistUseCase(user,testName,songID);
         int playlist_ID = testViewModel.getCurrPlaylist().getId();
         String actual = testViewModel.callRemoveSong(user,playlist_ID,songID);
         String expected = s2.getName()+" removed!";
