@@ -10,8 +10,8 @@ public class ArtistViewModelTest {
 
     @Test
     public void testUpload(){
-        // Song is successfully added to UploadQueue
-        Assertions.assertTrue(avm.upload("./src/test/java/database/test.mp3"));
+        // Song is successfully added to UploadQueue.
+        Assertions.assertTrue(avm.upload("./src/test/java/viewModel/test2.mp3"));
     }
 
     @Test
