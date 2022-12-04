@@ -51,8 +51,6 @@ public class PlaylistPanelView implements ActionListener {
 
         Dimension DEFAULT_DIMENSION = new Dimension(50,50);
 
-        int DEFAULT_WIDTH = 130;
-        int DEFAULT_HEIGHT = 40;
         int DEFAULT_KERNING = 20;
 
 

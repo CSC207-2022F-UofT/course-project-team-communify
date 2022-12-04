@@ -9,17 +9,6 @@ public class DoubleIDButton extends JButton{
      *
      * @param playlistID ID of playlist
      * @param songID ID of song
-     */
-
-    public DoubleIDButton(int playlistID, int songID) {
-        super();
-        this.playlistID = playlistID;
-        this.songID = songID;
-    }
-    /**
-     *
-     * @param playlistID ID of playlist
-     * @param songID ID of song
      * @param text text of the button
      */
     public DoubleIDButton(int playlistID, int songID, String text){

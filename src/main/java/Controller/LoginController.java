@@ -11,13 +11,11 @@ import useCase.LoginInteractor;
  */
 public class LoginController {
     final LoginInputBoundary loginInteractor;
-    final LoginOutputBoundary loginPresenter;
 
     /**
      * @param loginPresenter the presenter to return login info to the view
      */
     public LoginController(LoginOutputBoundary loginPresenter) {
-        this.loginPresenter = loginPresenter;
         this.loginInteractor = new LoginInteractor(loginPresenter);
     }
 

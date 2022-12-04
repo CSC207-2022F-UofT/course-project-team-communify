@@ -11,13 +11,11 @@ import useCase.RegisterInteractor;
  */
 public class RegisterController {
     final RegisterInputBoundary registerInteractor;
-    final LoginOutputBoundary registerPresenter;
 
     /**
      * @param registerPresenter the presenter for register output data
      */
     public RegisterController(LoginOutputBoundary registerPresenter) {
-        this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterInteractor(registerPresenter);
     }
 

@@ -10,13 +10,11 @@ import useCase.RegisterArtistInteractor;
  */
 public class RegisterArtistController {
     final RegisterArtistInputBoundary registerInteractor;
-    final LoginOutputBoundary registerPresenter;
 
     /**
      * @param registerPresenter the presenter for register output data
      */
     public RegisterArtistController(LoginOutputBoundary registerPresenter) {
-        this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterArtistInteractor(registerPresenter);
     }
     /**

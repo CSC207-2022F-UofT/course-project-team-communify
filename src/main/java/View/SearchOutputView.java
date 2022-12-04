@@ -1,6 +1,5 @@
 package view;
 
-import database.*;
 import viewModel.PlaylistViewModel;
 import viewModel.SearchViewModel;
 
@@ -50,7 +49,6 @@ public class SearchOutputView extends JFrame implements ActionListener {
         this.logoImg = logoImg;
         this.musicEngineViewModel = engineVm;
         this.playlistViewModel = new PlaylistViewModel();
-        GetSongAccessInterface library = SongLibrary.getInstance();
         this.playBar = pb;
         this.playlistView = playlistView;
         this.initialiseValues(searchText, user);

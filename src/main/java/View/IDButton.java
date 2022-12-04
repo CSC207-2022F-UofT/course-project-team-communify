@@ -16,15 +16,6 @@ public class IDButton extends JButton {
     }
 
     /**
-     * @param id the ID to store
-     * @param text the text of the button
-     */
-    public IDButton(int id, String text){
-        super(text);
-        this.id = id;
-    }
-
-    /**
      * @param id the ID of the song or playlist
      */
     public void setId(int id) {
