@@ -7,6 +7,9 @@ import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests the register controller
+ */
 public class RegisterControllerTest {
     /**
      * Tests the register regular user use case call.

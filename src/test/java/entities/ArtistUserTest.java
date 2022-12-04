@@ -6,9 +6,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
+/**
+ * testing the artist user entity
+ */
 public class ArtistUserTest {
     final ArrayList<Song> songs = new ArrayList<>();
     final Song song = new Song(10,"admin",null, "pop", null, null, "uploader");
+
+    /**
+     * method to run before each test
+     */
     @Before
     public void init(){
         songs.add(song);

@@ -7,6 +7,9 @@ import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests the login use case
+ */
 public class LoginInteractorTest {
     /**
      * Tests the login success.
@@ -16,6 +19,10 @@ public class LoginInteractorTest {
         UserViewModel view = new UserViewModel(new InMemoryUser());
         Assertions.assertTrue(view.loginAction("User1","Password1", false));
     }
+
+    /**
+     * tests a successful artist login
+     */
     @Test
     public void testArtistSuccess(){
         LoginInputData artist = new LoginInputData("admin","admin", true);

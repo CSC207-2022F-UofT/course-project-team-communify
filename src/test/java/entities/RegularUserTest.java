@@ -7,13 +7,24 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+/**
+ * tests the regular user entity
+ */
 public class RegularUserTest {
     final ArrayList<Integer> playlistList = new ArrayList<>();
+
+    /**
+     * runs before each test
+     */
     @Before
     public void init(){
         playlistList.add(0);
         playlistList.add(1);
     }
+
+    /**
+     * runs after each test
+     */
     @After
     public void reset(){
         playlistList.clear();

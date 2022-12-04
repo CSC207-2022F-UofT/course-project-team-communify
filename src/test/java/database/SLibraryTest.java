@@ -46,16 +46,25 @@ public class SLibraryTest {
         Assertions.assertEquals(song.getID(), 2);
     }
 
+    /**
+     * tests the output of toString
+     */
     @Test
     public void testGetString(){
         Assertions.assertNotEquals(SongLibrary.getInstance().getString(), null);
     }
 
+    /**
+     * tests getting the string ID of an artist
+     */
     @Test
     public void testGetStringID(){
         Assertions.assertNotEquals(null, SongLibrary.getInstance().getString("metrofolk"));
     }
 
+    /**
+     * tests getting a username
+     */
     @Test
     public void testGetStringUsername(){
         ArrayList<Integer> ids = new ArrayList<>();
@@ -63,22 +72,34 @@ public class SLibraryTest {
         Assertions.assertNotEquals(null, SongLibrary.getInstance().getString(ids));
     }
 
+    /**
+     * tests getting a song ID
+     */
     @Test
     public void testGetSongID(){
         Assertions.assertNotEquals(null, SongLibrary.getInstance().getSong(2));
     }
 
+    /**
+     * tests the exists by string
+     */
     @Test
     public void testExistsString(){
         Assertions.assertFalse(SongLibrary.getInstance().exists("Not a Real Song", new String[]{"Not by This Person"}));
     }
 
+    /**
+     * tests the exists by SongDsData
+     */
     @Test
     public void testExistsSongDsData(){
         SongDsData song = SongLibrary.getInstance().getSong(2);
         Assertions.assertTrue(SongLibrary.getInstance().exists(song));
     }
 
+    /**
+     * tests the exists by ID
+     */
     @Test
     public void testExistsID(){
         Assertions.assertTrue(SongLibrary.getInstance().exists(2));

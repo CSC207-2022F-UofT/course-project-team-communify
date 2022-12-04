@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Tests for the user view model.
+ */
 public class UserVMTests {
     /**
      * testing if call play space works

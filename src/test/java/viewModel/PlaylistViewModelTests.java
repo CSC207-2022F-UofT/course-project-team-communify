@@ -7,8 +7,15 @@ import view.InMemoryPlaylist;
 import view.InMemoryUser;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
+/**
+ * Tests for the playlist view model.
+ */
 public class PlaylistViewModelTests {
 
+    /**
+     * tests making a new empty playlist
+     */
     @Test
     public void callNewPlaylistEmptyTest(){
         InMemoryUser user = new InMemoryUser();
@@ -20,6 +27,9 @@ public class PlaylistViewModelTests {
         Assertions.assertEquals(actual,expected);
     }
 
+    /**
+     * tests making a new playlist with a song
+     */
     @Test
     public void callNewPlaylistTest(){
         InMemoryUser user = new InMemoryUser();
@@ -34,6 +44,9 @@ public class PlaylistViewModelTests {
     }
 
 
+    /**
+     * tests adding a song
+     */
     @Test
     public void callAddSongTest(){
         InMemoryUser user = new InMemoryUser();
@@ -48,6 +61,9 @@ public class PlaylistViewModelTests {
         Assertions.assertEquals(actual,expected);
     }
 
+    /**
+     * tests removing a song
+     */
     @Test
     public void callRemoveSongTest(){
         InMemoryUser user = new InMemoryUser();

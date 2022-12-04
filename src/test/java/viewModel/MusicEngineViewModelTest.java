@@ -5,6 +5,9 @@ import view.InMemoryPlaylist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests written for the music engine view model.
+ */
 public class MusicEngineViewModelTest {
 
     /**

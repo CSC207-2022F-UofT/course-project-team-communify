@@ -1,7 +1,7 @@
 package useCase;
 
 import database.UserList;
-import inputData.RegisterArtistInputData;
+import inputData.RegisterInputData;
 import presenter.UserPresenter;
 import view.InMemoryUser;
 import viewModel.UserViewModel;
@@ -10,7 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RegisterArtistInteractorTest {
+/**
+ * tests the register use case
+ */
+public class RegisterInteractorTest {
     /**
      * Tests the register success.
      */
@@ -18,22 +21,21 @@ public class RegisterArtistInteractorTest {
     public void testRegularSuccess(){
         String username = "user" + ThreadLocalRandom.current().nextInt(0, 99999);
         String password = "password" + ThreadLocalRandom.current().nextInt(0, 99999);
-        String artistName = "artist" + ThreadLocalRandom.current().nextInt(0, 99999);
-        RegisterArtistInputData artist = new RegisterArtistInputData(username,password, artistName);
-        RegisterArtistInteractor registerInteractor = new RegisterArtistInteractor(new UserPresenter(new UserViewModel(
+        RegisterInputData regularUser = new RegisterInputData(username,password);
+        RegisterInteractor registerInteractor = new RegisterInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         if (UserList.getInstance().exists(username))
-            Assertions.assertFalse(registerInteractor.register(artist));
+            Assertions.assertFalse(registerInteractor.register(regularUser));
         else
-            Assertions.assertTrue(registerInteractor.register(artist));
+            Assertions.assertTrue(registerInteractor.register(regularUser));
     }
     /**
      * Tests the register failure due to invalid credential.
      */
     @Test
     public void testRegularFailure(){
-        RegisterArtistInputData regularUser = new RegisterArtistInputData("","bla","artist");
-        RegisterArtistInteractor registerInteractor = new RegisterArtistInteractor(new UserPresenter(new UserViewModel(
+        RegisterInputData regularUser = new RegisterInputData("","bla");
+        RegisterInteractor registerInteractor = new RegisterInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
         Assertions.assertFalse(registerInteractor.register(regularUser));
     }
@@ -42,9 +44,9 @@ public class RegisterArtistInteractorTest {
      */
     @Test
     public void testUserExist(){
-        RegisterArtistInputData artist = new RegisterArtistInputData("admin","bla","admin");
-        RegisterArtistInteractor registerInteractor = new RegisterArtistInteractor(new UserPresenter(new UserViewModel(
+        RegisterInputData regularUser = new RegisterInputData("UserRegular","bla");
+        RegisterInteractor registerInteractor = new RegisterInteractor(new UserPresenter(new UserViewModel(
                 new InMemoryUser()), new InMemoryUser()));
-        Assertions.assertFalse(registerInteractor.register(artist));
+        Assertions.assertFalse(registerInteractor.register(regularUser));
     }
 }

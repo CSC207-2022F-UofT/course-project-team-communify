@@ -4,8 +4,14 @@ import viewModel.SearchViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+/**
+ * Tests the search use case
+ */
 public class SearchInteractorTest {
 
+    /**
+     * Tests searching an exact title
+     */
     @Test
     public void testExactSearch(){
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -20,6 +26,9 @@ public class SearchInteractorTest {
         Assertions.assertEquals(1, count);
     }
 
+    /**
+     * tests searching an incomplete title
+     */
     @Test
     public void testSearch(){
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -34,6 +43,9 @@ public class SearchInteractorTest {
         Assertions.assertEquals(3, count);
     }
 
+    /**
+     * tests searching nothing
+     */
     @Test
     public void testEmptySearch(){
         SearchViewModel searchViewModel = new SearchViewModel();
@@ -46,6 +58,9 @@ public class SearchInteractorTest {
         Assertions.assertEquals(outputSongs.length, count);
     }
 
+    /**
+     * tests searching for a song that does not exist
+     */
     @Test
     public void testNotInDatabaseSearch(){
         SearchViewModel searchViewModel = new SearchViewModel();
