@@ -17,7 +17,7 @@ public class UploadSongTest {
 
         InMemoryArtistUser artist = new InMemoryArtistUser("admin", "admin");
         ArtistViewModel view = new ArtistViewModel(artist);
-        String filepath = "./src/test/java/UseCase/test_metadata.mp3";
+        String filepath = "./src/test/java/useCase/test_metadata.mp3";
         Assertions.assertTrue(view.upload(filepath));
     }
 
