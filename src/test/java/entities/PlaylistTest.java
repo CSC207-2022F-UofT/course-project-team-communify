@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.util.Objects;
 
-public class PlaylistTests {
+public class PlaylistTest {
     @Test
     public void testOwner(){
         RegularUser joe = new RegularUser("joe","mama");

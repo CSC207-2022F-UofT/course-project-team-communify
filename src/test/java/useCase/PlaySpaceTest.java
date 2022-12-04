@@ -15,7 +15,7 @@ import java.util.List;
  * test PlaySpaceInteractor
  */
 
-public class PlaySpaceTests {
+public class PlaySpaceTest {
 
     @Test
     public void testPlaySpaceOnSongExist(){

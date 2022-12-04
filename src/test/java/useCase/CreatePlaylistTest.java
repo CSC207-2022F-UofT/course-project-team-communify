@@ -14,10 +14,10 @@ import database.PlaylistLibrary;
 
 import java.util.Collection;
 
-public class CreatePlaylistTests {
+public class CreatePlaylistTest {
 
     @Test
-    public void CreatePlaylistMessageAndEmptyPlaylist(){
+    public void createPlaylistMessageAndEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testName = "test";
@@ -47,7 +47,7 @@ public class CreatePlaylistTests {
     }
 
     @Test
-    public void CreatePlaylistMessageAndNonEmptyPlaylist(){
+    public void createPlaylistMessageAndNonEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         String testName = "test";

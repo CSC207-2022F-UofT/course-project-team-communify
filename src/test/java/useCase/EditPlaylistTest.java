@@ -14,13 +14,13 @@ import org.junit.jupiter.api.Assertions;
 /**
  * Tests the edit playlist use cases.
  */
-public class EditPlaylistTests {
+public class EditPlaylistTest {
 
     /**
      * Tests removing a song and the message it returns.
      */
     @Test
-    public void RemoveSongAndMessage(){
+    public void removeSongAndMessage(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         int song = 10;
@@ -55,7 +55,7 @@ public class EditPlaylistTests {
      * Tests adding a song and the message it returns.
      */
     @Test
-    public void AddSongAndMessage(){
+    public void addSongAndMessage(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
         int song = 10;
