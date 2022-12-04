@@ -38,12 +38,12 @@ We remade the default Autograder GitHub Action because it was having some diffic
 
 ### Code Coverage Overview (To Complete) 
 Controllers: 
-- EditPlaylistController 33% TODO
+- EditPlaylistController 100%
 - EditSongController 100%
 - GetArtistSongController 75%
 - LoginController 100%
 - MusicEngineController 100%
-- NewPlayistController 33%
+- NewPlayistController 33% TODO
 - PlaylistController 0% TODO
 - RegisterArtistController 100%
 - RegisterController 100%
@@ -54,7 +54,7 @@ Database:
 All database files contain a createFile() called when the csv it uses does not exist. Cannot be tested easily.
 - PlaylistLibrary 90%
 - PlaylistDsData 100%
-- SongDsData 63%
+- SongDsData 63% TODO
 - SongLibrary 88%
 - UserDsData 100%
 - UserList 90%
@@ -64,8 +64,7 @@ Entities:
 - ArtistUser 100%
 - JPlayer 80%
 - MusicPlayer 92%
-- userFactory 100%
-- Playlist 89%
+- Playlist 94%
 - RegularUser 100%
 - Song 95%
 - User 100%
@@ -99,7 +98,7 @@ Output Datas:
 Presenters: 
 - ArtistPresenter 100%
 - EditSongPresenter 100%
-- GetArtistSongPresenter 66%
+- GetArtistSongPresenter 66% TODO
 - PlaylistPresenter 100%
 - SearchPresenter 100%
 - SongPresenter 100%
@@ -111,7 +110,7 @@ Use Cases:
 - CreatePlaylistInteractor 100%
 - EditPlaylistInteractor 100%
 - EditSongInteractor 100%
-- GetArtistSongInteractor 60%
+- GetArtistSongInteractor 60% TODO
 - LoginInteractor 100%
 - NextSongInteractor 100%
 - PauseSongInteractor 100%
@@ -126,9 +125,9 @@ Use Cases:
 
 
 View Models: 
-- ArtistViewModel 61%
-- MusicEngineViewModel 78%. what's missing is some action buttons like pause, skip, play, recommendations, and get sync.
-- PlaylistViewModel 41% TODO
+- ArtistViewModel 61% TODO
+- MusicEngineViewModel 78%
+- PlaylistViewModel 94%
 - SearchViewModel 100%
 - UserViewModel 85%
 
