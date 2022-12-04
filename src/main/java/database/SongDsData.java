@@ -11,14 +11,6 @@ public class SongDsData {
     private final Song song;
 
     /**
-     * Constructor to be called from use case code to communicate with database
-     * @param song song object to encapsulate
-     */
-    public SongDsData(Song song){
-        this.song = song;
-    }
-
-    /**
      * Constructor to be called from database to build from .csv
      * @param id integer id of the song
      * @param name string name of the song
@@ -74,7 +66,7 @@ public class SongDsData {
     /**
      * @param filepath the filepath representing the song
      */
-    void setFile(String filepath){
+    protected void setFile(String filepath){
         this.song.setFile(new File(filepath));
     }
 }
