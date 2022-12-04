@@ -1,8 +1,8 @@
-package Database;
+package database;
 
-import Entities.Playlist;
-import Entities.RegularUser;
-import Entities.Song;
+import entities.Playlist;
+import entities.RegularUser;
+import entities.Song;
 
 import java.io.File;
 import java.io.FileNotFoundException;

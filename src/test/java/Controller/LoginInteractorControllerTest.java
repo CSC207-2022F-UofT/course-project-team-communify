@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Presenter.UserPresenter;
-import View.InMemoryUser;
-import ViewModel.UserViewModel;
+import presenter.UserPresenter;
+import view.InMemoryUser;
+import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class LoginInteractorControllerTest {
         Assertions.assertFalse(loginController.login("User1","Password1",true));
     }
     /**
-     * Tests the login failure due to user existed as a artist user.
+     * Tests the login failure due to user existed as an artist user.
      */
     @Test
     public void testLoginExistentArtist(){

@@ -1,4 +1,4 @@
-package OutputBoundary;
+package outputBoundary;
 
 /**
  * Use case layer output boundary that allows communication between presenters and the edit playlist use case.

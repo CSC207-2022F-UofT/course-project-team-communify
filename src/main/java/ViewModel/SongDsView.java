@@ -1,4 +1,4 @@
-package ViewModel;
+package viewModel;
 
 import java.awt.image.BufferedImage;
 /**

@@ -1,5 +1,5 @@
-package OutputBoundary;
-import OutputData.EditSongOutputData;
+package outputBoundary;
+import outputData.EditSongOutputData;
 /**
  * Use case layer output boundary that allows communication between presenters and the edit song use case.
  */

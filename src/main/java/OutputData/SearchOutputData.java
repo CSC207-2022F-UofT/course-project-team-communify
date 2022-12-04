@@ -1,7 +1,7 @@
-package OutputData;
+package outputData;
 
 
-import Entities.Song;
+import entities.Song;
 
 import java.util.List;
 

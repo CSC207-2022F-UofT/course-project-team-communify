@@ -1,13 +1,13 @@
-package UseCase;
+package useCase;
 
-import Database.SongLibrary;
-import Entities.Song;
-import InputBoundary.SearchInputBoundary;
-import OutputBoundary.SearchOutputBoundary;
-import Database.GetSongAccessInterface;
-import InputData.SearchInputData;
-import Database.SongDsData;
-import OutputData.SearchOutputData;
+import database.SongLibrary;
+import entities.Song;
+import inputBoundary.SearchInputBoundary;
+import outputBoundary.SearchOutputBoundary;
+import database.GetSongAccessInterface;
+import inputData.SearchInputData;
+import database.SongDsData;
+import outputData.SearchOutputData;
 
 
 import java.util.ArrayList;

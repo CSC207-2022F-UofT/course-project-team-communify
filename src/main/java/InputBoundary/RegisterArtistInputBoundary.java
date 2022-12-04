@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.RegisterArtistInputData;
+import inputData.RegisterArtistInputData;
 /**
  * Use case layer input boundary that allows communication between outer layers and the register user use case.
  */

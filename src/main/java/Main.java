@@ -1,4 +1,4 @@
-import View.LaunchView;
+import view.LaunchView;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import javax.swing.*;

@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import ViewModel.PlaylistViewModel;
+import viewModel.PlaylistViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +11,13 @@ import java.awt.event.ActionListener;
  * view for making a new playlist
  */
 public class NewPlaylistInputDataView extends JFrame implements ActionListener {
-    private final int WIDTH = 640;
-    private final int HEIGHT = 300;
     private InMemoryUser owner;
     private JFrame jframe;
     private JPanel fieldPanel;
     private JButton createButton;
     private JButton homeButton;
     private JTextField playlistNameTextField;
-    private PlaylistView mainWindow;
+    private final PlaylistView mainWindow;
     private PlaylistViewModel viewModel;
 
     private int songID;
@@ -75,7 +73,9 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
     private void initializeValues(InMemoryUser owner) {
         this.owner = owner;
         this.jframe = new JFrame("Create Playlist");
-        this.jframe.setSize(this.WIDTH, this.HEIGHT);
+        int WIDTH = 640;
+        int HEIGHT = 300;
+        this.jframe.setSize(WIDTH, HEIGHT);
         this.jframe.setResizable(false);
         this.jframe.setLayout(null);
         this.jframe.setLocationRelativeTo(null);

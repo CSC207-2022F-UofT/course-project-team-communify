@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 /**
  * Abstract User entity to represent the multiple types of Users in the program.

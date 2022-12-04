@@ -1,8 +1,8 @@
-package Database;
+package database;
 
-import Entities.Playlist;
-import Entities.Song;
-import Entities.User;
+import entities.Playlist;
+import entities.Song;
+import entities.User;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

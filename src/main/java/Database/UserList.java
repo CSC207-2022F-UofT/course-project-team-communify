@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,9 +19,9 @@ public class UserList implements GetUserAccessInterface, SaveUserAccessInterface
     private static final UserList USER_LIST =
             new UserList("./src/main/java/Database/artists.csv",
                     "./src/main/java/Database/users.csv");
-    Map<String, UserDsData> userDatabase;
-    String regularFilepath;
-    String artistFilepath;
+    final Map<String, UserDsData> userDatabase;
+    final String regularFilepath;
+    final String artistFilepath;
 
     /**
      * Global static method to retrieve the single instance of the playlistLibrary.

@@ -1,10 +1,10 @@
-package InputData;
+package inputData;
 /**
  * Application Business Rules layer data structure for submitting song input to upload use cases.
  */
 public class UploadSongInputData {
-    String filepath;
-    String uploader;
+    final String filepath;
+    final String uploader;
     /**
      * @param filepath the path to the Song file to be uploaded
      * @param uploader the uploader of the Song

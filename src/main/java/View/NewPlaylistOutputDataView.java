@@ -1,6 +1,4 @@
-package View;
-
-import Entities.User;
+package view;
 
 import javax.swing.*;
 import java.awt.*;

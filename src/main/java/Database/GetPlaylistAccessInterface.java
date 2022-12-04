@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 /**
  * Application Business Rules layer interface for accessing playlist data.

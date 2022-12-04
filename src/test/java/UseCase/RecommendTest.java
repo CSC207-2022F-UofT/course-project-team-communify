@@ -1,11 +1,10 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputData.PlaylistInputData;
-import Presenter.SongPresenter;
-import View.InMemoryPlaylist;
-import ViewModel.MusicEngineControllerViewModel;
+import entities.MusicPlayer;
+import entities.Song;
+import inputData.PlaylistInputData;
+import presenter.SongPresenter;
+import view.InMemoryPlaylist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +28,7 @@ public class RecommendTest {
             genres.add(s.getGenre());
         }
 
-        RecommendSong recommend = new RecommendSong(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        RecommendSongInteractor recommend = new RecommendSongInteractor(new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         recommend.recommendation(p);
         Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }

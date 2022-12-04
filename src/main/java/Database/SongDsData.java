@@ -1,5 +1,5 @@
-package Database;
-import Entities.Song;
+package database;
+import entities.Song;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

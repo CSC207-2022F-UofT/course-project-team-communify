@@ -1,23 +1,21 @@
-package Controller;
+package controller;
 
-import InputBoundary.LoginInputBoundary;
-import InputData.LoginInputData;
-import OutputBoundary.LoginOutputBoundary;
-import UseCase.LoginInteractor;
+import inputBoundary.LoginInputBoundary;
+import inputData.LoginInputData;
+import outputBoundary.LoginOutputBoundary;
+import useCase.LoginInteractor;
 
 
 /**
  * Controller for login and register use cases.
  */
 public class LoginController {
-    LoginInputBoundary loginInteractor;
-    LoginOutputBoundary loginPresenter;
+    final LoginInputBoundary loginInteractor;
 
     /**
      * @param loginPresenter the presenter to return login info to the view
      */
     public LoginController(LoginOutputBoundary loginPresenter) {
-        this.loginPresenter = loginPresenter;
         this.loginInteractor = new LoginInteractor(loginPresenter);
     }
 

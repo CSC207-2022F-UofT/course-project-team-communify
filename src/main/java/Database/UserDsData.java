@@ -1,8 +1,8 @@
-package Database;
+package database;
 
-import Entities.Song;
-import Entities.User;
-import Entities.UserFactory;
+import entities.Song;
+import entities.User;
+import entities.UserFactory;
 
 import java.util.ArrayList;
 
@@ -22,10 +22,10 @@ public class UserDsData {
     }
 
     /**
-     * constructor for building an artistuser from the .csv database
+     * constructor for building an artist user from the .csv database
      * @param username string username of user
      * @param password string password of user
-     * @param artistName string artistname of user
+     * @param artistName string artist name of user
      * @param songs string array of song ids owned by the user
      */
     public UserDsData(String username, String password, String artistName, String[] songs){
@@ -44,7 +44,7 @@ public class UserDsData {
     }
 
     /**
-     * constructor for building a regularuser from the .csv database
+     * constructor for building a regular user from the .csv database
      * @param username string username of the user
      * @param password string password of the user
      * @param playlists string array of the playlist IDs belonging to the user

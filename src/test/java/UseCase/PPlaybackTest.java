@@ -1,14 +1,13 @@
 // TRUE ASSERTIONS ARE COMMENTED OUT FOR THE AUTOGRADER
 // UNCOMMENT THEM TO TEST LOCALLY
 
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputData.PlaylistInputData;
-import Presenter.SongPresenter;
-import View.InMemoryPlaylist;
-import ViewModel.MusicEngineControllerViewModel;
+import entities.MusicPlayer;
+import entities.Song;
+import inputData.PlaylistInputData;
+import presenter.SongPresenter;
+import view.InMemoryPlaylist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ public class PPlaybackTest {
     public void testPlay(){
         MusicPlayer.getInstance().close();
         PlaylistInputData p = new PlaylistInputData(0);
-        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
 
         play.play(p);
         Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), new PlaylistInputData(0).getSongs().get(0));
@@ -47,7 +46,7 @@ public class PPlaybackTest {
         songs.add(song2);
 
         PlaylistInputData p = new PlaylistInputData("", songs);
-        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        PlayPlaylistInteractor play = new PlayPlaylistInteractor(new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
 
         play.play(p);
         play.stopQueue();

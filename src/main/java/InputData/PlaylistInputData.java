@@ -1,8 +1,8 @@
-package InputData;
+package inputData;
 
-import Database.GetPlaylistAccessInterface;
-import Database.PlaylistLibrary;
-import Entities.Song;
+import database.GetPlaylistAccessInterface;
+import database.PlaylistLibrary;
+import entities.Song;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

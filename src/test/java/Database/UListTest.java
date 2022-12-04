@@ -1,7 +1,7 @@
-package Database;
+package database;
 
-import Entities.RegularUser;
-import Entities.User;
+import entities.RegularUser;
+import entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class UListTest {
     public void testExists(){
         SaveUserAccessInterface list = UserList.getInstance();
 
-        // there is a User1
+        // there is an User1
         Assertions.assertTrue(list.exists("User1"));
 
         // there is no Muhammed

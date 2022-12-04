@@ -1,6 +1,6 @@
-package OutputData;
+package outputData;
 
-import Entities.Song;
+import entities.Song;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

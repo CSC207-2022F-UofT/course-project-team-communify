@@ -1,7 +1,7 @@
-package Database;
+package database;
 
-import Entities.Playlist;
-import Entities.RegularUser;
+import entities.Playlist;
+import entities.RegularUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

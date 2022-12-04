@@ -1,7 +1,7 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
+import entities.MusicPlayer;
+import entities.Song;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

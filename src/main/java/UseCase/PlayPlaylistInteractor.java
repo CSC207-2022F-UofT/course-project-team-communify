@@ -1,12 +1,12 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputBoundary.PlayPlaylistInputBoundary;
-import InputBoundary.PlaySongInputBoundary;
-import InputData.PlaylistInputData;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
+import entities.MusicPlayer;
+import entities.Song;
+import inputBoundary.PlayPlaylistInputBoundary;
+import inputBoundary.PlaySongInputBoundary;
+import inputData.PlaylistInputData;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class PlayPlaylistInteractor implements PlayPlaylistInputBoundary {
     private boolean queue;
     private final Object sync;
     private int nextSong;
-    SongOutputBoundary presenter;
+    final SongOutputBoundary presenter;
     private PlaylistInputData data;
 
     /**
@@ -60,7 +60,7 @@ public class PlayPlaylistInteractor implements PlayPlaylistInputBoundary {
 
     /**
      * Dequeues the playlist, such that after the currently playing song ends the playlist
-     * will not continue. Must be called whenever audio source is switched (eg. user plays new song,
+     * will not continue. Must be called whenever audio source is switched (e.g. user plays new song,
      * different playlist, or space).
      */
     @Override

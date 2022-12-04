@@ -1,6 +1,4 @@
-package View;
-
-import ViewModel.MusicEngineControllerViewModel;
+package view;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,7 +20,7 @@ public class PlayBar implements ActionListener {
     private static final ImageIcon FWD = new ImageIcon("src/main/java/View/assets/button/fwd.png");
     private static final ImageIcon PREV = new ImageIcon("src/main/java/View/assets/button/prev.png");
     private JPanel panel;
-    private MusicEngineControllerViewModel viewModel;
+    private viewModel.MusicEngineViewModel viewModel;
     private final Object sync;
     private JButton prev;
     private JButton pause;
@@ -35,7 +33,7 @@ public class PlayBar implements ActionListener {
      * @param vm the view model containing the song data
      * @param sync the object to sync the play bar on
      */
-    public PlayBar(MusicEngineControllerViewModel vm, Object sync) {
+    public PlayBar(viewModel.MusicEngineViewModel vm, Object sync) {
         this.sync = sync;
         initializeComponents(vm);
         waitForSong();
@@ -44,7 +42,7 @@ public class PlayBar implements ActionListener {
     /**
      * @param vm the view model containing the song data
      */
-    private void initializeComponents(MusicEngineControllerViewModel vm){
+    private void initializeComponents(viewModel.MusicEngineViewModel vm){
 
         Dimension DEFAULT_DIMENSION = new Dimension(50, 50);
 

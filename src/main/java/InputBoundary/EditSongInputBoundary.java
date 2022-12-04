@@ -1,5 +1,5 @@
-package InputBoundary;
-import InputData.UploadSongInputData;
+package inputBoundary;
+import inputData.UploadSongInputData;
 /**
  * Use case layer input boundary that allows communication between outer layers and the edit song use case.
  */

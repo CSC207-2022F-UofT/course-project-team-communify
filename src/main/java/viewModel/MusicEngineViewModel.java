@@ -1,9 +1,9 @@
-package ViewModel;
+package viewModel;
 
-import Controller.MusicEngineController;
-import OutputData.SongOutputData;
-import Presenter.SongPresenter;
-import Presenter.SpacePresenter;
+import controller.MusicEngineController;
+import outputData.SongOutputData;
+import presenter.SongPresenter;
+import presenter.SpacePresenter;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
  * The interface adapters layer view model which acts as a gateway between the view and the music playing related
  * parts of the program.
  */
-public class MusicEngineControllerViewModel {
+public class MusicEngineViewModel {
     private final MusicEngineController musicEngineController;
     private SongOutputData playing;
     private String SpaceAddedPopupText;
@@ -25,7 +25,7 @@ public class MusicEngineControllerViewModel {
     /**
      * @param p an empty playlist to create empty songs
      */
-    public MusicEngineControllerViewModel(PlaylistDsView p){
+    public MusicEngineViewModel(PlaylistDsView p){
         this.musicEngineController = new MusicEngineController(new SpacePresenter(this),
                 new SongPresenter(this));
         this.sync = new Object();

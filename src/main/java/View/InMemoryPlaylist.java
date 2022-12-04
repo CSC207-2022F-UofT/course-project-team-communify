@@ -1,7 +1,7 @@
-package View;
+package view;
 
-import ViewModel.PlaylistDsView;
-import ViewModel.SongDsView;
+import viewModel.PlaylistDsView;
+import viewModel.SongDsView;
 
 import java.util.ArrayList;
 /**

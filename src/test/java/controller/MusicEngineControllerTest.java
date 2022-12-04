@@ -1,13 +1,12 @@
-package Controller;
+package controller;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputData.PlaylistInputData;
-import InputData.SongInputData;
-import Presenter.SongPresenter;
-import Presenter.SpacePresenter;
-import View.InMemoryPlaylist;
-import ViewModel.MusicEngineControllerViewModel;
+import entities.MusicPlayer;
+import entities.Song;
+import inputData.PlaylistInputData;
+import inputData.SongInputData;
+import presenter.SongPresenter;
+import presenter.SpacePresenter;
+import view.InMemoryPlaylist;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Tests the music engine controller.
  */
-public class EngineTest {
+public class MusicEngineControllerTest {
     /**
      * Tests the recommendation use case call.
      */
@@ -23,8 +22,8 @@ public class EngineTest {
     public void testRecommend(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         PlaylistInputData p = new PlaylistInputData(0);
 
         ArrayList<String> genres = new ArrayList<>();
@@ -46,8 +45,8 @@ public class EngineTest {
     public void testPlay(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         SongInputData s = new SongInputData(2);
 
         controller.playSong(2);
@@ -63,8 +62,8 @@ public class EngineTest {
     public void testPause(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         controller.playSong(2);
 
         controller.pauseSong();
@@ -81,8 +80,8 @@ public class EngineTest {
     public void testPlayPlaylist(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         PlaylistInputData p = new PlaylistInputData(0);
 
         controller.playPlaylist(0);
@@ -98,8 +97,8 @@ public class EngineTest {
     public void testPlayNext(){
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         PlaylistInputData p = new PlaylistInputData(0);
 
         controller.playPlaylist(0);
@@ -112,8 +111,8 @@ public class EngineTest {
     @Test
     public void testPlaySpace(){
         MusicPlayer mp = MusicPlayer.getInstance();
-        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())),
-                new SongPresenter(new MusicEngineControllerViewModel(new InMemoryPlaylist())));
+        MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
+                new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         controller.playSpace();
         // Assertions.assertTrue(mp.isPlaying());
     }

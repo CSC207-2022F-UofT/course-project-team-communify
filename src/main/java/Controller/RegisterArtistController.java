@@ -1,22 +1,20 @@
-package Controller;
+package controller;
 
-import InputBoundary.RegisterArtistInputBoundary;
-import InputData.RegisterArtistInputData;
-import OutputBoundary.LoginOutputBoundary;
-import UseCase.RegisterArtistInteractor;
+import inputBoundary.RegisterArtistInputBoundary;
+import inputData.RegisterArtistInputData;
+import outputBoundary.LoginOutputBoundary;
+import useCase.RegisterArtistInteractor;
 
 /**
  * Controller for login and register use cases.
  */
 public class RegisterArtistController {
-    RegisterArtistInputBoundary registerInteractor;
-    LoginOutputBoundary registerPresenter;
+    final RegisterArtistInputBoundary registerInteractor;
 
     /**
      * @param registerPresenter the presenter for register output data
      */
     public RegisterArtistController(LoginOutputBoundary registerPresenter) {
-        this.registerPresenter = registerPresenter;
         this.registerInteractor = new RegisterArtistInteractor(registerPresenter);
     }
     /**

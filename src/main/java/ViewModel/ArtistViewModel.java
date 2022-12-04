@@ -1,17 +1,17 @@
-package ViewModel;
-import Controller.EditSongController;
-import Controller.GetArtistSongController;
-import InputData.UploadSongInputData;
-import InputData.GetArtistSongInputData;
-import Presenter.EditSongPresenter;
-import Presenter.GetArtistSongPresenter;
+package viewModel;
+import controller.EditSongController;
+import controller.GetArtistSongController;
+import inputData.UploadSongInputData;
+import inputData.GetArtistSongInputData;
+import presenter.EditSongPresenter;
+import presenter.GetArtistSongPresenter;
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the artist related
  * parts of the program.
  */
 public class ArtistViewModel {
 
-    private ArtistUserDsView currentArtist;
+    private final ArtistUserDsView currentArtist;
     private final EditSongController editSongController;
     private final GetArtistSongController getArtistSongController;
 
@@ -32,8 +32,8 @@ public class ArtistViewModel {
      * @return true iff song was successfully uploaded.
      */
     public boolean upload(String filepath){
-        UploadSongInputData inputdata = new UploadSongInputData(filepath, this.currentArtist.getUsername());
-        this.editSongController.upload(inputdata);
+        UploadSongInputData inputData = new UploadSongInputData(filepath, this.currentArtist.getUsername());
+        this.editSongController.upload(inputData);
         return this.isUploaded;
     }
 
@@ -49,8 +49,8 @@ public class ArtistViewModel {
      * @return String[][] of all songs.
      */
     public String[][] getArtistSongs(){
-        GetArtistSongInputData inputdata = new GetArtistSongInputData(this.currentArtist.getUsername());
-        this.getArtistSongController.getSong(inputdata);
+        GetArtistSongInputData inputData = new GetArtistSongInputData(this.currentArtist.getUsername());
+        this.getArtistSongController.getSong(inputData);
         return this.songTable;
     }
 

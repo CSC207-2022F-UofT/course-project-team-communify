@@ -1,8 +1,8 @@
-package ViewModel;
+package viewModel;
 
-import Controller.SearchController;
-import OutputBoundary.SearchOutputBoundary;
-import Presenter.SearchPresenter;
+import controller.SearchController;
+import outputBoundary.SearchOutputBoundary;
+import presenter.SearchPresenter;
 
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the search related

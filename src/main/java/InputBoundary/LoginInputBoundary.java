@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.LoginInputData;
+import inputData.LoginInputData;
 /**
  * Use case layer input boundary that allows communication between outer layers and the login use case.
  */

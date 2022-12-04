@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import javazoom.jl.decoder.Bitstream;
 import javazoom.jl.decoder.BitstreamException;

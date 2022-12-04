@@ -1,6 +1,6 @@
-package OutputBoundary;
+package outputBoundary;
 
-import OutputData.LoginOutputData;
+import outputData.LoginOutputData;
 
 /**
  * Use case layer output boundary that allows communication between presenters and the login use case.

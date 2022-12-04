@@ -1,4 +1,4 @@
-package Database;
+package database;
 import java.util.Collection;
 /**
  * Application Business Rules layer interface for accessing song data.

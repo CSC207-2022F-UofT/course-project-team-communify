@@ -1,11 +1,11 @@
-package ViewModel;
+package viewModel;
 
-import Controller.EditPlaylistController;
-import Controller.NewPlaylistController;
-import Presenter.PlaylistPresenter;
-import UseCase.CreatePlaylistInteractor;
-import UseCase.EditPlaylistInteractor;
-import View.InMemoryUser;
+import controller.EditPlaylistController;
+import controller.NewPlaylistController;
+import presenter.PlaylistPresenter;
+import useCase.CreatePlaylistInteractor;
+import useCase.EditPlaylistInteractor;
+import view.InMemoryUser;
 
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the playlist related

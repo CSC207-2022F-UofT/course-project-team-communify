@@ -1,16 +1,18 @@
-package OutputData;
+package outputData;
 
-import Entities.*;
-import InputData.PlaylistInputData;
+import entities.*;
+import inputData.PlaylistInputData;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Application Business Rules layer data structure for receiving login output from use cases.
  */
 public class LoginOutputData {
     private final User loggedIn;
     private final boolean isArtist;
-    private ArrayList<PlaylistInputData> playlists;
+    private final List<PlaylistInputData> playlists;
     private String artistName;
     private boolean correctType;
 
@@ -66,7 +68,7 @@ public class LoginOutputData {
     /**
      * @return the playlists of the user
      */
-    public ArrayList<PlaylistInputData> getPlaylists() {
+    public List<PlaylistInputData> getPlaylists() {
         return playlists;
     }
 

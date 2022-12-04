@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import ViewModel.SongDsView;
+import viewModel.SongDsView;
 
 import java.awt.image.BufferedImage;
 /**

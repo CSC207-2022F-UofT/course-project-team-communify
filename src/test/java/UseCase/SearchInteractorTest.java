@@ -1,6 +1,6 @@
-package UseCase;
+package useCase;
 
-import ViewModel.SearchViewModel;
+import viewModel.SearchViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

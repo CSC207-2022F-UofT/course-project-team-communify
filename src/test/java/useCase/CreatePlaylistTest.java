@@ -1,27 +1,27 @@
-package UseCase;
+package useCase;
 
-import Database.PlaylistDsData;
-import Database.SongLibrary;
-import Entities.Song;
-import Presenter.PlaylistPresenter;
-import View.InMemoryUser;
-import ViewModel.PlaylistViewModel;
+import database.PlaylistDsData;
+import database.SongLibrary;
+import entities.Song;
+import presenter.PlaylistPresenter;
+import view.InMemoryUser;
+import viewModel.PlaylistViewModel;
 import org.junit.Test;
-import InputData.NewPlaylistInputData;
+import inputData.NewPlaylistInputData;
 import org.junit.jupiter.api.Assertions;
 
-import Database.PlaylistLibrary;
+import database.PlaylistLibrary;
 
 import java.util.Collection;
 
-public class CreatePlaylistTests {
+public class CreatePlaylistTest {
 
     @Test
-    public void CreatePlaylistMessageAndEmptyPlaylist(){
+    public void createPlaylistMessageAndEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
-        String testname = "test";
-        NewPlaylistInputData inputData = new NewPlaylistInputData(testname,user.getUsername());
+        String testName = "test";
+        NewPlaylistInputData inputData = new NewPlaylistInputData(testName,user.getUsername());
         PlaylistViewModel testViewModel = new PlaylistViewModel();
         PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
@@ -35,7 +35,7 @@ public class CreatePlaylistTests {
         boolean actual2 = false;
         boolean expected2 = true;
         for(PlaylistDsData playlist:PlaylistLibrary){
-            if (playlist.getPlaylist().getName().equals(testname)){
+            if (playlist.getPlaylist().getName().equals(testName)){
                 if(playlist.getPlaylist().getSongList().isEmpty()){
                     actual2 = true;
                     break;
@@ -47,13 +47,13 @@ public class CreatePlaylistTests {
     }
 
     @Test
-    public void CreatePlaylistMessageAndNonEmptyPlaylist(){
+    public void createPlaylistMessageAndNonEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
-        String testname = "test";
+        String testName = "test";
         int songID = 10;
         Song s = SongLibrary.getInstance().getSong(songID).getSong();
-        NewPlaylistInputData inputData = new NewPlaylistInputData(testname,songID,user.getUsername());
+        NewPlaylistInputData inputData = new NewPlaylistInputData(testName,songID,user.getUsername());
         PlaylistViewModel testViewModel = new PlaylistViewModel();
         PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         CreatePlaylistInteractor testInteractor = new CreatePlaylistInteractor(testPresenter);
@@ -67,7 +67,7 @@ public class CreatePlaylistTests {
         boolean actual2 = false;
         boolean expected2 = true;
         for(PlaylistDsData playlist:PlaylistLibrary){
-            if (playlist.getPlaylist().getName().equals(testname)){
+            if (playlist.getPlaylist().getName().equals(testName)){
                 if(!playlist.getPlaylist().getSongList().isEmpty()){
                     actual2 = true;
                     break;

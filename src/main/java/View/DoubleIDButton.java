@@ -1,21 +1,10 @@
-package View;
+package view;
 import javax.swing.*;
 public class DoubleIDButton extends JButton{
 
     private int playlistID;
     private int songID;
 
-    /**
-     *
-     * @param playlistID ID of playlist
-     * @param songID ID of song
-     */
-
-    public DoubleIDButton(int playlistID, int songID) {
-        super();
-        this.playlistID = playlistID;
-        this.songID = songID;
-    }
     /**
      *
      * @param playlistID ID of playlist

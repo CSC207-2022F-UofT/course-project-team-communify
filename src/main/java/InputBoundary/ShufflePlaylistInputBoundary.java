@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.PlaylistInputData;
+import inputData.PlaylistInputData;
 
 /**
  * Interface for the shufflePlaylist to implement for the use case

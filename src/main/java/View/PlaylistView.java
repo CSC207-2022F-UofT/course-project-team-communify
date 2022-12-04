@@ -1,8 +1,7 @@
-package View;
+package view;
 
-import ViewModel.PlaylistDsView;
-import ViewModel.MusicEngineControllerViewModel;
-import ViewModel.SearchViewModel;
+import viewModel.PlaylistDsView;
+import viewModel.SearchViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,19 +26,19 @@ public class PlaylistView extends JFrame implements ActionListener {
     private JButton newPlaylistButton;
     private JLabel title;
     private JTextField searchBar;
-    private MusicEngineControllerViewModel musicEngineControllerViewModel;
+    private viewModel.MusicEngineViewModel musicEngineViewModel;
     private SearchViewModel searchViewModel;
     private PlaylistPanelView playlistPanel;
     private PlayBar playBar;
 
-    private ImageIcon icon;
-    private ImageIcon logoImg;
-    private ImageIcon logoSmall;
+    private final ImageIcon icon;
+    private final ImageIcon logoImg;
+    private final ImageIcon logoSmall;
     private JLabel logo;
 
-    private int DEFAULT_WIDTH = 40;
-    private int DEFAULT_HEIGHT = 40;
-    private int DEFAULT_KERNING = 20;
+    private final int DEFAULT_WIDTH = 40;
+    private final int DEFAULT_HEIGHT = 40;
+    private final int DEFAULT_KERNING = 20;
 
 
     /**
@@ -63,7 +62,7 @@ public class PlaylistView extends JFrame implements ActionListener {
      * @param vm old view model
      * @param pb the current play bar
      */
-    public PlaylistView(InMemoryUser user, MusicEngineControllerViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
+    public PlaylistView(InMemoryUser user, viewModel.MusicEngineViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
         this.icon = icon;
         this.logoImg = logoImg;
         this.logoSmall = new ImageIcon(logoImg.getImage().getScaledInstance((int)(logoImg.getIconWidth()*0.7), (int)(logoImg.getIconHeight()*0.7), Image.SCALE_SMOOTH));
@@ -79,8 +78,8 @@ public class PlaylistView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.spaceButton){
-            if (this.musicEngineControllerViewModel.getMediaType() != 2){
-                this.musicEngineControllerViewModel.callPlaySpace();
+            if (this.musicEngineViewModel.getMediaType() != 2){
+                this.musicEngineViewModel.callPlaySpace();
             }
             else{
                 this.createSpacePopup();
@@ -89,7 +88,7 @@ public class PlaylistView extends JFrame implements ActionListener {
             String searchText = this.searchBar.getText();
             this.searchViewModel.search(searchText);
             this.jframe.dispose();
-            new SearchOutputView(searchText, this.user, this.musicEngineControllerViewModel, this.playBar, icon, logoImg,this);
+            new SearchOutputView(searchText, this.user, this.musicEngineViewModel, this.playBar, icon, logoImg,this);
         }
         else if(e.getSource() == this.newPlaylistButton){
             new NewPlaylistInputDataView(this.user, this);
@@ -108,8 +107,8 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.jframe.setResizable(false);
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.musicEngineControllerViewModel = new MusicEngineControllerViewModel(new InMemoryPlaylist());
-        this.playBar = new PlayBar(musicEngineControllerViewModel, musicEngineControllerViewModel.getSync());
+        this.musicEngineViewModel = new viewModel.MusicEngineViewModel(new InMemoryPlaylist());
+        this.playBar = new PlayBar(musicEngineViewModel, musicEngineViewModel.getSync());
 
         this.searchViewModel = new SearchViewModel();
     }
@@ -119,7 +118,7 @@ public class PlaylistView extends JFrame implements ActionListener {
      * @param vm the old view model
      * @param pb the current play bar
      */
-    private void initializeValues(InMemoryUser user, MusicEngineControllerViewModel vm, PlayBar pb){
+    private void initializeValues(InMemoryUser user, viewModel.MusicEngineViewModel vm, PlayBar pb){
         this.user = user;
 
         this.jframe = new JFrame(this.user.getUsername() + "'s Dashboard");
@@ -128,7 +127,7 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setIconImage(this.icon.getImage());
 
-        this.musicEngineControllerViewModel = vm;
+        this.musicEngineViewModel = vm;
         this.playBar = pb;
         this.playBar.update();
 
@@ -154,7 +153,7 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.setUpPlaylistButton();
 
         // MIDDLE BAR
-        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel);
 
         // Set up panel
         this.panel = new JPanel();
@@ -247,7 +246,7 @@ public class PlaylistView extends JFrame implements ActionListener {
     public void updateUser(PlaylistDsView currPlaylist) {
         this.user.addPlaylist(currPlaylist);
         this.panel.remove(this.playlistPanel.getPane());
-        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineControllerViewModel);
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel);
         this.panel.add(this.playlistPanel.getPane());
     }
 

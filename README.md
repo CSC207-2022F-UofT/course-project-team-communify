@@ -1,9 +1,9 @@
 ## Communify
 <p float="left">
-  <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/View/assets/logo_red_full.png" width="200" />
+  <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/View/assets/logo_red_full.png" width="200" alt="Communify logo"/>
 </p>
 
-Communify is a music platform that aims to collaborize music streaming – allowing users to join live “space” radioes and recommend songs to "space" radios. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
+Communify is a music platform that aims to make music streaming more collaborative – allowing users to join live “space” radios and recommend songs to "space" radios. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
 
 
 ## Running the project
@@ -21,20 +21,20 @@ It's pretty easy!
 - you can, of course, listen to the space. if there are songs "added", those will be played first, but it will randomly play songs if there isn't anything queued (like a radio!). you can't skip or pause songs when listening to the radio, though.
 
 ## Feature Developers
-| Name  | Responsibility |
-| :-------------: | :-------------: |
-| Rafael | Recommendation Algorithm |
-| Manya  | Search Engine  |
-| Nick | Playlist creation and curating |
-| Christina| Artist Dashboard  |
-| Rohan | Audio System |
-| Sarah | Space (listening to & adding to) |
-| Jessica | Login/Register |
+|   Name    |          Responsibility          |
+|:---------:|:--------------------------------:|
+|  Rafael   |     Recommendation Algorithm     |
+|   Manya   |          Search Engine           |
+|   Nick    |  Playlist creation and curating  |
+| Christina |         Artist Dashboard         |
+|   Rohan   |           Audio System           |
+|   Sarah   | Space (listening to & adding to) |
+|  Jessica  |          Login/Register          |
 
 ## Comments to the TAs!
 
 ### Autograder & GitHub Actions
-We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all of the tests will pass on a local repo when run individually. 
+We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all the tests will pass on a local repo when run individually. 
 
 ### Code Coverage Overview (To Complete) 
 Controllers: 
@@ -132,9 +132,9 @@ View Models:
 - UserViewModel 85%
 
 ### Design Patterns Used
-- singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
-- a facade, removing the Swing code from Main.java
-- a factory, creating both types of user (regular and Artist)
+- Singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
+- A facade, removing the Swing code from Main.java
+- A factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
 - Single Responsibility Principle: each of our classes have a single, defined purpose.

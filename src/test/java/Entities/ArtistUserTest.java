@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 
 import org.junit.Before;
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class ArtistUserTest {
-    ArrayList<Song> songs = new ArrayList<>();
-    Song song = new Song(10,"admin",null, "pop", null, null, "uploader");
+    final ArrayList<Song> songs = new ArrayList<>();
+    final Song song = new Song(10,"admin",null, "pop", null, null, "uploader");
     @Before
     public void init(){
         songs.add(song);
@@ -17,7 +17,7 @@ public class ArtistUserTest {
      * Tests songs getter.
      */
     @Test
-    public void testgetSongs(){
+    public void testGetSongs(){
         ArtistUser artistUser = new ArtistUser("artistName","username", "password", songs);
         Assertions.assertEquals(artistUser.getSongs(), songs);
     }

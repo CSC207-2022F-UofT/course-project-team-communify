@@ -1,13 +1,13 @@
-package UseCase;
+package useCase;
 
-import Database.SongDsData;
-import Database.SongLibrary;
-import Entities.MusicPlayer;
-import InputBoundary.PlaySpaceInputBoundary;
-import InputData.PlaySpaceInputData;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
-import OutputData.SongOutputData;
+import database.SongDsData;
+import database.SongLibrary;
+import entities.MusicPlayer;
+import inputBoundary.PlaySpaceInputBoundary;
+import inputData.PlaySpaceInputData;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
+import outputData.SongOutputData;
 
 import java.util.*;
 
@@ -51,7 +51,7 @@ public class PlaySpaceInteractor implements PlaySpaceInputBoundary {
         PlaySongInteractor playSongInteractor = new PlaySongInteractor(this.songOutputBoundary);
 
         playSongInteractor.playSong(new SongInputData(songToPlay.getSong()));
-        // play the song; this will also call presenter to update playbar
+        // play the song; this will also call presenter to update play bar
     }
 
     /**
@@ -72,7 +72,6 @@ public class PlaySpaceInteractor implements PlaySpaceInputBoundary {
     /**
      * @return a random song from the songLibrary singleton.
      */
-    @Override
     public SongOutputData pickRandomSong(){
         ArrayList<SongDsData> possibleSongs = new ArrayList<>(this.songLibrary.getLibrary());
         int randomIndex = new Random().nextInt(possibleSongs.size());

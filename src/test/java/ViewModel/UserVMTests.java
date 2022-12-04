@@ -1,7 +1,7 @@
-package ViewModel;
+package viewModel;
 
-import View.InMemoryArtistUser;
-import View.InMemoryUser;
+import view.InMemoryArtistUser;
+import view.InMemoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class UserVMTests {
      * testing if call play space works
      */
     @Test
-    public void testregisterAction(){
+    public void testRegisterAction(){
         String username = "user" + ThreadLocalRandom.current().nextInt(0, 99999);
         String password = "password" + ThreadLocalRandom.current().nextInt(0, 99999);
         UserViewModel vm = new UserViewModel(new InMemoryUser());
@@ -22,11 +22,11 @@ public class UserVMTests {
      * testing if call play space works
      */
     @Test
-    public void testregisterArtistAction(){
+    public void testRegisterArtistAction(){
         String username = "user" + ThreadLocalRandom.current().nextInt(0, 99999);
-        String artistname = "artist" + ThreadLocalRandom.current().nextInt(0, 99999);
+        String artistName = "artist" + ThreadLocalRandom.current().nextInt(0, 99999);
         String password = "password" + ThreadLocalRandom.current().nextInt(0, 99999);
         UserViewModel vm = new UserViewModel(new InMemoryArtistUser("", ""));
-        Assertions.assertTrue(vm.registerAction(username,password, true, artistname));
+        Assertions.assertTrue(vm.registerAction(username,password, true, artistName));
     }
 }

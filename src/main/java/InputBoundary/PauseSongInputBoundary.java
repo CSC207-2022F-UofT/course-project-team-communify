@@ -1,4 +1,4 @@
-package InputBoundary;
+package inputBoundary;
 /**
  * Use case layer input boundary that allows communication between outer layers and the pause use case.
  */

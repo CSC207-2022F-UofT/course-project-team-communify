@@ -1,6 +1,6 @@
-package OutputBoundary;
+package outputBoundary;
 
-import OutputData.SearchOutputData;
+import outputData.SearchOutputData;
 
 /**
  * Use case layer output boundary that allows communication between presenters and the search use case.

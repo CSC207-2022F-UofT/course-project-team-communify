@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class RegularUserTest {
-    ArrayList<Integer> playlistList = new ArrayList<>();
+    final ArrayList<Integer> playlistList = new ArrayList<>();
     @Before
     public void init(){
         playlistList.add(0);
@@ -22,7 +22,7 @@ public class RegularUserTest {
      * Tests adding playlists.
      */
     @Test
-    public void testaddPlaylist(){
+    public void testAddPlaylist(){
         //creating user with playlist
         RegularUser regularUser = new RegularUser("UserR","Password2", playlistList);
         //create the other playlist and its owner
@@ -39,7 +39,7 @@ public class RegularUserTest {
      * Tests getting playlists.
      */
     @Test
-    public void testgetPlaylistList(){
+    public void testGetPlaylistList(){
         RegularUser regularUser = new RegularUser("User1","Password1", playlistList);
         Assertions.assertSame(regularUser.getPlaylistList(), playlistList);
     }
