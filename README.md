@@ -42,7 +42,7 @@ We remade the default Autograder GitHub Action because it was having some diffic
 Controllers: 
 - EditPlaylistController 100%
 - EditSongController 100%
-- GetArtistSongController 75%
+- GetArtistSongController 100%
 - LoginController 100%
 - MusicEngineController 100%
 - NewPlayistController 33% TODO
@@ -75,7 +75,7 @@ Entities:
 
 Input Datas: 
 - EditPlaylistInputData 100%
-- GetArtistSongInputData 0% TODO
+- GetArtistSongInputData 100%
 - LoginInputData 100%
 - NewPlaylistInputData 100%
 - PlaylistInputData 100%
@@ -90,7 +90,7 @@ Input Datas:
 Output Datas: 
 - EditPlaylistOutputData 100%
 - EditSongOutputData 100%
-- GetArtistSongOutputData 0% TODO
+- GetArtistSongOutputData 100%
 - LoginOutputData 100%
 - NewPlaylistOutputData 100%
 - SearchOutputData 100%
@@ -100,7 +100,7 @@ Output Datas:
 Presenters: 
 - ArtistPresenter 100%
 - EditSongPresenter 100%
-- GetArtistSongPresenter 66% TODO
+- GetArtistSongPresenter 100%
 - PlaylistPresenter 100%
 - SearchPresenter 100%
 - SongPresenter 100%
@@ -112,7 +112,7 @@ Use Cases:
 - CreatePlaylistInteractor 100%
 - EditPlaylistInteractor 100%
 - EditSongInteractor 100%
-- GetArtistSongInteractor 60% TODO
+- GetArtistSongInteractor 100%
 - LoginInteractor 100%
 - NextSongInteractor 100%
 - PauseSongInteractor 100%
@@ -127,7 +127,7 @@ Use Cases:
 
 
 View Models: 
-- ArtistViewModel 61% TODO
+- ArtistViewModel 100%
 - MusicEngineViewModel 78%
 - PlaylistViewModel 94%
 - SearchViewModel 100%
