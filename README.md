@@ -11,6 +11,7 @@ It's pretty easy!
 1. Download the files
 2. Run src/main/java/Main.java
 3. Have fun!
+
 *Note:* certain functions of the program are _very_ slow - we are working on this. Give the program a few seconds when logging-in, or adding/removing songs from playlists.
 
 ## Features
