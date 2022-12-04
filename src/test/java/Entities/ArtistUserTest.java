@@ -17,7 +17,7 @@ public class ArtistUserTest {
      * Tests songs getter.
      */
     @Test
-    public void testgetSongs(){
+    public void testGetSongs(){
         ArtistUser artistUser = new ArtistUser("artistName","username", "password", songs);
         Assertions.assertEquals(artistUser.getSongs(), songs);
     }

@@ -32,8 +32,8 @@ public class ArtistViewModel {
      * @return true iff song was successfully uploaded.
      */
     public boolean upload(String filepath){
-        UploadSongInputData inputdata = new UploadSongInputData(filepath, this.currentArtist.getUsername());
-        this.editSongController.upload(inputdata);
+        UploadSongInputData inputData = new UploadSongInputData(filepath, this.currentArtist.getUsername());
+        this.editSongController.upload(inputData);
         return this.isUploaded;
     }
 

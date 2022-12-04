@@ -36,7 +36,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
     /**
      * Global static method to retrieve the single instance of songLibrary.
-     * @return The instance of songlibrary.
+     * @return The instance of songLibrary.
      */
     public static SongLibrary getInstance(){
         return SONG_LIBRARY;
@@ -78,7 +78,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
             uploadQueue.clear();
 
-            // Update songlibrary.csv
+            // Update songLibrary.csv
             BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true));
             for(SongDsData song: library.values()){
                 bw.write(song.buildToWrite());

@@ -60,7 +60,7 @@ public class PlayPlaylistInteractor implements PlayPlaylistInputBoundary {
 
     /**
      * Dequeues the playlist, such that after the currently playing song ends the playlist
-     * will not continue. Must be called whenever audio source is switched (eg. user plays new song,
+     * will not continue. Must be called whenever audio source is switched (e.g. user plays new song,
      * different playlist, or space).
      */
     @Override

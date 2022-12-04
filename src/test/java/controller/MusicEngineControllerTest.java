@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Tests the music engine controller.
  */
-public class EngineTest {
+public class MusicEngineControllerTest {
     /**
      * Tests the recommendation use case call.
      */

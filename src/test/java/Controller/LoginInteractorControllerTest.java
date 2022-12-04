@@ -17,7 +17,7 @@ public class LoginInteractorControllerTest {
         Assertions.assertFalse(loginController.login("User1","Password1",true));
     }
     /**
-     * Tests the login failure due to user existed as a artist user.
+     * Tests the login failure due to user existed as an artist user.
      */
     @Test
     public void testLoginExistentArtist(){

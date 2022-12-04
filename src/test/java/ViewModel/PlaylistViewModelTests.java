@@ -13,9 +13,9 @@ public class PlaylistViewModelTests {
     public void CallNewPlaylistEmptyTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User1");
-        String testname = "test";
+        String testName = "test";
         PlaylistViewModel testViewModel = new PlaylistViewModel();
-        String actual = testViewModel.callNewEmptyPlaylistUseCase(user,testname);
+        String actual = testViewModel.callNewEmptyPlaylistUseCase(user,testName);
         String expected = "Playlist created!";
         Assertions.assertEquals(actual,expected);
     }
@@ -38,7 +38,7 @@ public class PlaylistViewModelTests {
     public void CallAddSongTest(){
         InMemoryUser user = new InMemoryUser();
         user.setUsername("User2");
-        String testname = "tes2";
+        String testName = "tes2";
         int songID = 10;
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);

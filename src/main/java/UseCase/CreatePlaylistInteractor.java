@@ -25,27 +25,27 @@ public class CreatePlaylistInteractor implements NewPlaylistInputBoundary {
         this.userDatabase = UserList.getInstance();
     }
     /**
-     * @param newplaylistInputData holds necessary data to instantiate a new playlist
+     * @param newPlaylistInputData holds necessary data to instantiate a new playlist
      * if hasFirstSong() is false, then newPlaylist() will instantiate an empty playlist and vice versa if it's value
      * is true
      */
-    public void newPlaylist(NewPlaylistInputData newplaylistInputData) {
+    public void newPlaylist(NewPlaylistInputData newPlaylistInputData) {
         Playlist playlist;
         String successMessage;
-        if (!newplaylistInputData.hasFirstSong()) {
-            playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
-                    newplaylistInputData.getOwner());
-            newplaylistInputData.getOwner().addPlaylist(playlist);
+        if (!newPlaylistInputData.hasFirstSong()) {
+            playlist = new Playlist(newPlaylistInputData.getId(), newPlaylistInputData.getPlaylistName(),
+                    newPlaylistInputData.getOwner());
+            newPlaylistInputData.getOwner().addPlaylist(playlist);
             successMessage = "Playlist created!";
         }
         else{
-            playlist = new Playlist(newplaylistInputData.getId(), newplaylistInputData.getPlaylistName(),
-                    newplaylistInputData.getOwner(),
-                     newplaylistInputData.getFirstSong());
-            newplaylistInputData.getOwner().addPlaylist(playlist);
-            successMessage = "Playlist created with "+ newplaylistInputData.getFirstSong().getName()+"!";
+            playlist = new Playlist(newPlaylistInputData.getId(), newPlaylistInputData.getPlaylistName(),
+                    newPlaylistInputData.getOwner(),
+                     newPlaylistInputData.getFirstSong());
+            newPlaylistInputData.getOwner().addPlaylist(playlist);
+            successMessage = "Playlist created with "+ newPlaylistInputData.getFirstSong().getName()+"!";
         }
-        newplaylistInputData.getOwner().addPlaylist(playlist);
+        newPlaylistInputData.getOwner().addPlaylist(playlist);
         // save the newly created playlist to the RegularUser's playlist list
         if (!library.exists(playlist.getId())){
             this.library.savePlaylist(new PlaylistDsData(playlist));

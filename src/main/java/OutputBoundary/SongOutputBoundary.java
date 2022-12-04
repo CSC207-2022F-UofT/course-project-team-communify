@@ -8,7 +8,7 @@ import outputData.SongOutputData;
 public interface SongOutputBoundary {
 
     /**
-     * update the playbar when a song starts to play
+     * update the play bar when a song starts to play
      * @param songOutputData the song that is being played
      */
     void songPlayed(SongOutputData songOutputData);

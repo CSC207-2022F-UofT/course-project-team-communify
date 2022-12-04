@@ -22,7 +22,7 @@ public class RegularUserTest {
      * Tests adding playlists.
      */
     @Test
-    public void testaddPlaylist(){
+    public void testAddPlaylist(){
         //creating user with playlist
         RegularUser regularUser = new RegularUser("UserR","Password2", playlistList);
         //create the other playlist and its owner
@@ -39,7 +39,7 @@ public class RegularUserTest {
      * Tests getting playlists.
      */
     @Test
-    public void testgetPlaylistList(){
+    public void testGetPlaylistList(){
         RegularUser regularUser = new RegularUser("User1","Password1", playlistList);
         Assertions.assertSame(regularUser.getPlaylistList(), playlistList);
     }

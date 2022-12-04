@@ -51,7 +51,7 @@ public class PlaySpaceInteractor implements PlaySpaceInputBoundary {
         PlaySongInteractor playSongInteractor = new PlaySongInteractor(this.songOutputBoundary);
 
         playSongInteractor.playSong(new SongInputData(songToPlay.getSong()));
-        // play the song; this will also call presenter to update playbar
+        // play the song; this will also call presenter to update play bar
     }
 
     /**

@@ -17,7 +17,7 @@ public class UListTest {
     public void testExists(){
         SaveUserAccessInterface list = UserList.getInstance();
 
-        // there is a User1
+        // there is an User1
         Assertions.assertTrue(list.exists("User1"));
 
         // there is no Muhammed

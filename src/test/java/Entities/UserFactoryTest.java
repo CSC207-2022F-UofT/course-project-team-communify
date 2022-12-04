@@ -8,7 +8,7 @@ public class UserFactoryTest {
      * Tests the creating a regular user.
      */
     @Test
-    public void testcreateRegularUser(){
+    public void testCreateRegularUser(){
         UserFactory userFactory = new UserFactory();
         Assertions.assertNotNull(userFactory.createRegularUser("User1", "password"));
     }
