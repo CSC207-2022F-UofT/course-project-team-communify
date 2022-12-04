@@ -1,14 +1,14 @@
-package UseCase;
+package useCase;
 
-import Database.PlaylistLibrary;
-import Database.SongLibrary;
-import Entities.Playlist;
-import Entities.Song;
-import InputData.EditPlaylistInputData;
-import Presenter.PlaylistPresenter;
-import View.InMemoryPlaylist;
-import View.InMemoryUser;
-import ViewModel.PlaylistViewModel;
+import database.PlaylistLibrary;
+import database.SongLibrary;
+import entities.Playlist;
+import entities.Song;
+import inputData.EditPlaylistInputData;
+import presenter.PlaylistPresenter;
+import view.InMemoryPlaylist;
+import view.InMemoryUser;
+import viewModel.PlaylistViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 /**

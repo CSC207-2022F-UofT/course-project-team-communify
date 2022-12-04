@@ -1,10 +1,10 @@
-package UseCase;
-import Database.SaveSongAccessInterface;
-import Database.SongLibrary;
-import InputBoundary.GetArtistSongInputBoundary;
-import InputData.GetArtistSongInputData;
-import OutputBoundary.GetArtistSongOutputBoundary;
-import OutputData.GetArtistSongOutputData;
+package useCase;
+import database.SaveSongAccessInterface;
+import database.SongLibrary;
+import inputBoundary.GetArtistSongInputBoundary;
+import inputData.GetArtistSongInputData;
+import outputBoundary.GetArtistSongOutputBoundary;
+import outputData.GetArtistSongOutputData;
 
 /**
  * Application business rules use case class to get an artists songs.

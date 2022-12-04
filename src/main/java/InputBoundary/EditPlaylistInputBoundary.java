@@ -1,5 +1,5 @@
-package InputBoundary;
-import InputData.EditPlaylistInputData;
+package inputBoundary;
+import inputData.EditPlaylistInputData;
 /**
  * Use case layer input boundary that allows communication between outer layers and the edit playlist use case.
  */

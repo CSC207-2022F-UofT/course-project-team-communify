@@ -1,14 +1,14 @@
-package UseCase;
+package useCase;
 
-import Database.SaveUserAccessInterface;
-import Database.UserDsData;
-import Database.UserList;
-import Entities.User;
-import Entities.UserFactory;
-import InputBoundary.RegisterArtistInputBoundary;
-import InputData.RegisterArtistInputData;
-import OutputBoundary.LoginOutputBoundary;
-import OutputData.LoginOutputData;
+import database.SaveUserAccessInterface;
+import database.UserDsData;
+import database.UserList;
+import entities.User;
+import entities.UserFactory;
+import inputBoundary.RegisterArtistInputBoundary;
+import inputData.RegisterArtistInputData;
+import outputBoundary.LoginOutputBoundary;
+import outputData.LoginOutputData;
 /**
  * Application business rules use case class to register an artist.
  */

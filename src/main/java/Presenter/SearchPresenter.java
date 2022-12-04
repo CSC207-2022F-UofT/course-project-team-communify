@@ -1,9 +1,9 @@
-package Presenter;
+package presenter;
 
-import Entities.Song;
-import OutputBoundary.SearchOutputBoundary;
-import OutputData.SearchOutputData;
-import ViewModel.SearchViewModel;
+import entities.Song;
+import outputBoundary.SearchOutputBoundary;
+import outputData.SearchOutputData;
+import viewModel.SearchViewModel;
 
 import java.util.List;
 

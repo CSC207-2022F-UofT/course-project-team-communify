@@ -4,7 +4,7 @@
  * of a package we used - we did not write it, and we do not intend for it to be marked.
  */
 
-package Entities;
+package entities;
 
 /*
  * 11/19/04		1.0 moved to LGPL.
@@ -51,18 +51,18 @@ public class JPlayer
     /**
      * The current frame number.
      */
-    private int frame = 0;
+    private final int frame = 0;
 
     /**
      * The MPEG audio bitstream.
      */
     // javac blank final bug.
-    /*final*/ private Bitstream		bitstream;
+    /*final*/ private final Bitstream		bitstream;
 
     /**
      * The MPEG audio decoder.
      */
-    /*final*/ private Decoder		decoder;
+    /*final*/ private final Decoder		decoder;
 
     /**
      * The AudioDevice the audio samples are written to.

@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
-import InputBoundary.SearchInputBoundary;
-import InputData.SearchInputData;
-import OutputBoundary.SearchOutputBoundary;
-import UseCase.SearchInteractor;
+import inputBoundary.SearchInputBoundary;
+import inputData.SearchInputData;
+import outputBoundary.SearchOutputBoundary;
+import useCase.SearchInteractor;
 /**
  * Interface adapters layer controller for search use case.
  */

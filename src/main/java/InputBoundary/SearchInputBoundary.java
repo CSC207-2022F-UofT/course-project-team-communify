@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.SearchInputData;
+import inputData.SearchInputData;
 /**
  * Use case layer input boundary that allows communication between outer layers and the search use case.
  */

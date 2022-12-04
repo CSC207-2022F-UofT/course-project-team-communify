@@ -1,9 +1,9 @@
-package InputData;
-import Database.*;
-import Entities.Playlist;
-import Entities.RegularUser;
-import Entities.Song;
-import Entities.User;
+package inputData;
+import database.*;
+import entities.Playlist;
+import entities.RegularUser;
+import entities.Song;
+import entities.User;
 
 /**
  * Application Business Rules layer data structure for submitting playlist input to use cases.

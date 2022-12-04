@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Presenter.UserPresenter;
-import View.InMemoryUser;
-import ViewModel.UserViewModel;
+import presenter.UserPresenter;
+import view.InMemoryUser;
+import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

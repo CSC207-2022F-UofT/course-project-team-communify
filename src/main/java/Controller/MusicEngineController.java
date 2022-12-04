@@ -1,12 +1,12 @@
-package Controller;
+package controller;
 
-import InputBoundary.*;
-import InputData.PlaySpaceInputData;
-import InputData.PlaylistInputData;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
-import OutputBoundary.SpacePlayedOutputBoundary;
-import UseCase.*;
+import inputBoundary.*;
+import inputData.PlaySpaceInputData;
+import inputData.PlaylistInputData;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
+import outputBoundary.SpacePlayedOutputBoundary;
+import useCase.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -114,7 +114,7 @@ public class MusicEngineController {
     public void playRecommendation(int id){
         stop();
         PlaylistInputData data = new PlaylistInputData(id);
-        RecommendationInputBoundary recommend = new RecommendSong(songPresenter);
+        RecommendationInputBoundary recommend = new RecommendSongInteractor(songPresenter);
         recommend.recommendation(data);
         this.playing = SONG;
     }

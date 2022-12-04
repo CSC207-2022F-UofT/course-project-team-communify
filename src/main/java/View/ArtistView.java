@@ -1,8 +1,8 @@
-package View;
+package view;
 
 
-import Database.SongLibrary;
-import ViewModel.ArtistViewModel;
+import database.SongLibrary;
+import viewModel.ArtistViewModel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

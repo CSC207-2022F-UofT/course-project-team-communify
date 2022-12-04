@@ -1,7 +1,7 @@
-package Presenter;
-import OutputBoundary.EditSongOutputBoundary;
-import OutputData.EditSongOutputData;
-import ViewModel.ArtistViewModel;
+package presenter;
+import outputBoundary.EditSongOutputBoundary;
+import outputData.EditSongOutputData;
+import viewModel.ArtistViewModel;
 /**
  * Interface adapters layer presenter for displaying edit song use case output.
  */

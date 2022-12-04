@@ -1,16 +1,16 @@
-package Controller;
+package controller;
 
-import InputBoundary.GetArtistSongInputBoundary;
-import InputData.GetArtistSongInputData;
-import OutputBoundary.GetArtistSongOutputBoundary;
-import UseCase.GetArtistSongInteractor;
+import inputBoundary.GetArtistSongInputBoundary;
+import inputData.GetArtistSongInputData;
+import outputBoundary.GetArtistSongOutputBoundary;
+import useCase.GetArtistSongInteractor;
 /**
  * Interface adapters layer controller for get artists use case.
  */
 public class GetArtistSongController {
 
-    GetArtistSongOutputBoundary getArtistSongPresenter;
-    GetArtistSongInputBoundary getSong;
+    final GetArtistSongOutputBoundary getArtistSongPresenter;
+    final GetArtistSongInputBoundary getSong;
 
     /**
      * @param getArtistSongPresenter the presenter to return artist data to the view

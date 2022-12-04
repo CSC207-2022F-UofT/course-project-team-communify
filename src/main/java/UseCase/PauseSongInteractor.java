@@ -1,7 +1,7 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import InputBoundary.PauseSongInputBoundary;
+import entities.MusicPlayer;
+import inputBoundary.PauseSongInputBoundary;
 
 /**
  * Application business rules use case class to pause the playing song, or resume if paused.

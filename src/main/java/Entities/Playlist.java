@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import java.util.LinkedList;
 
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Playlist {
     private String name;
     private final int id;
-    private User owner;
+    private final User owner;
     private final LinkedList<Song> songList;
 
     /**

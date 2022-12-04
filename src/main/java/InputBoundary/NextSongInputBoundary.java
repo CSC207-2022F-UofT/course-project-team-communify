@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.PlaylistInputData;
+import inputData.PlaylistInputData;
 
 /**
  * Use case layer input boundary that allows communication between outer layers and the next song use case.

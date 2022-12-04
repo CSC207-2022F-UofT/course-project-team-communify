@@ -1,7 +1,7 @@
-package ViewModel;
+package viewModel;
 
-import Entities.MusicPlayer;
-import View.InMemoryPlaylist;
+import entities.MusicPlayer;
+import view.InMemoryPlaylist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

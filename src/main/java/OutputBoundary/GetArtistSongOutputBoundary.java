@@ -1,5 +1,5 @@
-package OutputBoundary;
-import OutputData.GetArtistSongOutputData;
+package outputBoundary;
+import outputData.GetArtistSongOutputData;
 /**
  * Use case layer output boundary that allows communication between presenters and the artist songs use case.
  */

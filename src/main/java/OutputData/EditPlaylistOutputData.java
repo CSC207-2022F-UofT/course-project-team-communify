@@ -1,7 +1,7 @@
-package OutputData;
+package outputData;
 
-import Entities.Playlist;
-import Entities.Song;
+import entities.Playlist;
+import entities.Song;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

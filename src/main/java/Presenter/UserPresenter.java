@@ -1,13 +1,13 @@
-package Presenter;
+package presenter;
 
-import InputData.PlaylistInputData;
-import InputData.SongInputData;
-import OutputBoundary.LoginOutputBoundary;
-import OutputData.LoginOutputData;
-import ViewModel.PlaylistDsView;
-import ViewModel.SongDsView;
-import ViewModel.UserDsView;
-import ViewModel.UserViewModel;
+import inputData.PlaylistInputData;
+import inputData.SongInputData;
+import outputBoundary.LoginOutputBoundary;
+import outputData.LoginOutputData;
+import viewModel.PlaylistDsView;
+import viewModel.SongDsView;
+import viewModel.UserDsView;
+import viewModel.UserViewModel;
 
 /**
  * Interface adapters layer presenter for displaying login use case output.

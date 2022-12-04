@@ -1,31 +1,30 @@
-package Presenter;
+package presenter;
 
-import OutputBoundary.SpacePlayedOutputBoundary;
-import ViewModel.MusicEngineControllerViewModel;
+import outputBoundary.SpacePlayedOutputBoundary;
 
 /**
  * presenter for the space use cases.
  */
 public class SpacePresenter implements SpacePlayedOutputBoundary {
 
-    private final MusicEngineControllerViewModel musicEngineControllerViewModel;
+    private final viewModel.MusicEngineViewModel musicEngineViewModel;
 
     /**
      * constructor.
-     * @param musicEngineControllerViewModel the view model for outputting music related output
+     * @param musicEngineViewModel the view model for outputting music related output
      */
-    public SpacePresenter(MusicEngineControllerViewModel musicEngineControllerViewModel){
-        this.musicEngineControllerViewModel = musicEngineControllerViewModel;
+    public SpacePresenter(viewModel.MusicEngineViewModel musicEngineViewModel){
+        this.musicEngineViewModel = musicEngineViewModel;
     }
 
     @Override
     public void addedToSpace(String songName){
-        this.musicEngineControllerViewModel.UpdateSpacePopupText(songName + " has been added to space!");
+        this.musicEngineViewModel.UpdateSpacePopupText(songName + " has been added to space!");
     }
 
     @Override
     public void notAddedToSpace(String songName) {
-        this.musicEngineControllerViewModel.UpdateSpacePopupText(songName + " is already in the space!");
+        this.musicEngineViewModel.UpdateSpacePopupText(songName + " is already in the space!");
     }
 
 }

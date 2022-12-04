@@ -1,11 +1,11 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputBoundary.PlaySongInputBoundary;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
-import OutputData.SongOutputData;
+import entities.MusicPlayer;
+import entities.Song;
+import inputBoundary.PlaySongInputBoundary;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
+import outputData.SongOutputData;
 
 /**
  * Application business rules use case class to play a song.

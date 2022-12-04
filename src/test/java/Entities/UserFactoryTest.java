@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

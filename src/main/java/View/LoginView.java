@@ -4,9 +4,9 @@
 // IF IT IS_ARTIST THEN THE LOGIN INFO IS SENT TO THE ARTIST CREATION USE CASE
 // IF IT IS NOT IS_ARTIST THEN THE LOGIN INFO IS SENT TO THE USER CREATION USE CASE
 
-package View;
+package view;
 
-import ViewModel.UserViewModel;
+import viewModel.UserViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,14 +16,14 @@ import java.awt.event.ActionListener;
  */
 public class LoginView extends JFrame implements ActionListener {
     private UserViewModel viewModel;
-    private boolean register;
+    private final boolean register;
     private JFrame jframe;
     private JButton submitButton;
     private JCheckBox isArtistCheckBox;
     private JTextField usernameTextField;
     private JTextField passwordTextField;
-    private ImageIcon icon;
-    private ImageIcon logoImg;
+    private final ImageIcon icon;
+    private final ImageIcon logoImg;
     private JTextField artistTextField;
     private JButton backButton;
     private JLabel logo;

@@ -1,4 +1,4 @@
-package ViewModel;
+package viewModel;
 /**
  * Interface adapters layer interface for accessing InMemoryPlaylist data objects.
  */

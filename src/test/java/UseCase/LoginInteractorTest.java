@@ -1,9 +1,9 @@
-package UseCase;
+package useCase;
 
-import InputData.LoginInputData;
-import Presenter.UserPresenter;
-import View.InMemoryUser;
-import ViewModel.UserViewModel;
+import inputData.LoginInputData;
+import presenter.UserPresenter;
+import view.InMemoryUser;
+import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

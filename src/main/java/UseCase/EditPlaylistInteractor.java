@@ -1,10 +1,10 @@
-package UseCase;
-import Database.*;
-import Entities.Song;
-import InputBoundary.EditPlaylistInputBoundary;
-import InputData.EditPlaylistInputData;
-import OutputBoundary.NewPlaylistOutputBoundary;
-import OutputData.EditPlaylistOutputData;
+package useCase;
+import database.*;
+import entities.Song;
+import inputBoundary.EditPlaylistInputBoundary;
+import inputData.EditPlaylistInputData;
+import outputBoundary.NewPlaylistOutputBoundary;
+import outputData.EditPlaylistOutputData;
 
 /**
  * Application business rules use case class to edit a playlist.

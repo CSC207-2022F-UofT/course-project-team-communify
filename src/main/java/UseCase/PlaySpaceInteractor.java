@@ -1,13 +1,13 @@
-package UseCase;
+package useCase;
 
-import Database.SongDsData;
-import Database.SongLibrary;
-import Entities.MusicPlayer;
-import InputBoundary.PlaySpaceInputBoundary;
-import InputData.PlaySpaceInputData;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
-import OutputData.SongOutputData;
+import database.SongDsData;
+import database.SongLibrary;
+import entities.MusicPlayer;
+import inputBoundary.PlaySpaceInputBoundary;
+import inputData.PlaySpaceInputData;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
+import outputData.SongOutputData;
 
 import java.util.*;
 

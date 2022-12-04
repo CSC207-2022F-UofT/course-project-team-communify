@@ -1,8 +1,8 @@
-package InputData;
+package inputData;
 
-import Database.GetSongAccessInterface;
-import Database.SongLibrary;
-import Entities.Song;
+import database.GetSongAccessInterface;
+import database.SongLibrary;
+import entities.Song;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

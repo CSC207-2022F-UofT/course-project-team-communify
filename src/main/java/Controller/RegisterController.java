@@ -1,17 +1,17 @@
-package Controller;
+package controller;
 
-import InputBoundary.RegisterInputBoundary;
-import OutputBoundary.LoginOutputBoundary;
-import InputData.RegisterInputData;
-import UseCase.RegisterInteractor;
+import inputBoundary.RegisterInputBoundary;
+import outputBoundary.LoginOutputBoundary;
+import inputData.RegisterInputData;
+import useCase.RegisterInteractor;
 
 
 /**
  * Controller for register use cases.
  */
 public class RegisterController {
-    RegisterInputBoundary registerInteractor;
-    LoginOutputBoundary registerPresenter;
+    final RegisterInputBoundary registerInteractor;
+    final LoginOutputBoundary registerPresenter;
 
     /**
      * @param registerPresenter the presenter for register output data

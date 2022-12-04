@@ -1,13 +1,13 @@
-package Presenter;
-import OutputBoundary.NewPlaylistOutputBoundary;
-import OutputBoundary.EditPlaylistOutputBoundary;
-import OutputData.EditPlaylistOutputData;
-import OutputData.NewPlaylistOutputData;
-import View.InMemoryUser;
-import ViewModel.PlaylistDsView;
-import ViewModel.SongDsView;
-import ViewModel.UserDsView;
-import ViewModel.PlaylistViewModel;
+package presenter;
+import outputBoundary.NewPlaylistOutputBoundary;
+import outputBoundary.EditPlaylistOutputBoundary;
+import outputData.EditPlaylistOutputData;
+import outputData.NewPlaylistOutputData;
+import view.InMemoryUser;
+import viewModel.PlaylistDsView;
+import viewModel.SongDsView;
+import viewModel.UserDsView;
+import viewModel.PlaylistViewModel;
 
 import java.awt.image.BufferedImage;
 import java.util.List;

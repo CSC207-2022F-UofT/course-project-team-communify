@@ -1,4 +1,4 @@
-package InputData;
+package inputData;
 /**
  * Application Business Rules layer data structure for submitting register input to use cases.
  */

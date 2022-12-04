@@ -1,16 +1,10 @@
-package Entities;
-import Entities.Playlist;
-import Entities.RegularUser;
+package entities;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Objects;
 
 public class PlaylistTests {
-    @Before
-    public void setUp(){
-    }
-
     @Test
     public void testOwner(){
         RegularUser joe = new RegularUser("joe","mama");
@@ -42,7 +36,7 @@ public class PlaylistTests {
     }
     @Test public void getID(){
         RegularUser joe = new RegularUser("joe","mama");
-        Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);;
+        Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         int expected = 787;
         int actual = joesPlaylist.getId();
         assert expected == actual;

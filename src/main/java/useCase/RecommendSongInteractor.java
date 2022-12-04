@@ -1,13 +1,13 @@
-package UseCase;
+package useCase;
 
-import Database.GetSongAccessInterface;
-import Database.SongDsData;
-import Database.SongLibrary;
-import Entities.Song;
-import InputBoundary.RecommendationInputBoundary;
-import InputData.PlaylistInputData;
-import InputData.SongInputData;
-import OutputBoundary.SongOutputBoundary;
+import database.GetSongAccessInterface;
+import database.SongDsData;
+import database.SongLibrary;
+import entities.Song;
+import inputBoundary.RecommendationInputBoundary;
+import inputData.PlaylistInputData;
+import inputData.SongInputData;
+import outputBoundary.SongOutputBoundary;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,14 +16,14 @@ import java.util.Random;
  * Application Business Rules layer Use Case Interactor for generating a recommendation based on
  * a given Playlist.
  */
-public class RecommendSong implements RecommendationInputBoundary {
+public class RecommendSongInteractor implements RecommendationInputBoundary {
     private final GetSongAccessInterface library;
     private final SongOutputBoundary out;
 
     /**
      * @param out the recommendation output presenter
      */
-    public RecommendSong(SongOutputBoundary out){
+    public RecommendSongInteractor(SongOutputBoundary out){
         this.library = SongLibrary.getInstance();
         this.out = out;
     }

@@ -1,7 +1,7 @@
-package UseCase;
+package useCase;
 
-import View.InMemoryArtistUser;
-import ViewModel.ArtistViewModel;
+import view.InMemoryArtistUser;
+import viewModel.ArtistViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 /**

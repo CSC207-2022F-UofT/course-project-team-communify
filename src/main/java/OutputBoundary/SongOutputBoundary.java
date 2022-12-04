@@ -1,6 +1,6 @@
-package OutputBoundary;
+package outputBoundary;
 
-import OutputData.SongOutputData;
+import outputData.SongOutputData;
 
 /**
  * Use case layer output boundary that allows communication between presenters and the play song use case.

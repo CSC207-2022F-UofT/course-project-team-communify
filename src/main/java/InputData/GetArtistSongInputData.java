@@ -1,10 +1,10 @@
-package InputData;
+package inputData;
 /**
  * Application Business Rules layer data structure for submitting artist song input to use cases.
  */
 public class GetArtistSongInputData {
 
-    String username;
+    final String username;
 
     /**
      * @param username the username of the artist

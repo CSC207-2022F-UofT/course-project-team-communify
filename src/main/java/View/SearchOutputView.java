@@ -1,9 +1,8 @@
-package View;
+package view;
 
-import Database.*;
-import ViewModel.MusicEngineControllerViewModel;
-import ViewModel.PlaylistViewModel;
-import ViewModel.SearchViewModel;
+import database.*;
+import viewModel.PlaylistViewModel;
+import viewModel.SearchViewModel;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
@@ -28,10 +27,8 @@ public class SearchOutputView extends JFrame implements ActionListener {
     private JComboBox<String> comboBox;
     private String[] ids;
     private SearchViewModel searchViewModel;
-    private final MusicEngineControllerViewModel musicEngineControllerViewModel;
+    private final viewModel.MusicEngineViewModel musicEngineViewModel;
     private final PlaylistViewModel playlistViewModel;
-
-    private final GetSongAccessInterface library;
 
     private final PlayBar playBar;
 
@@ -47,13 +44,13 @@ public class SearchOutputView extends JFrame implements ActionListener {
      * @param engineVm the view model containing the song data
      * @param pb the current play bar object
      */
-    public SearchOutputView(String searchText, InMemoryUser user, MusicEngineControllerViewModel engineVm,
+    public SearchOutputView(String searchText, InMemoryUser user, viewModel.MusicEngineViewModel engineVm,
                             PlayBar pb, ImageIcon icon, ImageIcon logoImg, PlaylistView playlistView){
         this.icon = icon;
         this.logoImg = logoImg;
-        this.musicEngineControllerViewModel = engineVm;
+        this.musicEngineViewModel = engineVm;
         this.playlistViewModel = new PlaylistViewModel();
-        this.library = SongLibrary.getInstance();
+        GetSongAccessInterface library = SongLibrary.getInstance();
         this.playBar = pb;
         this.playlistView = playlistView;
         this.initialiseValues(searchText, user);
@@ -170,11 +167,11 @@ public class SearchOutputView extends JFrame implements ActionListener {
             System.out.println(ids[row]);
 
             if (item.equals("Add to Space")) {
-                String PopupMessage = this.musicEngineControllerViewModel.callAddToSpace(Integer.parseInt(ids[row]));
+                String PopupMessage = this.musicEngineViewModel.callAddToSpace(Integer.parseInt(ids[row]));
                 this.createPopup(PopupMessage);
             }
             if (this.comboBox.getSelectedItem().toString().equals("Play Song")) {
-                this.musicEngineControllerViewModel.playSongAction(Integer.parseInt(ids[row]));
+                this.musicEngineViewModel.playSongAction(Integer.parseInt(ids[row]));
             }
             if (this.comboBox.getSelectedItem().toString().contains("Add to ")) {
                 String playlistToAddTo = this.comboBox.getSelectedItem().toString().
@@ -205,7 +202,7 @@ public class SearchOutputView extends JFrame implements ActionListener {
         }
         if (e.getSource() == this.homeButton) {
             this.jframe.dispose();
-            new PlaylistView(this.user, this.musicEngineControllerViewModel, this.playBar, this.icon, this.logoImg);
+            new PlaylistView(this.user, this.musicEngineViewModel, this.playBar, this.icon, this.logoImg);
         }
     }
     /**

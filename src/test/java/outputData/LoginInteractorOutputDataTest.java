@@ -1,13 +1,12 @@
-package OuputData;
+package outputData;
 
-import Entities.ArtistUser;
+import entities.ArtistUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import OutputData.LoginOutputData;
 
 public class LoginInteractorOutputDataTest {
-    ArtistUser artistUser = new ArtistUser("Artsit", "artsit","pass");
-    LoginOutputData artist = new LoginOutputData(artistUser,true);
+    final ArtistUser artistUser = new ArtistUser("Artsit", "artsit","pass");
+    final LoginOutputData artist = new LoginOutputData(artistUser,true);
     /**
      * Tests the getting artist name.
      */

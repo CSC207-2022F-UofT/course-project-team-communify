@@ -1,4 +1,4 @@
-package View;
+package view;
 import javax.swing.*;
 public class DoubleIDButton extends JButton{
 

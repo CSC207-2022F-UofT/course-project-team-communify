@@ -1,12 +1,12 @@
-package UseCase;
+package useCase;
 
-import Database.LoginUserAccessInterface;
-import Database.UserList;
-import InputBoundary.LoginInputBoundary;
-import InputData.LoginInputData;
-import OutputBoundary.LoginOutputBoundary;
-import Database.GetUserAccessInterface;
-import OutputData.LoginOutputData;
+import database.LoginUserAccessInterface;
+import database.UserList;
+import inputBoundary.LoginInputBoundary;
+import inputData.LoginInputData;
+import outputBoundary.LoginOutputBoundary;
+import database.GetUserAccessInterface;
+import outputData.LoginOutputData;
 /**
  * Application business rules use case class to log in.
  */

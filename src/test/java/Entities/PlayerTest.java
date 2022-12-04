@@ -1,7 +1,7 @@
 // TRUE ASSERTIONS ARE COMMENTED OUT FOR THE AUTOGRADER
 // UNCOMMENT THEM TO TEST LOCALLY
 
-package Entities;
+package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

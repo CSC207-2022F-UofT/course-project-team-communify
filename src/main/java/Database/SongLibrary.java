@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
@@ -32,9 +32,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
     private final String SONG_PATH = "src/songLib";
 
     // Temporary cache of songs uploaded during current login cycle.
-    private ArrayList<SongDsData> uploadQueue;
-
-    private final int UPPER_ID_LIMIT = 10000;
+    private final ArrayList<SongDsData> uploadQueue;
 
     /**
      * Global static method to retrieve the single instance of songLibrary.
@@ -212,6 +210,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
         System.out.println("saving");
         try {
             int id = -1;
+            int UPPER_ID_LIMIT = 10000;
             while (exists(id) || id == -1) id = ThreadLocalRandom.current().nextInt(0, UPPER_ID_LIMIT);
             SongDsData newSong = readSongFromMetadata(id, uploader, new MP3File(filepath));
             if(!exists(newSong)){

@@ -1,6 +1,6 @@
-package OutputBoundary;
-import OutputData.EditPlaylistOutputData;
-import OutputData.NewPlaylistOutputData;
+package outputBoundary;
+import outputData.EditPlaylistOutputData;
+import outputData.NewPlaylistOutputData;
 /**
  * Use case layer output boundary that allows communication between presenters and the new playlist use case.
  */

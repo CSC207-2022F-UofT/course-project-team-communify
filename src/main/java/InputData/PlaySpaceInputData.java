@@ -1,4 +1,4 @@
-package InputData;
+package inputData;
 
 import java.util.List;
 

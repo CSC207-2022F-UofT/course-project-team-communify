@@ -1,9 +1,9 @@
-package OutputData;
+package outputData;
 /**
  * Application Business Rules layer data structure for receiving new playlist output from use cases.
  */
 public class NewPlaylistOutputData {
-    String playlistCreated;
+    final String playlistCreated;
 
     /**
      * @param success whether creation of playlist was successful

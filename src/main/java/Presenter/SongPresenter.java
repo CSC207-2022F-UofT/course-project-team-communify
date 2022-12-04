@@ -1,20 +1,19 @@
-package Presenter;
+package presenter;
 
-import OutputBoundary.SongOutputBoundary;
-import OutputData.SongOutputData;
-import ViewModel.MusicEngineControllerViewModel;
+import outputBoundary.SongOutputBoundary;
+import outputData.SongOutputData;
 
 /**
  * Interface adapters layer presenter for displaying play song use case output.
  */
 public class SongPresenter implements SongOutputBoundary {
-    private final MusicEngineControllerViewModel viewModel;
+    private final viewModel.MusicEngineViewModel viewModel;
 
     /**
-     * @param musicEngineControllerViewModel the view model of the music engine
+     * @param musicEngineViewModel the view model of the music engine
      */
-    public SongPresenter(MusicEngineControllerViewModel musicEngineControllerViewModel){
-        this.viewModel = musicEngineControllerViewModel;
+    public SongPresenter(viewModel.MusicEngineViewModel musicEngineViewModel){
+        this.viewModel = musicEngineViewModel;
     }
 
     /**

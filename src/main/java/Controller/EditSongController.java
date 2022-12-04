@@ -1,15 +1,15 @@
-package Controller;
-import InputBoundary.EditSongInputBoundary;
-import InputData.UploadSongInputData;
-import OutputBoundary.EditSongOutputBoundary;
-import UseCase.EditSongInteractor;
+package controller;
+import inputBoundary.EditSongInputBoundary;
+import inputData.UploadSongInputData;
+import outputBoundary.EditSongOutputBoundary;
+import useCase.EditSongInteractor;
 /**
  * Interface adapters layer controller for edit songs use case.
  */
 public class EditSongController {
 
-    EditSongOutputBoundary EditSongPresenter;
-    EditSongInputBoundary editSong;
+    final EditSongOutputBoundary EditSongPresenter;
+    final EditSongInputBoundary editSong;
 
     /**
      * @param EditSongPresenter the presenter to return edited songs to the view

@@ -1,10 +1,10 @@
-package UseCase;
-import Database.*;
-import Entities.Playlist;
-import InputBoundary.NewPlaylistInputBoundary;
-import InputData.NewPlaylistInputData;
-import OutputBoundary.NewPlaylistOutputBoundary;
-import OutputData.NewPlaylistOutputData;
+package useCase;
+import database.*;
+import entities.Playlist;
+import inputBoundary.NewPlaylistInputBoundary;
+import inputData.NewPlaylistInputData;
+import outputBoundary.NewPlaylistOutputBoundary;
+import outputData.NewPlaylistOutputData;
 
 /**
  * Application business rules use case class to create a new playlist.

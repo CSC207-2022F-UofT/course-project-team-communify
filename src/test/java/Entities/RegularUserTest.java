@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class RegularUserTest {
-    ArrayList<Integer> playlistList = new ArrayList<>();
+    final ArrayList<Integer> playlistList = new ArrayList<>();
     @Before
     public void init(){
         playlistList.add(0);

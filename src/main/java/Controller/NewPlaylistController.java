@@ -1,8 +1,8 @@
-package Controller;
-import InputBoundary.NewPlaylistInputBoundary;
-import InputData.NewPlaylistInputData;
-import ViewModel.PlaylistDsView;
-import ViewModel.UserDsView;
+package controller;
+import inputBoundary.NewPlaylistInputBoundary;
+import inputData.NewPlaylistInputData;
+import viewModel.PlaylistDsView;
+import viewModel.UserDsView;
 
 /**
  * Controller-layer implementation for create playlist use case

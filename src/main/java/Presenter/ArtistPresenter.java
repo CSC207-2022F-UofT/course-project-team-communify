@@ -1,9 +1,9 @@
-package Presenter;
+package presenter;
 
-import OutputBoundary.LoginOutputBoundary;
-import OutputData.LoginOutputData;
-import ViewModel.ArtistUserDsView;
-import ViewModel.UserViewModel;
+import outputBoundary.LoginOutputBoundary;
+import outputData.LoginOutputData;
+import viewModel.ArtistUserDsView;
+import viewModel.UserViewModel;
 
 /**
  * Interface adapters layer presenter for displaying artist user login and register use case output.

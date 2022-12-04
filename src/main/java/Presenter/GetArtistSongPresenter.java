@@ -1,8 +1,8 @@
-package Presenter;
+package presenter;
 
-import OutputBoundary.GetArtistSongOutputBoundary;
-import OutputData.GetArtistSongOutputData;
-import ViewModel.ArtistViewModel;
+import outputBoundary.GetArtistSongOutputBoundary;
+import outputData.GetArtistSongOutputData;
+import viewModel.ArtistViewModel;
 /**
  * Interface adapters layer presenter for displaying artist playlists use case output.
  */

@@ -1,10 +1,10 @@
-package UseCase;
+package useCase;
 
-import Database.UserList;
-import InputData.RegisterInputData;
-import Presenter.UserPresenter;
-import View.InMemoryUser;
-import ViewModel.UserViewModel;
+import database.UserList;
+import inputData.RegisterInputData;
+import presenter.UserPresenter;
+import view.InMemoryUser;
+import viewModel.UserViewModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

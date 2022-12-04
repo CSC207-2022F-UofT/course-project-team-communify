@@ -1,14 +1,14 @@
-package UseCase;
+package useCase;
 
-import Database.UserList;
-import Entities.User;
-import OutputBoundary.LoginOutputBoundary;
-import OutputData.LoginOutputData;
-import InputData.RegisterInputData;
-import InputBoundary.RegisterInputBoundary;
-import Database.SaveUserAccessInterface;
-import Database.UserDsData;
-import Entities.UserFactory;
+import database.UserList;
+import entities.User;
+import outputBoundary.LoginOutputBoundary;
+import outputData.LoginOutputData;
+import inputData.RegisterInputData;
+import inputBoundary.RegisterInputBoundary;
+import database.SaveUserAccessInterface;
+import database.UserDsData;
+import entities.UserFactory;
 /**
  * Application business rules use case class to register a user.
  */

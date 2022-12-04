@@ -1,10 +1,10 @@
-package UseCase;
-import Database.SaveSongAccessInterface;
-import Database.SongLibrary;
-import InputBoundary.EditSongInputBoundary;
-import InputData.UploadSongInputData;
-import OutputBoundary.EditSongOutputBoundary;
-import OutputData.EditSongOutputData;
+package useCase;
+import database.SaveSongAccessInterface;
+import database.SongLibrary;
+import inputBoundary.EditSongInputBoundary;
+import inputData.UploadSongInputData;
+import outputBoundary.EditSongOutputBoundary;
+import outputData.EditSongOutputData;
 
 /**
  * Application business rules use case class to edit a song.

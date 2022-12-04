@@ -1,7 +1,7 @@
-package InputData;
-import Database.*;
-import Entities.RegularUser;
-import Entities.Song;
+package inputData;
+import database.*;
+import entities.RegularUser;
+import entities.Song;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import ViewModel.ArtistUserDsView;
+import viewModel.ArtistUserDsView;
 /**
  * A view layer data structure to store the artist user in memory.
  */

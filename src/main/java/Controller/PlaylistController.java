@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Entities.Song;
-import InputBoundary.ShufflePlaylistInputBoundary;
-import InputData.PlaylistInputData;
+import entities.Song;
+import inputBoundary.ShufflePlaylistInputBoundary;
+import inputData.PlaylistInputData;
 import java.util.LinkedList;
 
 /**

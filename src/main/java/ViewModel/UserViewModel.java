@@ -1,10 +1,10 @@
-package ViewModel;
+package viewModel;
 
-import Controller.LoginController;
-import Controller.RegisterArtistController;
-import Controller.RegisterController;
-import Presenter.ArtistPresenter;
-import Presenter.UserPresenter;
+import controller.LoginController;
+import controller.RegisterArtistController;
+import controller.RegisterController;
+import presenter.ArtistPresenter;
+import presenter.UserPresenter;
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the user related
  * parts of the program.

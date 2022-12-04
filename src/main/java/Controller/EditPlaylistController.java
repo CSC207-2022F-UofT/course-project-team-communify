@@ -1,8 +1,8 @@
-package Controller;
-import InputBoundary.EditPlaylistInputBoundary;
-import InputData.EditPlaylistInputData;
-import ViewModel.PlaylistDsView;
-import ViewModel.UserDsView;
+package controller;
+import inputBoundary.EditPlaylistInputBoundary;
+import inputData.EditPlaylistInputData;
+import viewModel.PlaylistDsView;
+import viewModel.UserDsView;
 
 /**
  * Interface adapters layer controller for edit playlists use case.

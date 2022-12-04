@@ -1,7 +1,7 @@
-package Database;
+package database;
 
-import Entities.RegularUser;
-import Entities.User;
+import entities.RegularUser;
+import entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,7 @@
-package UseCase;
+package useCase;
 
-import InputBoundary.ShufflePlaylistInputBoundary;
-import InputData.PlaylistInputData;
+import inputBoundary.ShufflePlaylistInputBoundary;
+import inputData.PlaylistInputData;
 import java.util.Collections;
 
 /**

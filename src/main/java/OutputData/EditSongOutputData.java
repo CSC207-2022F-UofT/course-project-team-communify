@@ -1,10 +1,10 @@
-package OutputData;
+package outputData;
 /**
  * Application Business Rules layer data structure for receiving edited song output from use cases.
  */
 public class EditSongOutputData {
 
-    boolean success;
+    final boolean success;
 
     /**
      * @param success whether the song was edited

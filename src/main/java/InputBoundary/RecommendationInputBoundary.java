@@ -1,6 +1,6 @@
-package InputBoundary;
+package inputBoundary;
 
-import InputData.PlaylistInputData;
+import inputData.PlaylistInputData;
 
 /**
  * Application Business Rules layer interface to be implemented by a Use Case

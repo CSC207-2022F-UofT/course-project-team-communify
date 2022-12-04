@@ -1,7 +1,7 @@
-package ViewModel;
+package viewModel;
 
-import View.InMemoryArtistUser;
-import View.InMemoryUser;
+import view.InMemoryArtistUser;
+import view.InMemoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

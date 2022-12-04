@@ -1,11 +1,11 @@
-package UseCase;
+package useCase;
 
-import Entities.MusicPlayer;
-import Entities.Song;
-import InputBoundary.NextSongInputBoundary;
-import InputBoundary.PlayPlaylistInputBoundary;
-import InputData.PlaylistInputData;
-import OutputBoundary.SongOutputBoundary;
+import entities.MusicPlayer;
+import entities.Song;
+import inputBoundary.NextSongInputBoundary;
+import inputBoundary.PlayPlaylistInputBoundary;
+import inputData.PlaylistInputData;
+import outputBoundary.SongOutputBoundary;
 
 import java.util.ArrayList;
 /**

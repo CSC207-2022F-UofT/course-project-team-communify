@@ -1,10 +1,10 @@
-package ViewModel;
+package viewModel;
 
 
-import Database.SongLibrary;
-import Entities.Song;
-import View.InMemoryPlaylist;
-import View.InMemoryUser;
+import database.SongLibrary;
+import entities.Song;
+import view.InMemoryPlaylist;
+import view.InMemoryUser;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 public class PlaylistViewModelTests {
