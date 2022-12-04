@@ -1,6 +1,6 @@
 ## Communify
 <p float="left">
-  <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/View/assets/logo_red_full.png" width="200" alt="Communify logo"/>
+  <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/view/assets/logo_red_full.png" width="200" alt="Communify logo"/>
 </p>
 
 Communify is a music platform that aims to make music streaming more collaborative – allowing users to join live “space” radios and recommend songs to "space" radios. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
@@ -11,6 +11,7 @@ It's pretty easy!
 1. Download the files
 2. Run src/main/java/Main.java
 3. Have fun!
+*Note:* certain functions of the program are _very_ slow - we are working on this. Give the program a few seconds when logging-in, or adding/removing songs from playlists.
 
 ## Features
 - you can log in as an _ARTIST_ and a _REGULAR USER_ (i.e. a listener)
