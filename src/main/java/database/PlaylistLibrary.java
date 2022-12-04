@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class PlaylistLibrary implements GetPlaylistAccessInterface, SavePlaylistAccessInterface {
     private static final PlaylistLibrary PLAYLIST_LIBRARY =
-            new PlaylistLibrary("./src/main/java/Database/playlists.csv");
+            new PlaylistLibrary("./src/main/java/database/playlists.csv");
     private final Map<Integer, PlaylistDsData> playlistDatabase;
     private final String filepath;
 

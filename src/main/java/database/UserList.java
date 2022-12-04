@@ -17,8 +17,8 @@ import java.util.Scanner;
  */
 public class UserList implements GetUserAccessInterface, SaveUserAccessInterface, LoginUserAccessInterface {
     private static final UserList USER_LIST =
-            new UserList("./src/main/java/Database/artists.csv",
-                    "./src/main/java/Database/users.csv");
+            new UserList("./src/main/java/database/artists.csv",
+                    "./src/main/java/database/users.csv");
     final Map<String, UserDsData> userDatabase;
     final String regularFilepath;
     final String artistFilepath;

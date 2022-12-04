@@ -24,7 +24,7 @@ import java.io.*;
  */
 public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterface {
 
-    private static final SongLibrary SONG_LIBRARY = new SongLibrary("./src/main/java/Database/songs.csv");
+    private static final SongLibrary SONG_LIBRARY = new SongLibrary("./src/main/java/database/songs.csv");
     private final BufferedImage DEFAULT_COVER;
     private final HashMap<Integer, SongDsData> library;
     private final String filepath;
@@ -65,6 +65,7 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
     /**
      * Saves the updated song library to the database.
+     * @return true if the save is successful
      */
     public boolean saveLibrary(){
         if(!uploadQueue.isEmpty()) try{
