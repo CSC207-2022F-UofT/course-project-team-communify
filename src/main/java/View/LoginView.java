@@ -28,8 +28,6 @@ public class LoginView extends JFrame implements ActionListener {
     private JButton backButton;
     private JLabel logo;
 
-    private int UI_TOP_LEFT;
-
     /**
      * @param icon the program icon
      * @param logoImg the program logo
@@ -44,6 +42,20 @@ public class LoginView extends JFrame implements ActionListener {
         this.initializeFrame();
     }
 
+    private void openNewScreen(boolean isArtist){
+        InMemoryUser user;
+        InMemoryArtistUser artist;
+        this.jframe.dispose();
+        if (isArtist) {
+            artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
+            new ArtistView(this.icon, this.logoImg, artist);
+
+        } else {
+            user = (InMemoryUser) this.viewModel.getCurrentUser();
+            new PlaylistView(user, icon, logoImg);
+        }
+    }
+
     /**
      * Handles login button events.
      * @param e the button press event
@@ -51,8 +63,6 @@ public class LoginView extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String username = "", password = "", artistName = "";
-        InMemoryUser user;
-        InMemoryArtistUser artist;
         boolean isArtist = isArtistCheckBox.isSelected();
 
         if(e.getSource() == this.backButton){
@@ -80,15 +90,7 @@ public class LoginView extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this.jframe, "Empty Password. Please enter a password.");
             }
             else if (viewModel.loginAction(username, password, isArtist)){
-                this.jframe.dispose();
-                if (isArtist) {
-                    artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
-                    new ArtistView(this.icon, this.logoImg, artist);
-
-                } else {
-                    user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new PlaylistView(user, icon, logoImg);
-                }
+                this.openNewScreen(isArtist);
             }
             else {
                 JOptionPane.showMessageDialog(this.jframe, "Sorry, invalid credentials. Please double-check your password.");
@@ -97,15 +99,7 @@ public class LoginView extends JFrame implements ActionListener {
         else if (e.getSource() == this.submitButton & register){
             if (viewModel.registerAction(username, password, isArtist, artistName)){
                 this.jframe.dispose();
-                this.jframe.dispose();
-                if (isArtist) {
-                    artist = (InMemoryArtistUser) this.viewModel.getCurrentArtistUser();
-                    new ArtistView(this.icon, this.logoImg, artist);
-
-                } else {
-                    user = (InMemoryUser) this.viewModel.getCurrentUser();
-                    new PlaylistView(user, icon, logoImg);
-                }
+                this.openNewScreen(isArtist);
             }
             else {
                 JOptionPane.showMessageDialog(this.jframe, "Sorry, that username is taken.");
@@ -137,7 +131,6 @@ public class LoginView extends JFrame implements ActionListener {
 
         int DEFAULT_WIDTH = 280;
         int DEFAULT_HEIGHT = 40;
-        int DEFAULT_KERNING = 10;
 
         this.logo = new JLabel(logoImg);
         this.logo.setBounds((this.jframe.getWidth() - logoImg.getIconWidth())/2, 120, logoImg.getIconWidth(), logoImg.getIconHeight());

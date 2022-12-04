@@ -43,6 +43,10 @@ public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
         EditPlaylistOutputData outputData = new EditPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
 
+        this.savePlaylistOrUser(inputData);
+    }
+
+    private void savePlaylistOrUser(EditPlaylistInputData inputData){
         // save edited playlist
         if (library.exists(inputData.getPlaylist().getId())){
             this.library.savePlaylist(new PlaylistDsData(inputData.getPlaylist()));
@@ -63,14 +67,7 @@ public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
         String message =  inputData.getSong().getName() + " added!";
         EditPlaylistOutputData outputData = new EditPlaylistOutputData(message, inputData.getPlaylist());
         presenter.setEditPlaylistConfirmation(outputData);
-        //save edited playlist
-        if (library.exists(inputData.getPlaylist().getId())){
-            this.library.savePlaylist(new PlaylistDsData(inputData.getPlaylist()));
-        }
-        // save user
-        if (userDatabase.exists(inputData.getPlaylist().getOwner().getUsername())) {
-            this.userDatabase.save(new UserDsData(inputData.getPlaylist().getOwner()));
-        }
+        this.savePlaylistOrUser(inputData);
     }
 }
 
