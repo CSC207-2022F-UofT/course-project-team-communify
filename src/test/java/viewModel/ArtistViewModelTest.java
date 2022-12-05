@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import view.InMemoryArtistUser;
 
+/**
+ * testing for the artist view model
+ */
 public class ArtistViewModelTest {
 
     ArtistViewModel avm = new ArtistViewModel(new InMemoryArtistUser("Metrofolk", "metrofolk"));

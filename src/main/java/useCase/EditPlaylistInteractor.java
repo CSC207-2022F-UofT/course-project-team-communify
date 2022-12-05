@@ -46,6 +46,9 @@ public class EditPlaylistInteractor implements EditPlaylistInputBoundary {
         this.savePlaylistOrUser(inputData);
     }
 
+    /**
+     * @param inputData the data containing the user or playlist to be saved
+     */
     private void savePlaylistOrUser(EditPlaylistInputData inputData){
         // save edited playlist
         if (library.exists(inputData.getPlaylist().getId())){

@@ -38,6 +38,9 @@ public class SearchViewModel {
         this.outputSongs = songs;
     }
 
+    /**
+     * @return the output of the search results
+     */
     public String[][] getOutputSongs() {
         return outputSongs;
     }

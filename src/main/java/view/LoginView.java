@@ -42,6 +42,10 @@ public class LoginView extends JFrame implements ActionListener {
         this.initializeFrame();
     }
 
+    /**
+     * creates the new view after logging in
+     * @param isArtist if the user is an artist
+     */
     private void openNewScreen(boolean isArtist){
         InMemoryUser user;
         InMemoryArtistUser artist;

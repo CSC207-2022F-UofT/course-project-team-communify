@@ -17,6 +17,9 @@ import java.util.List;
 
 public class PlaySpaceTest {
 
+    /**
+     * tests playing a space when a song is in the queue
+     */
     @Test
     public void testPlaySpaceOnSongExist(){
         SongInputData songInputData = new SongInputData(10);
@@ -30,6 +33,9 @@ public class PlaySpaceTest {
         // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
 
+    /**
+     * tests picking a random song
+     */
     @Test
     public void testPickRandomSong(){
         viewModel.MusicEngineViewModel mecv = new viewModel.MusicEngineViewModel(new InMemoryPlaylist());

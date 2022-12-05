@@ -108,6 +108,9 @@ public class MusicEngineControllerTest {
         // Assertions.assertEquals(mp.getCurrentSong().getName(), p.getSongs().get(1).getName());
     }
 
+    /**
+     * tests playing a space
+     */
     @Test
     public void testPlaySpace(){
         MusicPlayer mp = MusicPlayer.getInstance();

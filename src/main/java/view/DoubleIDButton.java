@@ -1,5 +1,9 @@
 package view;
 import javax.swing.*;
+
+/**
+ * A JButton that can store two IDs
+ */
 public class DoubleIDButton extends JButton{
 
     private int playlistID;

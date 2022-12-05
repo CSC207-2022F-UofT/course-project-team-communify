@@ -35,6 +35,11 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
 //        this.songID = Integer.parseInt(null);
     }
 
+    /**
+     * @param owner the owner of the playlist
+     * @param playlistView the main window view
+     * @param songID the ID of the song to add
+     */
     public NewPlaylistInputDataView(InMemoryUser owner, PlaylistView playlistView, int songID){
         this.mainWindow = playlistView;
         this.songID = songID;
@@ -139,6 +144,9 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.jframe.setVisible(true);
     }
 
+    /**
+     * @param text the text to show in the popup
+     */
     private void createPopup(String text){
         JOptionPane pane = new JOptionPane(null);
         pane.setMessage(text);
