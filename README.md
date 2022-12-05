@@ -39,6 +39,8 @@ It's pretty easy!
 We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all the tests will pass on a local repo when run individually. 
 
 ### Code Coverage Overview (To Complete) 
+**Percentages given are method coverage.**
+
 Controllers: 
 - EditPlaylistController 100%
 - EditSongController 100%
