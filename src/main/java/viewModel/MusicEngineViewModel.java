@@ -86,6 +86,11 @@ public class MusicEngineViewModel {
     }
 
     /**
+     * @param id the ID of the playlist to be shuffled
+     */
+    public void shuffleAction(int id){this.musicEngineController.shuffle(id);}
+
+    /**
      * @param id the ID of the song to add
      * @return the text to display after
      */

@@ -9,8 +9,9 @@ public interface ShufflePlaylistInputBoundary {
 
     /**
      * Shuffles the order of a playlist.
+     *
      * @param playlist the playlist to shuffle
+     * @return the new play playlist object
      */
-    void shuffle(PlaylistInputData playlist);
-
+    PlayPlaylistInputBoundary shuffle(PlaylistInputData playlist);
 }

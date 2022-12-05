@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class PlaylistInputData {
     private final String name;
-    private final LinkedList<Song> songList;
+    private LinkedList<Song> songList;
     private final List<SongInputData> songInputList;
     private final int id;
 
@@ -72,5 +72,12 @@ public class PlaylistInputData {
      */
     public List<SongInputData> getSongInputList() {
         return songInputList;
+    }
+
+    public void setSongList(List<Song> songs){
+        this.songList = new LinkedList<>(songs);
+        this.songInputList.clear();
+        for (Song s : songList)
+            songInputList.add(new SongInputData(s));
     }
 }
