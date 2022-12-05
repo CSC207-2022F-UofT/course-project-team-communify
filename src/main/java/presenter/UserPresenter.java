@@ -44,7 +44,7 @@ public class UserPresenter implements LoginOutputBoundary {
                 song.setName(s.getName());
                 playlist.addSong(song);
             }
-            this.output.addPlaylist(playlist);
+            this.output.addPlaylist(playlist, false);
         }
         this.viewModel.updateCurrentUser(this.output);
     }

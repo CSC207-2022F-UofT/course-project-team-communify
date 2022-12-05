@@ -44,10 +44,11 @@ public class InMemoryUser implements UserDsView {
 
     /**
      * @param playlist the playlist to be added to the user
+     * @param first if the playlist should be added first
      */
     @Override
-    public void addPlaylist(PlaylistDsView playlist) {
-        this.playlists.add((InMemoryPlaylist) playlist);
+    public void addPlaylist(PlaylistDsView playlist, boolean first) {
+        this.playlists.add(0, (InMemoryPlaylist) playlist);
     }
 
     /**

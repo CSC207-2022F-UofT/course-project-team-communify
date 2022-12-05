@@ -15,8 +15,9 @@ public interface UserDsView {
 
     /**
      * @param playlist the playlist to be added to the user
+     * @param first if the playlist should be added first
      */
-    void addPlaylist(PlaylistDsView playlist);
+    void addPlaylist(PlaylistDsView playlist, boolean first);
 
     /**
      * @return a blank PlaylistDsView object

@@ -33,13 +33,16 @@ public class PlaylistPanelView implements ActionListener {
     private final PlaylistViewModel playlistViewModel;
 
     private final InMemoryUser user;
+    private final PlaylistView mainWindow;
 
 
     /**
      * @param u the user logged in
      * @param vm the view model with the song data
+     * @param mainWindow the main window of the program
      */
-    public PlaylistPanelView(InMemoryUser u, MusicEngineViewModel vm){
+    public PlaylistPanelView(InMemoryUser u, MusicEngineViewModel vm, PlaylistView mainWindow){
+        this.mainWindow = mainWindow;
         initializeComponents(u.getPlaylists(), vm);
         this.user = u;
         this.playlistViewModel = new PlaylistViewModel();
@@ -191,14 +194,19 @@ public class PlaylistPanelView implements ActionListener {
             viewModel.getRecommendationAction(rButtons.get(id).getId());
         }
         if (this.dButtons.contains(actionEvent.getSource())){
-            int id= dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
+            int id = dButtons.indexOf((DoubleIDButton) actionEvent.getSource());
             int songID = dButtons.get(id).getSongID();
             int playlistID = dButtons.get(id).getPlaylistID();
             String output = playlistViewModel.callRemoveSong(user,playlistID,songID);
+            this.mainWindow.updateUser(this.playlistViewModel.getCurrPlaylist());
             this.createPopup(output);
         }
         this.refresh();
     }
+
+    /**
+     * @param text the text to go in the popup
+     */
     private void createPopup(String text){
         JOptionPane pane = new JOptionPane(null);
         pane.setMessage(text);
@@ -206,6 +214,9 @@ public class PlaylistPanelView implements ActionListener {
         dialog.setVisible(true);
     }
 
+    /**
+     * refreshes the open window
+     */
     public void refresh(){
         this.panel.invalidate();
         this.panel.validate();

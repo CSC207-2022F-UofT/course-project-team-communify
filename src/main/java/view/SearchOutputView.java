@@ -42,6 +42,9 @@ public class SearchOutputView extends JFrame implements ActionListener {
      * @param user the logged-in user
      * @param engineVm the view model containing the song data
      * @param pb the current play bar object
+     * @param icon the icon object
+     * @param logoImg the logo object
+     * @param playlistView the main window
      */
     public SearchOutputView(String searchText, InMemoryUser user, viewModel.MusicEngineViewModel engineVm,
                             PlayBar pb, ImageIcon icon, ImageIcon logoImg, PlaylistView playlistView){
@@ -205,7 +208,7 @@ public class SearchOutputView extends JFrame implements ActionListener {
                 }
                 if (editedPlaylist != null){
                     this.user.removePlaylist(editedPlaylist);
-                    this.user.addPlaylist(this.playlistViewModel.getCurrPlaylist());
+                    this.user.addPlaylist(this.playlistViewModel.getCurrPlaylist(), false);
                 }
 
             }
