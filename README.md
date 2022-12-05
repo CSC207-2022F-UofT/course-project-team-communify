@@ -137,7 +137,7 @@ View Models:
 
 ### Design Patterns Used
 - Singleton, multiple times in classes such as UserList, PlaylistLibrary, SongLibrary
-- A facade, removing the Swing code from Main.java
+- A facade, removing the Swing code from Main.java and any layer outside of View
 - A factory, creating both types of user (regular and Artist)
 
 ### Examples of SOLID 
