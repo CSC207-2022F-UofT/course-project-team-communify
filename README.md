@@ -2,8 +2,7 @@
 <p float="left">
   <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/view/assets/logo_red_full.png" width="200" alt="Communify logo"/>
 </p>
-
-Communify is a music platform that aims to make music streaming more collaborative – allowing users to join live “space” radios and recommend songs to "space" radios. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
+Communify is a music platform that aims to make music streaming more collaborative - allowing user(s) to share work, join live “space” radios, and get recommendations. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
 
 
 ## Running the project
@@ -46,9 +45,8 @@ Controllers:
 - EditSongController 100%
 - GetArtistSongController 100%
 - LoginController 100%
-- MusicEngineController 100%
+- MusicEngineController 90%
 - NewPlayistController 100% 
-- PlaylistController 100%
 - RegisterArtistController 100%
 - RegisterController 100%
 - SearchController 100%
@@ -58,7 +56,7 @@ Database:
 All database files contain a createFile() called when the csv it uses does not exist. Cannot be tested easily.
 - PlaylistLibrary 90%
 - PlaylistDsData 100%
-- SongDsData 63% TODO
+- SongDsData 77%
 - SongLibrary 88%
 - UserDsData 100%
 - UserList 90%
@@ -68,7 +66,7 @@ Entities:
 - ArtistUser 100%
 - JPlayer 80%
 - MusicPlayer 92%
-- Playlist 100%
+- Playlist 94%
 - RegularUser 100%
 - Song 95%
 - User 100%
@@ -118,20 +116,20 @@ Use Cases:
 - LoginInteractor 100%
 - NextSongInteractor 100%
 - PauseSongInteractor 100%
-- PlayPlaylistInteractor 100%
+- PlayPlaylistInteractor 80%
 - PlaySongInteractor 100%
 - PlaySpaceInteractor 100%
 - RecommendSongInteractor 100%
 - RegisterArtistInteractor 100%
 - RegisterInteractor 100%
 - SearchInteractor 100%
-- ShufflePlaylistInteractor 0% TODO
+- ShufflePlaylistInteractor 100%
 
 
 View Models: 
 - ArtistViewModel 100%
-- MusicEngineViewModel 78%
-- PlaylistViewModel 100%
+- MusicEngineViewModel 76%
+- PlaylistViewModel 94%
 - SearchViewModel 100%
 - UserViewModel 85%
 
