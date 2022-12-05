@@ -135,6 +135,19 @@ public class MusicEngineController {
     }
 
     /**
+     * Shuffles a playlist.
+     * @param id the playlist ID to shuffle
+     */
+    public void shuffle(int id){
+        stop();
+        PlaylistInputData data = new PlaylistInputData(id);
+        ShufflePlaylistInputBoundary shuffler = new ShufflePlaylistInteractor(this.songPresenter);
+        this.playPlaylist = shuffler.shuffle(data);
+        this.nextSong.updatePlaylist(this.playPlaylist.getPlaying());
+        this.playing = PLAYLIST;
+    }
+
+    /**
      * Private helper method to stop the currently playing queue, if it exists.
      */
     private void stop(){

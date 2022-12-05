@@ -201,6 +201,11 @@ public class PlaylistPanelView implements ActionListener {
             this.mainWindow.updateUser(this.playlistViewModel.getCurrPlaylist());
             this.createPopup(output);
         }
+        if (this.sButtons.contains(actionEvent.getSource())){
+            int id = this.sButtons.indexOf((IDButton) actionEvent.getSource());
+            int playlistID = sButtons.get(id).getId();
+            viewModel.shuffleAction(playlistID);
+        }
         this.refresh();
     }
 
