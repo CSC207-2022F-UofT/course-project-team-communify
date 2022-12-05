@@ -1,5 +1,5 @@
 ## Communify
-<p float="left">
+<p>
   <img src="https://github.com/CSC207-2022F-UofT/course-project-team-communify/blob/main/src/main/java/view/assets/logo_red_full.png" width="200" alt="Communify logo"/>
 </p>
 Communify is a music platform that aims to make music streaming more collaborative - allowing user(s) to share work, join live “space” radios, and get recommendations. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
