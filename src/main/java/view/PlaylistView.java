@@ -44,6 +44,8 @@ public class PlaylistView extends JFrame implements ActionListener {
     /**
      * constructor
      * @param user takes in the user's data to display their own dashboard!
+     * @param icon the icon
+     * @param logoImg the logo image object
      */
     public PlaylistView(InMemoryUser user, ImageIcon icon, ImageIcon logoImg){
         this.icon = icon;
@@ -61,6 +63,8 @@ public class PlaylistView extends JFrame implements ActionListener {
      * @param user the user logged in
      * @param vm old view model
      * @param pb the current play bar
+     * @param icon the icon
+     * @param logoImg the logo image object
      */
     public PlaylistView(InMemoryUser user, viewModel.MusicEngineViewModel vm, PlayBar pb, ImageIcon icon, ImageIcon logoImg) {
         this.icon = icon;
@@ -153,7 +157,7 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.setUpPlaylistButton();
 
         // MIDDLE BAR
-        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel);
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel, this);
 
         // Set up panel
         this.panel = new JPanel();
@@ -244,9 +248,23 @@ public class PlaylistView extends JFrame implements ActionListener {
      * @param currPlaylist the new playlist to update the user with
      */
     public void updateUser(PlaylistDsView currPlaylist) {
-        this.user.addPlaylist(currPlaylist);
+        InMemoryPlaylist toRemove = null;
+        for (InMemoryPlaylist p : this.user.getPlaylists()){
+            if (currPlaylist.getId() == p.getId()){
+                toRemove = p;
+            }
+        }
+
+        if (toRemove != null){
+            this.user.removePlaylist(toRemove);
+            this.user.addPlaylist(currPlaylist, true);
+        }
+        else {
+            this.user.addPlaylist(currPlaylist, false);
+        }
+
         this.panel.remove(this.playlistPanel.getPane());
-        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel);
+        this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel, this);
         this.panel.add(this.playlistPanel.getPane());
     }
 

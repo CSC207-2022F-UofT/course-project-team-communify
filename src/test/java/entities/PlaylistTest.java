@@ -3,7 +3,13 @@ import org.junit.Test;
 
 import java.util.Objects;
 
+/**
+ * tests for the playlist entity
+ */
 public class PlaylistTest {
+    /**
+     * tests the owner field of the playlist
+     */
     @Test
     public void testOwner(){
         RegularUser joe = new RegularUser("joe","mama");
@@ -13,7 +19,11 @@ public class PlaylistTest {
         assert expected == actual;
     }
 
-    @Test public void testAddSong(){
+    /**
+     * tests adding a song
+     */
+    @Test
+    public void testAddSong(){
         RegularUser joe = new RegularUser("joe","mama");
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         Song testSong = new Song(999,null,null,null,null,null,null);
@@ -23,7 +33,11 @@ public class PlaylistTest {
         assert expected == actual;
     }
 
-    @Test public void testRemoveSong(){
+    /**
+     * tests removing a song
+     */
+    @Test
+    public void testRemoveSong(){
         RegularUser joe = new RegularUser("joe","mama");
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         Song testSong = new Song(999,null,null,null,null,null,null);
@@ -33,7 +47,12 @@ public class PlaylistTest {
         boolean actual = !joesPlaylist.getSongList().contains(testSong);
         assert expected == actual;
     }
-    @Test public void getID(){
+
+    /**
+     * tests getting the ID of a song
+     */
+    @Test
+    public void getID(){
         RegularUser joe = new RegularUser("joe","mama");
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         int expected = 787;

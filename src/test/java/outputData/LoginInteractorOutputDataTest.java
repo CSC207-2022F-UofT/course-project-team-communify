@@ -4,6 +4,9 @@ import entities.ArtistUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests for the login output data
+ */
 public class LoginInteractorOutputDataTest {
     final ArtistUser artistUser = new ArtistUser("Artsit", "artsit","pass");
     final LoginOutputData artist = new LoginOutputData(artistUser,true);

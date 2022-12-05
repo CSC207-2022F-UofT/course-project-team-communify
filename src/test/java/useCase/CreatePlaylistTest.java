@@ -14,8 +14,14 @@ import database.PlaylistLibrary;
 
 import java.util.Collection;
 
+/**
+ * testing for the creating a playlist use case
+ */
 public class CreatePlaylistTest {
 
+    /**
+     * tests creating an empty playlist
+     */
     @Test
     public void createPlaylistMessageAndEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
@@ -46,6 +52,9 @@ public class CreatePlaylistTest {
         Assertions.assertEquals(created,empty);
     }
 
+    /**
+     * tests creating a non-empty playlist
+     */
     @Test
     public void createPlaylistMessageAndNonEmptyPlaylist(){
         InMemoryUser user = new InMemoryUser();
