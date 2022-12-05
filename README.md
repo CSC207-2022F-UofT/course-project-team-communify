@@ -47,8 +47,8 @@ Controllers:
 - GetArtistSongController 100%
 - LoginController 100%
 - MusicEngineController 100%
-- NewPlayistController 33% TODO
-- PlaylistController 0% TODO
+- NewPlayistController 100% 
+- PlaylistController 100%
 - RegisterArtistController 100%
 - RegisterController 100%
 - SearchController 100%
@@ -68,7 +68,7 @@ Entities:
 - ArtistUser 100%
 - JPlayer 80%
 - MusicPlayer 92%
-- Playlist 94%
+- Playlist 100%
 - RegularUser 100%
 - Song 95%
 - User 100%
@@ -131,7 +131,7 @@ Use Cases:
 View Models: 
 - ArtistViewModel 100%
 - MusicEngineViewModel 78%
-- PlaylistViewModel 94%
+- PlaylistViewModel 100%
 - SearchViewModel 100%
 - UserViewModel 85%
 
