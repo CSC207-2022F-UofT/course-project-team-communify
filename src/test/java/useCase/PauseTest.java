@@ -37,7 +37,7 @@ public class PauseTest {
         PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
         pause.pause();
-        Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertTrue(mp.isPlaying());
     }
 
     /**
