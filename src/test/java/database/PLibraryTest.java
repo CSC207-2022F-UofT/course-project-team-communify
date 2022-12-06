@@ -53,6 +53,6 @@ public class PLibraryTest {
     public void testGetPlaylist(){
         GetPlaylistAccessInterface library = PlaylistLibrary.getInstance();
         Assertions.assertEquals(library.findPlaylist(0).getId(), 0);
-        Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getName(), "Playlist 1");
+        Assertions.assertEquals(library.findPlaylist(0).getPlaylist().getName(), "My Favourite Songs");
     }
 }

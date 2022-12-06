@@ -34,9 +34,8 @@ public class PauseTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
         mp.play(song);
-        mp.pause();
-
         PauseSongInteractor pause = new PauseSongInteractor();
+        pause.pause();
         pause.pause();
         Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
     }
