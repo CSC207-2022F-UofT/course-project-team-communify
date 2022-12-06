@@ -20,8 +20,6 @@ public class PlaylistViewModel {
 
     private PlaylistDsView currPlaylist;
 
-    private String message;
-
     /**
      * Constructor to call use cases
      */
@@ -34,21 +32,13 @@ public class PlaylistViewModel {
         this.newPlaylistController = new NewPlaylistController(new CreatePlaylistInteractor(playlistPresenter));
 
         this.editPlaylistController = new EditPlaylistController(new EditPlaylistInteractor(playlistPresenter));
-        this.message = "";
     }
 
     /**
-     * @param message the message to be outputted to the view
+     * @param message the message to be outputted to the console
      */
     public void setOutputMessage(String message){
-        this.message = message;
-    }
-
-    /**
-     * @return the output message
-     */
-    public String returnOutputMessage(){
-        return this.message;
+        System.out.println(message);
     }
 
 

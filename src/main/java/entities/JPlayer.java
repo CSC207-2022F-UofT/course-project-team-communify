@@ -65,16 +65,6 @@ public class JPlayer
      */
     private AudioDevice audio;
 
-    /**
-     * Has the player been closed?
-     */
-    private boolean		closed = false;
-
-    /**
-     * Has the player played back all frames from the stream?
-     */
-    private boolean		complete = false;
-
     private int			lastPosition = 0;
 
     /**
@@ -121,12 +111,10 @@ public class JPlayer
     /**
      * Plays a number of MPEG audio frames.
      *
-     * @param frames	The number of frames to play.
-     * @return	true if the last frame was played, or false if there are
-     *			more frames.
+     * @param frames The number of frames to play.
      * @throws JavaLayerException if the song fails to play
      */
-    public boolean play(int frames) throws JavaLayerException
+    public void play(int frames) throws JavaLayerException
     {
         boolean ret = true;
 
@@ -144,12 +132,10 @@ public class JPlayer
                 out.flush();
                 synchronized (this)
                 {
-                    complete = (!closed);
                     close();
                 }
             }
         }
-        return ret;
     }
 
     /**
@@ -161,7 +147,6 @@ public class JPlayer
         AudioDevice out = audio;
         if (out!=null)
         {
-            closed = true;
             audio = null;
             // this may fail, so ensure object state is set up before
             // calling this method.
@@ -176,17 +161,6 @@ public class JPlayer
                 System.out.println(ex.getMessage());
             }
         }
-    }
-
-    /**
-     * Returns the completed status of this player.
-     *
-     * @return	true if all available MPEG audio frames have been
-     *			decoded, or false otherwise.
-     */
-    public synchronized boolean isComplete()
-    {
-        return complete;
     }
 
     /**
@@ -250,17 +224,17 @@ public class JPlayer
 
     /**
      * Plays a range of MPEG audio frames
-     * @param start	The first frame to play
-     * @param end		The last frame to play
-     * @return true if the last frame was played, or false if there are more frames.
+     *
+     * @param start The first frame to play
+     * @param end   The last frame to play
      * @throws JavaLayerException if the song cannot be played
      */
-    public boolean play(final int start, final int end) throws JavaLayerException
+    public void play(final int start, final int end) throws JavaLayerException
     {
         boolean ret = true;
         int offset = start;
         while (offset-- > 0 && ret) ret = skipFrame();
-        return play(end - start);
+        play(end - start);
     }
 
     /**

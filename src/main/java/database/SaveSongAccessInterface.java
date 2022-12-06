@@ -14,11 +14,13 @@ public interface SaveSongAccessInterface {
     boolean saveSong(String uploader, String filepath);
 
     /**
+     * used for testing
      * @return a 2d String array representation of the library
      */
     String[][] getString();
 
     /**
+     * used for testing
      * @param ids the IDs of songs to get a string for
      * @return a 2d String array representation of the provided song IDs
      */

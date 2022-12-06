@@ -1,12 +1,9 @@
-// TRUE ASSERTIONS ARE COMMENTED OUT FOR THE AUTOGRADER
-// UNCOMMENT THEM TO TEST LOCALLY
 
 package entities;
 
+import inputData.SongInputData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 /**
  * Tests the music player entity.
@@ -17,12 +14,10 @@ public class PlayerTest {
      */
     @Test
     public void testPlay(){
-        File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer player = MusicPlayer.getInstance();
-        Assertions.assertFalse(player.isPlaying());
         player.play(song);
-        // Assertions.assertTrue(player.isPlaying());
+        Assertions.assertTrue(player.isPlaying());
     }
 
     /**
@@ -30,8 +25,7 @@ public class PlayerTest {
      */
     @Test
     public void testPause(){
-        File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();
@@ -43,13 +37,12 @@ public class PlayerTest {
      */
     @Test
     public void testResume(){
-        File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();
         player.resume();
-        // Assertions.assertTrue(player.isPlaying());
+        Assertions.assertTrue(player.isPlaying());
     }
 
     /**
@@ -57,12 +50,11 @@ public class PlayerTest {
      */
     @Test
     public void testPlayAfterPause(){
-        File file = new File("./src/test/java/Entities/test.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer player = MusicPlayer.getInstance();
         player.play(song);
         player.pause();
         player.play(song);
-        // Assertions.assertTrue(player.isPlaying());
+        Assertions.assertTrue(player.isPlaying());
     }
 }

@@ -38,7 +38,6 @@ public class PlaylistPresenter implements NewPlaylistOutputBoundary, EditPlaylis
      *
      * @return confirmation of string creation
      */
-    @Override
     public String getOutputMessage(){
         return outputMessage;
     }
