@@ -9,7 +9,7 @@ import view.InMemoryArtistUser;
  */
 public class ArtistViewModelTest {
 
-    ArtistViewModel avm = new ArtistViewModel(new InMemoryArtistUser("Metrofolk", "metrofolk"));
+    final ArtistViewModel avm = new ArtistViewModel(new InMemoryArtistUser("Metrofolk", "metrofolk"));
 
     /**
      * Tests whether a Song is successfully added to UploadQueue when upload in ArtistViewModel is called.

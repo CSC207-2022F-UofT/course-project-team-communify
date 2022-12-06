@@ -48,10 +48,6 @@ import javazoom.jl.player.FactoryRegistry;
 // first MPEG audio frame has been decoded.
 public class JPlayer
 {
-    /**
-     * The current frame number.
-     */
-    private final int frame = 0;
 
     /**
      * The MPEG audio bitstream.

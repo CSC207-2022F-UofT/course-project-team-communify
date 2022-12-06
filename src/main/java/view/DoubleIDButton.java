@@ -6,8 +6,8 @@ import javax.swing.*;
  */
 public class DoubleIDButton extends JButton{
 
-    private int playlistID;
-    private int songID;
+    private final int playlistID;
+    private final int songID;
 
     /**
      *
@@ -23,26 +23,10 @@ public class DoubleIDButton extends JButton{
 
     /**
      *
-     * @param playlistID playlist ID to set to
-     */
-    public void setPlaylistID(int playlistID){
-        this.playlistID = playlistID;
-    }
-
-    /**
-     *
      * @return ID of playlist
      */
     public int getPlaylistID(){
         return playlistID;
-    }
-
-    /**
-     *
-     * @param songID set the ID of the song
-     */
-    public void setSongID(int songID){
-        this.songID = songID;
     }
 
     /**

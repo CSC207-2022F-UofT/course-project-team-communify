@@ -3,7 +3,6 @@ package outputData;
 import entities.Song;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * Application Business Rules layer data structure for returning a Song object.
@@ -51,13 +50,6 @@ public class SongOutputData {
      */
     public String getGenre() {
         return this.song.getGenre();
-    }
-
-    /**
-     * @return file representation of the song object
-     */
-    public File getFile() {
-        return this.song.getFile();
     }
 
     /**
