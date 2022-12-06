@@ -46,7 +46,7 @@ Controllers:
 - GetArtistSongController 100%
 - LoginController 100%
 - MusicEngineController 90%
-- NewPlayistController 100% 
+- NewPlaylistController 100% 
 - RegisterArtistController 100%
 - RegisterController 100%
 - SearchController 100%
