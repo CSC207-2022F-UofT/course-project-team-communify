@@ -266,9 +266,13 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.panel.remove(this.playlistPanel.getPane());
         this.playlistPanel = new PlaylistPanelView(this.user, musicEngineViewModel, this);
         this.panel.add(this.playlistPanel.getPane());
+        this.panel.invalidate();
+        this.panel.validate();
+        this.panel.repaint();
     }
 
     /**
+     * create the popup for the space to play
      */
     private void createSpacePopup(){
         JOptionPane pane = new JOptionPane(null);

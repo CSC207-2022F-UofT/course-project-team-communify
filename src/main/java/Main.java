@@ -1,3 +1,4 @@
+import database.SongLibrary;
 import view.LaunchView;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
@@ -23,6 +24,10 @@ public class Main {
 
         ImageIcon windowIcon = new ImageIcon(ICON_RED);
         ImageIcon logoRed = new ImageIcon(LOGO_RED);
+
+        // initialization of the song library
+        SongLibrary instance = SongLibrary.getInstance();
+        assert instance != null;
 
         // FINAL
         new LaunchView(windowIcon, logoRed);
