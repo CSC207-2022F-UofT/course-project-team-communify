@@ -35,7 +35,12 @@ It's pretty easy!
 ## Comments to the TAs!
 
 ### Autograder & GitHub Actions
-We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. However, all the tests will pass on a local repo when run individually. 
+We remade the default Autograder GitHub Action because it was having some difficulty playing song files, so all our tests failed. Some tests still fail the autograder, because it runs the tests simultaneously. This matters because there is a single MusicPlayer entity that will be handling all this information simultaneously, and sometimes it returns the wrong information from another test. 
+
+**However, all the tests will pass on a local repo when each test is run individually.** 
+
+### On Package Structure
+Most of the packages are organized by class type; for example, input datas are separate from output datas, even though they are in the Application Business Rules layer. However, one exception to this is our database package. This contains all classes related to our databases, including the database files themselves (in the Frameworks & Drivers layer), the Data Access Interfaces (in the Application Business Rules Layer), and the corresponding DS classes meant to abstract information between those two layers (which is also in the Application Business Rules Layer). This ended up happening because we realized we needed more classes than expected as time passed; splitting the package into smaller, more concise packages could be a later refactoring effect should we have more time. For the time being, this is important because some Application Business Rules Layer classes (ex. Input Datas) import from the Database class, but we are sure that they do not break CA by strictly importing from the classes in the database package that are in the same layer (or are importing a database singleton's getInstance method to assign to an interface in the same layer).
 
 ### Code Coverage Overview (To Complete) 
 **Percentages given are method coverage.**
