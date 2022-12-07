@@ -29,4 +29,24 @@ public interface SongDsView {
      * @param artists the artists who made the song
      */
     void setArtists(String[] artists);
+
+    /**
+     * @return the ID of the song
+     */
+    int getId();
+
+    /**
+     * @return the artists of the song
+     */
+    String[] getArtists();
+
+    /**
+     * @return the name of the song
+     */
+    String getName();
+
+    /**
+     * @return the genre of the song
+     */
+    String getGenre();
 }

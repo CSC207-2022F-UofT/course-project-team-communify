@@ -114,7 +114,7 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.musicEngineViewModel = new viewModel.MusicEngineViewModel(new InMemoryPlaylist());
         this.playBar = new PlayBar(musicEngineViewModel, musicEngineViewModel.getSync());
 
-        this.searchViewModel = new SearchViewModel();
+        this.searchViewModel = new SearchViewModel(new InMemoryUser());
     }
 
     /**
@@ -135,7 +135,7 @@ public class PlaylistView extends JFrame implements ActionListener {
         this.playBar = pb;
         this.playBar.update();
 
-        this.searchViewModel = new SearchViewModel();
+        this.searchViewModel = new SearchViewModel(new InMemoryUser());
     }
 
     /**

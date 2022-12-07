@@ -51,7 +51,7 @@ public class SearchOutputView extends JFrame implements ActionListener {
         this.icon = icon;
         this.logoImg = logoImg;
         this.musicEngineViewModel = engineVm;
-        this.playlistViewModel = new PlaylistViewModel();
+        this.playlistViewModel = new PlaylistViewModel(new InMemoryUser());
         this.playBar = pb;
         this.playlistView = playlistView;
         this.initialiseValues(searchText, user);
@@ -68,7 +68,7 @@ public class SearchOutputView extends JFrame implements ActionListener {
         Dimension DEFAULT_SIZE = new Dimension(50, 50);
         int DEFAULT_KERNING = 20;
 
-        this.searchViewModel = new SearchViewModel();
+        this.searchViewModel = new SearchViewModel(new InMemoryUser());
         this.user = user;
         this.searchText = searchText;
         this.jframe = new JFrame("Search Results");

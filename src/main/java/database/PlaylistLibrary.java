@@ -1,9 +1,5 @@
 package database;
 
-import entities.Playlist;
-import entities.RegularUser;
-import entities.Song;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -111,19 +107,6 @@ public class PlaylistLibrary implements GetPlaylistAccessInterface, SavePlaylist
      */
     @Override
     public PlaylistDsData findPlaylist(int id) {
-        // TODO: REMOVE THIS TESTING CODE WHEN FINISHED
-        if (id == -1){
-            File file = new File("./src/test/java/UseCase/test1.mp3");
-            Song song = new Song(0, "Song One", null, null, file, null, null);
-            File file2 = new File("./src/test/java/UseCase/test2.mp3");
-            Song song2 = new Song(0, "Song Two", null, null, file2, null, null);
-
-            Playlist p = new Playlist(-1, "Test Playlist", new RegularUser("a", "b"));
-            p.addSong(song);
-            p.addSong(song2);
-            return new PlaylistDsData(p);
-        }
-
         if (playlistDatabase.containsKey(id))
             return playlistDatabase.get(id);
         return null;

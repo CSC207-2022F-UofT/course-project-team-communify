@@ -45,7 +45,7 @@ public class PlaylistPanelView implements ActionListener {
         this.mainWindow = mainWindow;
         initializeComponents(u.getPlaylists(), vm);
         this.user = u;
-        this.playlistViewModel = new PlaylistViewModel();
+        this.playlistViewModel = new PlaylistViewModel(new InMemoryUser());
     }
 
     /**
