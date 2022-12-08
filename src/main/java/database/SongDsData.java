@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 /**
- * Data storage class between database class and entities.
+ * Data storage class between database class and entities. In the Application Business Rules layer.
  */
 public class SongDsData {
     private final Song song;

@@ -98,13 +98,6 @@ public class MusicPlayer {
     }
 
     /**
-     * @param playing the playing value to set the object to
-     */
-    public void setPlaying(boolean playing) {
-        this.playing = playing;
-    }
-
-    /**
      * Returns the ms/frame, necessary for resume calculations.
      * @return milliseconds per each frame
      */

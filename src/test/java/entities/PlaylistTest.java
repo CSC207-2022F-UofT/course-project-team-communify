@@ -1,5 +1,6 @@
 package entities;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class PlaylistTest {
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         boolean expected = true;
         boolean actual = Objects.equals(joesPlaylist.getOwner().getUsername(), "joe");
-        assert expected == actual;
+        Assertions.assertEquals(expected, actual);
     }
 
     /**
@@ -30,7 +31,7 @@ public class PlaylistTest {
         joesPlaylist.addSong(testSong);
         boolean expected = true;
         boolean actual = joesPlaylist.getSongList().contains(testSong);
-        assert expected == actual;
+        Assertions.assertEquals(expected, actual);
     }
 
     /**
@@ -45,18 +46,18 @@ public class PlaylistTest {
         joesPlaylist.removeSong(testSong);
         boolean expected = true;
         boolean actual = !joesPlaylist.getSongList().contains(testSong);
-        assert expected == actual;
+        Assertions.assertEquals(expected, actual);
     }
 
     /**
      * tests getting the ID of a song
      */
     @Test
-    public void getID(){
+    public void testGetID(){
         RegularUser joe = new RegularUser("joe","mama");
         Playlist joesPlaylist = new Playlist(787,"Joe's Playlist",joe);
         int expected = 787;
         int actual = joesPlaylist.getId();
-        assert expected == actual;
+        Assertions.assertEquals(expected, actual);
     }
 }

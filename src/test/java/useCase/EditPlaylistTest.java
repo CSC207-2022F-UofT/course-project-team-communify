@@ -35,7 +35,7 @@ public class EditPlaylistTest {
         }
 
         EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(), playlist.getId(), song);
-        PlaylistViewModel testViewModel= new PlaylistViewModel();
+        PlaylistViewModel testViewModel= new PlaylistViewModel(new InMemoryUser());
         PlaylistPresenter testPresenter= new PlaylistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
         testInteractor.removeSong(inputData);
@@ -62,7 +62,7 @@ public class EditPlaylistTest {
         InMemoryPlaylist playlist = new InMemoryPlaylist();
         playlist.setId(0);
         EditPlaylistInputData inputData = new EditPlaylistInputData(user.getUsername(), playlist.getId(), song);
-        PlaylistViewModel testViewModel = new PlaylistViewModel();
+        PlaylistViewModel testViewModel = new PlaylistViewModel(new InMemoryUser());
         PlaylistPresenter testPresenter = new PlaylistPresenter(testViewModel, new InMemoryUser());
         EditPlaylistInteractor testInteractor = new EditPlaylistInteractor(testPresenter);
         testInteractor.addSong(inputData);

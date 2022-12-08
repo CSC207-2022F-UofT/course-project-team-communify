@@ -66,14 +66,6 @@ public class InMemoryPlaylist implements PlaylistDsView {
     }
 
     /**
-     * @param s the song to remove
-     */
-    @Override
-    public void removeSong(SongDsView s){
-        songs.remove((InMemorySong) s);
-    }
-
-    /**
      * @return a blank song
      */
     @Override

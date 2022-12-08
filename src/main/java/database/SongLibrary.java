@@ -65,9 +65,8 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
 
     /**
      * Saves the updated song library to the database.
-     * @return true if the save is successful
      */
-    public boolean saveLibrary(){
+    public void saveLibrary(){
         if(!uploadQueue.isEmpty()) try{
 
             // Update songLib
@@ -86,12 +85,10 @@ public class SongLibrary implements SaveSongAccessInterface, GetSongAccessInterf
             }
 
             bw.close();
-            return true;
         }
         catch(IOException e){
             System.out.println("IOException: " + e);
         }
-        return false;
     }
 
     /**

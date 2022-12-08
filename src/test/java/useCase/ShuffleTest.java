@@ -19,7 +19,7 @@ public class ShuffleTest {
         MusicPlayer mp = MusicPlayer.getInstance();
         mp.close();
         ShufflePlaylistInteractor player = new ShufflePlaylistInteractor(new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
-        player.shuffle(new PlaylistInputData(0));
-        // Assertions.assertTrue(mp.isPlaying());
+        PlaylistInputData data = player.shuffle(new PlaylistInputData(0)).getPlaying();
+        Assertions.assertTrue(data.getSongs().containsAll(new PlaylistInputData(0).getSongs()));
     }
 }

@@ -7,7 +7,7 @@ import java.util.LinkedList;
  *
  */
 public class Playlist {
-    private String name;
+    private final String name;
     private final int id;
     private final User owner;
     private final LinkedList<Song> songList;
@@ -38,13 +38,6 @@ public class Playlist {
         this.songList = new LinkedList<>();
         this.songList.add(firstSong);
         //this.songList.addFirst(firstSong);
-    }
-
-    /**
-     * @param name Desired name of Playlist
-     */
-    public void setName(String name){
-        this.name = name;
     }
 
     /**

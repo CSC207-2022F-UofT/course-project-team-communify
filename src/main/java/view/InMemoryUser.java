@@ -48,7 +48,10 @@ public class InMemoryUser implements UserDsView {
      */
     @Override
     public void addPlaylist(PlaylistDsView playlist, boolean first) {
-        this.playlists.add(0, (InMemoryPlaylist) playlist);
+        if (first)
+            this.playlists.add(0, (InMemoryPlaylist) playlist);
+        else
+            this.playlists.add((InMemoryPlaylist) playlist);
     }
 
     /**

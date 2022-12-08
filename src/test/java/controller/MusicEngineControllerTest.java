@@ -3,11 +3,11 @@ package controller;
 import entities.MusicPlayer;
 import entities.Song;
 import inputData.PlaylistInputData;
-import inputData.SongInputData;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import presenter.SongPresenter;
 import presenter.SpacePresenter;
 import view.InMemoryPlaylist;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -34,8 +34,7 @@ public class MusicEngineControllerTest {
 
         controller.playRecommendation(0);
 
-        // Assertions.assertTrue(mp.isPlaying());
-        // Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
+        Assertions.assertTrue(genres.contains(mp.getCurrentSong().getGenre()));
     }
 
     /**
@@ -47,12 +46,10 @@ public class MusicEngineControllerTest {
         mp.close();
         MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
                 new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
-        SongInputData s = new SongInputData(2);
 
-        controller.playSong(2);
+        controller.playSong(5376);
 
-        // Assertions.assertTrue(mp.isPlaying());
-        // Assertions.assertEquals(mp.getCurrentSong(), s.getSong());
+        Assertions.assertNotNull(mp.getCurrentSong());
     }
 
     /**
@@ -67,10 +64,7 @@ public class MusicEngineControllerTest {
         controller.playSong(2);
 
         controller.pauseSong();
-        // Assertions.assertFalse(mp.isPlaying());
-
-        controller.pauseSong();
-        // Assertions.assertTrue(mp.isPlaying());
+        Assertions.assertFalse(mp.isPlaying());
     }
 
     /**
@@ -82,12 +76,12 @@ public class MusicEngineControllerTest {
         mp.close();
         MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
                 new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
-        PlaylistInputData p = new PlaylistInputData(0);
 
         controller.playPlaylist(0);
 
-        // Assertions.assertTrue(mp.isPlaying());
-        // Assertions.assertEquals(mp.getCurrentSong(), p.getSongs().get(0));
+        Assertions.assertNotNull(mp.getCurrentSong());
+
+        controller.pauseSong();
     }
 
     /**
@@ -99,13 +93,12 @@ public class MusicEngineControllerTest {
         mp.close();
         MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
                 new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
-        PlaylistInputData p = new PlaylistInputData(0);
+        PlaylistInputData p = new PlaylistInputData(1);
 
         controller.playPlaylist(0);
         controller.playNext();
 
-        // Assertions.assertTrue(mp.isPlaying());
-        // Assertions.assertEquals(mp.getCurrentSong().getName(), p.getSongs().get(1).getName());
+        Assertions.assertNotEquals(mp.getCurrentSong().getName(), p.getSongs().get(0).getName());
     }
 
     /**
@@ -117,7 +110,7 @@ public class MusicEngineControllerTest {
         MusicEngineController controller = new MusicEngineController(new SpacePresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())),
                 new SongPresenter(new viewModel.MusicEngineViewModel(new InMemoryPlaylist())));
         controller.playSpace();
-        // Assertions.assertTrue(mp.isPlaying());
+        Assertions.assertNotNull(mp.getCurrentSong());
     }
 
 }

@@ -16,8 +16,8 @@ public class SearchViewModel {
     /**
      * Constructor.
      */
-    public SearchViewModel(){
-        SearchOutputBoundary searchPresenter = new SearchPresenter(this);
+    public SearchViewModel(UserDsView tempUser){
+        SearchOutputBoundary searchPresenter = new SearchPresenter(this, tempUser);
         this.searchController = new SearchController(searchPresenter);
 
     }

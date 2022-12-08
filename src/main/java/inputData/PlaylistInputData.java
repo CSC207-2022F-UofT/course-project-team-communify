@@ -74,6 +74,9 @@ public class PlaylistInputData {
         return songInputList;
     }
 
+    /**
+     * @param songs the new song list of the playlist
+     */
     public void setSongList(List<Song> songs){
         this.songList = new LinkedList<>(songs);
         this.songInputList.clear();

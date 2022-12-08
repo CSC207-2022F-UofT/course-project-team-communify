@@ -1,5 +1,6 @@
 package useCase;
 
+import view.InMemoryUser;
 import viewModel.SearchViewModel;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ public class SearchInteractorTest {
      */
     @Test
     public void testExactSearch(){
-        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel(new InMemoryUser());
         searchViewModel.search("Food");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -31,7 +32,7 @@ public class SearchInteractorTest {
      */
     @Test
     public void testSearch(){
-        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel(new InMemoryUser());
         searchViewModel.search("foo");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -48,7 +49,7 @@ public class SearchInteractorTest {
      */
     @Test
     public void testEmptySearch(){
-        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel(new InMemoryUser());
         searchViewModel.search("");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;
@@ -63,7 +64,7 @@ public class SearchInteractorTest {
      */
     @Test
     public void testNotInDatabaseSearch(){
-        SearchViewModel searchViewModel = new SearchViewModel();
+        SearchViewModel searchViewModel = new SearchViewModel(new InMemoryUser());
         searchViewModel.search("abc");
         String[][] outputSongs = searchViewModel.getOutputSongs();
         int count = 0;

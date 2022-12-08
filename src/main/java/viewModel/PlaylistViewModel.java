@@ -5,7 +5,6 @@ import controller.NewPlaylistController;
 import presenter.PlaylistPresenter;
 import useCase.CreatePlaylistInteractor;
 import useCase.EditPlaylistInteractor;
-import view.InMemoryUser;
 
 /**
  * The interface adapters layer view model which acts as a gateway between the view and the playlist related
@@ -20,35 +19,26 @@ public class PlaylistViewModel {
 
     private PlaylistDsView currPlaylist;
 
-    private String message;
-
     /**
      * Constructor to call use cases
+     * @param tempUser an empty InMemoryUser for the presenter
      */
-    public PlaylistViewModel(){
+    public PlaylistViewModel(UserDsView tempUser){
         // get necessary information from View to construct a new playlist
         //Blank output data object to extract success message from
         //sets its presenter to itself
-        this.playlistPresenter = new PlaylistPresenter(this, new InMemoryUser());
+        this.playlistPresenter = new PlaylistPresenter(this, tempUser);
 
         this.newPlaylistController = new NewPlaylistController(new CreatePlaylistInteractor(playlistPresenter));
 
         this.editPlaylistController = new EditPlaylistController(new EditPlaylistInteractor(playlistPresenter));
-        this.message = "";
     }
 
     /**
-     * @param message the message to be outputted to the view
+     * @param message the message to be outputted to the console
      */
     public void setOutputMessage(String message){
-        this.message = message;
-    }
-
-    /**
-     * @return the output message
-     */
-    public String returnOutputMessage(){
-        return this.message;
+        System.out.println(message);
     }
 
 

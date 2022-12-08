@@ -87,7 +87,7 @@ public class NewPlaylistInputDataView extends JFrame implements ActionListener {
         this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.jframe.setVisible(true);
 
-        this.viewModel = new PlaylistViewModel();
+        this.viewModel = new PlaylistViewModel(new InMemoryUser());
     }
 
     /**

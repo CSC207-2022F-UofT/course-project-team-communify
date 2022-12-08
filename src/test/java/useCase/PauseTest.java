@@ -2,9 +2,9 @@ package useCase;
 
 import entities.MusicPlayer;
 import entities.Song;
+import inputData.SongInputData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 /**
  * Tests the pause song use case.
@@ -15,14 +15,14 @@ public class PauseTest {
      */
     @Test
     public void testPause(){
-        File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         mp.play(song);
 
         PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
-        // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
 
     /**
@@ -30,15 +30,14 @@ public class PauseTest {
      */
     @Test
     public void testResume(){
-        File file = new File("./src/test/java/UseCase/test1.mp3");
-        Song song = new Song(0, null, null, null, file, null, null);
+        Song song = new SongInputData(10).getSong();
         MusicPlayer mp = MusicPlayer.getInstance();
+        mp.close();
         mp.play(song);
-        mp.pause();
-
         PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        pause.pause();
+        Assertions.assertTrue(mp.isPlaying());
     }
 
     /**
@@ -49,7 +48,7 @@ public class PauseTest {
         MusicPlayer.getInstance().close();
         PauseSongInteractor pause = new PauseSongInteractor();
         pause.pause();
-        // Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertFalse(MusicPlayer.getInstance().isPlaying());
     }
 
 

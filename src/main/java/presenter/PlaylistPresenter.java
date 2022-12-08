@@ -3,7 +3,6 @@ import outputBoundary.NewPlaylistOutputBoundary;
 import outputBoundary.EditPlaylistOutputBoundary;
 import outputData.EditPlaylistOutputData;
 import outputData.NewPlaylistOutputData;
-import view.InMemoryUser;
 import viewModel.PlaylistDsView;
 import viewModel.SongDsView;
 import viewModel.UserDsView;
@@ -27,7 +26,7 @@ public class PlaylistPresenter implements NewPlaylistOutputBoundary, EditPlaylis
      * @param viewModel view model to store output message in
      * @param inMemoryUser a blank new user
      */
-    public PlaylistPresenter(PlaylistViewModel viewModel, InMemoryUser inMemoryUser){
+    public PlaylistPresenter(PlaylistViewModel viewModel, UserDsView inMemoryUser){
         //this.outputMessage = outputData.getCreatedMessage();
         this.viewModel = viewModel;
         this.outputMessage = "";
@@ -38,7 +37,6 @@ public class PlaylistPresenter implements NewPlaylistOutputBoundary, EditPlaylis
      *
      * @return confirmation of string creation
      */
-    @Override
     public String getOutputMessage(){
         return outputMessage;
     }

@@ -1,7 +1,9 @@
 package useCase;
 
+import entities.MusicPlayer;
 import inputData.PlaySpaceInputData;
 import inputData.SongInputData;
+import org.junit.jupiter.api.Assertions;
 import outputBoundary.SongOutputBoundary;
 import presenter.SongPresenter;
 import view.InMemoryPlaylist;
@@ -30,7 +32,7 @@ public class PlaySpaceTest {
         PlaySpaceInputData playSpaceInputData = new PlaySpaceInputData(lst);
         PlaySpaceInteractor playSpaceInteractor = new PlaySpaceInteractor(spacePresenter, playSpaceInputData);
         playSpaceInteractor.playSpace();
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertEquals(MusicPlayer.getInstance().getCurrentSong(), songInputData.getSong());
     }
 
     /**
@@ -44,6 +46,6 @@ public class PlaySpaceTest {
         PlaySpaceInputData playSpaceInputData = new PlaySpaceInputData(lst);
         PlaySpaceInteractor playSpaceInteractor = new PlaySpaceInteractor(spacePresenter, playSpaceInputData);
         playSpaceInteractor.playSpace();
-        // Assertions.assertTrue(MusicPlayer.getInstance().isPlaying());
+        Assertions.assertNotNull(MusicPlayer.getInstance().getCurrentSong());
     }
 }

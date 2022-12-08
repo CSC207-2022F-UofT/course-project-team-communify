@@ -5,7 +5,6 @@ import database.SongLibrary;
 import entities.Song;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * Application Business Rules layer data structure for submitting song input to use cases.
@@ -62,13 +61,6 @@ public class SongInputData {
      */
     public String getGenre() {
         return this.song.getGenre();
-    }
-
-    /**
-     * @return the File representation of the song object stored
-     */
-    public File getFile() {
-        return this.song.getFile();
     }
 
     /**
