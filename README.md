@@ -5,7 +5,9 @@
 Communify is a music platform that aims to make music streaming more collaborative - allowing user(s) to share work, join live “space” radios, and get recommendations. Generally, it allows users to listen to music and create private playlists. On top of all user features, artists can upload music on their artist dashboard. Communify will also provide recommendations based on the individual songs or playlists and have collaborative ‘spaces’ – public radios that users can both listen to and contribute to.
 
 
-![preview](https://user-images.githubusercontent.com/44586776/214298838-3be25a6f-859f-42cf-b66e-678fccfe6523.png)
+![preview1](https://user-images.githubusercontent.com/44586776/214299108-94124dff-4c28-449d-b7a8-8f125aed05b2.png)
+
+![preview2](https://user-images.githubusercontent.com/44586776/214299159-4fa5ad0d-49f8-46f3-af48-9d30ccff85a8.png)
 
 
 
